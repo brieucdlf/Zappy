@@ -1,4 +1,4 @@
-NAME	=	ui
+NAME	=	client
 
 CC	=	gcc
 
