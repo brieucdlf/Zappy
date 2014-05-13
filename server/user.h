@@ -1,15 +1,15 @@
 /*
-** client.h for zappy in /Users/remihillairet/Epitech/Github/Zappy/server
-**
-** Made by remi hillairet
-** Login   <remihillairet@epitech.net>
-**
-** Started on  Tue May  13 10:43:27 2014 remi hillairet
-** Last update Tue May  13 10:43:27 2014 remi hillairet
+** user.h for zappy in /home/delafo_b/Projets/Zappy/server
+** 
+** Made by Brieuc
+** Login   <delafo_b@epitech.net>
+** 
+** Started on  Tue May 13 11:54:11 2014 Brieuc
+** Last update Tue May 13 11:54:15 2014 Brieuc
 */
 
-#ifndef CLIENT_H_
-# define CLIENT_H_
+#ifndef USER_H_
+# define USER_H_
 
 typedef enum
   {
@@ -40,4 +40,4 @@ typedef struct		s_client
     t_action		current_action;
   }			t_client;
 
-#endif /* !CLIENT_H_ */
+#endif /* !USER_H_ */
