@@ -29,6 +29,11 @@ typedef enum
     INCANTATION
   }action;
 
+typedef struct s_server t_server;
+typedef struct s_client t_client;
+
+typedef void (*action_function)(t_server *, t_client *);
+
 /*
 ** ################################################
 ** # BUFFER STRUCTURE (read and write)
@@ -39,6 +44,7 @@ typedef struct		s_task
 {
   char			*cmd;
   int			current_index;
+  action_function	action_fct;
 }			t_task;
 
 typedef struct		s_buffer

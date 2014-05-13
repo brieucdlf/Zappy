@@ -17,7 +17,9 @@ int		main(int ac, char **av)
 {
   t_param	param;
 
-  set_param(int ac, char**av, &param);
+  (void)param;
+  (void)ac;
+  (void)av;
   test_list();
   return (0);
 }

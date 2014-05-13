@@ -17,11 +17,6 @@ RM	=	rm -fv
 CFLAGS	+=	-g -Wall -Wextra -Werror -Iinclude
 
 SRCS	=	src/main.c				\
-<<<<<<< HEAD
-		src/buffer.c				\
-		src/init.c 					\
-=======
->>>>>>> fcb8e1b947bb7279dcf0fa2a9292621e29f824d6
 		src/list/list.c				\
 		src/list/map_list.c 			\
 		src/list/remove_list.c			\
