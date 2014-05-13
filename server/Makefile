@@ -16,7 +16,10 @@ RM	=	rm -fv
 
 CFLAGS	+=	-Wall -Wextra -Werror -Iinclude
 
-SRCS	=	main.c
+SRCS	=	main.c				\
+		buffer.c			\
+		list.c				\
+		map_list.c
 
 OBJS	=	$(SRCS:.c=.o)
 
