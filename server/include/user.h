@@ -55,7 +55,7 @@ typedef struct		s_buffer
 
 typedef struct		s_action
 {
-  char		current_action;
+  char			current_action;
   action		current_cycle;
 }			t_action;
 
@@ -71,6 +71,7 @@ typedef struct		s_client
   int			fd_socket;
   int			items[6];
   t_action		current_action;
+  t_buffer		*buffer;
 }			t_client;
 
 #endif /* !USER_H_ */
