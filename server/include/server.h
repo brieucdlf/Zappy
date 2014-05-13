@@ -4,6 +4,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h>
 # include "user.h"
 # include "list.h"
 

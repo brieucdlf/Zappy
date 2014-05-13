@@ -11,29 +11,7 @@
 #include "user.h"
 #include "server.h"
 
-void			display_the_list(t_list *elem, void *arg)
-{
-  (void)arg;
-  printf("elem list : %s\n", (char *)elem->data);
-}
-
-void		        test_list()
-{
-  t_list		*list;
-
-  list = NULL;
-
-  list_push(&list, (void *)"salut1", NULL);
-  list_push(&list, (void *)"salut2", NULL);
-  list_push(&list, (void *)"salut3", NULL);
-  list_push(&list, (void *)"salut4", NULL);
-
-  list_pop(&list);
-
-  map_list(list, display_the_list, NULL);
-
-  list_delete(list);
-}
+void		        test_list();
 
 int			main()
 {

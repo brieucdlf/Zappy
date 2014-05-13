@@ -19,7 +19,9 @@ CFLAGS	+=	-g -Wall -Wextra -Werror -Iinclude
 SRCS	=	src/main.c				\
 		src/buffer.c				\
 		src/list/list.c				\
-		src/list/map_list.c
+		src/list/map_list.c 			\
+		src/list/remove_list.c			\
+		src/test_list.c
 
 OBJS	=	$(SRCS:.c=.o)
 
