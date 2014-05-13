@@ -11,10 +11,13 @@
 #include "user.h"
 #include "server.h"
 
-void		        test_list();
+void		test_list();
 
-int			main()
+int		main(int ac, char **av)
 {
+  t_param	param;
+
+  set_param(int ac, char**av, &param);
   test_list();
   return (0);
 }
