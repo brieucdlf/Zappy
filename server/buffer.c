@@ -14,7 +14,7 @@ void			loop_buffer_task(t_list *current_task, void *arg)
   map_list(current_task, write_task, NULL /* send current_task->fd */);
 }
 
-void		        loop_buffer_client(t_list *client_user)
+void		        loop_write_buffer_client(t_list *client_user)
 {
   (void)client_user;
   map_list(client_user, loop_buffer_task, NULL);
