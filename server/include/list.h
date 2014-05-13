@@ -10,10 +10,9 @@ typedef struct		s_list
   struct s_list		*next;
 }			t_list;
 
-void			remove_elem(t_list **head_list, void *node);
 void			list_pop(t_list **list);
 void			list_delete(t_list *list);
-void			push_list(t_list **list, void *data,
+void		        list_push(t_list **list, void *data,
 				  free_function function);
 void			map_list(t_list *list, void (*function)(t_list *, void *),
 				 void *arg);

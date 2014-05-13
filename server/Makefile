@@ -14,12 +14,12 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-Wall -Wextra -Werror -Iinclude
+CFLAGS	+=	-g -Wall -Wextra -Werror -Iinclude
 
-SRCS	=	main.c				\
-		buffer.c			\
-		list.c				\
-		map_list.c
+SRCS	=	src/main.c				\
+		src/buffer.c				\
+		src/list/list.c				\
+		src/list/map_list.c
 
 OBJS	=	$(SRCS:.c=.o)
 

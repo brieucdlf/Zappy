@@ -11,6 +11,8 @@
 #ifndef USER_H_
 # define USER_H_
 
+# include "list.h"
+
 typedef enum
   {
     NONE = 0,
@@ -29,7 +31,7 @@ typedef enum
 
 /*
 ** ################################################
-** # BUFFER STRUCTURE
+** # BUFFER STRUCTURE (read and write)
 ** ################################################
 */
 

@@ -75,7 +75,7 @@ void			list_delete(t_list *list)
     }
 }
 
-void			push_list(t_list **list, void *data,
+void		        list_push(t_list **list, void *data,
 				  free_function function)
 {
   t_list		*current_elem;
