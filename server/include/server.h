@@ -11,7 +11,11 @@
 #ifndef SERVER_H_
 # define SERVER_H_
 
-# include "client.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <string.h>
+# include "user.h"
 # include "list.h"
 
 typedef struct		s_server

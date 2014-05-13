@@ -14,21 +14,26 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-Wall -Wextra -Werror
+CFLAGS	+=	-g -Wall -Wextra -Werror -Iinclude
 
-SRCS	=	main.c
+SRCS	=	src/main.c				\
+		src/buffer.c				\
+		src/list/list.c				\
+		src/list/map_list.c 			\
+		src/list/remove_list.c			\
+		src/test_list.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): 	$(OBJS)
-$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all: 		$(NAME)
 
 clean:
-$(RM) $(OBJS)
+		$(RM) $(OBJS)
 
 fclean: 	clean
-$(RM) $(NAME)
+		$(RM) $(NAME)
 
 re: 		fclean all
