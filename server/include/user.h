@@ -52,6 +52,7 @@ typedef void (*action_function)(t_server *, t_client *);
 /*
 ** ################################################
 ** # BUFFER STRUCTURE (read and write)
+** # put t_task inside the buffer_write list
 ** ################################################
 */
 
@@ -91,10 +92,11 @@ typedef struct		s_action
 typedef struct		s_client
 {
   int			level;
+  int			id_team;
   int			fd_socket;
   int			items[6];
   t_action	        action;
-  t_buffer		*buffer;
+  t_buffer		buffer;
 }			t_client;
 
 #endif /* !USER_H_ */

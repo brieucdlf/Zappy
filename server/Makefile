@@ -22,7 +22,8 @@ SRCS	=	src/main.c				\
 		src/list/remove_list.c			\
 		src/test_list.c				\
 		src/buffer.c				\
-		src/timer.c
+		src/timer.c				\
+		src/init_client.c
 
 OBJS	=	$(SRCS:.c=.o)
 

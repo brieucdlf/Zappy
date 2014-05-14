@@ -20,6 +20,16 @@ static int		get_cycle_action(action type)
   return (0);
 }
 
+/*
+** ################################################
+** # CHECK CYCLE
+** # Check the cycle of the current action
+** # It depends of the server execution time
+** # Call this function in the main loop
+** # Set is_cycle to 0 if the cycle is done
+** ################################################
+*/
+
 void			check_cycle_timer(t_server *server,
 					  t_client *current_client)
 {
@@ -39,10 +49,19 @@ void			check_cycle_timer(t_server *server,
     current_client->action.is_cycle = 0;
 }
 
+/*
+** ################################################
+** # SET TIMER
+** # set the timer at the action initialisation
+** # - Call this function when the action is
+** # initialised
+** ################################################
+*/
+
 void			set_timer(t_client *current_client)
 {
   current_client->action.timer_cycle.tv_sec = 0;
   current_client->action.timer_cycle.tv_nsec = 0;
-  current_client->action.is_cycle = 0;
+  current_client->action.is_cycle = 1;
   clock_gettime(CLOCK_MONOTONIC, &current_client->action.timer_cycle);
 }

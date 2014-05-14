@@ -20,6 +20,6 @@ void			loop_buffer_task(t_list *current_task, void *arg)
 void		        loop_write_buffer_client(t_list *client_user)
 {
   (void)client_user;
-  map_list(((t_client *)client_user)->buffer->buffer_write,
+  map_list(((t_client *)client_user)->buffer.buffer_write,
 	   loop_buffer_task, (void *)&((t_client *)client_user)->fd_socket);
 }
