@@ -15,6 +15,21 @@
 
 typedef enum
   {
+    CYCLE_RIGTH = 7,
+    CYCLE_LEFT = 7,
+    CYCLE_MOVE = 7,
+    CYCLE_SEE = 7,
+    CYCLE_INVENTARY = 7,
+    CYCLE_TAKE_OBJECT = 7,
+    CYCLE_DROP_OBJECT = 7,
+    CYCLE_PUSH = 7,
+    CYCLE_BROADCAST_TEXT = 7,
+    CYCLE_FORK = 7,
+    CYCLE_INCANTATION = 7
+  }cycle_action;
+
+typedef enum
+  {
     NONE = 0,
     RIGTH,
     LEFT,
@@ -62,7 +77,9 @@ typedef struct		s_buffer
 typedef struct		s_action
 {
   char			current_action;
-  action		current_cycle;
+  char			is_cycle;
+  action		type;
+  struct timespec	timer_cycle;
 }			t_action;
 
 /*
@@ -76,7 +93,7 @@ typedef struct		s_client
   int			level;
   int			fd_socket;
   int			items[6];
-  t_action		current_action;
+  t_action	        action;
   t_buffer		*buffer;
 }			t_client;
 
