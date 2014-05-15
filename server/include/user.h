@@ -19,13 +19,13 @@ typedef enum
     CYCLE_LEFT = 7,
     CYCLE_MOVE = 7,
     CYCLE_SEE = 7,
-    CYCLE_INVENTARY = 7,
+    CYCLE_INVENTARY = 1,
     CYCLE_TAKE_OBJECT = 7,
     CYCLE_DROP_OBJECT = 7,
     CYCLE_PUSH = 7,
     CYCLE_BROADCAST_TEXT = 7,
-    CYCLE_FORK = 7,
-    CYCLE_INCANTATION = 7
+    CYCLE_FORK = 42,
+    CYCLE_INCANTATION = 300
   }cycle_action;
 
 typedef enum

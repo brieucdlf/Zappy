@@ -19,6 +19,14 @@
 # include "user.h"
 # include "list.h"
 
+# define ARGUMENT_PARSE		"p:x:y:n:c:t:"
+# define DEFAULT_PORT		65510
+# define DEFAULT_WIDTH		100
+# define DEFAULT_HEIGTH		100
+# define CLIENT_START		10
+# define EXECUTION_TIME		1
+
+
 typedef	struct 		s_param
 {
   int			port;
@@ -42,9 +50,7 @@ typedef struct		s_server
 ** ################################################
 */
 
-void	set_param(int ac, char **av, t_param *param);
-void	set_map();
-
+void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
 
@@ -57,5 +63,13 @@ void			add_new_client(t_server *server,
 void			check_cycle_timer(t_server *server,
 					  t_client *current_client);
 void			set_timer(t_client *current_client);
+
+/*
+** ################################################
+** # FREE FUNCTIONS
+** ################################################
+*/
+
+void			free_double_array(char **tab);
 
 #endif /* !SERVER_H_ */

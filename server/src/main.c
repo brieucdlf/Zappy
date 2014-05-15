@@ -15,11 +15,11 @@ void		test_list();
 
 int		main(int ac, char **av)
 {
-  t_param	param;
+  t_param	param_server;
 
-  (void)param;
   (void)ac;
   (void)av;
-  test_list();
+  set_param(ac, av, &param_server);
+  free_double_array(param_server.teams_names);
   return (0);
 }
