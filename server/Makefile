@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 10:44:35 2014 Brieuc
+## Last update Thu May 15 10:46:30 2014 Brieuc
 ##
 
 NAME	=	server
@@ -22,6 +22,7 @@ SRCS	=	src/main.c				\
 		src/list/map_list.c 			\
 		src/list/remove_list.c			\
 		src/test_list.c				\
+		src/timer.c				\
 		src/buffer.c				\
 		src/init_client.c			\
 		src/init.c				\
