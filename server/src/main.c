@@ -11,6 +11,13 @@
 #include "user.h"
 #include "server.h"
 
+void		free_main(t_server *server)
+{
+  free_double_array(server->param_server.teams_names);
+  free_double_array(server->client_commands);
+  free_double_array(server->map.map);
+}
+
 int		main(int ac, char **av)
 {
   t_server      server;
@@ -25,8 +32,7 @@ int		main(int ac, char **av)
       return (1);
     }
   init_action_ptr(&server);
-  free_double_array(server.param_server.teams_names);
-  free_double_array(server.client_commands);
+  free_main(&server);
   close(server.fd_socket);
   return (0);
 }
