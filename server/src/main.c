@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:45:33 2014 remi hillairet
-** Last update Thu May 15 10:26:11 2014 Brieuc
+** Last update Thu May 15 10:38:48 2014 Brieuc
 */
 
 #include "user.h"
