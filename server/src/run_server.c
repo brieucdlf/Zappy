@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 **
 ** Started on  Thu May 15 13:21:25 2014 Brieuc
-** Last update Thu May 15 13:33:24 2014 Brieuc
+** Last update Thu May 15 14:04:32 2014 Brieuc
 */
 
 #include "server.h"
@@ -31,12 +31,15 @@ void			map_cycle_action(t_list *current_item, void *arg)
 
 void			server_loop(t_server *server)
 {
-  (void)server;
-  while (g_server_run)
+  struct timeval	tv;
+
+  tv.tv_usec = server->param_server.execution_time;
+  while (g_server_run == 1)
     {
       if (g_server_run == 0)
 	return ;
       map_list(server->clients, map_cycle_action, (void*)server);
-      /* Ici select */
+      if ((select(server->fd_max + 1, server->readfd, server->writefd, server->exceptfd, &tv)) == -1)
+	perror("select");
     }
 }

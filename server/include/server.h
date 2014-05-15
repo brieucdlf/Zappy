@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 13:33:02 2014 Brieuc
+** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
 #ifndef SERVER_H_
@@ -50,6 +50,10 @@ typedef struct		s_server
 {
   t_list		*clients;
   int			fd_socket;
+  int			fd_max;
+  fd_set		*readfd;
+  fd_set		*writefd;
+  fd_set		*exceptfd;
   t_param		param_server;
   char			**client_commands;
   void			(*action_ptr[12])();
