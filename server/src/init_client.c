@@ -2,7 +2,6 @@
 
 static void		init_action(t_action *action)
 {
-  action->current_action = 0;
   action->is_cycle = 0;
   action->type = NONE;
   action->timer_cycle.tv_sec = 0;

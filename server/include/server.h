@@ -5,7 +5,8 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 18:09:57 2014 romain combe
+** Last update Thu May 15 18:21:31 2014 romain combe
+** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
 #ifndef SERVER_H_
@@ -24,9 +25,10 @@
 # include <signal.h>
 # include <dirent.h>
 # include <stdio.h>
-# include <time.h>
+# include <errno.h>
 # include "user.h"
 # include "list.h"
+# include "action.h"
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
@@ -68,12 +70,14 @@ typedef struct		s_server
   int			fd_socket;
   t_param		param_server;  
   t_map			map;
+  int			fd_max;
+  fd_set		readfd;
+  fd_set		writefd;
+  fd_set		*exceptfd;
+  t_param		param_server;
+  char			**client_commands;
+  void			(*action_ptr[12])();
 }			t_server;
-
-/*
-** Dans le main pour le moment
-*/
-int		socket_init(t_server *);
 
 /*
 ** ################################################
@@ -93,6 +97,15 @@ int                     xlisten(int, int);
 void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
+int			socket_init(t_server *server);
+void			init_fd_socket(t_server *server);
+
+/*
+** ################################################
+** # run_server.c
+** ################################################
+*/
+void			server_loop(t_server *);
 
 /*
 ** ################################################
@@ -119,5 +132,10 @@ void			free_double_array(char **tab);
 void			init_map(t_map *map);
 char			**malloc_tab(int width, int height);
   void			fill_map(t_map *map);
+
+
+int   init_commands(t_server *server);
+void  init_action_ptr(t_server *server);
+int   get_command(t_server *server, t_client *current_client, char *command);
 
 #endif /* !SERVER_H_ */

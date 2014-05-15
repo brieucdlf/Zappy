@@ -5,7 +5,8 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 13:47:01 2014 romain combe
+## Last update Thu May 15 18:22:28 2014 romain combe
+## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
 NAME	=	server
@@ -14,7 +15,7 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-lrt -g -Wall -Wextra -Iinclude
+CFLAGS	+=	-g -Wall -Wextra -Iinclude
 
 SRCS	=	src/main.c				\
 		src/socket_functions.c			\
@@ -27,12 +28,21 @@ SRCS	=	src/main.c				\
 		src/init_client.c			\
 		src/init.c				\
 		src/free.c				\
-		src/init_map.c
+		src/init_map.c				\
+		src/free.c 				\
+		src/command.c 				\
+		src/action/action.c 			\
+		src/action/exec_action.c 		\
+		src/action/move_action.c 		\
+		src/action/object_action.c		\
+		src/init_socket.c			\
+		src/run_server.c			\
+		src/set_fd_socket.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) -lrt
 
 all: 		$(NAME)
 
