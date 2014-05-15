@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Tue May  13 10:53:07 2014 remi hillairet
+** Last update Thu May 15 10:29:30 2014 Brieuc
 */
 
 #ifndef SERVER_H_
@@ -21,15 +21,10 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-<<<<<<< HEAD
 # include <signal.h>
 # include <dirent.h>
 # include <stdio.h>
-
-=======
-# include <string.h>
 # include <time.h>
->>>>>>> 2acce65013ece93e22948e1a8f47de14fe66638e
 # include "user.h"
 # include "list.h"
 
@@ -54,35 +49,30 @@ typedef	struct 		s_param
 typedef struct		s_server
 {
   t_list		*clients;
-<<<<<<< HEAD
-  int			port;
-  
+  int			fd_socket;
+  t_param		param_server;  
 }			t_server;
 
-int		socket_init(t_server *, char **);
+/*
+** Dans le main pour le moment
+*/
+int		socket_init(t_server *);
 
 /*
-** socket_functions.c 
+** ################################################
+** # Socket_functions.c
+** ################################################
 */
 int                     xsocket(int, int, int);
 int                     xaccept(int, struct sockaddr *, socklen_t *);
 int                     xbind(int, const struct sockaddr *, socklen_t);
 int                     xlisten(int, int);
-void                    xport(t_server *);
-
-
-#endif // SERVER
-=======
-  t_param		param_server;
-}			t_server;
-
 
 /*
 ** ################################################
 ** # INITIALISATION
 ** ################################################
 */
-
 void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
@@ -92,7 +82,6 @@ void			add_new_client(t_server *server,
 ** # TIMER MANAGEMENT for the cycle
 ** ################################################
 */
-
 void			check_cycle_timer(t_server *server,
 					  t_client *current_client);
 void			set_timer(t_client *current_client);
@@ -102,8 +91,6 @@ void			set_timer(t_client *current_client);
 ** # FREE FUNCTIONS
 ** ################################################
 */
-
 void			free_double_array(char **tab);
 
 #endif /* !SERVER_H_ */
->>>>>>> 2acce65013ece93e22948e1a8f47de14fe66638e

@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 ** 
 ** Started on  Tue May 13 17:12:16 2014 Brieuc
-** Last update Tue May 13 17:18:23 2014 Brieuc
+** Last update Thu May 15 10:29:21 2014 Brieuc
 */
 
 #include "server.h"
@@ -50,13 +50,4 @@ int             xlisten(int sockfd, int backlog)
       exit(EXIT_FAILURE);
     }
   return (ret);
-}
-
-void            xport(t_server *server)
-{
-  if (server->port < 1025)
-    {
-      fprintf(stderr, "Invalid port number\n");
-      exit(EXIT_FAILURE);
-    }
 }
