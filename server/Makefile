@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Tue May  13 10:37:28 2014 remi hillairet
+## Last update Thu May 15 10:39:38 2014 Brieuc
 ##
 
 NAME	=	server
@@ -14,9 +14,10 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-g -Wall -Wextra -Werror -Iinclude
+CFLAGS	+=	-g -Wall -Wextra -Iinclude
 
 SRCS	=	src/main.c				\
+		src/socket_functions.c			\
 		src/list/list.c				\
 		src/list/map_list.c 			\
 		src/list/remove_list.c			\
