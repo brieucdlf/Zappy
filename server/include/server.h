@@ -76,7 +76,7 @@ typedef struct		s_server
 {
   t_list		*clients;
   int			fd_socket;
-  t_param		param_server;  
+  t_param		param_server;
   t_map			map;
   int			fd_max;
   fd_set		readfd;
@@ -129,6 +129,7 @@ void			set_timer(t_client *current_client);
 ** ################################################
 */
 void			free_double_array(char **tab);
+void			free_server(t_server *server);
 
 /*
 ** ################################################
