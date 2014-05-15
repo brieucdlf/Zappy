@@ -31,7 +31,8 @@ SRCS	=	src/main.c				\
 		src/action/action.c 			\
 		src/action/exec_action.c 		\
 		src/action/move_action.c 		\
-		src/action/object_action.c
+		src/action/object_action.c		\
+		src/init_socket.c
 
 OBJS	=	$(SRCS:.c=.o)
 

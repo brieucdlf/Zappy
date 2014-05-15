@@ -78,6 +78,7 @@ int                     xlisten(int, int);
 void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
+int			socket_init(t_server *server);
 
 /*
 ** ################################################
