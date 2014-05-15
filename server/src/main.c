@@ -11,8 +11,9 @@
 #include "user.h"
 #include "server.h"
 
-void		        test_list();
+void		test_list();
 
+<<<<<<< HEAD
 int			socket_init(t_server *server, char **av)
 {
   struct protoent       *pe;
@@ -43,5 +44,15 @@ int			main(int ac, char **av)
       fd = socket_init(server, av);
     }
   test_list();
+=======
+int		main(int ac, char **av)
+{
+  t_param	param_server;
+
+  (void)ac;
+  (void)av;
+  set_param(ac, av, &param_server);
+  free_double_array(param_server.teams_names);
+>>>>>>> 2acce65013ece93e22948e1a8f47de14fe66638e
   return (0);
 }
