@@ -1,9 +1,9 @@
 /*
 ** init_map.c for zappy in /home/combe_r/Documents/rendu/Zappy/server/src
-** 
+**
 ** Made by romain combe
 ** Login   <combe_r@epitech.net>
-** 
+**
 ** Started on  Thu May 15 11:52:58 2014 romain combe
 ** Last update Thu May 15 19:19:43 2014 romain combe
 */
@@ -75,12 +75,13 @@ char		**malloc_tab(int width, int height)
   int		i;
 
   i = 0;
-  if (((tab = malloc(height * sizeof(char *) + 1)) == NULL))
+  if (((tab = malloc(height * (sizeof(char *) + 1))) == NULL))
     exit(EXIT_FAILURE);
   while (i <= width)
     {
-      if (((tab[i] = malloc(width * sizeof(char *) + 1)) == NULL))
+      if (((tab[i] = malloc(width)) == NULL))
   	exit(EXIT_FAILURE);
+      memset(tab[i], 0, width);
       i++;
     }
   return (tab);
@@ -88,7 +89,7 @@ char		**malloc_tab(int width, int height)
 
 void		init_map(t_map *map)
 {
-  
+
   map->width = DEFAULT_WIDTH;
   map->height = DEFAULT_HEIGHT;
   map->map = malloc_tab(map->width, map->height);
