@@ -50,11 +50,8 @@ typedef struct		s_server
   t_list		*clients;
   int			fd_socket;
   t_param		param_server;
-<<<<<<< HEAD
   char  **client_commands;
   void  (*action_ptr[12])();
-=======
->>>>>>> 6568bf3970b801252c601269837aababd38594ce
 }			t_server;
 
 /*
