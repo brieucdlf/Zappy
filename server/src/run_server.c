@@ -38,8 +38,9 @@ void			server_loop(t_server *server)
     {
       if (g_server_run == 0)
 	return ;
+      init_fd_socket(server);
       map_list(server->clients, map_cycle_action, (void*)server);
-      if ((select(server->fd_max + 1, server->readfd, server->writefd, server->exceptfd, &tv)) == -1)
+      if ((select(server->fd_max + 1, &server->readfd, &server->writefd, server->exceptfd, &tv)) == -1)
 	perror("select");
     }
 }

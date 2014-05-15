@@ -51,8 +51,8 @@ typedef struct		s_server
   t_list		*clients;
   int			fd_socket;
   int			fd_max;
-  fd_set		*readfd;
-  fd_set		*writefd;
+  fd_set		readfd;
+  fd_set		writefd;
   fd_set		*exceptfd;
   t_param		param_server;
   char			**client_commands;
@@ -78,6 +78,7 @@ void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
 int			socket_init(t_server *server);
+void			init_fd_socket(t_server *server);
 
 /*
 ** ################################################
