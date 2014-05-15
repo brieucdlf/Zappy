@@ -17,6 +17,5 @@ void			init_fd_socket(t_server *server)
   FD_ZERO(&server->writefd);
   FD_SET(server->fd_socket, &server->readfd);
   FD_SET(server->fd_socket, &server->writefd);
-  map_list(server->clients
-	   , set_fd_client, (void *)server);
+  map_list(server->clients, set_fd_client, (void *)server);
 }
