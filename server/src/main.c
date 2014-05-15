@@ -16,7 +16,8 @@ int		main(int ac, char **av)
   t_server      server;
 
   set_param(ac, av, &server.param_server);
-  socket_init(&server);
+  if (socket_init(&server) == -1)
+    return (1);
   if (init_commands(&server) == -1)
     {
       close(server.fd_socket);
