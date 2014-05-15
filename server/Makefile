@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 11:36:15 2014 Brieuc
+## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
 NAME	=	server
@@ -32,7 +32,8 @@ SRCS	=	src/main.c				\
 		src/action/exec_action.c 		\
 		src/action/move_action.c 		\
 		src/action/object_action.c		\
-		src/init_socket.c
+		src/init_socket.c			\
+		src/run_server.c
 
 OBJS	=	$(SRCS:.c=.o)
 

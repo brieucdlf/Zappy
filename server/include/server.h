@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 11:25:28 2014 Brieuc
+** Last update Thu May 15 13:33:02 2014 Brieuc
 */
 
 #ifndef SERVER_H_
@@ -56,11 +56,6 @@ typedef struct		s_server
 }			t_server;
 
 /*
-** Dans le main pour le moment
-*/
-int		socket_init(t_server *);
-
-/*
 ** ################################################
 ** # Socket_functions.c
 ** ################################################
@@ -79,6 +74,13 @@ void			set_param(int argc, char **argv, t_param *param_server);
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
 int			socket_init(t_server *server);
+
+/*
+** ################################################
+** # run_server.c
+** ################################################
+*/
+void			server_loop(t_server *);
 
 /*
 ** ################################################
