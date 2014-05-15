@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 10:39:38 2014 Brieuc
+## Last update Thu May 15 10:44:35 2014 Brieuc
 ##
 
 NAME	=	server
@@ -14,7 +14,7 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-g -Wall -Wextra -Iinclude
+CFLAGS	+=	-g -Wall -Wextra -Iinclude -lrt
 
 SRCS	=	src/main.c				\
 		src/socket_functions.c			\
@@ -23,7 +23,6 @@ SRCS	=	src/main.c				\
 		src/list/remove_list.c			\
 		src/test_list.c				\
 		src/buffer.c				\
-		src/timer.c				\
 		src/init_client.c			\
 		src/init.c				\
 		src/free.c

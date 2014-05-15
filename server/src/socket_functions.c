@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 ** 
 ** Started on  Tue May 13 17:12:16 2014 Brieuc
-** Last update Thu May 15 10:29:21 2014 Brieuc
+** Last update Thu May 15 10:45:27 2014 Brieuc
 */
 
 #include "server.h"
@@ -46,6 +46,21 @@ int             xlisten(int sockfd, int backlog)
   if (ret == -1)
     {
       printf("Listen error\n");
+      close(sockfd);
+      exit(EXIT_FAILURE);
+    }
+  return (ret);
+}
+
+int             xbind(int sockfd, const struct sockaddr *addr,
+                      socklen_t addrlen)
+{
+  int           ret;
+
+  ret = bind(sockfd, addr, addrlen);
+  if (ret == -1)
+    {
+      printf("Bind error\n");
       close(sockfd);
       exit(EXIT_FAILURE);
     }
