@@ -77,13 +77,14 @@ char		**malloc_tab(int width, int height)
   i = 0;
   if (((tab = malloc(height * (sizeof(char *) + 1))) == NULL))
     exit(EXIT_FAILURE);
-  while (i <= width)
+  while (i < height)
     {
       if (((tab[i] = malloc(width)) == NULL))
   	exit(EXIT_FAILURE);
       memset(tab[i], 0, width);
       i++;
     }
+  tab[i] = NULL;
   return (tab);
 }
 
