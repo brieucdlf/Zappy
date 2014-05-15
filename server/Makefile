@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 18:22:28 2014 romain combe
+## Last update Thu May 15 18:24:24 2014 romain combe
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
@@ -27,7 +27,6 @@ SRCS	=	src/main.c				\
 		src/buffer.c				\
 		src/init_client.c			\
 		src/init.c				\
-		src/free.c				\
 		src/init_map.c				\
 		src/free.c 				\
 		src/command.c 				\

@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 ** 
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Thu May 15 18:10:05 2014 romain combe
+** Last update Thu May 15 18:30:28 2014 romain combe
 */
 
 #include "user.h"
@@ -56,8 +56,4 @@ void		init_map(t_map *map)
   map->height = DEFAULT_HEIGHT;
   map->map = malloc_tab(map->width, map->height);
   fill_map(map);
-}
-
-void		print_map(t_map *map)
-{  
 }

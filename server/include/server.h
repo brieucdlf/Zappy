@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 18:21:31 2014 romain combe
+** Last update Thu May 15 18:29:51 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -26,9 +26,11 @@
 # include <dirent.h>
 # include <stdio.h>
 # include <errno.h>
+# include <time.h>
 # include "user.h"
 # include "list.h"
 # include "action.h"
+
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
@@ -74,7 +76,6 @@ typedef struct		s_server
   fd_set		readfd;
   fd_set		writefd;
   fd_set		*exceptfd;
-  t_param		param_server;
   char			**client_commands;
   void			(*action_ptr[12])();
 }			t_server;
@@ -131,9 +132,7 @@ void			free_double_array(char **tab);
 
 void			init_map(t_map *map);
 char			**malloc_tab(int width, int height);
-  void			fill_map(t_map *map);
-
-
+void			fill_map(t_map *map);
 int   init_commands(t_server *server);
 void  init_action_ptr(t_server *server);
 int   get_command(t_server *server, t_client *current_client, char *command);
