@@ -24,6 +24,7 @@
 # include <signal.h>
 # include <dirent.h>
 # include <stdio.h>
+# include <errno.h>
 # include "user.h"
 # include "list.h"
 # include "action.h"
