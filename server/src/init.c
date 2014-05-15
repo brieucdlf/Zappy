@@ -4,7 +4,7 @@ static void		init_default_param(t_param *param_server)
 {
   param_server->port = DEFAULT_PORT;
   param_server->world_width = DEFAULT_WIDTH;
-  param_server->world_height = DEFAULT_HEIGTH;
+  param_server->world_height = DEFAULT_HEIGHT;
   param_server->teams_names = NULL;
   param_server->nb_client_start = CLIENT_START;
   param_server->execution_time = EXECUTION_TIME;

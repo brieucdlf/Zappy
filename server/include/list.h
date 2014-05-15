@@ -1,3 +1,13 @@
+/*
+** list.h for zappy in /home/combe_r/Documents/rendu/Zappy/server
+** 
+** Made by romain combe
+** Login   <combe_r@epitech.net>
+** 
+** Started on  Thu May 15 11:24:51 2014 romain combe
+** Last update Thu May 15 11:24:54 2014 romain combe
+*/
+
 #ifndef LIST_H
 # define LIST_H
 

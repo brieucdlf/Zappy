@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 10:58:50 2014 Brieuc
+## Last update Thu May 15 13:47:01 2014 romain combe
 ##
 
 NAME	=	server
@@ -26,7 +26,8 @@ SRCS	=	src/main.c				\
 		src/buffer.c				\
 		src/init_client.c			\
 		src/init.c				\
-		src/free.c
+		src/free.c				\
+		src/init_map.c
 
 OBJS	=	$(SRCS:.c=.o)
 

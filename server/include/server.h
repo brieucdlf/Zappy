@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 10:29:30 2014 Brieuc
+** Last update Thu May 15 18:09:57 2014 romain combe
 */
 
 #ifndef SERVER_H_
@@ -31,10 +31,19 @@
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
 # define DEFAULT_WIDTH		100
-# define DEFAULT_HEIGTH		100
+# define DEFAULT_HEIGHT		100
 # define CLIENT_START		10
 # define EXECUTION_TIME		1
 
+typedef enum
+  {
+    LINEMATE = 1,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME
+  }rocks;
 
 typedef	struct 		s_param
 {
@@ -46,11 +55,19 @@ typedef	struct 		s_param
   int			execution_time;
 }			t_param;
 
+typedef struct		s_map
+{
+  int			width;
+  int			height;
+  char			**map;
+}			t_map;
+
 typedef struct		s_server
 {
   t_list		*clients;
   int			fd_socket;
   t_param		param_server;  
+  t_map			map;
 }			t_server;
 
 /*
@@ -92,5 +109,15 @@ void			set_timer(t_client *current_client);
 ** ################################################
 */
 void			free_double_array(char **tab);
+
+/*
+** ################################################
+** # init_map.c
+** ################################################
+*/
+
+void			init_map(t_map *map);
+char			**malloc_tab(int width, int height);
+  void			fill_map(t_map *map);
 
 #endif /* !SERVER_H_ */

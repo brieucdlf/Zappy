@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:45:33 2014 remi hillairet
-** Last update Thu May 15 11:18:12 2014 Brieuc
+** Last update Thu May 15 17:39:47 2014 romain combe
 */
 
 #include "user.h"
@@ -32,6 +32,7 @@ int		main(int ac, char **av)
 {
   t_server      server;
 
+  init_map(&server.map);
   set_param(ac, av, &server.param_server);
   socket_init(&server);
   free_double_array(server.param_server.teams_names);
