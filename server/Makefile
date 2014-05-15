@@ -26,7 +26,12 @@ SRCS	=	src/main.c				\
 		src/buffer.c				\
 		src/init_client.c			\
 		src/init.c				\
-		src/free.c
+		src/free.c 				\
+		src/command.c \
+		src/action/action.c \
+		src/action/exec_action.c \
+		src/action/move_action.c \
+		src/action/object_action.c
 
 OBJS	=	$(SRCS:.c=.o)
 

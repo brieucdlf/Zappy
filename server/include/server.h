@@ -27,6 +27,7 @@
 # include <time.h>
 # include "user.h"
 # include "list.h"
+# include "action.h"
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
@@ -50,7 +51,9 @@ typedef struct		s_server
 {
   t_list		*clients;
   int			fd_socket;
-  t_param		param_server;  
+  t_param		param_server;
+  char  **client_commands;
+  void  (*action_ptr[12])();
 }			t_server;
 
 /*
@@ -92,5 +95,15 @@ void			set_timer(t_client *current_client);
 ** ################################################
 */
 void			free_double_array(char **tab);
+
+/*
+** ################################################
+** # INIT CLIENT COMMANDS
+** ################################################
+*/
+
+int   init_commands(t_server *server);
+void  init_action_ptr(t_server *server);
+int   get_command(t_server *server, t_client *current_client, char *command);
 
 #endif /* !SERVER_H_ */
