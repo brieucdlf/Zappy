@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 10:29:30 2014 Brieuc
+** Last update Thu May 15 11:25:28 2014 Brieuc
 */
 
 #ifndef SERVER_H_
@@ -24,7 +24,6 @@
 # include <signal.h>
 # include <dirent.h>
 # include <stdio.h>
-# include <time.h>
 # include "user.h"
 # include "list.h"
 

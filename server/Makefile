@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 10:58:50 2014 Brieuc
+## Last update Thu May 15 11:36:15 2014 Brieuc
 ##
 
 NAME	=	server
@@ -14,7 +14,7 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-lrt -g -Wall -Wextra -Iinclude
+CFLAGS	+=	-g -Wall -Wextra -Iinclude
 
 SRCS	=	src/main.c				\
 		src/socket_functions.c			\
@@ -31,7 +31,7 @@ SRCS	=	src/main.c				\
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) -lrt
 
 all: 		$(NAME)
 
