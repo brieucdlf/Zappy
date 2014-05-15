@@ -60,7 +60,6 @@ typedef struct		s_task
 {
   char			*cmd;
   int			current_index;
-  action_function	action_fct;
 }			t_task;
 
 typedef struct		s_buffer
@@ -81,6 +80,7 @@ typedef struct		s_action
   char			is_cycle;
   action		type;
   struct timespec	timer_cycle;
+  action_function	action_fct;
 }			t_action;
 
 /*

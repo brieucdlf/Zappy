@@ -34,7 +34,6 @@
 # define CLIENT_START		10
 # define EXECUTION_TIME		1
 
-
 typedef	struct 		s_param
 {
   int			port;
@@ -49,7 +48,7 @@ typedef struct		s_server
 {
   t_list		*clients;
   int			fd_socket;
-  t_param		param_server;  
+  t_param		param_server;
 }			t_server;
 
 /*
