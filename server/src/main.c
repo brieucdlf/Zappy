@@ -24,7 +24,7 @@ int		main(int ac, char **av)
       return (1);
     }
   init_action_ptr(&server);
-  server.fd_socket = socket_init(&server);
   free_double_array(server.param_server.teams_names);
+  close(server.fd_socket);
   return (0);
 }
