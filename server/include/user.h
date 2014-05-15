@@ -76,7 +76,6 @@ typedef struct		s_buffer
 
 typedef struct		s_action
 {
-  char			current_action;
   char			is_cycle;
   action		type;
   struct timespec	timer_cycle;

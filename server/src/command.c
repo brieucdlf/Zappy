@@ -46,6 +46,14 @@ void 	init_action_ptr(t_server *server)
   server->action_ptr[11] = action_connect_nbr;
 }
 
+void		init_action_client(t_server *server, t_client *current_client,
+				   int current_action)
+{
+  current_client->action.type = current_action + 1;
+  current_client->action.action_fct = server->action_ptr[current_action];
+  set_timer(current_client);
+}
+
 int	get_command(t_server *server, t_client *current_client, char *command)
 {
   int   i;
@@ -54,7 +62,11 @@ int	get_command(t_server *server, t_client *current_client, char *command)
   while (server->client_commands[i])
     {
       if (strcmp(server->client_commands[i], command) == 0)
-	server->action_ptr[i](server, current_client);
+	{
+	  init_action_client(server, current_client, i);
+	  return (0);
+	}
+	/* server->action_ptr[i](server, current_client); */
       i++;
     }
   return (0);

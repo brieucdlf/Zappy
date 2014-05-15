@@ -34,7 +34,11 @@ int		main(int ac, char **av)
 
   set_param(ac, av, &server.param_server);
   socket_init(&server);
-  init_commands(&server);
+  if (init_commands(&server) == -1)
+    {
+      close(server.fd_socket);
+      return (1);
+    }
   init_action_ptr(&server);
   server.fd_socket = socket_init(&server);
   free_double_array(server.param_server.teams_names);
