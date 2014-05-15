@@ -19,7 +19,8 @@ static void		fill_team(t_param *param_server, char **argv)
     free_double_array(param_server->teams_names);
   for (index = optind - 1; argv[index] != NULL &&
 	 argv[index][0] != '-'; index++);
-  if ((param_server->teams_names =
+  if (((index - optind) + 1) == 0 ||
+      (param_server->teams_names =
        malloc(sizeof(char *) * ((index - optind) + 2))) == NULL)
     return ;
   i = 0;

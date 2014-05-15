@@ -1,4 +1,5 @@
 #include "server.h"
+#include <time.h>
 
 static int		get_cycle_action(action type)
 {
