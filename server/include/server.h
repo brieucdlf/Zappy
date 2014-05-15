@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 18:29:51 2014 romain combe
+** Last update Thu May 15 18:56:39 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -64,6 +64,12 @@ typedef struct		s_map
   int			width;
   int			height;
   char			**map;
+  int			nb_linemate;
+  int			nb_deraumere;
+  int			nb_sibur;
+  int			nb_mendiane;
+  int			nb_phiras;
+  int			nb_thystame;
 }			t_map;
 
 typedef struct		s_server
@@ -133,8 +139,8 @@ void			free_double_array(char **tab);
 void			init_map(t_map *map);
 char			**malloc_tab(int width, int height);
 void			fill_map(t_map *map);
-int   init_commands(t_server *server);
-void  init_action_ptr(t_server *server);
-int   get_command(t_server *server, t_client *current_client, char *command);
+int			init_commands(t_server *server);
+void			init_action_ptr(t_server *server);
+int			get_command(t_server *server, t_client *current_client, char *command);
 
 #endif /* !SERVER_H_ */
