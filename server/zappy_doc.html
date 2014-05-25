@@ -1,0 +1,37 @@
+<pre>                                         +----------------------+
+                              +----------&gt;       CLIENT         |                   +------------------------------+
+                              |          +--------+-------------+           +-------&gt;       T_ACTION               |
+                              |          |(int) level           |           |       +------------------------------+
+                              |          |(int) id_team         |           |       |(char) is_cycle               |
+                              |          |(int) fd_socket       |           |       |(action) type                 |
+                              |          |(int *) items[6]      |           |       |(struct timespec) timer_cycle |
+                              |          |(t_action) action     +--------+--+       |(action_function) action_fct  |
+                              |          |(t_buffer) buffer     +--------+          +------------------------------+
++------------------------+    |          +----------------------+        |
+|    SERVER              |    |                                          |
++------------------------+    |                                          |          +-------------------------------+
+|                        |    |          +----------------------+        +----------&gt;       BUFFER                  |               +---------------------+
+|liste client (user)     +----+    +-----&gt;         T_PARAM      |                   +-------------------------------+      +--------+        T_TASK       |
+|                        |         |     +----------------------+                   |(t_list **) list buffer_write  +------+        +---------------------+
+|(int) fd_socket         |         |     |(int) port            |                   |(char *) buffer_read           |               |(char *) cmd         |
+|(t_param) param_ser^er  +------+--+     |(int) world_width     |                   |                               |               |(int) current_index  |
+|(t_map) map             +------+        |(int) world_height    |                   +-------------------------------+               +---------------------+
+|(int) fd_max            |      |        |(char **) teams_names |
+|(fd_set) write_fd       |      |        |(int) nb_client_start |
+|(fd_set) readfd         |      |        |(int) execution_time  |
+|(fd_set) *execpt_fd     |      |        +----------------------+
+|(char **) client_command|      |
+|(^oid) action_ptr[12]() |      |        +----------------------+
+|                        |      +--------&gt;       MAP            |
+|                        |               +----------------------+
++------------------------+               |(int) width           |
+                                         |(int) height          |
+                                         |(char **) map         |
+                                         |(int) nb_linemate     |
+                                         |(int) nb_demaumere    |
+                                         |(int) nb_sibur        |
+                                         |(int) nb_mendiane     |
+                                         |(int) nb_phiras       |
+                                         |(int) nb_thystame     |
+                                         |                      |
+                                         +----------------------+</pre>
