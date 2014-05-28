@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 **
 ** Started on  Thu May 15 13:21:25 2014 Brieuc
-** Last update Thu May 15 14:04:32 2014 Brieuc
+** Last update Wed May 28 15:51:03 2014 Brieuc de La Fouchardiere
 */
 
 #include "server.h"
@@ -32,15 +32,33 @@ void			map_cycle_action(t_list *current_item, void *arg)
 void			server_loop(t_server *server)
 {
   struct timeval	tv;
+  char			buffer[512];
 
   tv.tv_usec = server->param_server.execution_time;
   while (g_server_run == 1)
     {
-      if (g_server_run == 0)
-	return ;
       init_fd_socket(server);
       map_list(server->clients, map_cycle_action, (void*)server);
-      if ((select(server->fd_max + 1, &server->readfd, &server->writefd, server->exceptfd, &tv)) == -1)
+      if ((select(server->fd_max + 1, &server->readfd,
+		  &server->writefd, server->exceptfd, &tv)) == -1)
 	perror("select");
+      if (g_server_run == 0)
+	return ;
+      if (FD_ISSET(0, &server->readfd))
+	{
+	  memset(buffer, 0, 512);
+	  read(0, buffer, 512);
+	  if (strcmp(buffer, "/quit\n") == 0)
+	    g_server_run = 0;
+	}
+      else if (FD_ISSET(server->fd_socket, &server->readfd))
+	{
+	  /* Read sur le client */
+	}
+      else
+	{
+	  /* on attends la co d'un client et on read */
+	}
+
     }
 }

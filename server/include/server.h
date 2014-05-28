@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Thu May 15 18:56:39 2014 romain combe
+** Last update Sun May 25 16:15:56 2014 Brieuc de La Fouchardiere
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -51,19 +51,19 @@ typedef enum
 
 typedef	struct 		s_param
 {
+  char			**teams_names;
   int			port;
   int			world_width;
   int			world_height;
-  char			**teams_names;
   int			nb_client_start;
   int			execution_time;
 }			t_param;
 
 typedef struct		s_map
 {
+  char			**map;
   int			width;
   int			height;
-  char			**map;
   int			nb_linemate;
   int			nb_deraumere;
   int			nb_sibur;
@@ -75,15 +75,16 @@ typedef struct		s_map
 typedef struct		s_server
 {
   t_list		*clients;
-  int			fd_socket;
   t_param		param_server;
   t_map			map;
+  t_buffer		buffer;
+  void			(*action_ptr[12])();
+  char			**client_commands;
+  int			fd_socket;
   int			fd_max;
   fd_set		readfd;
   fd_set		writefd;
   fd_set		*exceptfd;
-  char			**client_commands;
-  void			(*action_ptr[12])();
 }			t_server;
 
 /*

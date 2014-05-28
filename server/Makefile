@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Thu May 15 18:24:24 2014 romain combe
+## Last update Wed May 28 15:44:47 2014 Brieuc de La Fouchardiere
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
@@ -15,7 +15,7 @@ CC	=	gcc
 
 RM	=	rm -fv
 
-CFLAGS	+=	-g -Wall -Wextra -Iinclude
+CFLAGS	+=	-g3 -Wall -Wextra -Iinclude
 
 SRCS	=	src/main.c				\
 		src/socket_functions.c			\

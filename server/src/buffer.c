@@ -1,3 +1,13 @@
+/*
+** buffer.c for zappy in /home/delafo_b/tek2/repo/Zappy/server/src
+**
+** Made by Brieuc de La Fouchardiere
+** Login   <delafo_b@epitech.net>
+**
+** Started on  Mon May 26 11:09:50 2014 Brieuc de La Fouchardiere
+** Last update Mon May 26 13:20:53 2014 Brieuc de La Fouchardiere
+*/
+
 #include "server.h"
 
 void			write_task(t_buffer *buffer, int fd_socket)
