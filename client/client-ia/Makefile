@@ -1,4 +1,3 @@
-##
 ## Makefile for zappy in /Users/remihillairet/Epitech/Github/Zappy/client/client-ia
 ##
 ## Made by remi hillairet
@@ -16,7 +15,8 @@ RM	=	rm -fv
 
 CFLAGS	+=	-Wall -Wextra
 
-SRCS	=	main.c
+SRCS	=	main.c				\
+		connect_server.c
 
 OBJS	=	$(SRCS:.c=.o)
 
