@@ -65,7 +65,8 @@ typedef struct		s_task
 typedef struct		s_buffer
 {
   t_list	        *buffer_write;
-  char			*buffer_read;
+  char			buffer_read[2048];
+  int			index_read_buffer;
 }			t_buffer;
 
 /*
