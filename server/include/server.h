@@ -114,6 +114,7 @@ void			init_fd_socket(t_server *server);
 ** ################################################
 */
 void			server_loop(t_server *);
+void			check_connect_client(t_server *server);
 
 /*
 ** ################################################

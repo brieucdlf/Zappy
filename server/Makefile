@@ -36,6 +36,7 @@ SRCS	=	src/main.c				\
 		src/action/object_action.c		\
 		src/init_socket.c			\
 		src/run_server.c			\
+		src/connect_client.c			\
 		src/set_fd_socket.c
 
 OBJS	=	$(SRCS:.c=.o)

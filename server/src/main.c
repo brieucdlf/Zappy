@@ -11,10 +11,18 @@
 #include "user.h"
 #include "server.h"
 
+void		init_server(t_server *server)
+{
+  server->clients = NULL;
+  server->client_commands = NULL;
+  server->fd_max = 0;
+}
+
 int		main(int ac, char **av)
 {
   t_server      server;
 
+  init_server(&server);
   init_map(&server.map);
   set_param(ac, av, &server.param_server);
   if (socket_init(&server) == -1)
@@ -25,6 +33,7 @@ int		main(int ac, char **av)
       return (1);
     }
   init_action_ptr(&server);
+  server_loop(&server);
   free_server(&server);
   return (0);
 }

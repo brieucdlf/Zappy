@@ -32,7 +32,6 @@ void			map_cycle_action(t_list *current_item, void *arg)
 void			server_loop(t_server *server)
 {
   struct timeval	tv;
-  char			buffer[512];
 
   tv.tv_usec = server->param_server.execution_time;
   while (g_server_run == 1)
@@ -40,25 +39,13 @@ void			server_loop(t_server *server)
       init_fd_socket(server);
       map_list(server->clients, map_cycle_action, (void*)server);
       if ((select(server->fd_max + 1, &server->readfd,
-		  &server->writefd, server->exceptfd, &tv)) == -1)
-	perror("select");
+		  &server->writefd, server->exceptfd, &tv)) != -1)
+	{
+	  //check read socket
+	  //check write socket
+	  check_connect_client(server);
+	}
       if (g_server_run == 0)
 	return ;
-      if (FD_ISSET(0, &server->readfd))
-	{
-	  memset(buffer, 0, 512);
-	  read(0, buffer, 512);
-	  if (strcmp(buffer, "/quit\n") == 0)
-	    g_server_run = 0;
-	}
-      else if (FD_ISSET(server->fd_socket, &server->readfd))
-	{
-	  /* Read sur le client */
-	}
-      else
-	{
-	  /* on attends la co d'un client et on read */
-	}
-
     }
 }
