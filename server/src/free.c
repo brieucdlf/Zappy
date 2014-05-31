@@ -14,7 +14,8 @@ void			free_double_array(char **tab)
 
 void			close_client_socket(t_list *current_client, void *arg)
 {
-
+  (void)current_client;
+  (void)arg;
 }
 
 void			free_server(t_server *server)
@@ -24,4 +25,4 @@ void			free_server(t_server *server)
   free_double_array(server->map.map);
   if (server->fd_socket == 0)
     close(server->fd_socket);
-)
+}
