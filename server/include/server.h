@@ -92,10 +92,9 @@ typedef struct		s_server
 ** # Socket_functions.c
 ** ################################################
 */
-int                     xsocket(int, int, int);
-int                     xaccept(int, struct sockaddr *, socklen_t *);
-int                     xbind(int, const struct sockaddr *, socklen_t);
-int                     xlisten(int, int);
+int			map_check_read_client(t_list *current_client, void *arg);
+void			deconnection_client(t_server *server,
+					    t_client *current_client);
 
 /*
 ** ################################################

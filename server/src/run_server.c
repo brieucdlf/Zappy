@@ -35,22 +35,21 @@ void			map_cycle_action(t_list *current_item, void *arg)
 
 void			server_loop(t_server *server)
 {
-  /* struct timeval	tv; */
-
   while (g_server_run == 1)
     {
       init_fd_socket(server);
       map_list(server->clients, map_cycle_action, (void*)server);
-      /* tv.tv_usec = server->param_server.execution_time; */
       if ((select(server->fd_max + 1, &server->readfd,
 		  &server->writefd, NULL, NULL)) != -1)
 	{
+	  map_list_with_stop(server->clients,
+			     map_check_read_client, (void *)server);
+	  /* map_list(server->clients, map_check_read_client, (void*)server); */
 	  //check read socket
 	  //check write socket
 	  check_connect_client(server);
 	}
       if (g_server_run == 0)
 	return ;
-      printf("loop server\n");
     }
 }

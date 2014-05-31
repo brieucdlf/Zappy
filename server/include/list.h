@@ -1,9 +1,9 @@
 /*
 ** list.h for zappy in /home/combe_r/Documents/rendu/Zappy/server
-** 
+**
 ** Made by romain combe
 ** Login   <combe_r@epitech.net>
-** 
+**
 ** Started on  Thu May 15 11:24:51 2014 romain combe
 ** Last update Thu May 15 11:24:54 2014 romain combe
 */
@@ -18,6 +18,7 @@ typedef struct s_list t_list;
 typedef void (*free_function)(void *);
 typedef int (*match_function)(void *, void *);
 typedef void (*map_function)(t_list *, void *);
+typedef int (*map_function_ret)(t_list *, void *);
 
 typedef struct		s_list
 {
@@ -36,5 +37,7 @@ void			map_list(t_list *list, map_function map_fct, void *arg);
 void			map_list_with_match(t_list *list,
 					    map_function map_fct,
 					    match_function match_fct, void *arg);
+void			map_list_with_stop(t_list *list,
+					   map_function_ret map_fct, void *arg);
 
 #endif // LIST
