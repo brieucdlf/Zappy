@@ -6,6 +6,8 @@ int			main(int argc, char **argv)
 
   (void)argc;
   (void)argv;
-  connect_server(&client, "127.0.0.1", 65510);
+  if (connect_server(&client, "127.0.0.1", 65510) == -1)
+    return (1);
+  main_loop_client(&client);
   return (0);
 }

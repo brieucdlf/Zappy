@@ -16,7 +16,8 @@ RM	=	rm -fv
 CFLAGS	+=	-Wall -Wextra
 
 SRCS	=	main.c				\
-		connect_server.c
+		connect_server.c		\
+		main_loop_client.c
 
 OBJS	=	$(SRCS:.c=.o)
 

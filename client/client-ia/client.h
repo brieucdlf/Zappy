@@ -17,14 +17,23 @@
 # include <errno.h>
 # include <time.h>
 
-typedef struct		s_client
+typedef struct		s_fd
 {
   int			fd_socket;
+  fd_set		readfd;
+  fd_set		writefd;
+}			t_fd;
+
+typedef struct		s_client
+{
   struct sockaddr_in	sin_server;
+  int			is_connected;
+  t_fd			fd;
 }			t_client;
 
 int			connect_server(t_client *client,
 				       const char *addr_server,
 					 int port_server);
+void			main_loop_client(t_client *client);
 
 #endif // CLIENT
