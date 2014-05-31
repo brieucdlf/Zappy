@@ -18,7 +18,6 @@ RM	=	rm -fv
 CFLAGS	+=	-g3 -Wall -Wextra -Iinclude
 
 SRCS	=	src/main.c				\
-		src/socket_functions.c			\
 		src/list/list.c				\
 		src/list/map_list.c 			\
 		src/list/remove_list.c			\
@@ -34,9 +33,9 @@ SRCS	=	src/main.c				\
 		src/action/exec_action.c 		\
 		src/action/move_action.c 		\
 		src/action/object_action.c		\
-		src/init_socket.c			\
 		src/run_server.c			\
 		src/connect_client.c			\
+		src/create_server.c			\
 		src/set_fd_socket.c
 
 OBJS	=	$(SRCS:.c=.o)

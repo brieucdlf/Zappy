@@ -107,6 +107,7 @@ void			add_new_client(t_server *server,
 				       int fd_socket, int id_team);
 int			socket_init(t_server *server);
 void			init_fd_socket(t_server *server);
+int			create_server(t_server *server);
 
 /*
 ** ################################################
