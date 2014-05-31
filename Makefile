@@ -1,24 +1,25 @@
-NAME	=	client
+##
+## Makefile for  in /home/chatea_s/project/rush/rush/rush
+## 
+## Made by remi robert
+## Login   <robert_r@epitech.net>
+## 
+## Started on  Sat Mar  8 02:41:05 2014 remi robert
+## Last update Sat Apr  5 12:50:09 2014 remi robert
+##
 
-CC	=	gcc
-
-RM	=	rm -fv
-
-CFLAGS	+=	-Wall -Wextra
-
-SRCS	=	main.c
-
-OBJS	=	$(SRCS:.c=.o)
-
-$(NAME): 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
-
-all: 		$(NAME)
+all:
+	$(MAKE) -C client/client-ia
+	$(MAKE) -C server
 
 clean:
-		$(RM) $(OBJS)
+	$(MAKE) -C client/client-ia clean
+	$(MAKE) -C server clean
 
-fclean: 	clean
-		$(RM) $(NAME)
+fclean:
+	$(MAKE) -C client/client-ia fclean
+	$(MAKE) -C server fclean
 
-re: 		fclean all
+re:
+	$(MAKE) -C client/client-ia re
+	$(MAKE) -C server re
