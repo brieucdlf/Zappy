@@ -31,7 +31,6 @@
 # include "list.h"
 # include "action.h"
 
-
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
 # define DEFAULT_WIDTH		100
