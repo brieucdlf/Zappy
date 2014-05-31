@@ -37,6 +37,8 @@ void			check_cycle_timer(t_server *server,
   struct timespec	tmp_timer;
   long			cycle;
 
+  if (current_client->action.type == NONE)
+    return ;
   tmp_timer.tv_sec = 0;
   tmp_timer.tv_nsec = 0;
   if ((cycle = get_cycle_action(current_client->action.type)) == 0)

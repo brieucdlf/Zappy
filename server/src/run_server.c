@@ -17,8 +17,12 @@ void			map_cycle_action(t_list *current_item, void *arg)
   t_server		*server;
   t_client		*client;
 
+  if (current_item == NULL || current_item->data == NULL || arg == NULL)
+    return ;
   server = (t_server *)arg;
   client = (t_client *)current_item->data;
+  if (client->action.type == NONE)
+    return ;
   check_cycle_timer(server, client);
   if (client->action.is_cycle == 0)
     {
