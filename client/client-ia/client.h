@@ -17,6 +17,8 @@
 # include <errno.h>
 # include <time.h>
 
+# define BUFFER_GET_LINE        8192
+
 typedef struct		s_fd
 {
   int			fd_socket;

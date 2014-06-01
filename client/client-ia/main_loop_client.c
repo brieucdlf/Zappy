@@ -21,6 +21,7 @@ void			main_loop_client(t_client *client)
 	{
 	  if (FD_ISSET(client->fd.fd_socket, &(client->fd.readfd)))
 	    {
+	      //call get_next_line with client->fd.fd_socket
 	      printf("read server\n");
 	    }
 	  if (FD_ISSET(client->fd.fd_socket, &(client->fd.writefd)))
@@ -30,5 +31,6 @@ void			main_loop_client(t_client *client)
 	}
       if (ret_select == EBADF)
 	return ;
+      usleep(5000);
     }
 }
