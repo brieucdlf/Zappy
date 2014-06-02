@@ -5,11 +5,31 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:45:33 2014 remi hillairet
-** Last update Thu May 15 17:39:47 2014 romain combe
+** Last update Mon Jun  2 18:26:57 2014 romain combe
 */
 
 #include "user.h"
 #include "server.h"
+
+void		aff_map(t_map *map)
+{
+  int		i;
+  int		j;
+
+  i = 0;
+  j = 0;
+  while (i < map->width)
+    {
+      while (j < map->height)
+	{
+	  printf("%d", map->map[i][j]);
+	  j++;
+	}
+      printf("\n");
+      j = 0;
+      i++;
+    }
+}
 
 void		init_server(t_server *server)
 {
@@ -24,6 +44,9 @@ int		main(int ac, char **av)
 
   init_server(&server);
   init_map(&server.map);
+  printf("toto\n");
+  aff_map(&server.map);
+  exit(1);
   set_param(ac, av, &server.param_server);
   if (create_server(&server) == -1)
     return (1);

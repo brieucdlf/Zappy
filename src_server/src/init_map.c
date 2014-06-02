@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Mon Jun  2 17:58:13 2014 romain combe
+** Last update Mon Jun  2 18:29:29 2014 romain combe
 */
 
 #include "user.h"
@@ -23,7 +23,7 @@ void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
     {
       x_rock = rand() % (map->width - 1);
       y_rock = rand() % (map->height - 1);
-      if (map->map[x_rock][y_rock] == rock_kind)
+      if (map->map[x_rock][y_rock] != 0)
 	i--;
       else
 	map->map[x_rock][y_rock] = rock_kind;
@@ -113,6 +113,6 @@ void		init_map(t_map *map)
   map->width = DEFAULT_WIDTH;
   map->height = DEFAULT_HEIGHT;
   map->map = malloc_tab(map->width, map->height);
-  //fill_empty_map(map);
+  fill_empty_map(map);
   set_rocks(map);
 }
