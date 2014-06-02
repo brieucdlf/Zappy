@@ -6,15 +6,14 @@ void			create_new_task_client(t_client *client)
   printf("New task client : %s\n", client->buffer.buffer_read);
 }
 
-void			interpret_buffer_read_client(t_server *server,
-						     t_client *client,
+void			interpret_buffer_read_client(t_client *client,
 						     char *buff)
 {
   int			index;
 
-  (void)server;
   for (index = 0; index < 2048 &&
        client->buffer.index_read_buffer < 2048 && buff[index] != '\0'; index++)
+
     {
       client->buffer.buffer_read[client->buffer.index_read_buffer] = buff[index];
       if (buff[index] == '\n')
@@ -22,7 +21,6 @@ void			interpret_buffer_read_client(t_server *server,
 	  create_new_task_client(client);
 	  memset(client->buffer.buffer_read, 0, 2048);
 	  index++;
-
 	  memcpy(client->buffer.buffer_read, &buff[index],
 		 strlen(&buff[index]));
 	  client->buffer.index_read_buffer = strlen(&buff[index]);
@@ -54,7 +52,7 @@ int			map_check_read_client(t_list *current_client,
 	  return (0);
 	}
       else
-	interpret_buffer_read_client(server, client, buff);
+	interpret_buffer_read_client(client, buff);
     }
   return (1);
 }
