@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Thu May 15 19:19:43 2014 romain combe
+** Last update Mon Jun  2 10:26:26 2014 romain combe
 */
 
 #include "user.h"
@@ -17,15 +17,15 @@ void		set_rocks(t_map *map)
   map->nb_linemate = rand() % 10 + 5;
   printf("linemate : %d\n", map->nb_linemate);
   map->nb_deraumere = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_deraumere);
+  printf("deraumere : %d\n", map->nb_deraumere);
   map->nb_sibur = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_sibur);
+  printf("sibur : %d\n", map->nb_sibur);
   map->nb_mendiane = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_mendiane);
+  printf("mendiane : %d\n", map->nb_mendiane);
   map->nb_phiras = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_phiras);
+  printf("phiras : %d\n", map->nb_phiras);
   map->nb_thystame = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_thystame);
+  printf("thystame : %d\n", map->nb_thystame);
 }
 
 void		fill_empty_map(t_map *map)
