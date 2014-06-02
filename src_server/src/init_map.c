@@ -5,27 +5,47 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Mon Jun  2 10:26:26 2014 romain combe
+** Last update Mon Jun  2 17:58:13 2014 romain combe
 */
 
 #include "user.h"
 #include "server.h"
 
+void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
+{
+  int		x_rock;
+  int		y_rock;
+  int		i;
+
+  i = 0;
+  srand(time(NULL));
+  while (i < nb_rocks)
+    {
+      x_rock = rand() % (map->width - 1);
+      y_rock = rand() % (map->height - 1);
+      if (map->map[x_rock][y_rock] == rock_kind)
+	i--;
+      else
+	map->map[x_rock][y_rock] = rock_kind;
+      i++;
+    }
+}
+	
 void		set_rocks(t_map *map)
 {
   srand(time(NULL));
-  map->nb_linemate = rand() % 10 + 5;
-  printf("linemate : %d\n", map->nb_linemate);
-  map->nb_deraumere = rand() % 10 + 5;
-  printf("deraumere : %d\n", map->nb_deraumere);
-  map->nb_sibur = rand() % 10 + 5;
-  printf("sibur : %d\n", map->nb_sibur);
-  map->nb_mendiane = rand() % 10 + 5;
-  printf("mendiane : %d\n", map->nb_mendiane);
-  map->nb_phiras = rand() % 10 + 5;
-  printf("phiras : %d\n", map->nb_phiras);
-  map->nb_thystame = rand() % 10 + 5;
-  printf("thystame : %d\n", map->nb_thystame);
+  map->nb_linemate = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, LINEMATE, map->nb_linemate);
+  map->nb_deraumere = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, DERAUMERE, map->nb_deraumere);
+  map->nb_sibur = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, SIBUR, map->nb_sibur);
+  map->nb_mendiane = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, MENDIANE, map->nb_mendiane);
+  map->nb_phiras = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, PHIRAS, map->nb_phiras);
+  map->nb_thystame = rand() % ((map->width + map->height) / 20) + 5;
+  fill_rocks(map, THYSTAME, map->nb_thystame);
 }
 
 void		fill_empty_map(t_map *map)
@@ -90,7 +110,6 @@ char		**malloc_tab(int width, int height)
 
 void		init_map(t_map *map)
 {
-
   map->width = DEFAULT_WIDTH;
   map->height = DEFAULT_HEIGHT;
   map->map = malloc_tab(map->width, map->height);

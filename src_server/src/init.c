@@ -54,8 +54,10 @@ void			set_param(int argc, char **argv, t_param *param_server)
   init_default_param(param_server);
   while ((caracter = getopt(argc, argv, ARGUMENT_PARSE)) != EOF)
     fill_param(caracter, param_server, argv);
-  if (param_server->world_width > 1000)
+  if ((param_server->world_width > MAX_WIDTH) ||
+      (param_server->world_width < MIN_WIDTH))
     param_server->world_width = DEFAULT_WIDTH;
-  if (param_server->world_height > 1000)
+  if ((param_server->world_height > MAX_HEIGHT) ||
+      (param_server->world_height < MIN_HEIGHT))
     param_server->world_width = DEFAULT_HEIGHT;
 }

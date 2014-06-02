@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Sun May 25 16:15:56 2014 Brieuc de La Fouchardiere
+** Last update Mon Jun  2 17:27:15 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -35,6 +35,10 @@
 # define DEFAULT_PORT		65510
 # define DEFAULT_WIDTH		100
 # define DEFAULT_HEIGHT		100
+# define MIN_WIDTH		100
+# define MIN_HEIGHT		100
+# define MAX_WIDTH		1000
+# define MAX_HEIGHT		1000
 # define CLIENT_START		10
 # define EXECUTION_TIME		1
 
