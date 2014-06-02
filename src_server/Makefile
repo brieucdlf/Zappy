@@ -5,11 +5,11 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Wed May 28 15:44:47 2014 Brieuc de La Fouchardiere
+## Last update Mon Jun  2 15:06:01 2014 Remi Hillairet
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
-NAME	=	server
+NAME	=	../server
 
 CC	=	gcc
 

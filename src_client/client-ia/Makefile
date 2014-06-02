@@ -4,10 +4,10 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:54 2014 remi hillairet
-## Last update Tue May  13 10:45:54 2014 remi hillairet
+## Last update Mon Jun  2 15:05:38 2014 Remi Hillairet
 ##
 
-NAME	=	client
+NAME	=	../../client
 
 CC	=	gcc
 
