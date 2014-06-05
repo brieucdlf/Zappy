@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Mon Jun  2 18:29:29 2014 romain combe
+** Last update Thu Jun  5 16:50:21 2014 romain combe
 */
 
 #include "user.h"
@@ -34,17 +34,17 @@ void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
 void		set_rocks(t_map *map)
 {
   srand(time(NULL));
-  map->nb_linemate = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_linemate = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, LINEMATE, map->nb_linemate);
-  map->nb_deraumere = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_deraumere = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, DERAUMERE, map->nb_deraumere);
-  map->nb_sibur = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_sibur = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, SIBUR, map->nb_sibur);
-  map->nb_mendiane = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_mendiane = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, MENDIANE, map->nb_mendiane);
-  map->nb_phiras = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_phiras = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, PHIRAS, map->nb_phiras);
-  map->nb_thystame = rand() % ((map->width + map->height) / 20) + 5;
+  map->nb_thystame = rand() % ((map->width + map->height) / 10) + 5;
   fill_rocks(map, THYSTAME, map->nb_thystame);
 }
 
@@ -58,33 +58,8 @@ void		fill_empty_map(t_map *map)
   while (i++ < map->height)
     {
       while (j++ < map->width)
-      	{
-      	  map->map[i][j] = 0;
-	  printf("%d.", map->map[i][j]);
-	}
+	map->map[i][j] = 0;
       j = 0;
-      printf("\n");
-      i++;
-    }
-}
-
-void		fill_map(t_map *map)
-{
-  int		i;
-  int		j;
-
-  i = 0;
-  j = 0;
-  srand(time(NULL));
-  while (i++ < map->height)
-    {
-      while (j++ < map->width)
-      	{
-      	  map->map[i][j] = rand() % 100 + 50;
-	  printf("%d.", map->map[i][j]);
-	}
-      j = 0;
-      printf("\n");
       i++;
     }
 }

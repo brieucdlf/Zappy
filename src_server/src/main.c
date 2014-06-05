@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:45:33 2014 remi hillairet
-** Last update Mon Jun  2 18:26:57 2014 romain combe
+** Last update Thu Jun  5 16:50:35 2014 romain combe
 */
 
 #include "user.h"
@@ -22,7 +22,20 @@ void		aff_map(t_map *map)
     {
       while (j < map->height)
 	{
-	  printf("%d", map->map[i][j]);
+	  if (map->map[i][j] == 0)
+	    printf("%d", map->map[i][j]);
+	  else if (map->map[i][j] == 1)
+	    printf("\x1b[31m%d\x1b[0m", map->map[i][j]);
+	  else if (map->map[i][j] == 2)
+	    printf("\x1b[32m%d\x1b[0m", map->map[i][j]);
+	  else if (map->map[i][j] == 3)
+	    printf("\x1b[33m%d\x1b[0m", map->map[i][j]);
+	  else if (map->map[i][j] == 4)
+	    printf("\x1b[34m%d\x1b[0m", map->map[i][j]);
+	  else if (map->map[i][j] == 5)
+	    printf("\x1b[35m%d\x1b[0m", map->map[i][j]);
+	  else if (map->map[i][j] == 6)
+	    printf("\x1b[36m%d\x1b[0m", map->map[i][j]);
 	  j++;
 	}
       printf("\n");
@@ -44,7 +57,6 @@ int		main(int ac, char **av)
 
   init_server(&server);
   init_map(&server.map);
-  printf("toto\n");
   aff_map(&server.map);
   exit(1);
   set_param(ac, av, &server.param_server);
