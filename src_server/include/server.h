@@ -41,6 +41,8 @@
 # define MAX_HEIGHT		1000
 # define CLIENT_START		10
 # define EXECUTION_TIME		1
+# define TIMEOUT_SEC		3
+# define TIMEOUT_USEC		0
 
 typedef enum
   {

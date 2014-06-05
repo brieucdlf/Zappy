@@ -35,12 +35,17 @@ void			map_cycle_action(t_list *current_item, void *arg)
 
 void			server_loop(t_server *server)
 {
+  struct timeval	tv;
+  int			rv;
+
   while (g_server_run == 1)
     {
       init_fd_socket(server);
       map_list(server->clients, map_cycle_action, (void*)server);
-      if ((select(server->fd_max + 1, &server->readfd,
-		  &server->writefd, NULL, NULL)) != -1)
+      tv.tv_sec = TIMEOUT_SEC;
+      tv.tv_usec = TIMEOUT_USEC;
+      rv = select(server->fd_max + 1, &server->readfd, &server->writefd, NULL, &tv);
+      if (rv <= 0)
 	{
 	  map_list_with_stop(server->clients,
 			     map_check_read_client, (void *)server);
@@ -48,8 +53,12 @@ void			server_loop(t_server *server)
 	  //check read socket
 	  //check write socket
 	  check_connect_client(server);
+	  
 	}
       if (g_server_run == 0)
-	return ;
+	{
+	  printf("Timeout ! Connection not established\n");
+	  return ;
+	}	
     }
 }

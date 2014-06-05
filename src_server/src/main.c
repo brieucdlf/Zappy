@@ -44,7 +44,6 @@ int		main(int ac, char **av)
 
   init_server(&server);
   init_map(&server.map);
-  printf("toto\n");
   aff_map(&server.map);
   exit(1);
   set_param(ac, av, &server.param_server);
