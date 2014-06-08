@@ -51,17 +51,10 @@ void		set_rocks(t_map *map)
 void		fill_empty_map(t_map *map)
 {
   int		i;
-  int		j;
 
   i = 0;
-  j = 0;
-  while (i++ < map->height)
-    {
-      while (j++ < map->width)
-	map->map[i][j] = 0;
-      j = 0;
-      i++;
-    }
+  while (i < map->height)
+      memset(map->map[i++], 0, map->width);
 }
 
 char		**malloc_tab(int width, int height)

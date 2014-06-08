@@ -55,10 +55,10 @@ int		main(int ac, char **av)
 {
   t_server      server;
 
-  init_server(&server);
-  init_map(&server.map);
-  aff_map(&server.map);
-  exit(1);
+    init_server(&server);
+    init_map(&server.map);
+  /*aff_map(&server.map);
+    exit(1);*/
   set_param(ac, av, &server.param_server);
   if (create_server(&server) == -1)
     return (1);

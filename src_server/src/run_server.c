@@ -45,15 +45,14 @@ void			server_loop(t_server *server)
       tv.tv_sec = TIMEOUT_SEC;
       tv.tv_usec = TIMEOUT_USEC;
       rv = select(server->fd_max + 1, &server->readfd, &server->writefd, NULL, &tv);
-      if (rv <= 0)
+      if (rv >= 0)
 	{
 	  map_list_with_stop(server->clients,
 			     map_check_read_client, (void *)server);
 	  /* map_list(server->clients, map_check_read_client, (void*)server); */
 	  //check read socket
 	  //check write socket
-	  check_connect_client(server);
-	  
+	  check_connect_client(server);	  
 	}
       if (g_server_run == 0)
 	{
