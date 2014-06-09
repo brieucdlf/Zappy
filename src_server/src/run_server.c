@@ -52,12 +52,12 @@ void			server_loop(t_server *server)
 	  /* map_list(server->clients, map_check_read_client, (void*)server); */
 	  //check read socket
 	  //check write socket
-	  check_connect_client(server);	  
+	  check_connect_client(server);
 	}
       if (g_server_run == 0)
 	{
 	  printf("Timeout ! Connection not established\n");
 	  return ;
-	}	
+	}
     }
 }

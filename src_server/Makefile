@@ -36,7 +36,7 @@ SRCS	=	src/main.c				\
 		src/run_server.c			\
 		src/connect_client.c			\
 		src/create_server.c			\
-		src/read_write_socket.c			\
+		src/read_socket.c			\
 		src/deconnection_client.c		\
 		src/set_fd_socket.c
 

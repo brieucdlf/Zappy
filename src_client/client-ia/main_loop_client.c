@@ -8,6 +8,20 @@ void			init_fd_socket(t_client *client)
   FD_SET(client->fd.fd_socket, &client->fd.writefd);
 }
 
+void			random_command(t_client *client)
+{
+  char			*command[12] = {"avance\n", "droite\n", "gauche\n", "voir\n",
+					"inventaire\n", "prend objet\n", "pose objet\n",
+					"expulse\n", "broadcast texte\n",
+					"incantation\n", "fork\n", "connect_nbr\n"};
+  int			index = rand() % 12;
+  int			ret;
+
+  ret = 0;
+  while ((ret = write(client->fd.fd_socket, command[index],
+		      strlen(&command[index][ret]))) != (int)strlen(command[index]));
+}
+
 void			main_loop_client(t_client *client)
 {
   int			ret_select;
@@ -26,11 +40,12 @@ void			main_loop_client(t_client *client)
 	    }
 	  if (FD_ISSET(client->fd.fd_socket, &(client->fd.writefd)))
 	    {
+	      random_command(client);
 	      //printf("write server\n");
 	    }
 	}
       if (ret_select == EBADF)
 	return ;
-      //      usleep(5000);
+      usleep(5000);
     }
 }
