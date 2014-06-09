@@ -98,6 +98,8 @@ typedef struct		s_server
 ** ################################################
 */
 int			map_check_read_client(t_list *current_client, void *arg);
+int			map_check_write_client(t_list *current_client,
+					       void *arg);
 void			deconnection_client(t_server *server,
 					    t_client *current_client);
 

@@ -38,6 +38,7 @@ SRCS	=	src/main.c				\
 		src/create_server.c			\
 		src/read_socket.c			\
 		src/deconnection_client.c		\
+		src/write_socket.c			\
 		src/set_fd_socket.c
 
 OBJS	=	$(SRCS:.c=.o)
