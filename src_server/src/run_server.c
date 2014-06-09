@@ -49,8 +49,8 @@ void			server_loop(t_server *server)
 	{
 	  map_list_with_stop(server->clients,
 			     map_check_read_client, (void *)server);
-	  /* map_list_with_stop(server->clients, */
-	  /* 		     map_check_write_client, (void *)server); */
+	  map_list_with_stop(server->clients,
+	  		     map_check_write_client, (void *)server);
 
 	  check_connect_client(server);
 	}

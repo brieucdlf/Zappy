@@ -6,10 +6,10 @@ int			map_check_write_client(t_list *current_client,
   t_server		*server;
   t_client		*client;
 
-  if (current_client == NULL || current_client->data == NULL || arg == NULL)
+  if ((client = (t_client *)current_client->data) == NULL ||
+      current_client->data == NULL || (server = (t_server *)arg) == NULL ||
+      client->action.type == NONE)
     return (1);
-  server = (t_server *)arg;
-  client = (t_client *)current_client->data;
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
       if ((write(client->fd_socket, "OK\n", 3)) <= 0)
@@ -19,12 +19,11 @@ int			map_check_write_client(t_list *current_client,
 	  printf("new fd max : %d\n", server->fd_max);
 	  return (0);
 	}
-    }
-  return (1);
-}
+      else
+	printf("write client success\n");
 
-void			map_action_client(t_list *current_client, void *arg)
-{
-  (void)current_client;
-  (void)arg;
+    }
+  printf("client action none\n");
+  client->action.type = NONE;
+  return (1);
 }

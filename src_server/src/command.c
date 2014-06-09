@@ -14,18 +14,18 @@ int	init_commands(t_server *server)
 {
   if ((server->client_commands = malloc(13 * sizeof(char *))) == NULL)
     return (-1);
-  server->client_commands[0] = strdup("avance");
-  server->client_commands[1] = strdup("droite");
-  server->client_commands[2] = strdup("gauche");
-  server->client_commands[3] = strdup("voir");
-  server->client_commands[4] = strdup("inventaire");
-  server->client_commands[5] = strdup("prend objet");
-  server->client_commands[6] = strdup("pose objet");
-  server->client_commands[7] = strdup("expulse");
-  server->client_commands[8] = strdup("broadcast texte");
-  server->client_commands[9] = strdup("incantation");
-  server->client_commands[10] = strdup("fork");
-  server->client_commands[11] = strdup("connect_nbr");
+  server->client_commands[0] = strdup("avance\n");
+  server->client_commands[1] = strdup("droite\n");
+  server->client_commands[2] = strdup("gauche\n");
+  server->client_commands[3] = strdup("voir\n");
+  server->client_commands[4] = strdup("inventaire\n");
+  server->client_commands[5] = strdup("prend objet\n");
+  server->client_commands[6] = strdup("pose objet\n");
+  server->client_commands[7] = strdup("expulse\n");
+  server->client_commands[8] = strdup("broadcast texte\n");
+  server->client_commands[9] = strdup("incantation\n");
+  server->client_commands[10] = strdup("fork\n");
+  server->client_commands[11] = strdup("connect_nbr\n");
   server->client_commands[12] = NULL;
   return (0);
 }
@@ -49,6 +49,7 @@ void 	init_action_ptr(t_server *server)
 void		init_action_client(t_server *server, t_client *current_client,
 				   int current_action)
 {
+
   current_client->action.type = current_action + 1;
   current_client->action.action_fct = server->action_ptr[current_action];
   set_timer(current_client);
