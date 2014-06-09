@@ -26,11 +26,9 @@ void			read_answer_server(t_client *client)
 {
   char			*s;
 
-  while ((s = get_next_line(client->fd.fd_socket)) != NULL)
-    {
-      printf("answer client : %s\n", s);
-      free(s);
-    }
+  s = get_next_line(client->fd.fd_socket);
+  printf("answer client : %s\n", s);
+  free(s);
 }
 
 void			main_loop_client(t_client *client)

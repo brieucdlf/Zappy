@@ -21,7 +21,6 @@ int			map_check_write_client(t_list *current_client,
 	}
       else
 	printf("write client success\n");
-
     }
   printf("client action none\n");
   client->action.type = NONE;
