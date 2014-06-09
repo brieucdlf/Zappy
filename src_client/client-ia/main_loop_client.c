@@ -22,6 +22,17 @@ void			random_command(t_client *client)
 		      strlen(&command[index][ret]))) != (int)strlen(command[index]));
 }
 
+void			read_answer_server(t_client *client)
+{
+  char			*s;
+
+  while ((s = get_next_line(client->fd.fd_socket)) != NULL)
+    {
+      printf("answer client : %s\n", s);
+      free(s);
+    }
+}
+
 void			main_loop_client(t_client *client)
 {
   int			ret_select;
@@ -35,6 +46,7 @@ void			main_loop_client(t_client *client)
 	{
 	  if (FD_ISSET(client->fd.fd_socket, &(client->fd.readfd)))
 	    {
+	      read_answer_server(client);
 	      //call get_next_line with client->fd.fd_socket
 	      //	      printf("read server\n");
 	    }
