@@ -58,6 +58,6 @@ void			main_loop_client(t_client *client)
 	}
       if (ret_select == EBADF)
 	return ;
-      usleep(5000);
+      sleep(3);
     }
 }

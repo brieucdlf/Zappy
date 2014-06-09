@@ -1,24 +1,27 @@
 #include "server.h"
 
-void			create_new_task_client(t_client *client)
+void			create_new_task_client(t_client *client,
+					       t_server *server)
 {
   //creer plusieurs task suivant le nombre de commande recu;
   printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket, client->buffer.buffer_read);
+  get_command(server, client, client->buffer.buffer_read);
+
 }
 
-void			interpret_buffer_read_client(t_client *client,
+void			interpret_buffer_read_client(t_server *server,
+						     t_client *client,
 						     char *buff)
 {
   int			index;
 
   for (index = 0; index < 2048 &&
        client->buffer.index_read_buffer < 2048 && buff[index] != '\0'; index++)
-
     {
       client->buffer.buffer_read[client->buffer.index_read_buffer] = buff[index];
       if (buff[index] == '\n')
 	{
-	  create_new_task_client(client);
+	  create_new_task_client(client, server);
 	  memset(client->buffer.buffer_read, 0, 2048);
 	  index++;
 	  memcpy(client->buffer.buffer_read, &buff[index],
@@ -30,8 +33,7 @@ void			interpret_buffer_read_client(t_client *client,
     }
 }
 
-int			map_check_read_client(t_list *current_client,
-					      void *arg)
+int			map_check_read_client(t_list *current_client, void *arg)
 {
   t_server		*server;
   t_client		*client;
@@ -52,7 +54,7 @@ int			map_check_read_client(t_list *current_client,
 	  return (0);
 	}
       else
-	interpret_buffer_read_client(client, buff);
+	interpret_buffer_read_client(server, client, buff);
     }
   return (1);
 }

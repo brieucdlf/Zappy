@@ -54,6 +54,7 @@ void		init_action_client(t_server *server, t_client *current_client,
   set_timer(current_client);
 }
 
+
 int	get_command(t_server *server, t_client *current_client, char *command)
 {
   int   i;
@@ -66,7 +67,6 @@ int	get_command(t_server *server, t_client *current_client, char *command)
 	  init_action_client(server, current_client, i);
 	  return (0);
 	}
-	/* server->action_ptr[i](server, current_client); */
       i++;
     }
   return (0);

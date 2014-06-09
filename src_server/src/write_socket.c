@@ -22,3 +22,9 @@ int			map_check_write_client(t_list *current_client,
     }
   return (1);
 }
+
+void			map_action_client(t_list *current_client, void *arg)
+{
+  (void)current_client;
+  (void)arg;
+}

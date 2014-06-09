@@ -37,5 +37,6 @@ int			connect_server(t_client *client,
 				       const char *addr_server,
 					 int port_server);
 void			main_loop_client(t_client *client);
+char			*get_next_line(int fd);
 
 #endif // CLIENT
