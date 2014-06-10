@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Mon Jun  2 15:06:01 2014 Remi Hillairet
+## Last update Tue Jun 10 11:19:24 2014 romain combe
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
@@ -39,7 +39,8 @@ SRCS	=	src/main.c				\
 		src/read_socket.c			\
 		src/deconnection_client.c		\
 		src/write_socket.c			\
-		src/set_fd_socket.c
+		src/set_fd_socket.c			\
+		src/test_map.c				\
 
 OBJS	=	$(SRCS:.c=.o)
 
