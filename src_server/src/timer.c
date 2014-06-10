@@ -43,7 +43,8 @@ void			check_cycle_timer(t_server *server,
   tmp_timer.tv_nsec = 0;
   if ((cycle = get_cycle_action(current_client->action.type)) == 0)
     return ;
-  cycle /= (server->param_server.execution_time / 1000);
+  if (server->param_server.execution_time / 1000 != 0)
+    cycle /= (server->param_server.execution_time / 1000);
   if (clock_gettime(CLOCK_MONOTONIC, &tmp_timer) == -1)
     return ;
   if (((double)tmp_timer.tv_sec + 1.0e-9 * tmp_timer.tv_nsec) -

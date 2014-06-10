@@ -49,7 +49,6 @@ void 	init_action_ptr(t_server *server)
 void		init_action_client(t_server *server, t_client *current_client,
 				   int current_action)
 {
-
   current_client->action.type = current_action + 1;
   current_client->action.action_fct = server->action_ptr[current_action];
   set_timer(current_client);

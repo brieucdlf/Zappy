@@ -34,9 +34,10 @@ void			read_answer_server(t_client *client)
 void			main_loop_client(t_client *client)
 {
   int			ret_select;
+  int			index = 0;
 
   client->is_connected = 1;
-  while (client->is_connected == 1)
+  while (client->is_connected == 1 && index < 100000)
     {
       init_fd_socket(client);
       if ((ret_select = select(client->fd.fd_socket + 1, &client->fd.readfd,
@@ -56,6 +57,7 @@ void			main_loop_client(t_client *client)
 	}
       if (ret_select == EBADF)
 	return ;
-      sleep(3);
+      index++;
+      /* sleep(3); */
     }
 }

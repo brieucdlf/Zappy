@@ -10,6 +10,9 @@ int			map_check_write_client(t_list *current_client,
       current_client->data == NULL || (server = (t_server *)arg) == NULL ||
       client->action.type == NONE)
     return (1);
+  check_cycle_timer(server, client);
+  if (client->action.is_cycle == 1)
+    return (1);
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
       if ((write(client->fd_socket, "OK\n", 3)) <= 0)
