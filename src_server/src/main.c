@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:45:33 2014 remi hillairet
-** Last update Thu Jun  5 16:50:35 2014 romain combe
+** Last update Tue Jun 10 10:50:36 2014 romain combe
 */
 
 #include "user.h"
@@ -57,8 +57,8 @@ int		main(int ac, char **av)
 
   init_server(&server);
   init_map(&server.map);
-  /*aff_map(&server.map);
-    exit(1);*/
+  aff_map(&server.map);
+    exit(1);
   set_param(ac, av, &server.param_server);
   if (create_server(&server) == -1)
     return (1);

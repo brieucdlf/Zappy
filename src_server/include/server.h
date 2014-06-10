@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Mon Jun  2 17:27:15 2014 romain combe
+** Last update Tue Jun 10 11:20:41 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -152,5 +152,15 @@ void			fill_map(t_map *map);
 int			init_commands(t_server *server);
 void			init_action_ptr(t_server *server);
 int			get_command(t_server *server, t_client *current_client, char *command);
+
+/*
+** ################################################
+** # test_map.c
+** ################################################
+*/
+
+void		add_new_rocks(t_map *map, int nb_rocks, int rock_kind);
+void		loop_nb_rocks(t_map *map);
+void		check_nb_rocks(t_map *map, int rock_kind);
 
 #endif /* !SERVER_H_ */
