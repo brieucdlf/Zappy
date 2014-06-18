@@ -55,6 +55,7 @@ int			map_check_read_client(t_list *current_client, void *arg)
 	}
       else
 	interpret_buffer_read_client(server, client, buff);
+      printf("buffer read = [%s]\n", buff);
     }
   return (1);
 }

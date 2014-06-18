@@ -13,7 +13,7 @@ int			connect_server_socket(t_client *client)
 {
   if (connect(client->fd.fd_socket,
 	      (const struct sockaddr *)&(client->sin_server),
-	     sizeof(client->sin_server)) == -1)
+	      sizeof(client->sin_server)) == -1)
     {
       perror("connect");
       close(client->fd.fd_socket);
