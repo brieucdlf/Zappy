@@ -8,4 +8,4 @@ def parse_argument(argv):
     parser.add_option("-p", "--port", dest="port", default=DEFAULT_PORT,
                       help="Server port")
     argument = parser.parse_args()
-    return argument[0]
+    return argument[0].__dict__

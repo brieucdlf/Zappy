@@ -11,7 +11,7 @@ class SocketServer:
         self.__port = port
 
     def send_request(self, msg):
-        print os.write(self.__socket_server.fileno(), msg)
+        os.write(self.__socket_server.fileno(), msg)
         
     def connect_server(self):
         try:
