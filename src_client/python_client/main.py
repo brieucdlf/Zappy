@@ -1,5 +1,4 @@
 import sys
-import os
 from socket_server import SocketServer
 from argument import parse_argument
 
@@ -16,5 +15,5 @@ def main(argv):
     so = connect_socket(config_server)
     so.send_request("salut\n")
     
-if __name__ == "__main__":
+if __name__ == "__main__":    
     main(sys.argv)
