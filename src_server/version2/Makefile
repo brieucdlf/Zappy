@@ -23,12 +23,14 @@ SRCS	=	src/main.c				\
 		src/list/map_list.c			\
 		src/list/remove_list.c			\
 		src/init.c				\
-		src/free.c
+		src/free.c				\
+		src/set_fd_socket.c			\
+		src/run_server.c
 
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS) -lrt
+		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 all: 		$(NAME)
 

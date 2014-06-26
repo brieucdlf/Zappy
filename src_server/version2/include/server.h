@@ -17,6 +17,7 @@
 # include <errno.h>
 # include <time.h>
 
+# include "client.h"
 # include "list.h"
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
@@ -44,11 +45,13 @@ typedef	struct			s_param
 
 typedef struct			s_server
 {
+  char				is_run;
   int				fd_socket;
   int				fd_max;
   fd_set			readfd;
   fd_set			writefd;
   t_param			param_server;
+  t_list			*player;
 }				t_server;
 
 int			create_server(t_server *server);
@@ -56,5 +59,10 @@ void			set_param(int argc, char **argv, t_param *param_server);
 void			free_double_array(char **tab);
 void			close_client_socket(t_list *current_client, void *arg);
 void			free_server(t_server *server);
+void			init_fd_socket(t_server *server);
+void			add_new_client(t_server *server,
+				       int fd_socket, int id_team);
+void			free_client(void *arg);
+void			check_connect_client(t_server *server);
 
 #endif /* !SERVER_H_ */
