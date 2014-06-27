@@ -11,13 +11,14 @@ void			timer_task(t_task *task, unsigned int index)
 
   gettimeofday(&task->timer, NULL);
   if (task->timer.tv_usec +
-      (((double)tab_timer[index] / 100.0) * 1000) > (double)MAX_TIMER_VALUE)
+      (((double)tab_timer[index] / 1) * 1000) > (double)MAX_TIMER_VALUE)
     {
       task->timer.tv_sec += 1;
       task->timer.tv_usec = task->timer.tv_usec +
-	(double)((int)(((double)tab_timer[index] / 100.0) * 1000) % (int)MAX_TIMER_VALUE);
+	(double)((int)(((double)tab_timer[index] / 1) * 1000) %
+		 (int)MAX_TIMER_VALUE);
     }
   else
     task->timer.tv_usec = task->timer.tv_usec +
-      (double)(((double)tab_timer[index] / 100.0) * 1000);
+      (double)(((double)tab_timer[index] / 1) * 1000);
 }
