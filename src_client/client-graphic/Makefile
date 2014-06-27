@@ -5,23 +5,29 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Tue May  13 10:45:47 2014 remi hillairet
+## Last update Tue Jul  1 10:04:01 2014 Jeremy Peltier
 ##
 
-NAME	=	client
+CC		=	g++
 
-CC	=	gcc
+RM		=	rm -fv
 
-RM	=	rm -fv
+NAME		=	client
 
-CFLAGS	+=	-Wall -Wextra
+CXXFLAGS	=	-Wall -Wextra -Werror -W -fPIC
+CXXFLAGS	+=	-I$(INCLUDES)
 
-SRCS	=	main.c
+SRCS		=	main.cpp \
+			ClientGraphic.cpp
 
-OBJS	=	$(SRCS:.c=.o)
+OBJS		=	$(SRCS:.cpp=.o)
+
+SFML		=	-L/usr/include -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+INCLUDES	=	./includes/
 
 $(NAME): 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+		$(CC) $(SFML) -o $(NAME) -I$(INCLUDES) $(OBJS)
 
 all: 		$(NAME)
 
@@ -32,3 +38,5 @@ fclean: 	clean
 		$(RM) $(NAME)
 
 re: 		fclean all
+
+.PHONY:		all clean fclean re
