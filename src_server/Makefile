@@ -21,18 +21,10 @@ SRCS	=	src/main.c				\
 		src/list/list.c				\
 		src/list/map_list.c 			\
 		src/list/remove_list.c			\
-		src/test_list.c				\
-		src/timer.c				\
-		src/buffer.c				\
 		src/init_client.c			\
 		src/init.c				\
 		src/init_map.c				\
 		src/free.c 				\
-		src/command.c 				\
-		src/action/action.c 			\
-		src/action/exec_action.c 		\
-		src/action/move_action.c 		\
-		src/action/object_action.c		\
 		src/run_server.c			\
 		src/connect_client.c			\
 		src/create_server.c			\

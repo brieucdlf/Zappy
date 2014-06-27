@@ -12,6 +12,7 @@
 # define USER_H_
 
 # include "list.h"
+# include "task.h"
 
 typedef enum
   {
@@ -56,32 +57,11 @@ typedef void (*action_function)(t_server *, t_client *);
 ** ################################################
 */
 
-typedef struct		s_task
-{
-  char			*cmd;
-  int			current_index;
-}			t_task;
-
 typedef struct		s_buffer
 {
-  t_list	        *buffer_write;
   char			buffer_read[2048];
   int			index_read_buffer;
 }			t_buffer;
-
-/*
-** ################################################
-** # ACTION STRUCTURE (commands)
-** ################################################
-*/
-
-typedef struct		s_action
-{
-  char			is_cycle;
-  action		type;
-  struct timespec	timer_cycle;
-  action_function	action_fct;
-}			t_action;
 
 /*
 ** ################################################
@@ -95,7 +75,7 @@ typedef struct		s_client
   int			id_team;
   int			fd_socket;
   int			items[6];
-  t_action	        action;
+  t_list		*tasks;
   t_buffer		buffer;
 }			t_client;
 

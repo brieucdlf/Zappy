@@ -3,10 +3,11 @@
 void			create_new_task_client(t_client *client,
 					       t_server *server)
 {
+  (void)client;
+  (void)server;
   //creer plusieurs task suivant le nombre de commande recu;
   printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
 	 client->buffer.buffer_read);
-  get_command(server, client, client->buffer.buffer_read);
 }
 
 void			interpret_buffer_read_client(t_server *server,

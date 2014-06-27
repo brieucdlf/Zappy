@@ -60,12 +60,6 @@ int		main(int ac, char **av)
   set_param(ac, av, &server.param_server);
   if (create_server(&server) == -1)
     return (1);
-  if (init_commands(&server) == -1)
-    {
-      close(server.fd_socket);
-      return (1);
-    }
-  init_action_ptr(&server);
   server_loop(&server);
   free_server(&server);
   return (0);

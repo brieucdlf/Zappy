@@ -7,11 +7,7 @@ int			map_check_write_client(t_list *current_client,
   t_client		*client;
 
   if ((client = (t_client *)current_client->data) == NULL ||
-      current_client->data == NULL || (server = (t_server *)arg) == NULL ||
-      client->action.type == NONE)
-    return (1);
-  check_cycle_timer(server, client);
-  if (client->action.is_cycle == 1)
+      current_client->data == NULL || (server = (t_server *)arg) == NULL)
     return (1);
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
@@ -25,7 +21,5 @@ int			map_check_write_client(t_list *current_client,
       else
 	printf("write client success\n");
     }
-  printf("client action none\n");
-  client->action.type = NONE;
   return (1);
 }
