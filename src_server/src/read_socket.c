@@ -4,9 +4,9 @@ void			create_new_task_client(t_client *client,
 					       t_server *server)
 {
   //creer plusieurs task suivant le nombre de commande recu;
-  printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket, client->buffer.buffer_read);
+  printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
+	 client->buffer.buffer_read);
   get_command(server, client, client->buffer.buffer_read);
-
 }
 
 void			interpret_buffer_read_client(t_server *server,
@@ -48,7 +48,8 @@ int			map_check_read_client(t_list *current_client, void *arg)
       memset(buff, 0, 2048);
       if ((read(client->fd_socket, buff, 2047)) <= 0)
 	{
-	  printf("\033[31mDeconnection client [%d]\033[00m\n", client->fd_socket);
+	  printf("\033[31mDeconnection client [%d]\033[00m\n",
+		 client->fd_socket);
 	  deconnection_client(server, client);
 	  printf("new fd max : %d\n", server->fd_max);
 	  return (0);
