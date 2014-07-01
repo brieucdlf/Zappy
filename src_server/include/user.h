@@ -31,7 +31,7 @@ typedef enum
 
 typedef enum
   {
-    NONE = 0,
+    NONE,
     RIGTH,
     LEFT,
     MOVE,
@@ -47,11 +47,19 @@ typedef enum
 
 typedef enum
   {
-    DIRECTION_UP,
-    DIRECTION_DOWN,
-    DIRECTION_RIGHT,
-    DIRECTION_LEFT
-  }direction;
+    MAP_DIRECTION_ORIENTATION_NORTH,
+    MAP_DIRECTION_ORIENTATION_EAST,
+    MAP_DIRECTION_ORIENTATION_SOUTH,
+    MAP_DIRECTION_ORIENTATION_WEST
+  }orientation;
+
+typedef struct		s_direction
+{
+  int			getx;
+  int			gety;
+  int			get_orientation;
+}			t_direction;
+
 
 typedef struct s_server t_server;
 typedef struct s_client t_client;
