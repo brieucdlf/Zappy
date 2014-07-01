@@ -37,7 +37,8 @@ SRCS	=	src/main.c				\
 		src/task/command_fork.c			\
 		src/task/command_list.c			\
 		src/task/command_list_next.c		\
-		src/task/timer_task.c
+		src/task/timer_task.c			\
+		src/timer.c
 
 OBJS	=	$(SRCS:.c=.o)
 

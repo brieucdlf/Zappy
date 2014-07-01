@@ -24,6 +24,7 @@ typedef struct		s_task
 {
   function_task	        function;
   struct timeval	timer;
+  int			is_over;
 }			t_task;
 
 /*
