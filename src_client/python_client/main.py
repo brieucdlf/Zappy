@@ -16,6 +16,7 @@ def main(argv):
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
     so.read_request()
+
     so.send_request("voir\n")
     sleep(2)
 
