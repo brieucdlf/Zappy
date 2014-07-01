@@ -1,5 +1,20 @@
 #include "server.h"
 
+void			query_first_connection(t_client *current_client)
+{
+  char			*command;
+
+  if ((command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  sprintf(command, "%d\n", current_client->id_client);
+  create_new_write_task(current_client, command);
+  memset(command, 0, 100);
+  sprintf(command, "%d %d\n", 0, 0);
+  create_new_write_task(current_client, command);
+  free(command);
+}
+
 int			create_new_task_client(t_client *client,
 					       t_server *server)
 {
@@ -23,6 +38,7 @@ int			create_new_task_client(t_client *client,
 	  return (0);
 	}
       client->is_ready = 1;
+      query_first_connection(client);
     }
   return (1);
 }
