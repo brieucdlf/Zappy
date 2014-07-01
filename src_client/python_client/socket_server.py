@@ -15,8 +15,7 @@ class SocketServer:
         os.write(self.__socket_server.fileno(), msg)
 
     def read_request(self):
-        #print(os.read(self.__socket_server.fileno(), 2048))
-        self.__socket_server.recvfrom(4096)
+        print(os.read(self.__socket_server.fileno(), 2048))
 
     def connect_server(self):
         try:

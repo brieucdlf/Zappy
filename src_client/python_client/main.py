@@ -1,4 +1,5 @@
 import sys
+import os
 from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
@@ -14,8 +15,8 @@ def main(argv):
     config_server = {}
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
+    so.read_request()
     so.send_request("voir\n")
-    print(so.read_request())
     sleep(2)
 
 if __name__ == "__main__":    
