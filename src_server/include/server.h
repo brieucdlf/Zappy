@@ -31,6 +31,8 @@
 # include "list.h"
 # include "action.h"
 
+# define WELCOME_MESSAGE	"Bienvenue"
+
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
 # define DEFAULT_WIDTH		100
@@ -152,7 +154,8 @@ char			**malloc_tab(int width, int height);
 void			fill_map(t_map *map);
 int			init_commands(t_server *server);
 void			init_action_ptr(t_server *server);
-int			get_command(t_server *server, t_client *current_client, char *command);
+int			get_command(t_server *server, t_client *current_client,
+				    char *command);
 
 /*
 ** ################################################
@@ -160,8 +163,11 @@ int			get_command(t_server *server, t_client *current_client, char *command);
 ** ################################################
 */
 
-void		add_new_rocks(t_map *map, int nb_rocks, int rock_kind);
-void		loop_nb_rocks(t_map *map);
-void		check_nb_rocks(t_map *map, int rock_kind);
+void			add_new_rocks(t_map *map, int nb_rocks, int rock_kind);
+void			loop_nb_rocks(t_map *map);
+void			check_nb_rocks(t_map *map, int rock_kind);
+
+void			create_new_write_task(t_client *current_client,
+					      const char *command);
 
 #endif /* !SERVER_H_ */

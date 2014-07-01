@@ -24,4 +24,5 @@ void			add_new_client(t_server *server,
   new_client->buffer.index_read_buffer = 0;
   memset(new_client->items, 0, sizeof(int) * 6);
   list_push(&server->clients, new_client, free_client);
+  create_new_write_task(new_client, WELCOME_MESSAGE);
 }
