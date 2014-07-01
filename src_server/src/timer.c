@@ -24,8 +24,6 @@ void			check_timer_client(t_list *item, void *server)
   current_item = current_client->tasks;
   while (current_item != NULL)
     {
-      printf("current timer : %lu %lu\n", ((t_task *)current_item->data)->timer.tv_sec,
-	     ((t_task *)current_item->data)->timer.tv_usec);
       if (tv.tv_sec >= ((t_task *)current_item->data)->timer.tv_sec &&
 	  tv.tv_usec >= ((t_task *)current_item->data)->timer.tv_usec)
 	{

@@ -15,6 +15,7 @@ def main(argv):
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
     so.send_request("voir\n")
+    print(so.read_request())
     sleep(2)
 
 if __name__ == "__main__":    
