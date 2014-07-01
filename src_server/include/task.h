@@ -24,7 +24,14 @@ typedef struct		s_task
 {
   function_task	        function;
   struct timeval	timer;
+  int			is_over;
 }			t_task;
+
+typedef struct		s_write_task
+{
+  char			buffer[10240];
+  int			index;
+}			t_write_task;
 
 /*
 ** LIST TASK

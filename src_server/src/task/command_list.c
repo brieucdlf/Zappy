@@ -11,21 +11,24 @@ void			droite_task_function(void *server, void *client)
 {
   (void)server;
   (void)client;
-  printf("droite\n");
+  int			x;
+  int			y;
 }
 
 void			gauche_task_function(void *server, void *client)
 {
   (void)server;
   (void)client;
-  printf("gauche\n");
+  int			x;
+  int			y;
+
 }
 
 void			voir_task_function(void *server, void *client)
 {
   (void)server;
   (void)client;
-  printf("voir\n");
+  printf("task => voir\n");
 }
 
 void			inventaire_task_function(void *server, void *client)
