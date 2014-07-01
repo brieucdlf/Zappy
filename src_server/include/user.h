@@ -45,6 +45,14 @@ typedef enum
     INCANTATION
   }action;
 
+typedef enum
+  {
+    DIRECTION_UP,
+    DIRECTION_DOWN,
+    DIRECTION_RIGHT,
+    DIRECTION_LEFT
+  }direction;
+
 typedef struct s_server t_server;
 typedef struct s_client t_client;
 

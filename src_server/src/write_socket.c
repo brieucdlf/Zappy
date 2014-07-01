@@ -18,8 +18,8 @@ int			map_check_write_client(t_list *current_client,
 	  printf("new fd max : %d\n", server->fd_max);
 	  return (0);
 	}
-      else
-	printf("write client success\n");
+      /* else */
+      /* 	printf("write client success\n"); */
     }
   return (1);
 }

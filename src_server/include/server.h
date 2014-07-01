@@ -131,6 +131,7 @@ void			check_connect_client(t_server *server);
 void			check_cycle_timer(t_server *server,
 					  t_client *current_client);
 void			set_timer(t_client *current_client);
+void			check_timer(t_server *server);
 
 /*
 ** ################################################
