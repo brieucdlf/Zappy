@@ -7,11 +7,13 @@ void			create_new_task_client(t_client *client,
 
   (void)client;
   (void)server;
-  //creer plusieurs task suivant le nombre de commande recu;
-  printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
-	 client->buffer.buffer_read);
-  if ((task = new_task(client->buffer.buffer_read)) != NULL)
-    list_push(&client->tasks, task, NULL);
+  if (client->is_ready == 1)
+    {
+      printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
+	     client->buffer.buffer_read);
+      if ((task = new_task(client->buffer.buffer_read)) != NULL)
+	list_push(&client->tasks, task, NULL);
+    }
 }
 
 void			interpret_buffer_read_client(t_server *server,

@@ -94,6 +94,7 @@ typedef struct		s_client
   t_list		*tasks;
   t_list		*write_tasks;
   t_buffer		buffer;
+  int			is_ready;
 }			t_client;
 
 #endif /* !USER_H_ */

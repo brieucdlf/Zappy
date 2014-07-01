@@ -171,4 +171,6 @@ void			check_nb_rocks(t_map *map, int rock_kind);
 void			create_new_write_task(t_client *current_client,
 					      const char *command);
 
+void			manage_teams(t_server *server);
+
 #endif /* !SERVER_H_ */
