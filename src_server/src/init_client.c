@@ -8,6 +8,12 @@ void			free_client(void *arg)
   free(client);
 }
 
+void			add_client_to_map(t_server *server, t_client *client)
+{
+  (void)server;
+  (void)client;
+}
+
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team)
 {

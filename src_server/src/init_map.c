@@ -32,7 +32,7 @@ void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
       i++;
     }
 }
-	
+
 void		set_rocks(t_map *map)
 {
   srand(time(NULL));

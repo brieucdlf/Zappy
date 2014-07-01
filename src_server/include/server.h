@@ -77,6 +77,7 @@ typedef struct		s_map
   int			nb_mendiane;
   int			nb_phiras;
   int			nb_thystame;
+  int			nb_food;
 }			t_map;
 
 typedef struct		s_server
