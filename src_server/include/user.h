@@ -88,6 +88,7 @@ typedef struct		s_buffer
 typedef struct		s_client
 {
   int			level;
+  unsigned int		id_client;
   int			id_team;
   int			fd_socket;
   int			items[6];
