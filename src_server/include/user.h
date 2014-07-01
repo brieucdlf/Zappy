@@ -92,6 +92,7 @@ typedef struct		s_client
   int			fd_socket;
   int			items[6];
   t_list		*tasks;
+  t_list		*write_tasks;
   t_buffer		buffer;
 }			t_client;
 
