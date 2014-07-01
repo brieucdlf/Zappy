@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Tue Jun 10 11:20:41 2014 romain combe
+** Last update Tue Jul  1 17:33:17 2014 Remi Hillairet
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -30,6 +30,7 @@
 # include "user.h"
 # include "list.h"
 # include "action.h"
+# include "graphic_client.h"
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510

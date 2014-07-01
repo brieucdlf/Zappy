@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Tue Jun 10 11:17:45 2014 romain combe
+** Last update Tue Jul  1 14:41:27 2014 Remi Hillairet
 */
 
 #include "user.h"
@@ -32,7 +32,7 @@ void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
       i++;
     }
 }
-	
+
 void		set_rocks(t_map *map)
 {
   srand(time(NULL));
