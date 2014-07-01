@@ -2,7 +2,9 @@
 
 void			avance_task_function(void *server, void *client)
 {
-  printf("avance\n");  
+  (void)server;
+  (void)client;
+  printf("avance\n");
 }
 
 void			droite_task_function(void *server, void *client)

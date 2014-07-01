@@ -15,6 +15,8 @@ void			add_new_client(t_server *server,
 
   if ((new_client = malloc(sizeof(t_client))) == NULL)
     return ;
+  new_client->tasks = NULL;
+  new_client->write_tasks = NULL;
   new_client->fd_socket = fd_socket;
   new_client->id_team = id_team;
   new_client->level = 0;
