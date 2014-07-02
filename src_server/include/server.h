@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Tue Jun 10 11:20:41 2014 romain combe
+** Last update Wed Jul  2 11:18:38 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -80,6 +80,7 @@ typedef struct		s_map
   t_list		*items;
   int			width;
   int			height;
+  int			nb_rocks;
   int			nb_linemate;
   int			nb_deraumere;
   int			nb_sibur;
