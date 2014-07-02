@@ -91,7 +91,7 @@ typedef struct		s_client
   unsigned int		id_client;
   int			id_team;
   int			fd_socket;
-  int			items[6];
+  int			items[7];
   t_list		*tasks;
   t_list		*write_tasks;
   t_buffer		buffer;

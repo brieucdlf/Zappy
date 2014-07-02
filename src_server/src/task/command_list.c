@@ -54,9 +54,20 @@ void			voir_task_function(void *server, void *client)
   (void)client;
 }
 
-void			inventaire_task_function(void *server, void *client)
+void			inventaire_task_function(void *server, void *ptr_client)
 {
+  char			*inventaire;
+  t_client		*client;
+
   (void)server;
-  (void)client;
-  printf("inventaire\n");
+  client = ptr_client;
+  if ((inventaire = malloc(1024)) == NULL)
+    return ;
+  memset(inventaire, 0, 1024);
+  sprintf(inventaire, "nourriture %d, linemate %d, deraumere %d, sibur %d,\
+ mendiane %d, phiras %d, thystane %d", client->items[6], client->items[0],
+	  client->items[1], client->items[2], client->items[3],
+	  client->items[4], client->items[5]);
+  create_new_write_task(client, inventaire);
+  free(inventaire);
 }
