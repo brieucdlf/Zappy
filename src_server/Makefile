@@ -40,6 +40,7 @@ SRCS	=	src/main.c				\
 		src/timer.c				\
 		src/create_write_task.c			\
 		src/create_map.c			\
+		src/task/command_voir.c			\
 		src/manage_team.c
 
 OBJS	=	$(SRCS:.c=.o)

@@ -48,12 +48,6 @@ void			gauche_task_function(void *ptr_server, void *ptr_client)
   create_new_write_task(client, "OK");
 }
 
-void			voir_task_function(void *server, void *client)
-{
-  (void)server;
-  (void)client;
-}
-
 void			inventaire_task_function(void *server, void *ptr_client)
 {
   char			*inventaire;
