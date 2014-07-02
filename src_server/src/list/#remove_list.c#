@@ -26,6 +26,9 @@ static void		first_elem_remove_list(t_list **head_list, void *node)
   free(tmp_elem);
 }
 
+/***********************************************/
+/* Delete whatever you want in the list        */
+/***********************************************/
 void		        list_remove_with_data(t_list **head_list, void *node,
 					      match_function match_fct)
 {

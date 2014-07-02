@@ -53,8 +53,9 @@ typedef enum
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME
-  }rocks;
+    THYSTAME,
+    FOOD
+  }items;
 
 typedef	struct 		s_param
 {
@@ -66,9 +67,17 @@ typedef	struct 		s_param
   int			execution_time;
 }			t_param;
 
+typedef struct		s_item
+{
+  int			type;
+  int			posx;
+  int			posy;
+  int			is_taken;
+}			t_item;
+
 typedef struct		s_map
 {
-  char			**map;
+  t_list		*items;
   int			width;
   int			height;
   int			nb_linemate;
@@ -149,14 +158,8 @@ void			free_server(t_server *server);
 ** # init_map.c
 ** ################################################
 */
-
-void			init_map(t_map *map);
-char			**malloc_tab(int width, int height);
-void			fill_map(t_map *map);
-int			init_commands(t_server *server);
-void			init_action_ptr(t_server *server);
-int			get_command(t_server *server, t_client *current_client,
-				    char *command);
+void			generate_food(t_map *map);
+void			init_map(t_server *server);
 
 /*
 ** ################################################

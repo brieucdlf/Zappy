@@ -95,6 +95,7 @@ typedef struct		s_client
   t_list		*tasks;
   t_list		*write_tasks;
   t_buffer		buffer;
+  t_direction		direction;
   int			is_ready;
 }			t_client;
 

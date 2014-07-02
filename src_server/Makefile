@@ -32,7 +32,6 @@ SRCS	=	src/main.c				\
 		src/deconnection_client.c		\
 		src/write_socket.c			\
 		src/set_fd_socket.c			\
-		src/test_map.c				\
 		src/task/task.c				\
 		src/task/command_fork.c			\
 		src/task/command_list.c			\
