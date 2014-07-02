@@ -77,6 +77,7 @@ typedef struct		s_item
 
 typedef struct		s_map
 {
+  t_list		***map;
   t_list		*items;
   int			width;
   int			height;
@@ -159,8 +160,8 @@ void			free_server(t_server *server);
 ** # init_map.c
 ** ################################################
 */
-void			generate_food(t_map *map);
-void			init_map(t_server *server);
+void			generate_food(t_server *server);
+int			init_map(t_server *server);
 
 /*
 ** ################################################
@@ -181,5 +182,7 @@ void			create_new_write_task(t_client *current_client,
 */
 void			manage_teams(t_server *server);
 int			get_id_team(t_server *server, const char *team);
+
+int			create_map(t_server *server);
 
 #endif /* !SERVER_H_ */
