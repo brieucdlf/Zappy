@@ -5,7 +5,7 @@
 ** Login   <combe_r@epitech.net>
 **
 ** Started on  Thu May 15 11:52:58 2014 romain combe
-** Last update Tue Jun 10 11:17:45 2014 romain combe
+** Last update Wed Jul  2 11:18:37 2014 romain combe
 */
 
 #include "user.h"
@@ -35,6 +35,7 @@ void		fill_rocks(t_map *map, int rock_kind, int nb_rocks)
 
 void		set_rocks(t_map *map)
 {
+  map->nb_rocks = 0;
   srand(time(NULL));
   map->nb_linemate = rand() % ((map->width + map->height) / 2) + 20;
   fill_rocks(map, LINEMATE, map->nb_linemate);
@@ -48,6 +49,8 @@ void		set_rocks(t_map *map)
   fill_rocks(map, PHIRAS, map->nb_phiras);
   map->nb_thystame = rand() % ((map->width + map->height) / 2) + 20;
   fill_rocks(map, THYSTAME, map->nb_thystame);
+  map->nb_rocks = map->nb_linemate + map->nb_deraumere + map->nb_sibur +
+    map->nb_mendiane + map->nb_phiras + map->nb_thystame;
 }
 
 void		fill_empty_map(t_map *map)
