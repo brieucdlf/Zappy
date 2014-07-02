@@ -22,7 +22,8 @@ void			server_loop(t_server *server)
       init_fd_socket(server);
       tv.tv_sec = TIMEOUT_SEC;
       tv.tv_usec = TIMEOUT_USEC;
-      rv = select(server->fd_max + 1, &server->readfd, &server->writefd, NULL, &tv);
+      rv = select(server->fd_max + 1, &server->readfd,
+		  &server->writefd, NULL, &tv);
       if (rv >= 0)
 	{
 	  map_list_with_stop(server->clients,

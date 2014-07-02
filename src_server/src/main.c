@@ -25,6 +25,8 @@ int		main(int ac, char **av)
   init_server(&server);
   set_param(ac, av, &server.param_server);
   init_map(&server);
+  create_map(&server);
+  return (0);
   manage_teams(&server);
   if (create_server(&server) == -1)
     return (1);
