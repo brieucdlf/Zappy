@@ -49,28 +49,3 @@ t_task			*new_task(const char *command)
 {
   return (add_function_task(command));
 }
-
-/* int			main() */
-/* { */
-/*   t_task		*task; */
-/*   struct timeval	tv; */
-
-/*   task = new_task("voir\n"); */
-/*   if (task == NULL) */
-/*     return (0); */
-/*   if (task->function != NULL) */
-/*     task->function(NULL, NULL); */
-
-/*   while (1) { */
-/*     gettimeofday(&tv, NULL); */
-/*     if (tv.tv_sec >= task->timer.tv_sec && tv.tv_usec >= task->timer.tv_usec) */
-/*       { */
-/* 	printf("Timer done \n"); */
-/* 	return (0); */
-/*       } */
-/*     printf("current time = [%lu / %lu] = [%lu / %lu]\n", tv.tv_sec, tv.tv_usec, */
-/* 	   task->timer.tv_sec, task->timer.tv_usec); */
-/*   } */
-
-/*   return (0); */
-/* } */

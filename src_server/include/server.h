@@ -1,14 +1,3 @@
-/*
-** server.h for zappy in /Users/remihillairet/Epitech/Github/Zappy/server
-**
-** Made by remi hillairet
-** Login   <remihillairet@epitech.net>
-**
-** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Wed Jul  2 16:46:10 2014 Remi Hillairet
-** Last update Thu May 15 14:02:11 2014 Brieuc
-*/
-
 #ifndef SERVER_H_
 # define SERVER_H_
 
@@ -54,8 +43,9 @@ typedef enum
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME
-  }rocks;
+    THYSTAME,
+    FOOD
+  }items;
 
 typedef	struct 		s_param
 {
@@ -67,17 +57,27 @@ typedef	struct 		s_param
   int			execution_time;
 }			t_param;
 
+typedef struct		s_item
+{
+  int			type;
+  int			posx;
+  int			posy;
+  int			is_taken;
+}			t_item;
+
 typedef struct		s_map
 {
-  char			**map;
+  t_list		*items;
   int			width;
   int			height;
+  int			nb_rocks;
   int			nb_linemate;
   int			nb_deraumere;
   int			nb_sibur;
   int			nb_mendiane;
   int			nb_phiras;
   int			nb_thystame;
+  int			nb_food;
 }			t_map;
 
 typedef struct		s_server
@@ -150,14 +150,8 @@ void			free_server(t_server *server);
 ** # init_map.c
 ** ################################################
 */
-
-void			init_map(t_map *map);
-char			**malloc_tab(int width, int height);
-void			fill_map(t_map *map);
-int			init_commands(t_server *server);
-void			init_action_ptr(t_server *server);
-int			get_command(t_server *server, t_client *current_client,
-				    char *command);
+void			generate_food(t_map *map);
+void			init_map(t_server *server);
 
 /*
 ** ################################################
@@ -171,5 +165,12 @@ void			check_nb_rocks(t_map *map, int rock_kind);
 
 void			create_new_write_task(t_client *current_client,
 					      const char *command);
+
+
+/*
+** TEAM MANAGEMENT
+*/
+void			manage_teams(t_server *server);
+int			get_id_team(t_server *server, const char *team);
 
 #endif /* !SERVER_H_ */

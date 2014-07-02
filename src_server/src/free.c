@@ -22,7 +22,6 @@ void			free_server(t_server *server)
 {
   free_double_array(server->param_server.teams_names);
   free_double_array(server->client_commands);
-  free_double_array(server->map.map);
   if (server->fd_socket == 0)
     close(server->fd_socket);
   map_list(server->clients, close_client_socket, NULL);

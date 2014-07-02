@@ -7,6 +7,7 @@ int			write_task_socket(t_write_task *head_task,
   int			ret;
 
   ret = 0;
+  printf("try to write = %s\n", &head_task->buffer[head_task->index]);
   if ((ret = write(current_client->fd_socket,
 		   &head_task->buffer[head_task->index],
 		   strlen(&head_task->buffer[head_task->index]))) <= 0)
@@ -17,6 +18,7 @@ int			write_task_socket(t_write_task *head_task,
       printf("new fd max : %d\n", server->fd_max);
       return (0);
     }
+  printf("Write success client\n");
   head_task->index += ret;
   if (head_task->index >= (int)strlen(head_task->buffer))
     list_pop(&current_client->write_tasks);

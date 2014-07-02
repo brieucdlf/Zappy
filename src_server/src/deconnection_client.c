@@ -22,6 +22,8 @@ void			update_max_fd_socket(t_list *current_client,
 void			deconnection_client(t_server *server,
 					    t_client *current_client)
 {
+  printf("\033[31mDeconnection client [%d]\033[00m\n",
+	 current_client->fd_socket);
   close(current_client->fd_socket);
   list_remove_with_data(&server->clients, current_client,
 			match_fd_socket_client);

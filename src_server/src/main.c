@@ -11,39 +11,6 @@
 #include "user.h"
 #include "server.h"
 
-void		aff_map(t_map *map)
-{
-  int		i;
-  int		j;
-
-  i = 0;
-  j = 0;
-  while (i < map->width)
-    {
-      while (j < map->height)
-	{
-	  if (map->map[i][j] == 0)
-	    printf("%d", map->map[i][j]);
-	  else if (map->map[i][j] == 1)
-	    printf("\x1b[31m%d\x1b[0m", map->map[i][j]);
-	  else if (map->map[i][j] == 2)
-	    printf("\x1b[32m%d\x1b[0m", map->map[i][j]);
-	  else if (map->map[i][j] == 3)
-	    printf("\x1b[33m%d\x1b[0m", map->map[i][j]);
-	  else if (map->map[i][j] == 4)
-	    printf("\x1b[34m%d\x1b[0m", map->map[i][j]);
-	  else if (map->map[i][j] == 5)
-	    printf("\x1b[35m%d\x1b[0m", map->map[i][j]);
-	  else if (map->map[i][j] == 6)
-	    printf("\x1b[36m%d\x1b[0m", map->map[i][j]);
-	  j++;
-	}
-      printf("\n");
-      j = 0;
-      i++;
-    }
-}
-
 void		init_server(t_server *server)
 {
   server->clients = NULL;
@@ -56,10 +23,12 @@ int		main(int ac, char **av)
   t_server      server;
 
   init_server(&server);
-  init_map(&server.map);
   set_param(ac, av, &server.param_server);
+  init_map(&server);
+  manage_teams(&server);
   if (create_server(&server) == -1)
     return (1);
+  printf("Initialisation server completed\n");
   server_loop(&server);
   free_server(&server);
   return (0);

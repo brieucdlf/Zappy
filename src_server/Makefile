@@ -32,14 +32,14 @@ SRCS	=	src/main.c				\
 		src/deconnection_client.c		\
 		src/write_socket.c			\
 		src/set_fd_socket.c			\
-		src/test_map.c				\
 		src/task/task.c				\
 		src/task/command_fork.c			\
 		src/task/command_list.c			\
 		src/task/command_list_next.c		\
 		src/task/timer_task.c			\
 		src/timer.c				\
-		src/create_write_task.c
+		src/create_write_task.c			\
+		src/manage_team.c
 
 OBJS	=	$(SRCS:.c=.o)
 
