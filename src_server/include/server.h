@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Tue Jul  1 17:33:17 2014 Remi Hillairet
+** Last update Wed Jul  2 16:46:10 2014 Remi Hillairet
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -83,6 +83,7 @@ typedef struct		s_map
 typedef struct		s_server
 {
   t_list		*clients;
+  t_client		graphic_client;
   t_param		param_server;
   t_map			map;
   t_buffer		buffer;

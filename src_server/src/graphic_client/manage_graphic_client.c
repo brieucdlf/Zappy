@@ -5,20 +5,24 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Tue Jul  1 17:39:19 2014 Remi Hillairet
+** Last update Wed Jul  2 16:42:54 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
 
-void	init_graphic_fd_socket(t_server *server)
+int	check_graphic_client_read(t_server *server)
 {
-  FD_ZERO();
+  char	buffer[2048];
 
+  if (FD_ISSET(server->graphic_client->fd_socket, &server->graphic_client->readfd))
+    {
+      memset(buff, 0, 2048);
+    }
+  return (0);
 }
 
-int	manage_graphic_client(t_server *server)
+int	check_graphic_client_write(t_server *server)
 {
-  init_graphic_fd_socket();
-  select();
+
   return (0);
 }
