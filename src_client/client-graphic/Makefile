@@ -5,10 +5,10 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Tue Jul  1 10:04:01 2014 Jeremy Peltier
+## Last update Wed Jul  2 18:10:07 2014 Jeremy Peltier
 ##
 
-CC		=	g++
+CC		=	g++ -g
 
 RM		=	rm -fv
 
@@ -18,7 +18,8 @@ CXXFLAGS	=	-Wall -Wextra -Werror -W -fPIC
 CXXFLAGS	+=	-I$(INCLUDES)
 
 SRCS		=	main.cpp \
-			ClientGraphic.cpp
+			ClientGraphic.cpp \
+			IsometricSprite.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
