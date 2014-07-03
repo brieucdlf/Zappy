@@ -1,14 +1,3 @@
-/*
-** server.h for zappy in /Users/remihillairet/Epitech/Github/Zappy/server
-**
-** Made by remi hillairet
-** Login   <remihillairet@epitech.net>
-**
-** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Wed Jul  2 11:18:38 2014 romain combe
-** Last update Thu May 15 14:02:11 2014 Brieuc
-*/
-
 #ifndef SERVER_H_
 # define SERVER_H_
 
@@ -30,6 +19,7 @@
 # include "user.h"
 # include "list.h"
 # include "action.h"
+# include "graphic_client.h"
 
 # define WELCOME_MESSAGE	"Bienvenue"
 
@@ -48,13 +38,13 @@
 
 typedef enum
   {
-    LINEMATE = 1,
+    FOOD = 0,
+    LINEMATE,
     DERAUMERE,
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME,
-    FOOD
+    THYSTAME
   }items;
 
 typedef	struct 		s_param
@@ -94,6 +84,7 @@ typedef struct		s_map
 typedef struct		s_server
 {
   t_list		*clients;
+  t_client		*graphic_client;
   t_param		param_server;
   t_map			map;
   t_buffer		buffer;

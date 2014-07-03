@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 **
 ** Started on  Thu May 15 13:21:25 2014 Brieuc
-** Last update Wed May 28 15:51:03 2014 Brieuc de La Fouchardiere
+** Last update Wed Jul  2 17:23:14 2014 Remi Hillairet
 */
 
 #include "server.h"
@@ -30,6 +30,7 @@ void			server_loop(t_server *server)
 			     map_check_read_client, (void *)server);
 	  map_list_with_stop(server->clients,
 	  		     map_check_write_client, (void *)server);
+	  manage_graphic_client(server);
 	  check_connect_client(server);
 	  check_timer(server);
 	}
