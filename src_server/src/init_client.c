@@ -21,7 +21,7 @@ void			add_new_client(t_server *server,
   new_client->fd_socket = fd_socket;
   new_client->id_team = id_team;
   new_client->id_client = id_client;
-  new_client->level = 0;
+  new_client->level = 2;
   new_client->is_ready = 0;
   memset(new_client->buffer.buffer_read, 0, 2048);
   new_client->buffer.index_read_buffer = 0;

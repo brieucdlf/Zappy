@@ -15,10 +15,8 @@ int			write_task_socket(t_write_task *head_task,
       printf("\033[31mDeconnection client [%d]\033[00m\n",
 	     current_client->fd_socket);
       deconnection_client(server, current_client);
-      printf("new fd max : %d\n", server->fd_max);
       return (0);
     }
-  printf("Write success client\n");
   head_task->index += ret;
   if (head_task->index >= (int)strlen(head_task->buffer))
     list_pop(&current_client->write_tasks);

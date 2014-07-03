@@ -4,8 +4,6 @@
 int			match_delete_task_function(void *data1, void *data2)
 {
   (void)data2;
-  printf("delete timer OK\n");
-  
   if (((t_task *)data1)->is_over == 1)
     return (0);
   return (1);
@@ -16,7 +14,7 @@ void			check_timer_client(t_list *item, void *server)
   struct timeval	tv;
   t_list		*current_item;
   t_client		*current_client;
-  
+
   if (item == NULL || (current_client = item->data) == NULL ||
       current_client->tasks == NULL)
     return ;
@@ -28,7 +26,7 @@ void			check_timer_client(t_list *item, void *server)
 	  tv.tv_usec >= ((t_task *)current_item->data)->timer.tv_usec)
 	{
 	  ((t_task *)current_item->data)->is_over = 1;
-	  ((t_task *)current_item->data)->function(server, (void *)current_client);
+	  ((t_task *)current_item->data)->function(server, current_client, NULL);
 	  list_remove_with_data(&current_client->tasks, NULL,
 				match_delete_task_function);
 	  return ;
