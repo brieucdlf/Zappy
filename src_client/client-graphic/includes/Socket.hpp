@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:22:01 2014 Jeremy Peltier
-// Last update Thu Jul  3 18:38:37 2014 Jeremy Peltier
+// Last update Thu Jul  3 19:15:56 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_HPP_
@@ -25,7 +25,9 @@
 # include	<dirent.h>
 # include	<errno.h>
 # include	<time.h>
+# include	<ext/stdio_filebuf.h>
 # include	<iostream>
+# include	<fstream>
 # include	<string>
 
 class		Socket

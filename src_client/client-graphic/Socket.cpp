@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Thu Jul  3 18:38:51 2014 Jeremy Peltier
+// Last update Thu Jul  3 19:20:13 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -63,7 +63,10 @@ bool	Socket::isConnected()
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{
-	  std::cout << "Socket: Server response: " << this->fd << std::endl;
+	  __gnu_cxx::stdio_filebuf<char> filebuf(this->fd, std::ios::in);
+	  std::istream is(&filebuf);
+	  getline(is, this->read);
+    	  std::cout << "Socket: Server response: " << this->read << std::endl;
 	}
       if (FD_ISSET(this->fd, &(this->writeFd)))
 	{
