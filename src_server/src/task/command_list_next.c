@@ -42,10 +42,18 @@ void			pose_task_function(t_server *server,
 					   t_client *client,
 					   char *arg)
 {
-  (void)server;
-  (void)client;
-  (void)arg;
-  printf("pose object\n");
+  t_item		*item;
+  const char            *name_item[7] = {"linemate", "deraumere", "sibur",
+                                         "mendiane", "phiras", "thystame",
+                                         "food"};
+
+  if (!strcmp(arg, name_item[item->type]))
+    {
+      --client->items[item->type];
+      list_push(&server->map.map[client->orientation.position.y]
+		[client->orientation.position.x], (void *)arg, NULL);
+    }
+  
 }
 
 void		        expulse_task_function(t_server *server,
