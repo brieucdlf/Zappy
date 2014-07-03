@@ -43,6 +43,7 @@ t_task			*add_function_task(const char *command)
 	{
 	  if ((new_task = malloc(sizeof(t_task))) == NULL)
 	    return (NULL);
+	  new_task->argument = NULL;
 	  function_pointer(new_task, index);
 	  timer_task(new_task, index);
 	  return (new_task);
