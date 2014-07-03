@@ -28,6 +28,7 @@ typedef struct		s_task
   function_task	        function;
   struct timeval	timer;
   int			is_over;
+  char			*argument;
 }			t_task;
 
 typedef struct		s_write_task
@@ -50,6 +51,7 @@ void		        expulse_task_function(t_server *, t_client *, char *);
 void		        broadcast_task_function(t_server *, t_client *, char *);
 void		        incantation_task_function(t_server *, t_client *, char *);
 void		        fork_task_function(t_server *, t_client *, char *);
+void			free_task(t_list *task);
 
 void			timer_task(t_task *task, unsigned int index);
 t_task			*new_task(const char *command);

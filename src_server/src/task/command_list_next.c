@@ -4,10 +4,6 @@ void		        prend_task_function(t_server *server,
 					    t_client *client,
 					    char *arg)
 {
-  (void)server;
-  (void)client;
-  (void)arg;
-  printf("porend object\n");
 }
 
 void			pose_task_function(t_server *server,

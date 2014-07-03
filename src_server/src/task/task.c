@@ -3,6 +3,12 @@
 #include <string.h>
 #include "task.h"
 
+void			free_task(t_list *task)
+{
+  free(((t_task *)task->data)->argument);
+  free(task->data);
+}
+
 void			function_pointer(t_task *task, unsigned int index)
 {
   function_task		tab_function[11] = {avance_task_function,
