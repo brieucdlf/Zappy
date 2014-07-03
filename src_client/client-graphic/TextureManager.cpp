@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 20:02:37 2014 Jeremy Peltier
-// Last update Tue Jul  1 22:06:35 2014 Jeremy Peltier
+// Last update Thu Jul  3 15:40:24 2014 Jeremy Peltier
 //
 
 #include	"TextureManager.hpp"
@@ -19,7 +19,7 @@ TextureManager::~TextureManager()
   clear();
 }
 
-sf::Texture	*TextureManager::getTexture(std::string &name)
+sf::Texture	&TextureManager::getTexture(std::string &name)
 {
   std::map<std::string, sf::Texture>::iterator it = this->textures.find(name);
   if (it == this->textures.end())
@@ -29,7 +29,7 @@ sf::Texture	*TextureManager::getTexture(std::string &name)
       this->textures.insert(std::pair<std::string, sf::Texture>(name, texture));
       it = this->textures.find(name);
     }
-  return &(it->second);
+  return (it->second);
 }
 
 void		TextureManager::clear()
