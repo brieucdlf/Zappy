@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 20:00:30 2014 Jeremy Peltier
-// Last update Tue Jul  1 22:11:50 2014 Jeremy Peltier
+// Last update Thu Jul  3 15:39:33 2014 Jeremy Peltier
 //
 
 #ifndef		TEXTURE_MANAGER_HPP_
@@ -23,7 +23,7 @@ public:
 
 public:
   void		clear();
-  sf::Texture	*getTexture(std::string &);
+  sf::Texture	&getTexture(std::string &);
 
 protected:
   std::map<std::string, sf::Texture> textures;

@@ -5,22 +5,21 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:55:43 2014 Jeremy Peltier
-// Last update Wed Jul  2 18:25:02 2014 Jeremy Peltier
+// Last update Thu Jul  3 18:24:55 2014 Jeremy Peltier
 //
 
-//#include	"Socket.hpp"
+#include	"Socket.hpp"
 #include	"ClientGraphic.hpp"
 
 int	main(void)
 {
-  //Socket	socket("127.0.0.1", 65510);
-  ClientGraphic client(600, 600);
+  Socket	socket("127.0.0.1", 65510);
+  ClientGraphic client(1000, 1000);
 
-  while (client.isOpen() /*&& socket.isConnected()*/)
+  while (client.isOpen() && socket.isConnected())
     {
       client.getKey();
-      client.generateMap(300, 300);
-      //      std::cout << socket.getCommand() << std::endl;
+      client.draw(100, 100);
     }
   return (0);
 }
