@@ -26,7 +26,7 @@ void			check_timer_client(t_list *item, void *server)
 	  tv.tv_usec >= ((t_task *)current_item->data)->timer.tv_usec)
 	{
 	  ((t_task *)current_item->data)->is_over = 1;
-	  ((t_task *)current_item->data)->function(server, (void *)current_client);
+	  ((t_task *)current_item->data)->function(server, current_client, NULL);
 	  list_remove_with_data(&current_client->tasks, NULL,
 				match_delete_task_function);
 	  return ;

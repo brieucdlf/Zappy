@@ -3,6 +3,12 @@
 #include <string.h>
 #include "task.h"
 
+void			free_task(void *task)
+{
+  free(((t_task *)task)->argument);
+  free(task);
+}
+
 void			function_pointer(t_task *task, unsigned int index)
 {
   function_task		tab_function[11] = {avance_task_function,
@@ -37,6 +43,7 @@ t_task			*add_function_task(const char *command)
 	{
 	  if ((new_task = malloc(sizeof(t_task))) == NULL)
 	    return (NULL);
+	  new_task->argument = NULL;
 	  function_pointer(new_task, index);
 	  timer_task(new_task, index);
 	  return (new_task);

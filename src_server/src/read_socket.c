@@ -34,12 +34,13 @@ int			create_new_task_client(t_client *client,
       printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
 	     client->buffer.buffer_read);
       if ((task = new_task(client->buffer.buffer_read)) != NULL)
-	list_push(&client->tasks, task, NULL);
+	list_push(&client->tasks, task, free_task);
     }
   else
     {
-      if ((client->id_team = get_id_team(server,
-					 client->buffer.buffer_read)) == -1)
+      if (/*!check_is_graphic_client(server, client, client->buffer.buffer_read)
+	    && */((client->id_team = get_id_team(server,
+					     client->buffer.buffer_read)) == -1))
 	{
 	  printf("\033[31mWrong team nam :\033[0m%s\n",
 		 client->buffer.buffer_read);

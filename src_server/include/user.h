@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 **
 ** Started on  Tue May 13 11:54:11 2014 Brieuc
-** Last update Tue May 13 11:54:15 2014 Brieuc
+** Last update Wed Jul  2 16:42:55 2014 Remi Hillairet
 */
 
 #ifndef USER_H_
