@@ -2,12 +2,12 @@
 #include "server.h"
 #include "user.h"
 
-/*int			match_item(void *data1, void *data2)
+int			match_item(void *data1, void *data2)
 {
-  if ((t_item)data1->type == (t_item)data2->type)
+  if (((t_item *)data1)->type == ((t_item *)data2)->type)
     return (1);
   return (0);
-}*/
+}
 
 void		        prend_task_function(t_server *server,
 					    t_client *client,
@@ -20,6 +20,8 @@ void		        prend_task_function(t_server *server,
 
   current_item = server->map.map[client->direction.position_y]
     [client->direction.position_x];
+  if (arg == NULL)
+    return ;
   while (current_item !=  NULL)
     {
       if ((item = current_item->data) != NULL)
@@ -33,7 +35,7 @@ void		        prend_task_function(t_server *server,
 	      else 
 		++client->items[item->type];
 	      list_remove_with_data(&server->map.map[client->direction.position_y]
-				    [client->direction.position_x], (void *)item, NULL);
+				    [client->direction.position_x], (void *)item, match_item);
 	    }
 	}
       current_item = current_item->next;
@@ -49,13 +51,14 @@ void			pose_task_function(t_server *server,
                                          "mendiane", "phiras", "thystame",
                                          "food"};
 
+  if (arg == NULL)
+    return ;
   if (!strcmp(arg, name_item[item->type]))
     {
       --client->items[item->type];
       list_push(&server->map.map[client->direction.position_y]
 		[client->direction.position_x], (void *)arg, NULL);
     }
-  
 }
 
 void		        expulse_task_function(t_server *server,
