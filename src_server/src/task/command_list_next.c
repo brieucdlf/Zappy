@@ -18,21 +18,21 @@ void		        prend_task_function(t_server *server,
   const char            *name_item[7] = {"food", "linemate", "deraumere", "sibur",
                                          "mendiane", "phiras", "thystame"};
 
-  current_item = server->map.map[client->direction.position_y]
-    [client->direction.position_x];
   if (arg == NULL)
     return ;
+  current_item = server->map.map[client->direction.position_y]
+    [client->direction.position_x];
   while (current_item !=  NULL)
     {
       if ((item = current_item->data) != NULL)
 	{
-	  if (!strcmp(arg, name_item[item->type]))
+	  if (!strcmp((char *)arg, name_item[item->type]))
 	    {
 	      if (item->type == FOOD)
 		{
 		  /* Incrementation de la vie car le user mange */
 		}
-	      else 
+	      else
 		++client->items[item->type];
 	      list_remove_with_data(&server->map.map[client->direction.position_y]
 				    [client->direction.position_x], (void *)item, match_item);
@@ -53,7 +53,8 @@ void			pose_task_function(t_server *server,
 
   if (arg == NULL)
     return ;
-  if (!strcmp(arg, name_item[item->type]))
+  item = NULL;
+  if (!strcmp((char *)arg, name_item[item->type]))
     {
       --client->items[item->type];
       list_push(&server->map.map[client->direction.position_y]

@@ -32,5 +32,5 @@ void			deconnection_client(t_server *server,
   map_list(server->clients, update_max_fd_socket, (void *)server);
   if (!server->graphic_client
       && (server->fd_max < server->graphic_client->fd_socket))
-    server->fd_max = server->graphic_client;
+    server->fd_max = server->graphic_client->fd_socket;
 }
