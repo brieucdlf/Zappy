@@ -5,7 +5,7 @@
 ** Login   <remihillairet@epitech.net>
 **
 ** Started on  Tue May  13 10:53:07 2014 remi hillairet
-** Last update Tue Jun 10 11:20:41 2014 romain combe
+** Last update Wed Jul  2 11:18:38 2014 romain combe
 ** Last update Thu May 15 14:02:11 2014 Brieuc
 */
 
@@ -31,6 +31,8 @@
 # include "list.h"
 # include "action.h"
 
+# define WELCOME_MESSAGE	"Bienvenue"
+
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
 # define DEFAULT_WIDTH		100
@@ -51,8 +53,9 @@ typedef enum
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME
-  }rocks;
+    THYSTAME,
+    FOOD
+  }items;
 
 typedef	struct 		s_param
 {
@@ -64,17 +67,28 @@ typedef	struct 		s_param
   int			execution_time;
 }			t_param;
 
+typedef struct		s_item
+{
+  int			type;
+  int			posx;
+  int			posy;
+  int			is_taken;
+}			t_item;
+
 typedef struct		s_map
 {
-  char			**map;
+  t_list		***map;
+  t_list		*items;
   int			width;
   int			height;
+  int			nb_rocks;
   int			nb_linemate;
   int			nb_deraumere;
   int			nb_sibur;
   int			nb_mendiane;
   int			nb_phiras;
   int			nb_thystame;
+  int			nb_food;
 }			t_map;
 
 typedef struct		s_server
@@ -131,6 +145,7 @@ void			check_connect_client(t_server *server);
 void			check_cycle_timer(t_server *server,
 					  t_client *current_client);
 void			set_timer(t_client *current_client);
+void			check_timer(t_server *server);
 
 /*
 ** ################################################
@@ -145,13 +160,8 @@ void			free_server(t_server *server);
 ** # init_map.c
 ** ################################################
 */
-
-void			init_map(t_map *map);
-char			**malloc_tab(int width, int height);
-void			fill_map(t_map *map);
-int			init_commands(t_server *server);
-void			init_action_ptr(t_server *server);
-int			get_command(t_server *server, t_client *current_client, char *command);
+void			generate_food(t_server *server);
+int			init_map(t_server *server);
 
 /*
 ** ################################################
@@ -159,8 +169,20 @@ int			get_command(t_server *server, t_client *current_client, char *command);
 ** ################################################
 */
 
-void		add_new_rocks(t_map *map, int nb_rocks, int rock_kind);
-void		loop_nb_rocks(t_map *map);
-void		check_nb_rocks(t_map *map, int rock_kind);
+void			add_new_rocks(t_map *map, int nb_rocks, int rock_kind);
+void			loop_nb_rocks(t_map *map);
+void			check_nb_rocks(t_map *map, int rock_kind);
+
+void			create_new_write_task(t_client *current_client,
+					      const char *command);
+
+
+/*
+** TEAM MANAGEMENT
+*/
+void			manage_teams(t_server *server);
+int			get_id_team(t_server *server, const char *team);
+
+int			create_map(t_server *server);
 
 #endif /* !SERVER_H_ */

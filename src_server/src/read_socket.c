@@ -1,15 +1,59 @@
 #include "server.h"
 
-void			create_new_task_client(t_client *client,
-					       t_server *server)
+void			query_first_connection(t_client *current_client)
 {
-  //creer plusieurs task suivant le nombre de commande recu;
-  printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
-	 client->buffer.buffer_read);
-  get_command(server, client, client->buffer.buffer_read);
+  char			*command;
+
+  if ((command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  sprintf(command, "%d\n", current_client->id_client);
+  create_new_write_task(current_client, command);
+  memset(command, 0, 100);
+  sprintf(command, "%d %d\n", current_client->direction.position_x,
+	  current_client->direction.position_y);
+  create_new_write_task(current_client, command);
+  free(command);
 }
 
-void			interpret_buffer_read_client(t_server *server,
+void			init_position_client(t_client *current_client,
+					     t_server *server)
+{
+  current_client->direction.position_x = rand() % server->map.width;
+  current_client->direction.position_y = rand() % server->map.height;
+  current_client->direction.orientation = MAP_DIRECTION_ORIENTATION_NORTH;
+}
+
+int			create_new_task_client(t_client *client,
+					       t_server *server)
+{
+  t_task		*task;
+
+  if (client->is_ready == 1)
+    {
+      printf("Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
+	     client->buffer.buffer_read);
+      if ((task = new_task(client->buffer.buffer_read)) != NULL)
+	list_push(&client->tasks, task, NULL);
+    }
+  else
+    {
+      if ((client->id_team = get_id_team(server,
+					 client->buffer.buffer_read)) == -1)
+	{
+	  printf("\033[31mWrong team nam :\033[0m%s\n",
+		 client->buffer.buffer_read);
+	  deconnection_client(server, client);
+	  return (0);
+	}
+      client->is_ready = 1;
+      init_position_client(client, server);
+      query_first_connection(client);
+    }
+  return (1);
+}
+
+int			interpret_buffer_read_client(t_server *server,
 						     t_client *client,
 						     char *buff)
 {
@@ -21,16 +65,18 @@ void			interpret_buffer_read_client(t_server *server,
       client->buffer.buffer_read[client->buffer.index_read_buffer] = buff[index];
       if (buff[index] == '\n')
 	{
-	  create_new_task_client(client, server);
+	  if (create_new_task_client(client, server) == 0)
+	    return (0);
 	  memset(client->buffer.buffer_read, 0, 2048);
 	  index++;
 	  memcpy(client->buffer.buffer_read, &buff[index],
 		 strlen(&buff[index]));
 	  client->buffer.index_read_buffer = strlen(&buff[index]);
-	  return ;
+	  return (1);
 	}
       client->buffer.index_read_buffer++;
     }
+  return (1);
 }
 
 int			map_check_read_client(t_list *current_client, void *arg)
@@ -48,15 +94,14 @@ int			map_check_read_client(t_list *current_client, void *arg)
       memset(buff, 0, 2048);
       if ((read(client->fd_socket, buff, 2047)) <= 0)
 	{
-	  printf("\033[31mDeconnection client [%d]\033[00m\n",
-		 client->fd_socket);
 	  deconnection_client(server, client);
-	  printf("new fd max : %d\n", server->fd_max);
 	  return (0);
 	}
       else
-	interpret_buffer_read_client(server, client, buff);
-      printf("buffer read = [%s]\n", buff);
+	{
+	  if (interpret_buffer_read_client(server, client, buff) == 0)
+	    return (0);
+	}
     }
   return (1);
 }

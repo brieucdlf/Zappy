@@ -12,6 +12,7 @@
 # define USER_H_
 
 # include "list.h"
+# include "task.h"
 
 typedef enum
   {
@@ -30,7 +31,7 @@ typedef enum
 
 typedef enum
   {
-    NONE = 0,
+    NONE,
     RIGTH,
     LEFT,
     MOVE,
@@ -44,6 +45,22 @@ typedef enum
     INCANTATION
   }action;
 
+typedef enum
+  {
+    MAP_DIRECTION_ORIENTATION_NORTH,
+    MAP_DIRECTION_ORIENTATION_EAST,
+    MAP_DIRECTION_ORIENTATION_SOUTH,
+    MAP_DIRECTION_ORIENTATION_WEST
+  }orientation;
+
+typedef struct		s_direction
+{
+  int			position_x;
+  int			position_y;
+  int		        orientation;
+}			t_direction;
+
+
 typedef struct s_server t_server;
 typedef struct s_client t_client;
 
@@ -56,32 +73,11 @@ typedef void (*action_function)(t_server *, t_client *);
 ** ################################################
 */
 
-typedef struct		s_task
-{
-  char			*cmd;
-  int			current_index;
-}			t_task;
-
 typedef struct		s_buffer
 {
-  t_list	        *buffer_write;
   char			buffer_read[2048];
   int			index_read_buffer;
 }			t_buffer;
-
-/*
-** ################################################
-** # ACTION STRUCTURE (commands)
-** ################################################
-*/
-
-typedef struct		s_action
-{
-  char			is_cycle;
-  action		type;
-  struct timespec	timer_cycle;
-  action_function	action_fct;
-}			t_action;
 
 /*
 ** ################################################
@@ -92,11 +88,15 @@ typedef struct		s_action
 typedef struct		s_client
 {
   int			level;
+  unsigned int		id_client;
   int			id_team;
   int			fd_socket;
-  int			items[6];
-  t_action	        action;
+  int			items[7];
+  t_list		*tasks;
+  t_list		*write_tasks;
   t_buffer		buffer;
+  t_direction		direction;
+  int			is_ready;
 }			t_client;
 
 #endif /* !USER_H_ */

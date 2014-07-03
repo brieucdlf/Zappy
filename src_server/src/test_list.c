@@ -1,5 +1,5 @@
-#include "user.h"
-#include "server.h"
+#include "../include/user.h"
+#include "../include/server.h"
 
 void			display_the_list(t_list *elem, void *arg)
 {
@@ -28,7 +28,7 @@ void		        test_list()
 
   list = NULL;
 
-  list_push(&list, (void *)"salut1", NULL);
+  list_push(&list, (void *)"rock1", NULL);
   list_push(&list, (void *)"salut2", NULL);
   list_push(&list, (void *)"salut3", NULL);
   list_push(&list, (void *)"salut4", NULL);

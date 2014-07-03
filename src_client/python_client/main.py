@@ -1,6 +1,8 @@
 import sys
+import os
 from socket_server import SocketServer
 from argument import parse_argument
+from time import sleep
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -13,7 +15,13 @@ def main(argv):
     config_server = {}
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
-    so.send_request("salut\n")
-    
+    so.send_request("team4\n")
+    so.read_request()
+    so.read_request()
+    so.read_request()
+
+    so.send_request("voir\n")
+    sleep(2)
+
 if __name__ == "__main__":    
     main(sys.argv)

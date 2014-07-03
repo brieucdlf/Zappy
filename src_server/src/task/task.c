@@ -20,7 +20,7 @@ void			function_pointer(t_task *task, unsigned int index)
   task->function = tab_function[index];
 }
 
-void			add_function_task(t_task *task, const char *command)
+t_task			*add_function_task(const char *command)
 {
   char			*tab_command[11] = {"avance\n", "droite\n", "gauche\n",
 					   "voir\n", "inventaire\n",
@@ -28,50 +28,24 @@ void			add_function_task(t_task *task, const char *command)
 					   "expulse\n", "broadcast texte\n",
 					   "incantation\n", "fork\n"};
   unsigned int		index;
+  t_task		*new_task;
 
+  new_task = NULL;
   for (index = 0; index < 11; index++)
     {
       if (strcmp((const char *)tab_command[index], command) == 0)
 	{
-	  function_pointer(task, index);
-	  timer_task(task, index);
-	  return ;
+	  if ((new_task = malloc(sizeof(t_task))) == NULL)
+	    return (NULL);
+	  function_pointer(new_task, index);
+	  timer_task(new_task, index);
+	  return (new_task);
 	}
     }
+  return (new_task);
 }
 
 t_task			*new_task(const char *command)
 {
-  t_task		*task;
-
-  if ((task = malloc(sizeof(t_task))) == NULL)
-    return (NULL);
-  task->function = NULL;
-  add_function_task(task, command);
-  return (task);
+  return (add_function_task(command));
 }
-
-/* int			main() */
-/* { */
-/*   t_task		*task; */
-/*   struct timeval	tv; */
-
-/*   task = new_task("voir\n"); */
-/*   if (task == NULL) */
-/*     return (0); */
-/*   if (task->function != NULL) */
-/*     task->function(NULL, NULL); */
-
-/*   while (1) { */
-/*     gettimeofday(&tv, NULL); */
-/*     if (tv.tv_sec >= task->timer.tv_sec && tv.tv_usec >= task->timer.tv_usec) */
-/*       { */
-/* 	printf("Timer done \n"); */
-/* 	return (0); */
-/*       } */
-/*     printf("current time = [%lu / %lu] = [%lu / %lu]\n", tv.tv_sec, tv.tv_usec, */
-/* 	   task->timer.tv_sec, task->timer.tv_usec); */
-/*   } */
-
-/*   return (0); */
-/* } */
