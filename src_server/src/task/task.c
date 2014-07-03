@@ -3,10 +3,10 @@
 #include <string.h>
 #include "task.h"
 
-void			free_task(t_list *task)
+void			free_task(void *task)
 {
-  free(((t_task *)task->data)->argument);
-  free(task->data);
+  free(((t_task *)task)->argument);
+  free(task);
 }
 
 void			function_pointer(t_task *task, unsigned int index)

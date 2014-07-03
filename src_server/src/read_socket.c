@@ -38,8 +38,9 @@ int			create_new_task_client(t_client *client,
     }
   else
     {
-      if ((client->id_team = get_id_team(server,
-					 client->buffer.buffer_read)) == -1)
+      if (/*!check_is_graphic_client(server, client, client->buffer.buffer_read)
+	    && */((client->id_team = get_id_team(server,
+					     client->buffer.buffer_read)) == -1))
 	{
 	  printf("\033[31mWrong team nam :\033[0m%s\n",
 		 client->buffer.buffer_read);
