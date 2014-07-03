@@ -20,6 +20,7 @@
 
 typedef struct s_server t_server;
 typedef struct s_client t_client;
+typedef struct s_list t_list;
 
 typedef void		(*function_task)(t_server *, t_client *, char *arg);
 
@@ -51,7 +52,7 @@ void		        expulse_task_function(t_server *, t_client *, char *);
 void		        broadcast_task_function(t_server *, t_client *, char *);
 void		        incantation_task_function(t_server *, t_client *, char *);
 void		        fork_task_function(t_server *, t_client *, char *);
-void			free_task(t_list *task);
+void			free_task(void *task);
 
 void			timer_task(t_task *task, unsigned int index);
 t_task			*new_task(const char *command);

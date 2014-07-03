@@ -19,7 +19,7 @@ void			generate_food(t_server *server)
 
   if ((food = malloc(sizeof(t_item))) == NULL)
     return ;
-  food->type = 8;
+  food->type = 0;
   food->posx = rand() % (server->map.width);
   food->posy = rand() % (server->map.height);
   food->is_taken = 0;
@@ -35,7 +35,7 @@ void			generate_item(t_server *server)
 
   if ((item = malloc(sizeof(t_item))) == NULL)
     return ;
-  item->type = rand() % 7 + 1;
+  item->type = rand() % 6 + 1;
   item->posx = rand() % (server->map.width);
   item->posy = rand() % (server->map.height);
   item->is_taken = 0;
