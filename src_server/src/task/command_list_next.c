@@ -1,26 +1,41 @@
 #include "task.h"
 
+int			match_item(void *data1, void *data2)
+{
+  if ((t_item)data1->type == (t_item)data2->type)
+    return (1);
+  return (0);
+}
+
 void		        prend_task_function(t_server *server,
 					    t_client *client,
 					    char *arg)
 {
-  /*t_item                *item;
+  t_item                *item;
   t_list                *current_item;
+  const char            *name_item[7] = {"food", "linemate", "deraumere", "sibur",
+                                         "mendiane", "phiras", "thystame"};
 
   current_item = server->map.map[client->orientation.position.y]
     [client->orientation.position.x];
   while (current_item !=  NULL)
     {
-      if (obj = FOOD)
-        {
-	  
-        }
-      else
-        {
-	  
-        }
+      if ((item = current_item->data) != NULL)
+	{
+	  if (!strcmp(arg, name_item[item->type]))
+	    {
+	      if (item->type == FOOD)
+		{
+		  /* Incrementation de la vie car le user mange */
+		}
+	      else 
+		++client->items[item->type];
+	      list_remove_with_data(&server->map.map[client->orientation.position.y]
+				    [client->orientation.position.x], (void *)item, match_item);
+	    }
+	}
       current_item = current_item->next;
-      }*/
+    }
 }
 
 void			pose_task_function(t_server *server,
