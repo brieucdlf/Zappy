@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Wed Jul  2 18:08:39 2014 Jeremy Peltier
+// Last update Thu Jul  3 18:38:51 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -14,8 +14,8 @@ Socket::Socket(const std::string &host, int port)
 {
   this->host = host;
   this->port = port;
-  this->command = "";
-  connect();
+  this->read = "";
+  connectSocket();
 }
 
 Socket::~Socket()
@@ -24,7 +24,7 @@ Socket::~Socket()
   close(this->fd);
 }
 
-int			Socket::connect() const
+int			Socket::connectSocket()
 {
   struct hostent	*server;
 
@@ -50,7 +50,7 @@ int			Socket::connect() const
   return (0);
 }
 
-bool	Socket::isConnected() const
+bool	Socket::isConnected()
 {
   int	returnSelect;
 
@@ -59,11 +59,11 @@ bool	Socket::isConnected() const
   FD_SET(this->fd, &(this->readFd));
   FD_SET(this->fd, &(this->writeFd));
 
-  if ((returnSelect = select(this->fd() + 1, &(this->readFd()), &(this->writeFd()), NULL, NULL)) != -1)
+  if ((returnSelect = select(this->fd + 1, &(this->readFd), &(this->writeFd), NULL, NULL)) != -1)
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{
-	  getline(this->fd, this->command);
+	  std::cout << "Socket: Server response: " << this->fd << std::endl;
 	}
       if (FD_ISSET(this->fd, &(this->writeFd)))
 	{
@@ -80,22 +80,17 @@ void	Socket::setHost(std::string &host)
   this->host = host;
 }
 
-std::string	&Socket::getHost() const
-{
-  return this->host;
-}
-
 void	Socket::setPort(int port)
 {
   this->port = port;
 }
 
-int	Socket::getPort() const
+std::string	Socket::readSocket()
 {
-  return this->port;
+  return this->read;
 }
 
-std::string	&Socket::getCommand() const
+void	Socket::writeOnSocket(std::string &string)
 {
-  return this->command;
+  this->read = string;
 }

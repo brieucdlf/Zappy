@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Wed Jul  2 18:10:07 2014 Jeremy Peltier
+## Last update Thu Jul  3 18:11:00 2014 Jeremy Peltier
 ##
 
 CC		=	g++ -g
@@ -19,7 +19,9 @@ CXXFLAGS	+=	-I$(INCLUDES)
 
 SRCS		=	main.cpp \
 			ClientGraphic.cpp \
-			IsometricSprite.cpp
+			IsometricSprite.cpp \
+			TextureManager.cpp \
+			Socket.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

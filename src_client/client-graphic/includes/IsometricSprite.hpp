@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 15:15:54 2014 Jeremy Peltier
-// Last update Wed Jul  2 09:51:34 2014 Jeremy Peltier
+// Last update Thu Jul  3 15:39:12 2014 Jeremy Peltier
 //
 
 #ifndef		ISOMETRIC_SPRITE_HPP_
@@ -17,7 +17,7 @@ class		IsometricSprite : public sf::Sprite
 {
 public:
   IsometricSprite(void);
-  IsometricSprite(const sf::Texture &texturee, const sf::Vector2f &position = sf::Vector2f(0, 0));
+  IsometricSprite(const sf::Texture &, const sf::Vector2f &position = sf::Vector2f(0, 0));
   virtual ~IsometricSprite();
 
 public:
