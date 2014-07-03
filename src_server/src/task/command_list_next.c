@@ -1,11 +1,13 @@
 #include "task.h"
+#include "server.h"
+#include "user.h"
 
-int			match_item(void *data1, void *data2)
+/*int			match_item(void *data1, void *data2)
 {
   if ((t_item)data1->type == (t_item)data2->type)
     return (1);
   return (0);
-}
+}*/
 
 void		        prend_task_function(t_server *server,
 					    t_client *client,
@@ -16,8 +18,8 @@ void		        prend_task_function(t_server *server,
   const char            *name_item[7] = {"food", "linemate", "deraumere", "sibur",
                                          "mendiane", "phiras", "thystame"};
 
-  current_item = server->map.map[client->orientation.position.y]
-    [client->orientation.position.x];
+  current_item = server->map.map[client->direction.position_y]
+    [client->direction.position_x];
   while (current_item !=  NULL)
     {
       if ((item = current_item->data) != NULL)
@@ -30,8 +32,8 @@ void		        prend_task_function(t_server *server,
 		}
 	      else 
 		++client->items[item->type];
-	      list_remove_with_data(&server->map.map[client->orientation.position.y]
-				    [client->orientation.position.x], (void *)item, match_item);
+	      list_remove_with_data(&server->map.map[client->direction.position_y]
+				    [client->direction.position_x], (void *)item, NULL);
 	    }
 	}
       current_item = current_item->next;
@@ -50,8 +52,8 @@ void			pose_task_function(t_server *server,
   if (!strcmp(arg, name_item[item->type]))
     {
       --client->items[item->type];
-      list_push(&server->map.map[client->orientation.position.y]
-		[client->orientation.position.x], (void *)arg, NULL);
+      list_push(&server->map.map[client->direction.position_y]
+		[client->direction.position_x], (void *)arg, NULL);
     }
   
 }
