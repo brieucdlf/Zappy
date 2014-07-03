@@ -83,7 +83,7 @@ typedef struct		s_map
 typedef struct		s_server
 {
   t_list		*clients;
-  t_client		graphic_client;
+  t_client		*graphic_client;
   t_param		param_server;
   t_map			map;
   t_buffer		buffer;
