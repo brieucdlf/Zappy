@@ -18,7 +18,10 @@
 
 # define MAX_TIMER_VALUE	999999
 
-typedef void		(*function_task)(void *, void *);
+typedef struct s_server t_server;
+typedef struct s_client t_client;
+
+typedef void		(*function_task)(t_server *, t_client *, char *arg);
 
 typedef struct		s_task
 {
@@ -36,17 +39,17 @@ typedef struct		s_write_task
 /*
 ** LIST TASK
 */
-void			avance_task_function(void *server, void *client);
-void			droite_task_function(void *server, void *client);
-void		        gauche_task_function(void *server, void *client);
-void		        voir_task_function(void *server, void *client);
-void		        inventaire_task_function(void *server, void *client);
-void		        prend_task_function(void *server, void *client);
-void		        pose_task_function(void *server, void *client);
-void		        expulse_task_function(void *server, void *client);
-void		        broadcast_task_function(void *server, void *client);
-void		        incantation_task_function(void *server, void *client);
-void		        fork_task_function(void *server, void *client);
+void			avance_task_function(t_server *, t_client *, char *);
+void			droite_task_function(t_server *, t_client *, char *);
+void		        gauche_task_function(t_server *, t_client *, char *);
+void		        voir_task_function(t_server *, t_client *, char *);
+void		        inventaire_task_function(t_server *, t_client *, char *);
+void		        prend_task_function(t_server *, t_client *, char *);
+void		        pose_task_function(t_server *, t_client *, char *);
+void		        expulse_task_function(t_server *, t_client *, char *);
+void		        broadcast_task_function(t_server *, t_client *, char *);
+void		        incantation_task_function(t_server *, t_client *, char *);
+void		        fork_task_function(t_server *, t_client *, char *);
 
 void			timer_task(t_task *task, unsigned int index);
 t_task			*new_task(const char *command);

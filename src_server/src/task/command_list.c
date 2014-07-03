@@ -1,12 +1,10 @@
 #include "server.h"
 
-void			avance_task_function(void *ptr_server, void *ptr_client)
+void			avance_task_function(t_server *server,
+					     t_client *client,
+					     char *arg)
 {
-  t_client		*client;
-  t_server		*server;
-
-  client = (t_client *)ptr_client;
-  server = (t_server *)ptr_server;
+  (void)arg;
   if (client->direction.orientation == MAP_DIRECTION_ORIENTATION_NORTH)
     client->direction.position_y -= 1;
   else if (client->direction.orientation == MAP_DIRECTION_ORIENTATION_SOUTH)
@@ -26,35 +24,36 @@ void			avance_task_function(void *ptr_server, void *ptr_client)
   create_new_write_task(client, "OK");
 }
 
-void			droite_task_function(void *ptr_server, void *ptr_client)
+void			droite_task_function(t_server *server,
+					     t_client *client,
+					     char *arg)
 {
-  t_client		*client;
-
-  (void)ptr_server;
-  client = (t_client *)ptr_client;
+  (void)server;
+  (void)arg;
   client->direction.orientation += 1 % 4;
   create_new_write_task(client, "OK");
 }
 
-void			gauche_task_function(void *ptr_server, void *ptr_client)
+void			gauche_task_function(t_server *server,
+					     t_client *client,
+					     char *arg)
 {
-  t_client		*client;
-
-  (void)ptr_server;
-  client = (t_client *)ptr_client;
+  (void)server;
+  (void)arg;
   client->direction.orientation -= 1;
   if (client->direction.orientation < 0)
     client->direction.orientation = 3;
   create_new_write_task(client, "OK");
 }
 
-void			inventaire_task_function(void *server, void *ptr_client)
+void			inventaire_task_function(t_server *server,
+						 t_client *client,
+						 char *arg)
 {
   char			*inventaire;
-  t_client		*client;
 
   (void)server;
-  client = ptr_client;
+  (void)arg;
   if ((inventaire = malloc(1024)) == NULL)
     return ;
   memset(inventaire, 0, 1024);

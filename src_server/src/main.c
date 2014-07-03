@@ -12,6 +12,7 @@ int		main(int ac, char **av)
 {
   t_server      server;
 
+  srand(time(NULL));
   init_server(&server);
   set_param(ac, av, &server.param_server);
   if (init_map(&server) != 0)
