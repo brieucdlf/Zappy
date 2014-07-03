@@ -38,13 +38,13 @@
 
 typedef enum
   {
-    LINEMATE = 1,
+    FOOD = 0,
+    LINEMATE,
     DERAUMERE,
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME,
-    FOOD
+    THYSTAME
   }items;
 
 typedef	struct 		s_param
