@@ -33,7 +33,6 @@ int			strcmp_function_task(char *command_elem,
 
   if ((first_word = strtok((char *)command, " ")) == NULL)
     return (1);
-  printf("first word = [%s] / [%s]\n", first_word, command);
   return (strcmp(command_elem, first_word));
 }
 
@@ -48,7 +47,10 @@ t_task			*init_new_task(int index, const char *command)
   function_pointer(new_task, index);
   timer_task(new_task, index);
   if ((argument = strtok((char *)command, " ")) != NULL)
-    argument = strtok(NULL, " ");
+    {
+      if ((argument = strtok(NULL, " ")) != NULL)
+	new_task->argument = strdup(argument);
+    }
   return (new_task);
 }
 
@@ -73,7 +75,6 @@ t_task			*add_function_task(const char *command)
 
 t_task			*new_task(const char *command)
 {
-  printf("parse command %s\n", command);
   if (command == NULL)
     return (NULL);
   return (add_function_task(command));

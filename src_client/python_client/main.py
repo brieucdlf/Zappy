@@ -23,7 +23,7 @@ def main(argv):
     so.send_request("team4\n")
 
     print("send");
-    so.send_request("prend sibur\n")
+    so.send_request("prend food\n")
     sleep(2)
 
 if __name__ == "__main__":    
