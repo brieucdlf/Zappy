@@ -19,11 +19,24 @@ def main(argv):
     config_server = {}
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
-    print so.read_request()
+    # if so.read_request() != "Bienvenue\n":
+    #     print "TOTO"
+    print so.read_request() 
     so.send_request("team4\n")
-
-    print("send");
-    so.send_request("prend food\n")
+    num_client = int(so.read_request())
+    if num_client >= 1:
+        infos["num_client"] = num_client
+    else:
+        return
+    print "num client in dict : " + str(infos["num_client"])
+    coord = so.read_request().split(" ")
+    if len(coord) != 2:
+        return
+    else:
+        infos["x_y"].append(int(coord[0]))
+        infos["x_y"].append(int(coord[1]))
+    print infos["x_y"]
+    so.send_request("voir\n")
     sleep(2)
 
 if __name__ == "__main__":    

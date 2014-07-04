@@ -35,7 +35,7 @@ void			generate_item(t_server *server)
 
   if ((item = malloc(sizeof(t_item))) == NULL)
     return ;
-  item->type = rand() % 6 + 1;
+  item->type = 3/*rand() % 6 + 1*/;
   item->posx = rand() % (server->map.width);
   item->posy = rand() % (server->map.height);
   item->is_taken = 0;

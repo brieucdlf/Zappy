@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Fri Jul  4 13:17:24 2014 Remi Hillairet
+** Last update Fri Jul  4 13:54:31 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
@@ -23,6 +23,7 @@ void	init_graphic_client(t_server *server)
   create_new_write_task(server->graphic_client, command);
   memset(command, 0, 100);
   sprintf(command, "sgt %d\n", server->param_server.execution_time);
+  create_new_write_task(server->graphic_client, command);
   create_map_task(server, command);
   while (server->param_server.teams_names[i] != NULL)
     {
@@ -68,9 +69,11 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 void		content_at_pos(t_server *server, int x, int y, char *command)
 {
   t_list	*current_item;
-  int		nb_item[7];
+  int		*nb_item;
   t_item	*item;
 
+  if ((nb_item = malloc(7 * sizeof(int))) == NULL)
+    return ;
   memset(nb_item, 0, 7);
   current_item = server->map.map[y][x];
   while (current_item != NULL)
@@ -90,10 +93,10 @@ void	create_map_task(t_server *server, char *command)
   int	x;
   int	y;
 
-  x = 0;
   y = 0;
   while (y < server->map.height)
     {
+      x = 0;
       while (x < server->map.width)
 	{
 	  content_at_pos(server, x, y, command);

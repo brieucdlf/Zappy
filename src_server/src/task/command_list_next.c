@@ -15,8 +15,8 @@ void		        prend_task_function(t_server *server,
 {
   t_item                *item;
   t_list                *current_item;
-  const char            *name_item[7] = {"food", "linemate", "deraumere", "sibur",
-                                         "mendiane", "phiras", "thystame"};
+  const char            *name_item[7] = {"food\n", "linemate\n", "deraumere\n", "sibur\n",
+                                         "mendiane\n", "phiras\n", "thystame\n"};
 
   if (arg == NULL)
     return ;
@@ -26,16 +26,16 @@ void		        prend_task_function(t_server *server,
     {
       if ((item = current_item->data) != NULL)
 	{
-	  if (!strcmp((char *)arg, name_item[item->type]))
+	  if (strcmp(arg, name_item[item->type]) == 0)
 	    {
 	      if (item->type == FOOD)
 		{
-		  /* Incrementation de la vie car le user mange */
+		  printf("food incrementation vie\n");
 		}
 	      else
 		++client->items[item->type];
-	      list_remove_with_data(&server->map.map[client->direction.position_y]
-				    [client->direction.position_x], (void *)item, match_item);
+	      list_remove_with_data(&current_item, (void *)item, match_item);
+	      return ;
 	    }
 	}
       current_item = current_item->next;
@@ -47,9 +47,8 @@ void			pose_task_function(t_server *server,
 					   char *arg)
 {
   t_item		*item;
-  const char            *name_item[7] = {"linemate", "deraumere", "sibur",
-                                         "mendiane", "phiras", "thystame",
-                                         "food"};
+  const char            *name_item[7] = {"food\n", "linemate\n", "deraumere\n", "sibur\n",
+                                         "mendiane\n", "phiras\n", "thystame\n"};
 
   if (arg == NULL)
     return ;
