@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Fri Jul  4 12:20:05 2014 Remi Hillairet
+** Last update Fri Jul  4 13:17:24 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
@@ -34,11 +34,30 @@ void	init_graphic_client(t_server *server)
   free(command);
 }
 
+void		add_new_graphic_client(t_server *server, int fd_socket)
+{
+  t_client	*new_client;
+
+  if ((new_client = malloc(sizeof(t_client))) == NULL)
+    return ;
+  new_client->tasks = NULL;
+  new_client->write_tasks = NULL;
+  new_client->fd_socket = fd_socket;
+  new_client->id_team = -1;
+  new_client->id_client = -1;
+  new_client->level = -1;
+  new_client->is_ready = 0;
+  memset(new_client->buffer.buffer_read, 0, 2048);
+  new_client->buffer.index_read_buffer = 0;
+  memset(new_client->items, 0, sizeof(int) * 6);
+  server->graphic_client = new_client;
+}
+
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
   if (command != NULL && !strcmp("GRAPHIC\n", command))
     {
-      server->graphic_client = client;
+      add_new_graphic_client(server, client->fd_socket);
       list_remove_with_data(&server->clients, client, match_fd_socket_client);
       init_graphic_client(server);
       return (1);
