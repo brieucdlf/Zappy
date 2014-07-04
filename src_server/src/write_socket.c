@@ -12,9 +12,10 @@ int			write_task_socket(t_write_task *head_task,
 		   &head_task->buffer[head_task->index],
 		   strlen(&head_task->buffer[head_task->index]))) <= 0)
     {
-      printf("\033[31mDeconnection client [%d]\033[00m\n",
-	     current_client->fd_socket);
-      deconnection_client(server, current_client);
+      if (server->graphic_client->fd_socket == current_client->fd_socket)
+	deconnection_graphic_client(server, current_client);
+      else
+	deconnection_client(server, current_client);
       return (0);
     }
   head_task->index += ret;
