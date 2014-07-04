@@ -20,8 +20,8 @@ def main(argv):
     so.read_request()
     so.read_request()
 
-    so.send_request("voir\n")
-    sleep(2)
+    so.send_request("pose toto\n")
+    #so.read_request()
 
 if __name__ == "__main__":    
     main(sys.argv)
