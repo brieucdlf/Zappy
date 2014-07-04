@@ -5,8 +5,8 @@
 int			match_item(void *data1, void *data2)
 {
   if (((t_item *)data1)->type == ((t_item *)data2)->type)
-    return (1);
-  return (0);
+    return (0);
+  return (1);
 }
 
 void		        prend_task_function(t_server *server,
