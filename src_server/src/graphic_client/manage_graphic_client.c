@@ -5,10 +5,34 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Fri Jul  4 11:53:57 2014 Remi Hillairet
+** Last update Fri Jul  4 12:20:05 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
+
+void	init_graphic_client(t_server *server)
+{
+  int	i;
+  char	*command;
+
+  i = 0;
+  if ((command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  sprintf(command, "msz %d %d\n", server->map.width, server->map.height);
+  create_new_write_task(server->graphic_client, command);
+  memset(command, 0, 100);
+  sprintf(command, "sgt %d\n", server->param_server.execution_time);
+  create_map_task(server, command);
+  while (server->param_server.teams_names[i] != NULL)
+    {
+      memset(command, 0, 100);
+      sprintf(command, "tna %s\n", server->param_server.teams_names[i]);
+      create_new_write_task(server->graphic_client, command);
+      i++;
+    }
+  free(command);
+}
 
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
@@ -24,21 +48,21 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 
 void		content_at_pos(t_server *server, int x, int y, char *command)
 {
-  t_list	*current_list;
+  t_list	*current_item;
   int		nb_item[7];
   t_item	*item;
 
   memset(nb_item, 0, 7);
-  current_list = server->map.map[y][x];
-  while (current_list != NULL)
+  current_item = server->map.map[y][x];
+  while (current_item != NULL)
     {
       if ((item = current_item->data) != NULL)
 	++nb_item[item->type];
-      current_list = current_list->next;
+      current_item = current_item->next;
     }
   memset(command, 0, 100);
   sprintf(command, "bct %d %d %d %d %d %d %d %d %d\n", x, y,
-	  nb_item[0], nb_item[1],0 nb_item[2], nb_item[3],
+	  nb_item[0], nb_item[1], nb_item[2], nb_item[3],
 	  nb_item[4], nb_item[5], nb_item[6]);
 }
 
@@ -61,34 +85,6 @@ void	create_map_task(t_server *server, char *command)
     }
 }
 
-void	init_graphic_client(t_server *server)
-{
-  int	i;
-  int	x;
-  int	y;
-  char	*command;
-
-  x = 0;
-  y = 0;
-  i = 0;
-  if ((command = malloc(100)) == NULL)
-    return ;
-  memset(command, 0, 100);
-  sprintf(command, "msz %d %d\n", server->map.width, server->map.height);
-  create_new_write_task(server->graphic_client, command);
-  memset(command, 0, 100);
-  sprintf(command, "sgt %d\n", server->param_server.execution_time);
-  create_map_task(server, command);
-  while (teams_names[i] != NULL)
-    {
-      memset(command, 0, 100);
-      sprintf(command, "tna %s\n", teams_names[i]);
-      create_new_write_task(server->graphic_client, command);
-      i++;
-    }
-  free(command);
-}
-
 void	deconnection_graphic_client(t_server *server)
 {
   printf("\033[31mDeconnection graphic client [%d]\033[00m\n",
@@ -101,13 +97,8 @@ void	deconnection_graphic_client(t_server *server)
 
 int	check_graphic_client_read(t_server *server)
 {
-  char	buffer[2048];
-
-  if (FD_ISSET(server->graphic_client->fd_socket,
-	       &server->graphic_client->readfd))
-    {
-      memset(buff, 0, 2048);
-    }
+  if (server == NULL)
+    printf("Server is NULL\n");
   return (0);
 }
 
@@ -115,7 +106,6 @@ int		check_graphic_client_write(t_server *server, t_client *client)
 {
   t_write_task	*head_task;
 
-  ret = 0;
   if (client->write_tasks == NULL ||
       (head_task = (t_write_task *)client->write_tasks->data) == NULL)
     return (1);
