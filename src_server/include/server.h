@@ -154,6 +154,7 @@ void			free_server(t_server *server);
 */
 void			generate_food(t_server *server);
 int			init_map(t_server *server);
+void			free_item(void *item);
 
 /*
 ** ################################################

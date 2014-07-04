@@ -31,6 +31,7 @@ int			strcmp_function_task(char *command_elem,
 {
   char			*first_word;
 
+  printf("%s\n", command);
   if ((first_word = strtok((char *)command, " ")) == NULL)
     return (1);
   return (strcmp(command_elem, first_word));
@@ -47,22 +48,28 @@ t_task			*init_new_task(int index, const char *command)
   function_pointer(new_task, index);
   timer_task(new_task, index);
   if ((argument = strtok((char *)command, " ")) != NULL)
-    new_task->argument = strtok((char *)command, " ");
+    {
+      if ((argument = strtok(NULL, " ")) != NULL)
+	new_task->argument = strdup(argument);
+    }
   return (new_task);
 }
 
 t_task			*add_function_task(const char *command)
 {
   char			*tab_command[11] = {"avance\n", "droite\n", "gauche\n",
-					   "voir\n", "inventaire\n",
-					   "prend object\n", "pose object\n",
-					   "expulse\n", "broadcast texte\n",
-					   "incantation\n", "fork\n"};
+					    "voir\n", "inventaire\n",
+					    "prend", "pose",
+					    "expulse\n", "broadcast",
+					    "incantation\n", "fork\n"};
   unsigned int		index;
+  char			buff[64];
 
   for (index = 0; index < 11; index++)
     {
-      if (strcmp_function_task(tab_command[index], command) == 0)
+      memset(buff, 0, 64);
+      memcpy(buff, command, strlen(command));
+      if (strcmp_function_task(tab_command[index], buff) == 0)
 	return (init_new_task(index, command));
     }
   return (NULL);
@@ -70,6 +77,7 @@ t_task			*add_function_task(const char *command)
 
 t_task			*new_task(const char *command)
 {
+  printf("[%s]\n", command);
   if (command == NULL)
     return (NULL);
   return (add_function_task(command));
