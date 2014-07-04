@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Fri Jul  4 12:17:02 2014 Jeremy Peltier
+// Last update Fri Jul  4 12:35:20 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -65,15 +65,21 @@ bool	Socket::isConnected()
 	{
 	  char buff[2048];
 
-	  if (::read(this->fd, buff, 2047) < 0)
+	  if ((::read(this->fd, buff, 2047)) <= 0)
 	    this->connected = false;
-	  buff[2048] = '\0';
-	  this->read = buff;
-	  std::cout << this->read << std::endl;
+
+// std::stringstream  linestream(line);
+	  // linestream >> this->read;
+	  // std::cout << "Socket: Server response: " << this->read << std::endl;
 	}
       if (FD_ISSET(this->fd, &(this->writeFd)))
 	{
-
+	  static bool toto = true;
+	  if (toto)
+	    {
+	      ::write(this->fd, "GRAPHIC\n", 8);
+	      toto = false;
+	    }
 	}
     }
   if (returnSelect == EBADF)
