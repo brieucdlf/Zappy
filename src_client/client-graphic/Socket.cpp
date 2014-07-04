@@ -5,10 +5,17 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Fri Jul  4 12:35:20 2014 Jeremy Peltier
+// Last update Fri Jul  4 15:45:32 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
+
+Socket::Socket()
+{
+  this->host = "";
+  this->port = 0;
+  this->read = "";
+}
 
 Socket::Socket(const std::string &host, int port)
 {
