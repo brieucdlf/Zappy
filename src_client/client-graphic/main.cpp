@@ -5,21 +5,26 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:55:43 2014 Jeremy Peltier
-// Last update Thu Jul  3 18:24:55 2014 Jeremy Peltier
+// Last update Fri Jul  4 12:54:47 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
 #include	"ClientGraphic.hpp"
 
-int	main(void)
+int	main(int ac, char **av)
 {
-  Socket	socket("127.0.0.1", 65510);
-  ClientGraphic client(1000, 1000);
-
-  while (client.isOpen() && socket.isConnected())
+  if (ac == 3)
     {
-      client.getKey();
-      client.draw(100, 100);
+      Socket	socket(av[1], ::atoi(av[2]));
+      ClientGraphic client(1000, 1000);
+
+      while (client.isOpen() && socket.isConnected())
+	{
+	  client.getKey();
+	  client.draw(100, 100);
+	}
     }
+  else
+    std::cout << "Usage: ./graphic-client host port" << std::endl;
   return (0);
 }
