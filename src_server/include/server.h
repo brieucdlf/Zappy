@@ -19,7 +19,6 @@
 # include "user.h"
 # include "list.h"
 # include "action.h"
-# include "graphic_client.h"
 
 # define WELCOME_MESSAGE	"Bienvenue"
 
@@ -107,6 +106,8 @@ int			map_check_write_client(t_list *current_client,
 					       void *arg);
 void			deconnection_client(t_server *server,
 					    t_client *current_client);
+int			match_fd_socket_client(void *client1, void *client2);
+void			update_max_fd_socket(t_list *current_client, void *server);
 
 /*
 ** ################################################
