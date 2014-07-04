@@ -40,6 +40,7 @@ void		        prend_task_function(t_server *server,
 	}
       current_item = current_item->next;
     }
+  printf("[+]Command : prend as been executed.\n");
 }
 
 void			pose_task_function(t_server *server,
