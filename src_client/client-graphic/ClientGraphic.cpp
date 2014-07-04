@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Thu Jul  3 17:19:48 2014 Jeremy Peltier
+// Last update Fri Jul  4 11:22:47 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -59,7 +59,7 @@ void	ClientGraphic::getKey()
 
 void	ClientGraphic::addFloor(int x, int y)
 {
-  std::string	pathTexture = "resources/images/grass.png";
+  std::string	pathTexture = "src_client/client-graphic/resources/images/grass.png";
 
   IsometricSprite	floor(textures.getTexture(pathTexture));
   floor.setIsometricPosition(sf::Vector2f(x, y));

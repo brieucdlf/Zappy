@@ -12,9 +12,14 @@ def connect_socket(argument):
     return so
 
 def main(argv):
+    infos = {
+        "num_client" : [],
+        "x_y" : [],
+    }
     config_server = {}
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
+    print so.read_request()
     so.send_request("team4\n")
 
     print("send");
