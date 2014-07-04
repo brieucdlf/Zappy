@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Fri Jul  4 13:54:31 2014 Remi Hillairet
+** Last update Fri Jul  4 15:56:32 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
@@ -47,11 +47,13 @@ void		add_new_graphic_client(t_server *server, int fd_socket)
   new_client->id_team = -1;
   new_client->id_client = -1;
   new_client->level = -1;
-  new_client->is_ready = 0;
+  new_client->is_ready = 1;
   memset(new_client->buffer.buffer_read, 0, 2048);
   new_client->buffer.index_read_buffer = 0;
   memset(new_client->items, 0, sizeof(int) * 6);
   server->graphic_client = new_client;
+  FD_SET(server->graphic_client->fd_socket, &(server->readfd));
+  FD_SET(server->graphic_client->fd_socket, &(server->writefd));
 }
 
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
@@ -69,12 +71,16 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 void		content_at_pos(t_server *server, int x, int y, char *command)
 {
   t_list	*current_item;
-  int		*nb_item;
+  int		nb_item[7];
   t_item	*item;
 
-  if ((nb_item = malloc(7 * sizeof(int))) == NULL)
-    return ;
-  memset(nb_item, 0, 7);
+  nb_item[0] = 0;
+  nb_item[1] = 0;
+  nb_item[2] = 0;
+  nb_item[3] = 0;
+  nb_item[4] = 0;
+  nb_item[5] = 0;
+  nb_item[6] = 0;
   current_item = server->map.map[y][x];
   while (current_item != NULL)
     {

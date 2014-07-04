@@ -24,6 +24,8 @@ void			init_position_client(t_client *current_client,
   current_client->direction.orientation = MAP_DIRECTION_ORIENTATION_NORTH;
 }
 
+// NORME !
+
 int			create_new_task_client(t_client *client,
 					       t_server *server)
 {
@@ -38,14 +40,17 @@ int			create_new_task_client(t_client *client,
     }
   else
     {
-      if (!check_is_graphic_client(server, client, client->buffer.buffer_read)
-	    && ((client->id_team = get_id_team(server,
+      if (((client->id_team = get_id_team(server,
 					     client->buffer.buffer_read)) == -1))
 	{
-	  printf("\033[31mWrong team nam :\033[0m%s\n",
-		 client->buffer.buffer_read);
-	  deconnection_client(server, client);
-	  return (0);
+	  if (!check_is_graphic_client(server, client, client->buffer.buffer_read))
+	    {
+	      printf("\033[31mWrong team nam :\033[0m%s\n",
+		     client->buffer.buffer_read);
+	      deconnection_client(server, client);
+	      return (0);
+	    }
+	  return (1);
 	}
       client->is_ready = 1;
       init_position_client(client, server);
@@ -90,6 +95,7 @@ int			map_check_read_client(t_list *current_client, void *arg)
     return (1);
   server = (t_server *)arg;
   client = (t_client *)current_client->data;
+  printf("client->fd_socket : %d\n", client->fd_socket);
   if (FD_ISSET(client->fd_socket, &(server->readfd)))
     {
       memset(buff, 0, 2048);
