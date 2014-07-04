@@ -7,9 +7,10 @@ void			loop_items_on_case(t_list *current_item, void *arg)
 					 "mendiane", "phiras", "thystame",
 					 "food"};
 
-  if ((item = current_item->data) == NULL)
-    return ;
   (void)arg;
+  if ((item = current_item->data) == NULL ||
+      item->type - 1 < 0 || item->type - 1 >= 7)
+    return ;
   printf("current item : %s\n", name_item[item->type - 1]);
 }
 
@@ -60,7 +61,8 @@ client,
 
   (void)arg;
   printf("voir function\n");
-  memset(direction_position, 0, 2);
+  direction_position[0] = 0;
+  direction_position[1] = 0;
   direction_see(client, &direction_position[0], &direction_position[1]);
   for (index_level_client = 1; index_level_client <= client->level;
        index_level_client++)

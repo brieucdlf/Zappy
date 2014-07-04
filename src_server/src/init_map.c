@@ -7,12 +7,6 @@ void			free_item(void *data)
   data = NULL;
 }
 
-void			free_food(void *data)
-{
-  free(data);
-  data = NULL;
-}
-
 void			generate_food(t_server *server)
 {
   t_item		*food;
@@ -35,7 +29,7 @@ void			generate_item(t_server *server)
 
   if ((item = malloc(sizeof(t_item))) == NULL)
     return ;
-  item->type = 3/*rand() % 6 + 1*/;
+  item->type = rand() % 6 + 1;
   item->posx = rand() % (server->map.width);
   item->posy = rand() % (server->map.height);
   item->is_taken = 0;
@@ -63,7 +57,17 @@ void			display_map(t_server *server)
 	      nb++;
 	      current_item = current_item->next;
 	    }
-	  printf("[%d]", nb);
+	  if (nb == 0)
+	    printf("\033[30;31m[%d]", nb);
+	  else if (nb == 1)
+	    printf("\033[30;33m[%d]", nb);
+	  else if (nb == 2)
+	    printf("\033[30;32m[%d]", nb);
+	  else if (nb > 3)
+	    printf("\033[30;34m[%d]", nb);
+	  else
+	    printf("\033[30;35m[%d]", nb);
+	  printf("\033[0m");
 	}
       printf("\n");
     }

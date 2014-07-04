@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Thu Jul  3 19:31:34 2014 Jeremy Peltier
+## Last update Fri Jul  4 15:36:16 2014 Jeremy Peltier
 ##
 
 CC		=	g++ -g
@@ -21,7 +21,9 @@ SRCS		=	main.cpp \
 			ClientGraphic.cpp \
 			IsometricSprite.cpp \
 			TextureManager.cpp \
-			Socket.cpp
+			Socket.cpp \
+			Task.cpp \
+			TaskManager.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

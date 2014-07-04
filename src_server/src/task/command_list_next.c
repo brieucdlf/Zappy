@@ -2,7 +2,7 @@
 #include "server.h"
 #include "user.h"
 
-int			match_item(void *data1, void *data2)
+int			match_item_prendre_task(void *data1, void *data2)
 {
   if (((t_item *)data1)->type == ((t_item *)data2)->type)
     return (0);
@@ -15,8 +15,9 @@ void		        prend_task_function(t_server *server,
 {
   t_item                *item;
   t_list                *current_item;
-  const char            *name_item[7] = {"food\n", "linemate\n", "deraumere\n", "sibur\n",
-                                         "mendiane\n", "phiras\n", "thystame\n"};
+  const char            *name_item[7] = {"food\n", "linemate\n", "deraumere\n",
+					 "sibur\n", "mendiane\n", "phiras\n",
+					 "thystame\n"};
 
   if (arg == NULL)
     return ;
@@ -24,23 +25,23 @@ void		        prend_task_function(t_server *server,
     [client->direction.position_x];
   while (current_item !=  NULL)
     {
-      if ((item = current_item->data) != NULL)
+      if ((item = current_item->data) != NULL &&
+	  strcmp(arg, name_item[item->type]) == 0)
 	{
-	  if (strcmp(arg, name_item[item->type]) == 0)
+	  if (item->type == FOOD)
 	    {
-	      if (item->type == FOOD)
-		{
-		  printf("food incrementation vie\n");
-		}
-	      else
-		++client->items[item->type];
-	      list_remove_with_data(&current_item, (void *)item, match_item);
-	      return ;
+	      printf("food incrementation vie\n");
 	    }
+	  else
+	    ++client->items[item->type];
+	  list_remove_with_data(&current_item, (void *)item,
+				match_item_prendre_task);
+	  create_new_write_task(client, "ok");
+	  return ;
 	}
       current_item = current_item->next;
     }
-  printf("[+]Command : prend as been executed.\n");
+  return create_new_write_task(client, "ko");
 }
 
 void			pose_task_function(t_server *server,
@@ -48,28 +49,31 @@ void			pose_task_function(t_server *server,
 					   char *arg)
 {
   t_item		*item;
-  const char            *name_item[7] = {"food\n", "linemate\n", "deraumere\n", "sibur\n",
-                                         "mendiane\n", "phiras\n", "thystame\n"};
+  int			index_item;
+  const char            *name_item[7] = {"food\n", "linemate\n",
+					 "deraumere\n", "sibur\n",
+                                         "mendiane\n", "phiras\n",
+					 "thystame\n"};
 
   if (arg == NULL)
     return ;
   item = NULL;
-  if (!strcmp((char *)arg, name_item[item->type]))
+  for (index_item = 0; index_item < 7 &&
+	 strcmp(arg, name_item[index_item]) != 0; index_item++);
+  if (index_item == 7)
     {
-      --client->items[item->type];
-      list_push(&server->map.map[client->direction.position_y]
-		[client->direction.position_x], (void *)arg, NULL);
+      create_new_write_task(client, "ko");
+      return ;
     }
-}
-
-void		        expulse_task_function(t_server *server,
-					      t_client *client,
-					      char *arg)
-{
-  (void)server;
-  (void)client;
-  (void)arg;
-  printf("expulse object\n");
+  if ((item = malloc(sizeof(t_item))) == NULL)
+    return ;
+  item->posy = client->direction.position_y;
+  item->posx = client->direction.position_x;
+  item->type = index_item;
+  --client->items[index_item];
+  list_push(&server->map.map[client->direction.position_y]
+	    [client->direction.position_x], (void *)item, free_item);
+  return create_new_write_task(client, "ok");
 }
 
 void			broadcast_task_function(t_server *server,
