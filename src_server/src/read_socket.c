@@ -1,6 +1,7 @@
 #include "server.h"
 
-void			query_first_connection(t_client *current_client)
+void			query_first_connection(t_server *server,
+					       t_client *current_client)
 {
   char			*command;
 
@@ -10,8 +11,8 @@ void			query_first_connection(t_client *current_client)
   sprintf(command, "%d\n", current_client->id_client);
   create_new_write_task(current_client, command);
   memset(command, 0, 100);
-  sprintf(command, "%d %d\n", current_client->direction.position_x,
-	  current_client->direction.position_y);
+  sprintf(command, "%d %d\n", server->map.width,
+	  server->map.height);
   create_new_write_task(current_client, command);
   free(command);
 }
@@ -49,7 +50,7 @@ int			create_new_task_client(t_client *client,
 	}
       client->is_ready = 1;
       init_position_client(client, server);
-      query_first_connection(client);
+      query_first_connection(server, client);
     }
   return (1);
 }
