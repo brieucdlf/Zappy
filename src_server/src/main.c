@@ -6,6 +6,7 @@ void		init_server(t_server *server)
   server->clients = NULL;
   server->client_commands = NULL;
   server->fd_max = 0;
+  server->graphic_client = NULL;
 }
 
 int		main(int ac, char **av)
