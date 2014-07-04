@@ -5,7 +5,7 @@
 ## Login   <delafo_b@epitech.net>
 ##
 ## Started on  Mon Jun  2 11:23:49 2014 Brieuc de La Fouchardiere
-## Last update Thu Jul  3 19:30:25 2014 Jeremy Peltier
+## Last update Fri Jul  4 12:10:02 2014 Remi Hillairet
 ##
 
 CLIENT_FILES	=	src_client/client-ia/

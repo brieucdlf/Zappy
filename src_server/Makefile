@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Tue Jun 10 11:19:24 2014 romain combe
+## Last update Fri Jul  4 11:57:24 2014 Remi Hillairet
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
@@ -41,7 +41,8 @@ SRCS	=	src/main.c				\
 		src/create_write_task.c			\
 		src/create_map.c			\
 		src/task/command_voir.c			\
-		src/manage_team.c
+		src/manage_team.c			\
+		src/graphic_client/manage_graphic_client.c
 
 OBJS	=	$(SRCS:.c=.o)
 
