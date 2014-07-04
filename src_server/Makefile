@@ -17,31 +17,32 @@ RM	=	rm -fv
 
 CFLAGS	+=	-g3 -Wall -Wextra -Iinclude
 
-SRCS	=	src/main.c				\
-		src/list/list.c				\
-		src/list/map_list.c 			\
-		src/list/remove_list.c			\
-		src/init_client.c			\
-		src/init.c				\
-		src/init_map.c				\
-		src/free.c 				\
-		src/run_server.c			\
-		src/connect_client.c			\
-		src/create_server.c			\
-		src/read_socket.c			\
-		src/deconnection_client.c		\
-		src/write_socket.c			\
-		src/set_fd_socket.c			\
-		src/task/task.c				\
-		src/task/command_fork.c			\
-		src/task/command_list.c			\
-		src/task/command_list_next.c		\
-		src/task/timer_task.c			\
-		src/timer.c				\
-		src/create_write_task.c			\
-		src/create_map.c			\
-		src/task/command_voir.c			\
-		src/manage_team.c			\
+SRCS	=	src/main.c					\
+		src/list/list.c					\
+		src/list/map_list.c 				\
+		src/list/remove_list.c				\
+		src/init_client.c				\
+		src/init.c					\
+		src/init_map.c					\
+		src/free.c 					\
+		src/run_server.c				\
+		src/connect_client.c				\
+		src/create_server.c				\
+		src/read_socket.c				\
+		src/deconnection_client.c			\
+		src/write_socket.c				\
+		src/set_fd_socket.c				\
+		src/task/task.c					\
+		src/task/command_fork.c				\
+		src/task/command_list.c				\
+		src/task/command_list_next.c			\
+		src/task/timer_task.c				\
+		src/timer.c					\
+		src/create_write_task.c				\
+		src/create_map.c				\
+		src/task/command_voir.c				\
+		src/manage_team.c				\
+		src/task/command_expulse.c			\
 		src/graphic_client/manage_graphic_client.c
 
 OBJS	=	$(SRCS:.c=.o)
