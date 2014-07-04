@@ -18,28 +18,33 @@ void		        prend_task_function(t_server *server,
   const char            *name_item[7] = {"food", "linemate", "deraumere", "sibur",
                                          "mendiane", "phiras", "thystame"};
 
+  printf("command prend\n");
   if (arg == NULL)
     return ;
+  printf("arguemnt = %s\n", (char *)arg);
   current_item = server->map.map[client->direction.position_y]
     [client->direction.position_x];
   while (current_item !=  NULL)
     {
+      printf("command prend : Item != NULL\n");
       if ((item = current_item->data) != NULL)
 	{
-	  if (!strcmp((char *)arg, name_item[item->type]))
+	  if (strcmp((char *)arg, name_item[item->type]) == 0)
 	    {
 	      if (item->type == FOOD)
 		{
-		  /* Incrementation de la vie car le user mange */
+		  printf("food incrementation vie\n");
 		}
 	      else
 		++client->items[item->type];
-	      list_remove_with_data(&server->map.map[client->direction.position_y]
-				    [client->direction.position_x], (void *)item, match_item);
+	      list_remove_with_data(&current_item, (void *)item, match_item);
+	      printf("command prends : remove list\n");
+	      return ;
 	    }
 	}
       current_item = current_item->next;
     }
+  printf("Prend ok\n");
 }
 
 void			pose_task_function(t_server *server,

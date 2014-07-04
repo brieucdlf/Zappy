@@ -16,11 +16,9 @@ def main(argv):
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
     so.send_request("team4\n")
-    so.read_request()
-    so.read_request()
-    so.read_request()
 
-    so.send_request("voir\n")
+    print("send");
+    so.send_request("prend sibur\n")
     sleep(2)
 
 if __name__ == "__main__":    
