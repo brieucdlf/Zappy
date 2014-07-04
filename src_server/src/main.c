@@ -21,7 +21,7 @@ int		main(int ac, char **av)
   manage_teams(&server);
   if (create_server(&server) == -1)
     return (1);
-  printf("Initialisation server completed\n");
+  printf("\n[\033[30;32m+\033[0m]Initialisation server completed\n");
   server_loop(&server);
   free_server(&server);
   return (0);
