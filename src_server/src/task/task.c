@@ -3,10 +3,10 @@
 #include <string.h>
 #include "task.h"
 
-void			free_task(t_list *task)
+void			free_task(void *task)
 {
-  free(((t_task *)task->data)->argument);
-  free(task->data);
+  free(((t_task *)task)->argument);
+  free(task);
 }
 
 void			function_pointer(t_task *task, unsigned int index)
@@ -26,6 +26,31 @@ void			function_pointer(t_task *task, unsigned int index)
   task->function = tab_function[index];
 }
 
+int			strcmp_function_task(char *command_elem,
+					     const char *command)
+{
+  char			*first_word;
+
+  if ((first_word = strtok((char *)command, " ")) == NULL)
+    return (1);
+  return (strcmp(command_elem, first_word));
+}
+
+t_task			*init_new_task(int index, const char *command)
+{
+  t_task		*new_task;
+  char			*argument;
+
+  if ((new_task = malloc(sizeof(t_task))) == NULL)
+    return (NULL);
+  new_task->argument = NULL;
+  function_pointer(new_task, index);
+  timer_task(new_task, index);
+  if ((argument = strtok((char *)command, " ")) != NULL)
+    new_task->argument = strtok((char *)command, " ");
+  return (new_task);
+}
+
 t_task			*add_function_task(const char *command)
 {
   char			*tab_command[11] = {"avance\n", "droite\n", "gauche\n",
@@ -34,24 +59,18 @@ t_task			*add_function_task(const char *command)
 					   "expulse\n", "broadcast texte\n",
 					   "incantation\n", "fork\n"};
   unsigned int		index;
-  t_task		*new_task;
 
-  new_task = NULL;
   for (index = 0; index < 11; index++)
     {
-      if (strcmp((const char *)tab_command[index], command) == 0)
-	{
-	  if ((new_task = malloc(sizeof(t_task))) == NULL)
-	    return (NULL);
-	  function_pointer(new_task, index);
-	  timer_task(new_task, index);
-	  return (new_task);
-	}
+      if (strcmp_function_task(tab_command[index], command) == 0)
+	return (init_new_task(index, command));
     }
-  return (new_task);
+  return (NULL);
 }
 
 t_task			*new_task(const char *command)
 {
+  if (command == NULL)
+    return (NULL);
   return (add_function_task(command));
 }

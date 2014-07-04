@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:22:01 2014 Jeremy Peltier
-// Last update Wed Jul  2 18:06:27 2014 Jeremy Peltier
+// Last update Thu Jul  3 19:15:56 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_HPP_
@@ -20,12 +20,14 @@
 # include	<netdb.h>
 # include	<string.h>
 # include	<stdlib.h>
-#include	<unistd.h>
+# include	<unistd.h>
 # include	<signal.h>
 # include	<dirent.h>
 # include	<errno.h>
 # include	<time.h>
+# include	<ext/stdio_filebuf.h>
 # include	<iostream>
+# include	<fstream>
 # include	<string>
 
 class		Socket
@@ -35,15 +37,14 @@ public:
   virtual ~Socket();
 
 public:
-  int	connect() const;
-  bool	isConnected() const;
+  int	connectSocket();
+  bool	isConnected();
 
 public:
   void			setHost(std::string &);
-  std::string		&getHost() const;
   void			setPort(int);
-  int			getPort() const;
-  std::string		&getCommand() const;
+  std::string		readSocket();
+  void			writeOnSocket(std::string &);
 
 private:
   std::string		host;
@@ -53,7 +54,7 @@ private:
   fd_set		writeFd;
   struct sockaddr_in	sinServer;
   bool			connected;
-  std::string		command;
+  std::string		read;
 };
 
 #endif		/* CLIENT_HPP_ */

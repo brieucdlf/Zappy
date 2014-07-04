@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Wed Jul  2 18:36:07 2014 Jeremy Peltier
+// Last update Thu Jul  3 17:19:48 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -19,6 +19,7 @@ ClientGraphic::ClientGraphic(int width, int height)
   this->window.display();
   this->x = 0;
   this->y = 0;
+  this->zoom = 1;
 }
 
 ClientGraphic::~ClientGraphic() {}
@@ -34,45 +35,79 @@ void	ClientGraphic::getKey()
     {
       if (this->event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	this->window.close();
+
+      sf::View view = this->window.getDefaultView();
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	this->y += 20;
+	this->x -= 10;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	this->y -= 20;
+	this->x += 10;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	this->x += 20;
+	this->y -= 10;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	this->x -= 20;
+	this->y += 10;
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add))
+	this->zoom -= 1;
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
+	this->zoom += 1;
+      if (this->zoom < 1)
+	this->zoom = 1;
+      view.move(this->x, this->y);
+      view.zoom(this->zoom);
+      this->window.setView(view);
     }
+}
+
+void	ClientGraphic::addFloor(int x, int y)
+{
+  std::string	pathTexture = "resources/images/grass.png";
+
+  IsometricSprite	floor(textures.getTexture(pathTexture));
+  floor.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(floor);
+}
+
+void	ClientGraphic::addStone(int x, int y)
+{
+  std::string	pathTexture = "resources/images/stone.tga";
+
+  IsometricSprite	stone(textures.getTexture(pathTexture));
+  stone.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(stone);
+}
+
+void	ClientGraphic::addFood(int x, int y)
+{
+  std::string	pathTexture = "resources/images/food.tga";
+
+  IsometricSprite	food(textures.getTexture(pathTexture));
+  food.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(food);
+}
+
+void	ClientGraphic::addCharacter(int x, int y)
+{
+  x = x;
+  y = y;
+}
+
+void	ClientGraphic::generateItems()
+{
 }
 
 void	ClientGraphic::generateMap(int width, int height)
 {
+  for (int i = 0; i < width; ++i)
+    for (int j = 0; j < height; ++j)
+      addFloor(i, j);
+}
+
+void	ClientGraphic::draw(int width, int height)
+{
   this->window.clear();
-
-  std::cout << "x : " << this->x << " y : " << this->y << std::endl;
-
-  width = width;
-  height = height;
-  std::string name = "resources/images/floor.tga";
-
-  sf::Texture texture;
-  texture.loadFromFile(name);
-
-  IsometricSprite isoSprite(texture);
-  IsometricSprite isoSprite2(texture);
-
-  if (width > (int)this->window.getSize().x)
-    width -= this->window.getSize().x;
-  if (height > (int)this->window.getSize().y)
-    height -= this->window.getSize().y;
-
-  for (int i = this->x; i < width - this->x; ++i)
-    for (int j = this->y; j < height - this->y; ++j)
-      {
-	isoSprite.setIsometricPosition(sf::Vector2f(i, j));
-	this->window.draw(isoSprite);
-      }
-  this->window.setView(this->window.getDefaultView());
-
+  generateMap(width, height);
+  generateItems();
   this->window.display();
 }
