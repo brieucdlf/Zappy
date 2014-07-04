@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:22:01 2014 Jeremy Peltier
-// Last update Fri Jul  4 09:39:17 2014 Jeremy Peltier
+// Last update Fri Jul  4 15:44:30 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_HPP_
@@ -34,6 +34,7 @@
 class		Socket
 {
 public:
+  Socket();
   Socket(const std::string &, int);
   virtual ~Socket();
 

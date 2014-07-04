@@ -5,11 +5,12 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:55:43 2014 Jeremy Peltier
-// Last update Fri Jul  4 12:54:47 2014 Jeremy Peltier
+// Last update Fri Jul  4 15:35:41 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
 #include	"ClientGraphic.hpp"
+#include	"TaskManager.hpp"
 
 int	main(int ac, char **av)
 {
@@ -17,11 +18,13 @@ int	main(int ac, char **av)
     {
       Socket	socket(av[1], ::atoi(av[2]));
       ClientGraphic client(1000, 1000);
+      TaskManager	manager(socket);
 
       while (client.isOpen() && socket.isConnected())
 	{
 	  client.getKey();
 	  client.draw(100, 100);
+	  manager.updateBuffer();
 	}
     }
   else
