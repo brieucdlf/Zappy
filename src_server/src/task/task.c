@@ -31,6 +31,7 @@ int			strcmp_function_task(char *command_elem,
 {
   char			*first_word;
 
+  printf("%s\n", command);
   if ((first_word = strtok((char *)command, " ")) == NULL)
     return (1);
   return (strcmp(command_elem, first_word));
@@ -66,6 +67,7 @@ t_task			*add_function_task(const char *command)
 
   for (index = 0; index < 11; index++)
     {
+      memset(buff, 0, 64);
       memcpy(buff, command, strlen(command));
       if (strcmp_function_task(tab_command[index], buff) == 0)
 	return (init_new_task(index, command));
@@ -75,6 +77,7 @@ t_task			*add_function_task(const char *command)
 
 t_task			*new_task(const char *command)
 {
+  printf("[%s]\n", command);
   if (command == NULL)
     return (NULL);
   return (add_function_task(command));

@@ -60,7 +60,8 @@ client,
 
   (void)arg;
   printf("voir function\n");
-  memset(direction_position, 0, 2);
+  direction_position[0] = 0;
+  direction_position[1] = 0;
   direction_see(client, &direction_position[0], &direction_position[1]);
   for (index_level_client = 1; index_level_client <= client->level;
        index_level_client++)

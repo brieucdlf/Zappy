@@ -7,12 +7,6 @@ void			free_item(void *data)
   data = NULL;
 }
 
-void			free_food(void *data)
-{
-  free(data);
-  data = NULL;
-}
-
 void			generate_food(t_server *server)
 {
   t_item		*food;
