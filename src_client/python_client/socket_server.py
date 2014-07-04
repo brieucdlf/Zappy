@@ -15,8 +15,7 @@ class SocketServer:
         os.write(self.__socket_server.fileno(), msg)
 
     def read_request(self):
-        print(os.read(self.__socket_server.fileno(), 2048))
-
+        return os.read(self.__socket_server.fileno(), 10000)
     def connect_server(self):
         try:
             self.__socket_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

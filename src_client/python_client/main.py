@@ -12,13 +12,28 @@ def connect_socket(argument):
     return so
 
 def main(argv):
+    infos = {
+        "num_client" : [],
+        "x_y" : [],
+    }
     config_server = {}
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
+    if so.read_request() != "Bienvenue\n":
+        return
     so.send_request("team4\n")
-    so.read_request()
-    so.read_request()
-    so.read_request()
+    print so.read_request()
+    num_client = int(so.read_request())
+    if num_client >= 1:
+        infos["num_client"] = num_client
+    else:
+        return
+    coord = so.read_request().split(" ")
+    if len(coord) != 2:
+        return
+    else:
+        info["x_y"][0] = int(coord[0])
+        info["x_y"][1] = int(coord[1])
 
     so.send_request("voir\n")
     sleep(2)
