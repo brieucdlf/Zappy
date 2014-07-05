@@ -24,5 +24,6 @@ void		        expulse_task_function(t_server *server,
 					      char *arg)
 {
   (void)arg;
-  map_list(server->clients, map_expulse_player, (void *)client);
+  map_list(server->clients, map_expulse_player,
+(void *)client);
 }

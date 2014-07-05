@@ -45,7 +45,8 @@ SRCS	=	src/main.c					\
 		src/task/command_expulse.c			\
 		src/task/command_broadcast.c			\
 		src/task/find_path.c				\
-		src/graphic_client/manage_graphic_client.c
+		src/graphic_client/manage_graphic_client.c	\
+		src/timer_client.c
 
 OBJS	=	$(SRCS:.c=.o)
 

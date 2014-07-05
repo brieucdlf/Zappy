@@ -35,6 +35,8 @@
 # define TIMEOUT_SEC		0
 # define TIMEOUT_USEC		1
 
+# define TIMEOUT_CLIENT		5
+
 typedef enum
   {
     FOOD = 0,
@@ -187,5 +189,7 @@ int			path_finder(char **map, int number_path,
 				    t_server *server);
 void			find_best_path(t_client *current_client, char **map,
 				       t_server *server, char *message);
+void				init_timer_client(t_client *client);
+int				check_timeout(t_list *current_item, void *arg);
 
 #endif /* !SERVER_H_ */

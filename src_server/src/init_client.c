@@ -29,4 +29,5 @@ void			add_new_client(t_server *server,
   list_push(&server->clients, new_client, free_client);
   create_new_write_task(new_client, WELCOME_MESSAGE);
   id_client += 1;
+  init_timer_client(new_client);
 }

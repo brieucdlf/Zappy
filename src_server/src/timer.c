@@ -25,6 +25,7 @@ void			check_timer_client(t_list *item, void *server)
       if (tv.tv_sec >= ((t_task *)current_item->data)->timer.tv_sec &&
 	  tv.tv_usec >= ((t_task *)current_item->data)->timer.tv_usec)
 	{
+	  init_timer_client(current_client);
 	  ((t_task *)current_item->data)->is_over = 1;
 	  ((t_task *)current_item->data)->function(server, current_client,
 						   ((t_task *)current_item->
@@ -39,5 +40,6 @@ void			check_timer_client(t_list *item, void *server)
 
 void			check_timer(t_server *server)
 {
+  check_timer_clients(server);
   map_list(server->clients, check_timer_client, (void *)server);
 }
