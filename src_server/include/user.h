@@ -87,6 +87,7 @@ typedef struct		s_buffer
 
 typedef struct		s_client
 {
+  struct timeval	food_timer;
   struct timeval	timeout;
   int			level;
   unsigned int		id_client;

@@ -54,7 +54,8 @@ void		        incantation_task_function(t_server *, t_client *, char *);
 void		        fork_task_function(t_server *, t_client *, char *);
 void			free_task(void *task);
 
-void			timer_task(t_task *task, unsigned int index);
-t_task			*new_task(const char *command);
+void			timer_task(t_server *server, t_task *task,
+				   unsigned int index);
+t_task			*new_task(t_server *server, const char *command);
 
 #endif // TASK
