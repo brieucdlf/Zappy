@@ -75,13 +75,3 @@ void			pose_task_function(t_server *server,
 	    [client->direction.position_x], (void *)item, free_item);
   return create_new_write_task(client, "ok");
 }
-
-void		        incantation_task_function(t_server *server,
-						  t_client *client,
-						  char *arg)
-{
-  (void)server;
-  (void)client;
-  (void)arg;
-  printf("incantation\n");
-}

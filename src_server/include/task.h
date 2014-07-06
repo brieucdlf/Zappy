@@ -50,10 +50,12 @@ void		        prend_task_function(t_server *, t_client *, char *);
 void		        pose_task_function(t_server *, t_client *, char *);
 void		        expulse_task_function(t_server *, t_client *, char *);
 void		        broadcast_task_function(t_server *, t_client *, char *);
-void		        incantation_task_function(t_server *, t_client *, char *);
+void		        incantation_task_function(t_server *, t_client *,
+						  char *);
 void		        fork_task_function(t_server *, t_client *, char *);
 void			free_task(void *task);
 
+int			check_ressoures_incantation(t_client *client);
 void			timer_task(t_server *server, t_task *task,
 				   unsigned int index);
 t_task			*new_task(t_server *server, const char *command);

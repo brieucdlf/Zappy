@@ -192,8 +192,8 @@ int			path_finder(char **map, int number_path,
 				    t_server *server);
 void			find_best_path(t_client *current_client, char **map,
 				       t_server *server, char *message);
-void				init_timer_client(t_client *client);
-int				check_timeout(t_list *current_item, void *arg);
+void		       	init_timer_client(t_client *client);
+int		       	check_timeout(t_list *current_item, void *arg);
 
 /*
 ** ################################################
@@ -203,6 +203,6 @@ int				check_timeout(t_list *current_item, void *arg);
 void			init_timer_food(t_server *server, t_client *client);
 void			add_live_food(t_server *server, t_client *client);
 
-void			        check_timer_clients(t_server *server);
+void			check_timer_clients(t_server *server);
 
 #endif /* !SERVER_H_ */

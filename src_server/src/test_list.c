@@ -1,5 +1,4 @@
-#include "../include/user.h"
-#include "../include/server.h"
+#include "../include/list.h"
 
 void			display_the_list(t_list *elem, void *arg)
 {
@@ -42,4 +41,11 @@ void		        test_list()
   map_list_with_match(list, find_elem, match_fction, (void *)"salut3");
 
   list_delete(list);
+}
+
+
+int		main()
+{
+  test_list();
+  return (0);
 }

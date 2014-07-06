@@ -47,6 +47,8 @@ SRCS	=	src/main.c					\
 		src/task/find_path.c				\
 		src/graphic_client/manage_graphic_client.c	\
 		src/timer_client.c				\
+		src/task/command_incantation.c			\
+		src/task/requirement_incantation.c		\
 		src/timer_food.c
 
 OBJS	=	$(SRCS:.c=.o)
