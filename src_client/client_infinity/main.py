@@ -29,7 +29,8 @@ def set_server(so, infos):
         infos["x_y"].append(int(coord[0]))
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
-    so.send_request("broadcast salut\n")
+    so.send_request("voir\n")
+    print (so.read_request())
 
 def main(argv):
     infos = {

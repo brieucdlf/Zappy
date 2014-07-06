@@ -45,7 +45,7 @@ void			send_task_answer(t_client *client)
   if ((command = malloc(100)) == NULL)
     return ;
   memset(command, 0, 100);
-  snprintf(command, 100, "niveau actuel : %d", client->level);
+  snprintf(command, 100, "niveau actuel : %d\n", client->level);
   create_new_write_task(client, command);
   free(command);
 }

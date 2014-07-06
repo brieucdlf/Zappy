@@ -100,6 +100,6 @@ void			broadcast_task_function(t_server *server,
   fill_copy_map_path(client, server, map);
   loop_path_finder(map, server);
   send_broadcast_player(server, client, map, arg);
-  create_new_write_task(client, "ok\n");
+  create_new_write_task(client, "OK\n");
   printf("broadcast message\n");
 }

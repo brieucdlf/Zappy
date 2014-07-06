@@ -34,12 +34,12 @@ void		        prend_task_function(t_server *server,
 	    ++client->items[item->type];
 	  list_remove_with_data(&current_item, (void *)item,
 				match_item_prendre_task);
-	  create_new_write_task(client, "ok");
+	  create_new_write_task(client, "OK\n");
 	  return ;
 	}
       current_item = current_item->next;
     }
-  return create_new_write_task(client, "ko");
+  return create_new_write_task(client, "KO\n");
 }
 
 void			pose_task_function(t_server *server,
@@ -71,5 +71,5 @@ void			pose_task_function(t_server *server,
   --client->items[index_item];
   list_push(&server->map.map[client->direction.position_y]
 	    [client->direction.position_x], (void *)item, free_item);
-  return create_new_write_task(client, "ok");
+  return create_new_write_task(client, "OK\n");
 }
