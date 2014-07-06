@@ -178,4 +178,14 @@ int			get_id_team(t_server *server, const char *team);
 
 int			create_map(t_server *server);
 
+/*
+** ################################################
+** # PATH FINDER
+** ################################################
+*/
+int			path_finder(char **map, int number_path,
+				    t_server *server);
+void			find_best_path(t_client *current_client, char **map,
+				       t_server *server, char *message);
+
 #endif /* !SERVER_H_ */

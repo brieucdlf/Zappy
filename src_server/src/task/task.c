@@ -31,7 +31,6 @@ int			strcmp_function_task(char *command_elem,
 {
   char			*first_word;
 
-  printf("%s\n", command);
   if ((first_word = strtok((char *)command, " ")) == NULL)
     return (1);
   return (strcmp(command_elem, first_word));

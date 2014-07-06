@@ -76,16 +76,6 @@ void			pose_task_function(t_server *server,
   return create_new_write_task(client, "ok");
 }
 
-void			broadcast_task_function(t_server *server,
-					        t_client *client,
-						char *arg)
-{
-  (void)server;
-  (void)client;
-  (void)arg;
-  printf("broadcast message\n");
-}
-
 void		        incantation_task_function(t_server *server,
 						  t_client *client,
 						  char *arg)

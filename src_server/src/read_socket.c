@@ -96,7 +96,6 @@ int			map_check_read_client(t_list *current_client, void *arg)
     return (1);
   server = (t_server *)arg;
   client = (t_client *)current_client->data;
-  printf("client->fd_socket : %d\n", client->fd_socket);
   if (FD_ISSET(client->fd_socket, &(server->readfd)))
     {
       memset(buff, 0, 2048);

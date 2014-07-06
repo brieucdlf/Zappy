@@ -36,8 +36,8 @@ def main(argv):
         infos["x_y"].append(int(coord[0]))
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
-    so.send_request("broadcast salut\n")
-    sleep(2)
+    while (1):
+        pass
 
 if __name__ == "__main__":    
     main(sys.argv)

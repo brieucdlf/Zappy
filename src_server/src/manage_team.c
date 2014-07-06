@@ -6,10 +6,9 @@ int			get_id_team(t_server *server, const char *team)
 
   for (index = 0; server->param_server.teams_names[index] != NULL; index++)
     {
-      printf("try : [%s] [%s]\n", team, server->param_server.teams_names[index]);
       if (strcmp(server->param_server.teams_names[index], team) == 0)
 	{
-	  printf("\033[42mTeam player :\033[0m%s\n",
+	  printf("[+]\033[42mTeam player :\033[0m%s\n",
 		 server->param_server.teams_names[index]);
 	  return (index);
 	}
