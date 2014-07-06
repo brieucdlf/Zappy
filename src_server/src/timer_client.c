@@ -19,10 +19,15 @@ int				check_timeout_client(t_list *current_item,
       (current_client = (t_client *)current_item->data) == NULL)
     return (1);
   gettimeofday(&current_time, NULL);
-  if (current_client->timeout.tv_sec < current_time.tv_sec ||
-      current_client->food_timer.tv_sec < current_time.tv_sec)
+  if (current_client->timeout.tv_sec < current_time.tv_sec)
     {
       printf("[-] TimeOut client [%d]\n", current_client->id_client);
+      deconnection_client((t_server *)arg, current_client);
+      return (0);
+    }
+  if (current_client->food_timer.tv_sec < current_time.tv_sec)
+    {
+      printf("[-] Client dead, no food [%d]\n", current_client->id_client);
       deconnection_client((t_server *)arg, current_client);
       return (0);
     }
