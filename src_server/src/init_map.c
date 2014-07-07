@@ -47,6 +47,13 @@ void			display_map(t_server *server)
   int			nb;
   int			tab[7];
 
+  printf("\033[30;31mFOOD - ");
+  printf("\033[30;32mLINEMATE - ");
+  printf("\033[30;33mDERAUMERE - ");
+  printf("\033[30;34mSIBUR - ");
+  printf("\033[30;35mMENDIANE - ");
+  printf("\033[30;36mPHIRAS - ");
+  printf("\033[30;37mTHYSTAME \n\n");
   for (position_y = 0; position_y < server->map.height; position_y++)
     {
       for (position_x = 0; position_x < server->map.width; position_x++)
@@ -66,7 +73,7 @@ void			display_map(t_server *server)
 	      tab[((t_item *)current_item->data)->type] += 1;
 	      current_item = current_item->next;
 	    }
-	  printf("[%d %d %d %d %d %d %d]", tab[0], tab[1], tab[2], tab[3],
+	  printf("[\033[30;31m%d \033[30;32m%d \033[30;33m%d \033[30;34m%d \033[30;35m%d \033[30;36m%d \033[30;37m%d]", tab[0], tab[1], tab[2], tab[3],
 		 tab[4], tab[5], tab[6]);
 	}
       printf("\n");
