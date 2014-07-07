@@ -35,7 +35,8 @@
 # define TIMEOUT_SEC		0
 # define TIMEOUT_USEC		1
 
-# define TIMEOUT_CLIENT		5
+# define TIMEOUT_CLIENT		10
+# define SLEEP_CLIENT		10
 
 # define FOOD_ADD		126
 # define FOOD_LIVE		1260
