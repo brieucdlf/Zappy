@@ -21,7 +21,7 @@ void			avance_task_function(t_server *server,
     client->direction.position_y = 0;
   if (client->direction.position_y < 0)
     client->direction.position_y = server->map.height;
-  create_new_write_task(client, "ok");
+  create_new_write_task(client, "OK\n");
 }
 
 void			droite_task_function(t_server *server,
@@ -31,7 +31,7 @@ void			droite_task_function(t_server *server,
   (void)server;
   (void)arg;
   client->direction.orientation += 1 % 4;
-  create_new_write_task(client, "ok");
+  create_new_write_task(client, "OK\n");
 }
 
 void			gauche_task_function(t_server *server,
@@ -43,7 +43,7 @@ void			gauche_task_function(t_server *server,
   client->direction.orientation -= 1;
   if (client->direction.orientation < 0)
     client->direction.orientation = 3;
-  create_new_write_task(client, "ok");
+  create_new_write_task(client, "OK\n");
 }
 
 void			inventaire_task_function(t_server *server,
@@ -58,9 +58,9 @@ void			inventaire_task_function(t_server *server,
     return ;
   memset(inventaire, 0, 1024);
   sprintf(inventaire, "nourriture %d, linemate %d, deraumere %d, sibur %d,\
- mendiane %d, phiras %d, thystane %d", client->items[6], client->items[0],
-	  client->items[1], client->items[2], client->items[3],
-	  client->items[4], client->items[5]);
+ mendiane %d, phiras %d, thystane %d\n", client->items[0], client->items[1],
+	  client->items[2], client->items[3], client->items[4],
+	  client->items[5], client->items[6]);
   create_new_write_task(client, inventaire);
   free(inventaire);
 }

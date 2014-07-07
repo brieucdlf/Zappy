@@ -45,29 +45,36 @@ void			display_map(t_server *server)
   int			position_y;
   t_list		*current_item;
   int			nb;
+  int			tab[7];
 
+  printf("\033[30;31mFOOD - ");
+  printf("\033[30;32mLINEMATE - ");
+  printf("\033[30;33mDERAUMERE - ");
+  printf("\033[30;34mSIBUR - ");
+  printf("\033[30;35mMENDIANE - ");
+  printf("\033[30;36mPHIRAS - ");
+  printf("\033[30;37mTHYSTAME \n\n");
   for (position_y = 0; position_y < server->map.height; position_y++)
     {
       for (position_x = 0; position_x < server->map.width; position_x++)
 	{
 	  nb = 0;
 	  current_item = server->map.map[position_y][position_x];
+	  tab[0] = 0;
+	  tab[1] = 0;
+	  tab[2] = 0;
+	  tab[3] = 0;
+	  tab[4] = 0;
+	  tab[5] = 0;
+	  tab[6] = 0;
 	  while (current_item != NULL)
 	    {
 	      nb++;
+	      tab[((t_item *)current_item->data)->type] += 1;
 	      current_item = current_item->next;
 	    }
-	  if (nb == 0)
-	    printf("\033[30;31m[%d]", nb);
-	  else if (nb == 1)
-	    printf("\033[30;33m[%d]", nb);
-	  else if (nb == 2)
-	    printf("\033[30;32m[%d]", nb);
-	  else if (nb > 3)
-	    printf("\033[30;34m[%d]", nb);
-	  else
-	    printf("\033[30;35m[%d]", nb);
-	  printf("\033[0m");
+	  printf("[\033[30;31m%d \033[30;32m%d \033[30;33m%d \033[30;34m%d \033[30;35m%d \033[30;36m%d \033[30;37m%d]", tab[0], tab[1], tab[2], tab[3],
+		 tab[4], tab[5], tab[6]);
 	}
       printf("\n");
     }
@@ -81,14 +88,14 @@ int			init_map(t_server *server)
   server->map.height = server->param_server.world_height;
   if (create_map(server) != 0)
     return (1);
-  nb_item = ((server->map.width * server->map.height) * 50) / 100;
+  nb_item = ((server->map.width * server->map.height) * 300) / 100;
   server->map.items = NULL;
   while (nb_item >= 0)
     {
       generate_item(server);
       nb_item--;
     }
-  nb_item = ((server->map.width * server->map.height) * 20) / 100;
+  nb_item = ((server->map.width * server->map.height) * 70) / 100;
   while (nb_item >= 0)
     {
       generate_food(server);

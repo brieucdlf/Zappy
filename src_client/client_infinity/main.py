@@ -11,20 +11,13 @@ def connect_socket(argument):
         exit(1)
     return so
 
-def main(argv):
-    infos = {
-        "num_client" : [],
-        "x_y" : [],
-    }
-    config_server = {}
-    config_server = parse_argument(argv)
-    so = connect_socket(config_server)
+def set_server(so, infos):
     # if so.read_request() != "Bienvenue\n":
     #     print "TOTO"
     print so.read_request() 
     so.send_request("team4\n")
     num_client = int(so.read_request())
-    if num_client >= 1:
+    if num_client >= 0:
         infos["num_client"] = num_client
     else:
         return
@@ -36,8 +29,18 @@ def main(argv):
         infos["x_y"].append(int(coord[0]))
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
-    while (1):
-        pass
+    so.send_request("prend phiras\n")
+    print (so.read_request())
+
+def main(argv):
+    infos = {
+        "num_client" : [],
+        "x_y" : [],
+    }
+    config_server = {}
+    config_server = parse_argument(argv)
+    so = connect_socket(config_server)
+    set_server(so, infos)
 
 if __name__ == "__main__":    
     main(sys.argv)

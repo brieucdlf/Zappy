@@ -2,9 +2,6 @@
 
 void			add_live_food(t_server *server, t_client *client)
 {
-    struct timeval	current_time;
-
-  gettimeofday(&current_time, NULL);
   if (client->food_timer.tv_usec +
       (((double)FOOD_ADD / server->param_server.execution_time) * 1000) >
       (double)MAX_TIMER_VALUE)
@@ -23,9 +20,7 @@ void			add_live_food(t_server *server, t_client *client)
 
 void			init_timer_food(t_server *server, t_client *client)
 {
-  struct timeval	current_time;
-
-  gettimeofday(&current_time, NULL);
+  gettimeofday(&client->food_timer, NULL);
   if (client->food_timer.tv_usec +
       (((double)FOOD_LIVE / server->param_server.execution_time) * 1000) >
       (double)MAX_TIMER_VALUE)

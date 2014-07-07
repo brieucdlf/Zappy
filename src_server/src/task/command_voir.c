@@ -69,5 +69,5 @@ client,
     {
       check_line(server, client, index_level_client, direction_position);
     }
-  create_new_write_task(client, "OK");
+  create_new_write_task(client, "OK\n");
 }
