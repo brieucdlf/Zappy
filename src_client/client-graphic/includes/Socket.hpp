@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:22:01 2014 Jeremy Peltier
-// Last update Fri Jul  4 15:44:30 2014 Jeremy Peltier
+// Last update Mon Jul  7 15:52:31 2014 Remi Hillairet
 //
 
 #ifndef		CLIENT_HPP_
@@ -45,7 +45,7 @@ public:
 public:
   void			setHost(std::string &);
   void			setPort(int);
-  std::string		readSocket();
+  const std::string	readSocket();
   void			writeOnSocket(std::string &);
 
 private:

@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Mon Jul  7 11:41:27 2014 Jeremy Peltier
+// Last update Mon Jul  7 15:54:58 2014 Remi Hillairet
 //
 
 #include	"Socket.hpp"
@@ -70,21 +70,23 @@ bool	Socket::isConnected()
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{
-	  this->read = "";
+	  int retRead;
 	  char buff[2048];
-	  ::memset(buff, 0, 2048);
 
-	  if ((::read(this->fd, buff, 2047)) <= 0)
+	  retRead = ::read(this->fd, buff, 2047);
+	  if (retRead <= 0)
 	    this->connected = true;
-	  this->read = buff;
+	  buff[retRead] = '\0';
+	  this->read += buff;
 	}
       if (FD_ISSET(this->fd, &(this->writeFd)))
 	{
-	  static bool toto = true;
-	  if (toto)
+	  static bool firstInit = true;
+	  if (firstInit)
 	    {
+	      std::cout << "Init Graphic Client" << std::endl;
 	      ::write(this->fd, "GRAPHIC\n", 8);
-	      toto = false;
+	      firstInit = false;
 	    }
 	}
     }
@@ -103,9 +105,13 @@ void	Socket::setPort(int port)
   this->port = port;
 }
 
-std::string	Socket::readSocket()
+const std::string	Socket::readSocket()
 {
-  return this->read;
+  std::string readCopy;
+
+  readCopy = this->read;
+  read.clear();
+  return readCopy;
 }
 
 void	Socket::writeOnSocket(std::string &string)
