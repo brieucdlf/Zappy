@@ -1,9 +1,9 @@
 import sys
 import os
-import algo
 from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
+from algo import begin_select
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -41,6 +41,7 @@ def main(argv):
     config_server = parse_argument(argv)
     so = connect_socket(config_server)
     set_server(so, infos)
+    begin_select(so)
 
 if __name__ == "__main__":    
     main(sys.argv)
