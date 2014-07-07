@@ -10,6 +10,13 @@ void			free_client(void *arg)
   free(client);
 }
 
+void			init_position_default_client(t_client *client)
+{
+  client->direction.orientation = MAP_DIRECTION_ORIENTATION_NORTH;
+  client->direction.position_x = 0;
+  client->direction.position_y = 0;
+}
+
 void			add_new_client(t_server *server,
 				       int fd_socket, int id_team)
 {
@@ -33,4 +40,5 @@ void			add_new_client(t_server *server,
   id_client += 1;
   init_timer_client(new_client);
   init_timer_food(server, new_client);
+  init_position_default_client(new_client);
 }

@@ -57,7 +57,12 @@ void		        fill_copy_map_path(t_client *sender,
   map[sender->direction.position_y][sender->direction.position_x] = 1;
   while (current_client != NULL)
     {
-      if (((t_client *)(current_client->data))->id_client != sender->id_client)
+      if (((t_client *)(current_client->data))->is_ready = 1 &&
+	  ((t_client *)(current_client->data))->id_client != sender->id_client
+	  && ((t_client *)(current_client->data))->direction.position_y >= 0 &&
+	  ((t_client *)(current_client->data))->direction.position_y < server->map.height &&
+	  ((t_client *)(current_client->data))->direction.position_x >= 0 &&
+	  ((t_client *)(current_client->data))->direction.position_x < server->map.width)
 	map[((t_client *)(current_client->data))->direction.position_y]
 	  [((t_client *)(current_client->data))->direction.position_x] = -2;
       current_client = current_client->next;
@@ -76,7 +81,8 @@ void			send_broadcast_player(t_server *server,
   map[sender->direction.position_y][sender->direction.position_x] = 1;
   while (current_client != NULL)
     {
-      if (((t_client *)(current_client->data))->id_client != sender->id_client)
+      if (((t_client *)(current_client->data))->is_ready == 1 &&
+	  ((t_client *)(current_client->data))->id_client != sender->id_client)
 	find_best_path(((t_client *)(current_client->data)),
 		       map, server, message);
       current_client = current_client->next;
