@@ -39,7 +39,6 @@ int			strcmp_function_task(char *command_elem,
     return (1);
   if (strcmp(command_elem, first_word) == 0)
     return (0);
-  printf("Error strcmp\n");
   return (1);
 }
 
@@ -84,7 +83,6 @@ t_task			*add_function_task(t_server *server, const char *command)
 
 t_task			*new_task(t_server *server, const char *command)
 {
-  printf("Create new taask = %s\n", command);
   if (command == NULL)
     return (NULL);
   return (add_function_task(server, command));

@@ -1,8 +1,6 @@
 #include "user.h"
 #include "server.h"
 
-void		        test_list();
-
 void		init_server(t_server *server)
 {
   server->clients = NULL;
