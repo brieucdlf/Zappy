@@ -39,5 +39,6 @@ void			server_loop(t_server *server)
 	  printf("Timeout ! Connection not established\n");
 	  return ;
 	}
+      usleep(100);
     }
 }

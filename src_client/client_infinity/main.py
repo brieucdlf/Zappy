@@ -3,6 +3,9 @@ import os
 from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
+import random
+
+command = ["voir\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prendre nourriture\n", "pose sibur\n"]
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -29,8 +32,10 @@ def set_server(so, infos):
         infos["x_y"].append(int(coord[0]))
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
-    so.send_request("voir\n")
-    print (so.read_request())
+    
+    while 1:
+        so.send_request("avance\n")
+        print (so.read_request())
 
 def main(argv):
     infos = {

@@ -7,7 +7,8 @@ int			write_task_socket(t_write_task *head_task,
   int			ret;
 
   ret = 0;
-  printf("try to write = %s\n", &head_task->buffer[head_task->index]);
+  printf("\033[31m[+]try to write = \033[0m%s\n",
+	 &head_task->buffer[head_task->index]);
   if ((ret = write(current_client->fd_socket,
 		   &head_task->buffer[head_task->index],
 		   strlen(&head_task->buffer[head_task->index]))) <= 0)
@@ -19,10 +20,26 @@ int			write_task_socket(t_write_task *head_task,
 	deconnection_client(server, current_client);
       return (0);
     }
+  printf("[+] Write task success %d\n", ret);
   head_task->index += ret;
   if (head_task->index >= (int)strlen(head_task->buffer))
     list_pop(&current_client->write_tasks);
   return (1);
+}
+
+void			loop_write_task(t_client *client, t_server *server)
+{
+  t_list		*current_task;
+
+  if ((current_task = client->write_tasks) == NULL)
+    return ;
+  while (current_task != NULL &&
+	 FD_ISSET(client->fd_socket, &(server->writefd)))
+    {
+      if (current_task->data != NULL)
+	write_task_socket(((t_write_task *)current_task->data), client, server);
+      current_task = current_task->next;
+    }
 }
 
 int			map_check_write_client(t_list *current_client,
@@ -33,10 +50,8 @@ int			map_check_write_client(t_list *current_client,
   t_write_task		*head_task;
 
   if ((client = (t_client *)current_client->data) == NULL ||
-      (server = (t_server *)arg) == NULL || client->write_tasks == NULL ||
-      (head_task = (t_write_task *)client->write_tasks->data) == NULL)
+      (server = (t_server *)arg) == NULL)
     return (1);
-  if (FD_ISSET(client->fd_socket, &(server->writefd)))
-    return (write_task_socket(head_task, client, server));
+  loop_write_task(client, server);
   return (1);
 }
