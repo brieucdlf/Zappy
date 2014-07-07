@@ -4,18 +4,14 @@ char			**copy_map(int width, int height)
 {
   char			**map;
   int			index_position_y;
-  int			index_position_x;
 
   if ((map = malloc(sizeof(char *) * height)) == NULL)
     return (NULL);
   for (index_position_y = 0; index_position_y < height; index_position_y++)
     {
-      for (index_position_x = 0; index_position_x < width; index_position_x++)
-	{
-	  if ((map[index_position_y] = malloc(sizeof(char) * width)) == NULL)
-	    return (NULL);
-	  memset(map[index_position_y], 0, width);
-	}
+      if ((map[index_position_y] = malloc(sizeof(char) * width)) == NULL)
+	return (NULL);
+      memset(map[index_position_y], 0, width);
     }
   return (map);
 }
