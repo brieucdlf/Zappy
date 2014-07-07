@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 13:39:08 2014 Jeremy Peltier
-// Last update Mon Jul  7 11:09:03 2014 Jeremy Peltier
+// Last update Mon Jul  7 15:52:47 2014 Remi Hillairet
 //
 
 #ifndef		TASK_MANAGER_HPP_
@@ -25,7 +25,7 @@ public:
 public:
   void		add(Task);
   std::string	getTask();
-  void		updateBuffer(std::string);
+  void		updateBuffer(const std::string);
   void		showAll();
 
 private:

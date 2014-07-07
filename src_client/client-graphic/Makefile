@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Fri Jul  4 15:36:16 2014 Jeremy Peltier
+## Last update Mon Jul  7 11:29:58 2014 Remi Hillairet
 ##
 
 CC		=	g++ -g
@@ -14,7 +14,7 @@ RM		=	rm -fv
 
 NAME		=	../../graphic-client
 
-CXXFLAGS	=	-Wall -Wextra -Werror -W -fPIC
+CXXFLAGS	=	-Wall -Wextra -Werror -W
 CXXFLAGS	+=	-I$(INCLUDES)
 
 SRCS		=	main.cpp \

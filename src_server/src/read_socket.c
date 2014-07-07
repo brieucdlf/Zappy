@@ -80,7 +80,7 @@ int			interpret_buffer_read_client(t_server *server,
 	  memset(client->buffer.buffer_read, 0, 2048);
 	  index++;
 	  memcpy(client->buffer.buffer_read, &buff[index],
-		 strlen(&buff[index]));
+		 strlen(&buff[index]) % 2047);
 	  client->buffer.index_read_buffer = strlen(&buff[index]);
 	  return (1);
 	}
