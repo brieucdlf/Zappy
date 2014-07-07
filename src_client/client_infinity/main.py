@@ -32,7 +32,7 @@ def set_server(so, infos):
         infos["x_y"].append(int(coord[0]))
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
-    
+
     while 1:
         so.send_request("avance\n")
         print (so.read_request())

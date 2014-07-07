@@ -5,7 +5,7 @@ class SocketServer:
     __ip_address = None
     __port = None
     __socket_server = None
-    __fd_socket = 0
+    fd_socket = 0
 
     def __init__(self, ip_address, port):
         self.__ip_address = ip_address
@@ -22,5 +22,5 @@ class SocketServer:
             self.__socket_server.connect((self.__ip_address, self.__port))
         except:
             return False
-        self.__fd_socket = self.__socket_server.fileno()
+        self.fd_socket = self.__socket_server.fileno()
         return True
