@@ -74,7 +74,7 @@ void			pose_task_function(t_server *server,
   item = NULL;
   for (index_item = 0; index_item < 7 &&
 	 strcmp(arg, name_item[index_item]) != 0; index_item++);
-  if (index_item == 7)
+  if (index_item >= 7)
     {
       create_new_write_task(client, "KO\n");
       return ;
