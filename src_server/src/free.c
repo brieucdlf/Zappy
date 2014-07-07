@@ -1,5 +1,17 @@
 #include "server.h"
 
+void			free_double_array_delimiter(char **tab,
+						    unsigned int height)
+{
+  unsigned int			index_height;
+
+  if (tab == NULL)
+    return ;
+  for (index_height = 0; index_height < height; index_height++)
+    free(tab[index_height]);
+  free(tab);
+}
+
 void			free_double_array(char **tab)
 {
   int			index;

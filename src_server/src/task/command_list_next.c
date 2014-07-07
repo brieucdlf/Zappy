@@ -30,11 +30,9 @@ void		        prend_task_function(t_server *server,
 					 "sibur\n", "mendiane\n", "phiras\n",
 					 "thystame\n"};
 
-  if (arg == NULL)
-    return ;
   current_item = server->map.map[client->direction.position_y]
     [client->direction.position_x];
-  while (current_item !=  NULL)
+  while (arg != NULL && current_item !=  NULL)
     {
       if ((item = current_item->data) != NULL &&
 	  strcmp(arg, name_item[item->type]) == 0)
@@ -69,13 +67,16 @@ void			pose_task_function(t_server *server,
 					 "thystame\n"};
 
   if (arg == NULL)
-    return ;
+    {
+      create_new_write_task(client, "KO\n");
+      return ;
+    }
   item = NULL;
   for (index_item = 0; index_item < 7 &&
 	 strcmp(arg, name_item[index_item]) != 0; index_item++);
-  if (index_item == 7)
+  if (index_item >= 7)
     {
-      create_new_write_task(client, "ko");
+      create_new_write_task(client, "KO\n");
       return ;
     }
   if ((item = malloc(sizeof(t_item))) == NULL)

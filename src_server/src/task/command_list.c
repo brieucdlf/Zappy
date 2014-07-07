@@ -13,14 +13,14 @@ void			avance_task_function(t_server *server,
     client->direction.position_x -= 1;
   else
     client->direction.position_x += 1;
-  if (client->direction.position_x > server->map.width)
+  if (client->direction.position_x >= server->map.width)
     client->direction.position_x = 0;
   if (client->direction.position_x < 0)
-    client->direction.position_x = server->map.width;
-  if (client->direction.position_y > server->map.height)
+    client->direction.position_x = server->map.width - 1;
+  if (client->direction.position_y >= server->map.height)
     client->direction.position_y = 0;
   if (client->direction.position_y < 0)
-    client->direction.position_y = server->map.height;
+    client->direction.position_y = server->map.height - 1;
   create_new_write_task(client, "OK\n");
 }
 

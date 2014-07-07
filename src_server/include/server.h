@@ -24,18 +24,19 @@
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
-# define DEFAULT_WIDTH		10
-# define DEFAULT_HEIGHT		10
-# define MIN_WIDTH		100
-# define MIN_HEIGHT		100
-# define MAX_WIDTH		1000
-# define MAX_HEIGHT		1000
+# define DEFAULT_WIDTH		100
+# define DEFAULT_HEIGHT		20
+# define MIN_WIDTH		10
+# define MIN_HEIGHT		10
+# define MAX_WIDTH		100
+# define MAX_HEIGHT	        100
 # define CLIENT_START		10
 # define EXECUTION_TIME		1
 # define TIMEOUT_SEC		0
 # define TIMEOUT_USEC		1
 
-# define TIMEOUT_CLIENT		5
+# define TIMEOUT_CLIENT		10
+# define SLEEP_CLIENT		10
 
 # define FOOD_ADD		126
 # define FOOD_LIVE		1260
@@ -204,5 +205,9 @@ void			init_timer_food(t_server *server, t_client *client);
 void			add_live_food(t_server *server, t_client *client);
 
 void			check_timer_clients(t_server *server);
+
+void			free_double_array_delimiter(char **tab,
+						    unsigned int height);
+
 
 #endif /* !SERVER_H_ */
