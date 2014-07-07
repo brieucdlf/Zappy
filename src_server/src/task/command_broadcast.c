@@ -57,7 +57,7 @@ void		        fill_copy_map_path(t_client *sender,
   map[sender->direction.position_y][sender->direction.position_x] = 1;
   while (current_client != NULL)
     {
-      if (((t_client *)(current_client->data))->is_ready = 1 &&
+      if (((t_client *)(current_client->data))->is_ready == 1 &&
 	  ((t_client *)(current_client->data))->id_client != sender->id_client
 	  && ((t_client *)(current_client->data))->direction.position_y >= 0 &&
 	  ((t_client *)(current_client->data))->direction.position_y < server->map.height &&

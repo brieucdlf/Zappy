@@ -4,6 +4,7 @@ from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
 import random
+import signal
 
 command = ["voir\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "prend food\n", "prend mendiane\n", "prend phiras\n", "prend thystame\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n"]
 
@@ -13,6 +14,9 @@ def connect_socket(argument):
         print ("Error connexion to server ip:[{0}] port:[{1}]".format(argument["ip"], argument["port"]))
         exit(1)
     return so
+
+def handle_signal_pipe():
+    print("sigpipae")
 
 def set_server(so, infos):
     # if so.read_request() != "Bienvenue\n":
@@ -33,11 +37,16 @@ def set_server(so, infos):
         infos["x_y"].append(int(coord[1]))
     print infos["x_y"]
 
+    #signal.signal(signal.SIGPIPE, handle_signal_pipe)
+
     while 1:
-        task = random.choice(command)
-        so.send_request(task)
-        sleep(1)
-        so.read_request()
+        try:
+            task = random.choice(command)
+            so.send_request(task)
+            so.read_request()
+        except:
+            print("Error pipe")
+            exit(0)
 
 def main(argv):
     infos = {
