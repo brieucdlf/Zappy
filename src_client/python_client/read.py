@@ -11,32 +11,41 @@ player = {
     "inventaire" : [],
     "lvl" : 1,
     "flag_voir" : 1,
-    "what_i_see" : {}
+    "what_i_see" : {},
+    "target_pos" : 0
 }
 
 def check_voir(so):
-    if player["flag_voir"] == 1:
-        so.send_request("voir\n")
-        request.append("voir\n")
-        player["flag_voir"] = 0
-        print "VOIR OK"
-        return 1
-    return 0
+    so.send_request("voir\n")
+    request.append("voir\n")
+    player["flag_voir"] = 0
+    print "WRITE VOIR OK"
     
-# # def check_food(so):
-# #     so.send_request("inventaire\n")
-# #     request.append("inventaire\n")
-# #     print "check food"
-# #     return
+def check_food(so):
+    i = 0
+    if len(player["what_i_see"]) != 0:
+        for key in player["what_i_see"]:
+            for item in player["what_i_see"][key]:
+                if player["what_i_see"][key][i] == "nourriture":
+                    print "food found"
+                    print player["what_i_see"][key].index(player["what_i_see"][key][i]) #J'affiche la position de la nourriture
+                    player["target_pos"] = player["what_i_see"][key].index(player["what_i_see"][key][i]) #Je set la position ou le joueur doit se diriger
+                    return
+                i = i + 1
+            i = 0
+        print "check food"
+    return
 
 # def find_rock():
 #     print "find rock"
 
 def send_ok(so):
-    if check_voir(so) == 1:
-        return
-    # check_food(so)
-    print "send OK"
+    if player["flag_voir"] == 1:
+        check_voir(so)
+        player["flag_voir"] = 0
+    else:
+        check_food(so)
+    print "SEND COMMAND OK"
 
 def read_ok(so):
     i = 0
@@ -69,9 +78,9 @@ def read_ok(so):
             i = i + 1
         print player["what_i_see"]
         request.remove(request[0])
-    elif request[0] == "inventaire\n":
+    elif request[0] == "inventaire\n":  #je rempli l'inventaire en local
         print "inventaire"
-        test = "deraumere,nourriture,nourriture,nourriture"
+        test = "deraumere,nourriture,nourriture,nourriture" #chaine de test
         player["inventaire"] = test.split(",")
         print player["inventaire"]
         request.remove(request[0])
@@ -105,10 +114,8 @@ def begin_select(so):
         inputready,outputready,exceptready = select.select([so.fd_socket],[so.fd_socket],[])
         for j in outputready:
             if j == so.fd_socket:
-                if player["flag_voir"] == 1:
-                    print "SEND OK"
-                    send_ok(so)
+                send_ok(so)
         for i in inputready:
             if i == so.fd_socket:
                 read_ok(so)
-                return
+        sleep(5)
