@@ -5,7 +5,7 @@ from argument import parse_argument
 from time import sleep
 import random
 
-command = ["voir\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prendre nourriture\n", "pose sibur\n"]
+command = ["voir\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "prend food\n", "prend mendiane\n", "prend phiras\n", "prend thystame\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend", "pose", "broadcast", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n"]
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -34,7 +34,8 @@ def set_server(so, infos):
     print infos["x_y"]
 
     while 1:
-        so.send_request("avance\n")
+        task = random.choice(command)
+        so.send_request(task)
         print (so.read_request())
 
 def main(argv):
