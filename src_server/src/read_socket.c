@@ -34,7 +34,7 @@ int			create_new_task_client(t_client *client,
     {
       if ((task = new_task(server, client->buffer.buffer_read)) != NULL)
 	{
-	  printf("[+] ADD Task client : \033[%dm%s\033[0m\n", 30 + client->fd_socket,
+	  printf("[+] ADD Task client[%d] : \033[%dm%s\033[0m\n", client->id_client, 30 + client->fd_socket,
 		 client->buffer.buffer_read);
 	  list_push(&client->tasks, task, free_task);
 	  init_timer_client(client);
@@ -48,7 +48,8 @@ int			create_new_task_client(t_client *client,
 	  if (!check_is_graphic_client(server, client,
 				       client->buffer.buffer_read))
 	    {
-	      printf("\033[31mWrong team nam :\033[0m%s\n",
+	      printf("\033[31mWrong team name[%d] :\033[0m%s\n",
+		     client->id_client,
 		     client->buffer.buffer_read);
 	      deconnection_client(server, client);
 	      return (0);
@@ -79,7 +80,7 @@ int			interpret_buffer_read_client(t_server *server,
 	  memset(client->buffer.buffer_read, 0, 2048);
 	  index++;
 	  memcpy(client->buffer.buffer_read, &buff[index],
-		 strlen(&buff[index]));
+		 strlen(&buff[index]) % 2047);
 	  client->buffer.index_read_buffer = strlen(&buff[index]);
 	  return (1);
 	}
@@ -103,6 +104,7 @@ int			map_check_read_client(t_list *current_client, void *arg)
       memset(buff, 0, 2048);
       if ((read(client->fd_socket, buff, 2047)) <= 0)
 	{
+	  printf("Error read\n");
 	  deconnection_client(server, client);
 	  return (0);
 	}
@@ -112,5 +114,6 @@ int			map_check_read_client(t_list *current_client, void *arg)
 	    return (0);
 	}
     }
+  usleep(5000);
   return (1);
 }

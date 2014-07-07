@@ -13,6 +13,7 @@ int			write_task_socket(t_write_task *head_task,
 		   &head_task->buffer[head_task->index],
 		   strlen(&head_task->buffer[head_task->index]))) <= 0)
     {
+      printf("Error write\n");
       if (server->graphic_client != NULL
 	  && server->graphic_client->fd_socket == current_client->fd_socket)
 	deconnection_graphic_client(server, current_client);
@@ -51,5 +52,6 @@ int			map_check_write_client(t_list *current_client,
       (server = (t_server *)arg) == NULL)
     return (1);
   loop_write_task(client, server);
+  usleep(5000);
   return (1);
 }

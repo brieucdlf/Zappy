@@ -16,8 +16,8 @@ void			update_max_fd_socket(t_list *current_client,
     return ;
   if (((t_server *)server)->fd_max <
       ((t_client *)current_client->data)->fd_socket)
-    ((t_server *)server)->fd_max = ((t_client *)current_client->data)
-      ->fd_socket;
+    ((t_server *)server)->fd_max =
+      ((t_client *)current_client->data)->fd_socket;
 }
 
 void			deconnection_client(t_server *server,
