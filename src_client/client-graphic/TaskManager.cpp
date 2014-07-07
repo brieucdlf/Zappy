@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 14:01:20 2014 Jeremy Peltier
-// Last update Mon Jul  7 17:51:08 2014 Remi Hillairet
+// Last update Mon Jul  7 19:24:26 2014 Jeremy Peltier
 //
 
 #include	"TaskManager.hpp"
@@ -24,10 +24,21 @@ TaskManager::~TaskManager()
 
 void	TaskManager::updateBuffer(std::string buffer)
 {
-    if (!buffer.empty())
-      {
-	std::cout << buffer << std::endl;
-      }
+  if (!buffer.empty())
+    {
+      std::string tmp = buffer;
+      std::string delimiter = "\n";
+      size_t pos = 0;
+      std::string command;
+
+      while ((pos = tmp.find(delimiter)) != std::string::npos)
+	{
+	  command = tmp.substr(0, pos);
+	  tmp.erase(0, pos + 1);
+	  Task	task(command);
+	  this->receiveTask.push_back(command);
+	}
+    }
 }
 
 void	TaskManager::add(Task task)
@@ -37,10 +48,13 @@ void	TaskManager::add(Task task)
 
 std::string	TaskManager::getTask()
 {
-  Task		task = receiveTask.front();
-  std::string	tmp = task.getCommand();
-  receiveTask.erase(receiveTask.begin());
-  return (tmp);
+  if (receiveTask.size() > 0)
+    {
+      std::string tmp = ((Task)receiveTask.front()).getCommand();
+      receiveTask.erase(receiveTask.begin());
+      return (tmp);
+    }
+  return "";
 }
 
 void	TaskManager::showAll()
