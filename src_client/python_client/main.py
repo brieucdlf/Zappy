@@ -3,7 +3,7 @@ import os
 from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
-from algo import begin_select
+from read import begin_select
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
