@@ -29,7 +29,10 @@ void		        prend_task_function(t_server *server,
 	  strcmp(arg, name_item[item->type]) == 0)
 	{
 	  if (item->type == FOOD)
-	    add_live_food(server, client);
+	    {
+	      add_live_food(server, client);
+	      generate_food(server);
+	    }
 	  else
 	    ++client->items[item->type];
 	  list_remove_with_data(&current_item, (void *)item,
