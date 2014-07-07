@@ -29,9 +29,7 @@ void		        prend_task_function(t_server *server,
 	  strcmp(arg, name_item[item->type]) == 0)
 	{
 	  if (item->type == FOOD)
-	    {
-	      printf("food incrementation vie\n");
-	    }
+	    add_live_food(server, client);
 	  else
 	    ++client->items[item->type];
 	  list_remove_with_data(&current_item, (void *)item,
