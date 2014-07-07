@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 14:01:20 2014 Jeremy Peltier
-// Last update Mon Jul  7 15:59:58 2014 Remi Hillairet
+// Last update Mon Jul  7 17:51:08 2014 Remi Hillairet
 //
 
 #include	"TaskManager.hpp"
@@ -28,7 +28,6 @@ void	TaskManager::updateBuffer(std::string buffer)
       {
 	std::cout << buffer << std::endl;
       }
-  }
 }
 
 void	TaskManager::add(Task task)
