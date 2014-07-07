@@ -18,8 +18,8 @@ void			generate_food(t_server *server)
   food->posy = rand() % (server->map.height);
   food->is_taken = 0;
   list_push(&server->map.map[rand() %
-			     server->map.width][rand() %
-						server->map.height],
+			     server->map.height][rand() %
+						server->map.width],
 	    (void *)food, free_item);
 }
 
@@ -34,8 +34,8 @@ void			generate_item(t_server *server)
   item->posy = rand() % (server->map.height);
   item->is_taken = 0;
   list_push(&server->map.map[rand() %
-			     server->map.width][rand() %
-						server->map.height],
+			     server->map.height][rand() %
+						 server->map.width],
 	    (void *)item, free_item);
 }
 

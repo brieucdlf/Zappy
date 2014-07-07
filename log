@@ -1,615 +1,77 @@
-==18570== Memcheck, a memory error detector
-==18570== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==18570== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
-==18570== Command: ./server
-==18570== Parent PID: 11143
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BAA7: fill_copy_map_path (command_broadcast.c:61)
-==18570==    by 0x804BBA1: broadcast_task_function (command_broadcast.c:96)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BAB6: fill_copy_map_path (command_broadcast.c:62)
-==18570==    by 0x804BBA1: broadcast_task_function (command_broadcast.c:96)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x804BC25: find_best_start (find_path.c:9)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x804BCA2: find_best_start (find_path.c:16)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BCB9: find_best_start (find_path.c:17)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BCC9: find_best_start (find_path.c:17)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BCF2: find_best_start (find_path.c:21)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BD02: find_best_start (find_path.c:21)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x804BD19: find_best_start (find_path.c:23)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x804BD9A: find_best_start (find_path.c:30)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BDB4: find_best_start (find_path.c:31)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BDC1: find_best_start (find_path.c:31)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x40922CB: _itoa_word (_itoa.c:179)
-==18570==    by 0x40959D8: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x40922D3: _itoa_word (_itoa.c:179)
-==18570==    by 0x40959D8: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x4092F7E: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x4092FEB: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x4096D12: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x4093034: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Conditional jump or move depends on uninitialised value(s)
-==18570==    at 0x409306D: vfprintf (vfprintf.c:1660)
-==18570==    by 0x40B7952: vsnprintf (vsnprintf.c:119)
-==18570==    by 0x409C512: snprintf (snprintf.c:33)
-==18570==    by 0x804BEA4: find_best_path (find_path.c:52)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BC3C: find_best_start (find_path.c:10)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BC4C: find_best_start (find_path.c:10)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BC75: find_best_start (find_path.c:14)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BC85: find_best_start (find_path.c:14)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BD35: find_best_start (find_path.c:24)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BD42: find_best_start (find_path.c:24)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BDED: find_best_start (find_path.c:35)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Use of uninitialised value of size 4
-==18570==    at 0x804BDFA: find_best_start (find_path.c:35)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Invalid write of size 1
-==18570==    at 0x804BAB6: fill_copy_map_path (command_broadcast.c:62)
-==18570==    by 0x804BBA1: broadcast_task_function (command_broadcast.c:96)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570==  Address 0x6976491 is 361 bytes inside a block of size 1,024 free'd
-==18570==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804BEC1: find_best_path (find_path.c:55)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Invalid read of size 1
-==18570==    at 0x804BC4C: find_best_start (find_path.c:10)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570==  Address 0x6976490 is 360 bytes inside a block of size 1,024 free'd
-==18570==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804BEC1: find_best_path (find_path.c:55)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Invalid read of size 1
-==18570==    at 0x804BC85: find_best_start (find_path.c:14)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570==  Address 0x6976490 is 360 bytes inside a block of size 1,024 free'd
-==18570==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804BEC1: find_best_path (find_path.c:55)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Invalid read of size 1
-==18570==    at 0x804BDC1: find_best_start (find_path.c:31)
-==18570==    by 0x804BE65: find_best_path (find_path.c:49)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570==  Address 0x69765c1 is 665 bytes inside a block of size 1,024 free'd
-==18570==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804BEC1: find_best_path (find_path.c:55)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== Invalid read of size 4
-==18570==    at 0x8048CCA: map_list_with_stop (map_list.c:30)
-==18570==    by 0x804990F: server_loop (run_server.c:31)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570==  Address 0x62513f8 is 8 bytes inside a block of size 12 free'd
-==18570==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048DC3: first_elem_remove_list (remove_list.c:26)
-==18570==    by 0x8048DFF: list_remove_with_data (remove_list.c:38)
-==18570==    by 0x804A1B3: deconnection_client (deconnection_client.c:29)
-==18570==    by 0x804A2C7: write_task_socket (write_socket.c:20)
-==18570==    by 0x804A3A1: loop_write_task (write_socket.c:36)
-==18570==    by 0x804A3E1: map_check_write_client (write_socket.c:53)
-==18570==    by 0x8048CC0: map_list_with_stop (map_list.c:28)
-==18570==    by 0x804990F: server_loop (run_server.c:31)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 
-==18570== HEAP SUMMARY:
-==18570==     in use at exit: 112,003,363 bytes in 546,152 blocks
-==18570==   total heap usage: 612,398 allocs, 66,246 frees, 164,720,864 bytes allocated
-==18570== 
-==18570== 10,244 bytes in 1 blocks are possibly lost in loss record 19 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AE9D: pose_task_function (command_list_next.c:90)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 10,244 bytes in 1 blocks are possibly lost in loss record 20 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804B5B2: voir_task_function (command_voir.c:72)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 10,244 bytes in 1 blocks are definitely lost in loss record 21 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804BBE6: broadcast_task_function (command_broadcast.c:99)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 10,244 bytes in 1 blocks are definitely lost in loss record 22 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AA8C: droite_task_function (command_list.c:34)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 20,488 bytes in 2 blocks are definitely lost in loss record 24 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AD4A: prend_task_function (command_list_next.c:55)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 20,488 bytes in 2 blocks are definitely lost in loss record 25 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AA5C: avance_task_function (command_list.c:24)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 30,732 bytes in 3 blocks are definitely lost in loss record 26 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AD1C: prend_task_function (command_list_next.c:50)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 30,732 bytes in 3 blocks are definitely lost in loss record 27 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804B5B2: voir_task_function (command_voir.c:72)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 40,976 bytes in 4 blocks are definitely lost in loss record 28 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804AE9D: pose_task_function (command_list_next.c:90)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 61,464 bytes in 6 blocks are possibly lost in loss record 29 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804BEB6: find_best_path (find_path.c:54)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 122,928 bytes in 12 blocks are definitely lost in loss record 31 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x8049066: add_new_client (init_client.c:32)
-==18570==    by 0x8049A38: check_connect_client (connect_client.c:20)
-==18570==    by 0x8049925: server_loop (run_server.c:34)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 750,000 bytes in 62,500 blocks are definitely lost in loss record 38 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B2BE: create_map (create_map.c:22)
-==18570==    by 0x80496AD: init_map (init_map.c:89)
-==18570==    by 0x8048B3A: main (main.c:19)
-==18570== 
-==18570== 911,716 bytes in 89 blocks are definitely lost in loss record 39 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x804B1A5: create_new_write_task (create_write_task.c:16)
-==18570==    by 0x804BEB6: find_best_path (find_path.c:54)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 1,610,192 (12 direct, 1,610,180 indirect) bytes in 1 blocks are definitely lost in loss record 45 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048C05: list_push (list.c:18)
-==18570==    by 0x804B216: create_new_write_task (create_write_task.c:21)
-==18570==    by 0x804BBE6: broadcast_task_function (command_broadcast.c:99)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 3,199,884 (24 direct, 3,199,860 indirect) bytes in 2 blocks are definitely lost in loss record 48 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048C05: list_push (list.c:18)
-==18570==    by 0x804B216: create_new_write_task (create_write_task.c:21)
-==18570==    by 0x804AD4A: prend_task_function (command_list_next.c:55)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 3,230,640 (24 direct, 3,230,616 indirect) bytes in 2 blocks are definitely lost in loss record 49 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048C05: list_push (list.c:18)
-==18570==    by 0x804B216: create_new_write_task (create_write_task.c:21)
-==18570==    by 0x804AD1C: prend_task_function (command_list_next.c:50)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 8,061,216 (60 direct, 8,061,156 indirect) bytes in 5 blocks are definitely lost in loss record 53 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048C05: list_push (list.c:18)
-==18570==    by 0x804B216: create_new_write_task (create_write_task.c:21)
-==18570==    by 0x804AE9D: pose_task_function (command_list_next.c:90)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== 87,135,060 (1,140 direct, 87,133,920 indirect) bytes in 95 blocks are definitely lost in loss record 55 of 55
-==18570==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==18570==    by 0x8048C05: list_push (list.c:18)
-==18570==    by 0x804B216: create_new_write_task (create_write_task.c:21)
-==18570==    by 0x804BEB6: find_best_path (find_path.c:54)
-==18570==    by 0x804BB3A: send_broadcast_player (command_broadcast.c:80)
-==18570==    by 0x804BBD3: broadcast_task_function (command_broadcast.c:98)
-==18570==    by 0x804B0F3: check_timer_client (timer.c:28)
-==18570==    by 0x8048C81: map_list (map_list.c:13)
-==18570==    by 0x804B151: check_timer (timer.c:42)
-==18570==    by 0x8049930: server_loop (run_server.c:35)
-==18570==    by 0x8048B81: main (main.c:25)
-==18570== 
-==18570== LEAK SUMMARY:
-==18570==    definitely lost: 1,949,808 bytes in 62,722 blocks
-==18570==    indirectly lost: 103,235,732 bytes in 20,035 blocks
-==18570==      possibly lost: 81,952 bytes in 8 blocks
-==18570==    still reachable: 6,735,871 bytes in 463,387 blocks
-==18570==         suppressed: 0 bytes in 0 blocks
-==18570== Reachable blocks (those to which a pointer was found) are not shown.
-==18570== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==18570== 
-==18570== For counts of detected and suppressed errors, rerun with: -v
-==18570== Use --track-origins=yes to see where uninitialised values come from
-==18570== ERROR SUMMARY: 6023 errors from 50 contexts (suppressed: 0 from 0)
+==21620== Memcheck, a memory error detector
+==21620== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==21620== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==21620== Command: ./server
+==21620== Parent PID: 11143
+==21620== 
+==21620== Invalid read of size 4
+==21620==    at 0x804BD95: find_best_start (find_path.c:31)
+==21620==    by 0x804BE46: find_best_path (find_path.c:49)
+==21620==    by 0x804BB1B: send_broadcast_player (command_broadcast.c:80)
+==21620==    by 0x804BBB4: broadcast_task_function (command_broadcast.c:98)
+==21620==    by 0x804B0F3: check_timer_client (timer.c:28)
+==21620==    by 0x8048C81: map_list (map_list.c:13)
+==21620==    by 0x804B151: check_timer (timer.c:42)
+==21620==    by 0x8049930: server_loop (run_server.c:35)
+==21620==    by 0x8048B81: main (main.c:25)
+==21620==  Address 0x4394490 is 0 bytes after a block of size 80 alloc'd
+==21620==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==21620==    by 0x804B881: copy_map (command_broadcast.c:8)
+==21620==    by 0x804BB5E: broadcast_task_function (command_broadcast.c:93)
+==21620==    by 0x804B0F3: check_timer_client (timer.c:28)
+==21620==    by 0x8048C81: map_list (map_list.c:13)
+==21620==    by 0x804B151: check_timer (timer.c:42)
+==21620==    by 0x8049930: server_loop (run_server.c:35)
+==21620==    by 0x8048B81: main (main.c:25)
+==21620== 
+==21620== Invalid read of size 1
+==21620==    at 0x804BDA2: find_best_start (find_path.c:31)
+==21620==    by 0x804BE46: find_best_path (find_path.c:49)
+==21620==    by 0x804BB1B: send_broadcast_player (command_broadcast.c:80)
+==21620==    by 0x804BBB4: broadcast_task_function (command_broadcast.c:98)
+==21620==    by 0x804B0F3: check_timer_client (timer.c:28)
+==21620==    by 0x8048C81: map_list (map_list.c:13)
+==21620==    by 0x804B151: check_timer (timer.c:42)
+==21620==    by 0x8049930: server_loop (run_server.c:35)
+==21620==    by 0x8048B81: main (main.c:25)
+==21620==  Address 0x2f is not stack'd, malloc'd or (recently) free'd
+==21620== 
+==21620== 
+==21620== Process terminating with default action of signal 11 (SIGSEGV)
+==21620==  Access not within mapped region at address 0x2F
+==21620==    at 0x804BDA2: find_best_start (find_path.c:31)
+==21620==    by 0x804BE46: find_best_path (find_path.c:49)
+==21620==    by 0x804BB1B: send_broadcast_player (command_broadcast.c:80)
+==21620==    by 0x804BBB4: broadcast_task_function (command_broadcast.c:98)
+==21620==    by 0x804B0F3: check_timer_client (timer.c:28)
+==21620==    by 0x8048C81: map_list (map_list.c:13)
+==21620==    by 0x804B151: check_timer (timer.c:42)
+==21620==    by 0x8049930: server_loop (run_server.c:35)
+==21620==    by 0x8048B81: main (main.c:25)
+==21620==  If you believe this happened as a result of a stack
+==21620==  overflow in your program's main thread (unlikely but
+==21620==  possible), you can try to increase the size of the
+==21620==  main thread stack using the --main-stacksize= flag.
+==21620==  The main thread stack size used in this run was 8388608.
+==21620== 
+==21620== HEAP SUMMARY:
+==21620==     in use at exit: 283,157 bytes in 16,900 blocks
+==21620==   total heap usage: 17,087 allocs, 187 frees, 812,765 bytes allocated
+==21620== 
+==21620== 24,000 bytes in 2,000 blocks are definitely lost in loss record 21 of 24
+==21620==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==21620==    by 0x804B2BE: create_map (create_map.c:22)
+==21620==    by 0x80496AD: init_map (init_map.c:89)
+==21620==    by 0x8048B3A: main (main.c:19)
+==21620== 
+==21620== LEAK SUMMARY:
+==21620==    definitely lost: 24,000 bytes in 2,000 blocks
+==21620==    indirectly lost: 0 bytes in 0 blocks
+==21620==      possibly lost: 0 bytes in 0 blocks
+==21620==    still reachable: 259,157 bytes in 14,900 blocks
+==21620==         suppressed: 0 bytes in 0 blocks
+==21620== Reachable blocks (those to which a pointer was found) are not shown.
+==21620== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==21620== 
+==21620== For counts of detected and suppressed errors, rerun with: -v
+==21620== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
