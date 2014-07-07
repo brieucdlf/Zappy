@@ -60,4 +60,6 @@ void			set_param(int argc, char **argv, t_param *param_server)
   if ((param_server->world_height > MAX_HEIGHT) ||
       (param_server->world_height < MIN_HEIGHT))
     param_server->world_width = DEFAULT_HEIGHT;
+  if (param_server->execution_time <= 0)
+    param_server-> execution_time = EXECUTION_TIME;
 }
