@@ -60,9 +60,11 @@ void		        fill_copy_map_path(t_client *sender,
       if (((t_client *)(current_client->data))->is_ready = 1 &&
 	  ((t_client *)(current_client->data))->id_client != sender->id_client
 	  && ((t_client *)(current_client->data))->direction.position_y >= 0 &&
-	  ((t_client *)(current_client->data))->direction.position_y < server->map.height &&
+	  ((t_client *)(current_client->data))->direction.position_y <
+	  server->map.height &&
 	  ((t_client *)(current_client->data))->direction.position_x >= 0 &&
-	  ((t_client *)(current_client->data))->direction.position_x < server->map.width)
+	  ((t_client *)(current_client->data))->direction.position_x <
+	  server->map.width)
 	map[((t_client *)(current_client->data))->direction.position_y]
 	  [((t_client *)(current_client->data))->direction.position_x] = -2;
       current_client = current_client->next;
