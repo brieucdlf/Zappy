@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Mon Jul  7 15:54:58 2014 Remi Hillairet
+// Last update Mon Jul  7 18:42:14 2014 Remi Hillairet
 //
 
 #include	"Socket.hpp"
@@ -66,7 +66,7 @@ bool	Socket::isConnected()
   FD_SET(this->fd, &(this->readFd));
   FD_SET(this->fd, &(this->writeFd));
 
-  if ((returnSelect = select(this->fd + 1, &(this->readFd), &(this->writeFd), NULL, NULL)) > 0)
+  if ((returnSelect = select(this->fd + 1, &(this->readFd), &(this->writeFd), NULL, NULL)) >= 0)
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{

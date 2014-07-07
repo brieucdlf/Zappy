@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:37:28 2014 remi hillairet
-## Last update Fri Jul  4 11:57:24 2014 Remi Hillairet
+## Last update Mon Jul  7 18:25:15 2014 Remi Hillairet
 ## Last update Thu May 15 13:32:33 2014 Brieuc
 ##
 
@@ -46,6 +46,8 @@ SRCS	=	src/main.c					\
 		src/task/command_broadcast.c			\
 		src/task/find_path.c				\
 		src/graphic_client/manage_graphic_client.c	\
+		src/graphic_client/read_write_graphic_client.c	\
+		src/graphic_client/command_graphic_client.c	\
 		src/timer_client.c				\
 		src/task/command_incantation.c			\
 		src/task/requirement_incantation.c		\
