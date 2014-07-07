@@ -44,7 +44,7 @@ void			loop_path_finder(char **map, t_server *server)
   number_path = 1;
   while (path_finder(map, number_path, server) != 0)
     number_path += 1;
-  display_map_broadcast(map, server->map.width, server->map.height);
+  //  display_map_broadcast(map, server->map.width, server->map.height);
 }
 
 void		        fill_copy_map_path(t_client *sender,

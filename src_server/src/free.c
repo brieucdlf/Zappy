@@ -3,7 +3,7 @@
 void			free_double_array_delimiter(char **tab,
 						    unsigned int height)
 {
-  int			index_height;
+  unsigned int			index_height;
 
   if (tab == NULL)
     return ;

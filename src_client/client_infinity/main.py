@@ -35,9 +35,9 @@ def set_server(so, infos):
 
     while 1:
         task = random.choice(command)
-        print(task)
         so.send_request(task)
-        print ("request : ", so.read_request())
+        sleep(1)
+        so.read_request()
 
 def main(argv):
     infos = {
