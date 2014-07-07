@@ -5,6 +5,8 @@ void			free_client(void *arg)
   t_client		*client;
 
   client = (t_client *)arg;
+  free(client->write_tasks);
+  free(client->tasks);
   free(client);
 }
 
