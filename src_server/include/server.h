@@ -205,4 +205,8 @@ void			add_live_food(t_server *server, t_client *client);
 
 void			check_timer_clients(t_server *server);
 
+void			free_double_array_delimiter(char **tab,
+						    unsigned int height);
+
+
 #endif /* !SERVER_H_ */
