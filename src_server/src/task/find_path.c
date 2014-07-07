@@ -13,7 +13,7 @@ void			find_best_start(char **map, int *start_position,
       *start_position = MAP_DIRECTION_ORIENTATION_WEST;
       start_value = map[client->direction.position_y][client->direction.position_x - 1];
     }
-  if (client->direction.position_x + 1 < server->map.height &&
+  if (client->direction.position_x + 1 < server->map.width &&
       map[client->direction.position_y][client->direction.position_x + 1] <
       start_value)
     {
@@ -27,7 +27,7 @@ void			find_best_start(char **map, int *start_position,
       *start_position = MAP_DIRECTION_ORIENTATION_NORTH;
       start_value = map[client->direction.position_y - 1][client->direction.position_x];
     }
-  if (client->direction.position_y + 1 < server->map.width &&
+  if (client->direction.position_y + 1 < server->map.height &&
       map[client->direction.position_y + 1][client->direction.position_x] <
       start_value)
     {
