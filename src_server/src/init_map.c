@@ -101,6 +101,6 @@ int			init_map(t_server *server)
       generate_food(server);
       nb_item--;
     }
-  display_map(server);
+  //  display_map(server);
   return (0);
 }

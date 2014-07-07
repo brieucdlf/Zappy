@@ -11,6 +11,8 @@ void			create_new_write_task(t_client *current_client,
 {
   t_write_task		*new_task;
 
+  printf("current_client = %p\n", current_client);
+  printf("command = %s\n", command);
   if ((new_task = malloc(sizeof(t_write_task))) == NULL)
     return ;
   new_task->index = 0;
