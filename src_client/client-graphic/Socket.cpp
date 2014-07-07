@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Fri Jul  4 15:45:32 2014 Jeremy Peltier
+// Last update Mon Jul  7 11:41:27 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -70,14 +70,13 @@ bool	Socket::isConnected()
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{
+	  this->read = "";
 	  char buff[2048];
+	  ::memset(buff, 0, 2048);
 
 	  if ((::read(this->fd, buff, 2047)) <= 0)
-	    this->connected = false;
-
-// std::stringstream  linestream(line);
-	  // linestream >> this->read;
-	  // std::cout << "Socket: Server response: " << this->read << std::endl;
+	    this->connected = true;
+	  this->read = buff;
 	}
       if (FD_ISSET(this->fd, &(this->writeFd)))
 	{

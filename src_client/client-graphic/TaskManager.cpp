@@ -5,14 +5,14 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 14:01:20 2014 Jeremy Peltier
-// Last update Fri Jul  4 15:54:34 2014 Jeremy Peltier
+// Last update Mon Jul  7 14:39:36 2014 Jeremy Peltier
 //
 
 #include	"TaskManager.hpp"
+#include	<iostream>
 
-TaskManager::TaskManager(Socket &socket)
+TaskManager::TaskManager()
 {
-  this->socket = socket;
   this->buffer = "";
 }
 
@@ -22,28 +22,34 @@ TaskManager::~TaskManager()
   this->receiveTask.clear();
 }
 
-void	TaskManager::updateBuffer()
+void	TaskManager::updateBuffer(std::string buffer)
 {
-  this->buffer += this->socket.readSocket();
+  if (buffer.c_str() != NULL) {
 
-  char	*parse;
-  char	*command;
+    std::cout << buffer << std::endl;
 
-  parse = (char *)this->buffer.c_str();
-  for (int i = 0; i < (int)this->buffer.length(); ++i)
-    {
-      if (parse[i] == '\n')
-	{
-	  for (int j = 0; j < (int)this->buffer.length() && parse[j] != '\n'; ++j)
-	    {
-	      command[j] = parse[j];
-	      this->buffer = &parse[j];
-	    }
-	  Task task(command);
-	  this->receiveTask.push_back(task);
-	  command = '\0';
-	}
-    }
+    // char	*parse;
+    // std::stringstream	command;
+    // std::string	string;
+
+    // parse = (char *)this->buffer.c_str();
+    // std::cout << parse << std::endl;
+    // for (int i = 0; i < (int)this->buffer.length(); ++i)
+    //   {
+    // 	if (parse[i] == '\n')
+    // 	  {
+    // 	    for (int j = 0; j < (int)this->buffer.length() && parse[j] != '\n'; ++j)
+    // 	      command << parse[j];
+    // 	    string = command.str();
+    // 	    command.clear();
+    // 	    ++i;
+    // 	    // this->buffer = "";
+    // 	    // Task task(string);
+    // 	    // this->receiveTask.push_back(task);
+    // 	  }
+    // 	std::cout << string << std::endl;
+    //   }
+  }
 }
 
 void	TaskManager::add(Task task)
@@ -57,4 +63,12 @@ std::string	TaskManager::getTask()
   std::string	tmp = task.getCommand();
   receiveTask.erase(receiveTask.begin());
   return (tmp);
+}
+
+void	TaskManager::showAll()
+{
+  for (unsigned int i = 0; i < receiveTask.size(); ++i)
+    {
+      std::cout << ((Task)receiveTask[i]).getCommand() << std::endl;
+    }
 }
