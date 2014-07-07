@@ -60,6 +60,7 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
   if (command != NULL && !strcmp("GRAPHIC\n", command))
     {
+      printf("add new client graphic\n");
       add_new_graphic_client(server, client->fd_socket);
       list_remove_with_data(&server->clients, client, match_fd_socket_client);
       init_graphic_client(server);
