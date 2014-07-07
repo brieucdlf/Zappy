@@ -25,10 +25,10 @@ void			check_line(t_server *server, t_client *client,
        index_position++)
     {
       if (client->direction.position_y + direction_position[1] >= 0 &&
-	  client->direction.position_y + direction_position[1] <=
+	  client->direction.position_y + direction_position[1] <
 	  server->map.height && client->direction.position_x +
 	  direction_position[0] >= 0 && client->direction.position_x +
-	  direction_position[0] <= server->map.width)
+	  direction_position[0] < server->map.width)
 	{
 	  map_list(server->map.map[client->direction.position_y +
 				   direction_position[1]]
