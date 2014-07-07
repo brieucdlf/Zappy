@@ -29,16 +29,14 @@ int			write_task_socket(t_write_task *head_task,
 
 void			loop_write_task(t_client *client, t_server *server)
 {
-  t_list		*current_task;
-
-  if ((current_task = client->write_tasks) == NULL)
-    return ;
-  while (current_task != NULL &&
-	 FD_ISSET(client->fd_socket, &(server->writefd)))
+  if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
-      if (current_task->data != NULL)
-	write_task_socket(((t_write_task *)current_task->data), client, server);
-      current_task = current_task->next;
+      if (client->write_tasks != NULL && client->write_tasks->data != NULL)
+	{
+	  write_task_socket(((t_write_task *)client->write_tasks->data),
+			    client, server);
+	  return ;
+	}
     }
 }
 
