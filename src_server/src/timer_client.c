@@ -4,7 +4,6 @@ void				init_timer_client(t_client *client)
 {
   struct timeval		current_time;
 
-  printf("reset timer\n");
   gettimeofday(&current_time, NULL);
   client->timeout.tv_sec = current_time.tv_sec + TIMEOUT_CLIENT;
   client->timeout.tv_usec = current_time.tv_usec;

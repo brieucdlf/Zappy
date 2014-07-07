@@ -21,12 +21,8 @@ void			check_timer_client(t_list *item, void *server)
   current_item = current_client->tasks;
   while (current_item != NULL)
     {
-      printf("[%d %d = %d %d]\n", tv.tv_sec, tv.tv_usec,
-	     ((t_task *)current_item->data)->timer.tv_sec,
-	     ((t_task *)current_item->data)->timer.tv_usec);
       if (tv.tv_sec >= ((t_task *)current_item->data)->timer.tv_sec)
 	{
-	  printf("=:=\n");
 	  init_timer_client(current_client);
 	  ((t_task *)current_item->data)->is_over = 1;
 	  ((t_task *)current_item->data)->function(server, current_client,

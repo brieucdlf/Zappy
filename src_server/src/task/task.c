@@ -77,7 +77,6 @@ t_task			*add_function_task(t_server *server, const char *command)
 
 t_task			*new_task(t_server *server, const char *command)
 {
-  printf("[%s]\n", command);
   if (command == NULL)
     return (NULL);
   return (add_function_task(server, command));
