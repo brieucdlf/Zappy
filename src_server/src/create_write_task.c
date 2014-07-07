@@ -1,5 +1,11 @@
 #include "server.h"
 
+void			free_write_task(void *data)
+{
+  free(data);
+  data = NULL;
+}
+
 void			create_new_write_task(t_client *current_client,
 					      const char *command)
 {
@@ -10,5 +16,5 @@ void			create_new_write_task(t_client *current_client,
   new_task->index = 0;
   memset(new_task->buffer, 0, 10240);
   memcpy(new_task->buffer, command, strlen(command));
-  list_push(&current_client->write_tasks, (void *)new_task, NULL);
+  list_push(&current_client->write_tasks, (void *)new_task, free_write_task);
 }
