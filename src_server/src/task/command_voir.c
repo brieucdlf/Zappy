@@ -24,6 +24,9 @@ void			check_line(t_server *server, t_client *client,
   for (index_position = 0; index_position < current_level * 2 + 1;
        index_position++)
     {
+      printf("Current position voir : %d %d\n",
+	     client->direction.position_x + direction_position[0] + index_position,
+	     client->direction.position_y + direction_position[1]);
       if (client->direction.position_y + direction_position[1] >= 0 &&
 	  client->direction.position_y + direction_position[1] <
 	  server->map.height && client->direction.position_x +
@@ -52,8 +55,7 @@ void			direction_see(t_client *client, int *direction_x,
 }
 
 void			voir_task_function(t_server *server,
-					   t_client *
-client,
+					   t_client *client,
 					   char *arg)
 {
   int			direction_position[2];
@@ -61,9 +63,12 @@ client,
 
   (void)arg;
   printf("voir function\n");
+  printf("client : %d %d => level : %d\n", client->direction.position_x,
+	 client->direction.position_y, client->level);
   direction_position[0] = 0;
   direction_position[1] = 0;
   direction_see(client, &direction_position[0], &direction_position[1]);
+  printf("direction debug = %d %d\n", direction_position[0], direction_position[1]);
   for (index_level_client = 1; index_level_client <= client->level;
        index_level_client++)
     {

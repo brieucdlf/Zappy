@@ -20,7 +20,7 @@
 # include "list.h"
 # include "action.h"
 
-# define WELCOME_MESSAGE	"Bienvenue"
+# define WELCOME_MESSAGE	"BIENVENUE\n"
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510

@@ -22,10 +22,7 @@ int		check_graphic_client_write(t_server *server, t_client *client)
 
   if (client->write_tasks == NULL ||
       (head_task = (t_write_task *)client->write_tasks->data) == NULL)
-    {
-      printf("number write : %d\n", number_write);
-      return (1);
-    }
+    return (1);
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
       number_write += 1;

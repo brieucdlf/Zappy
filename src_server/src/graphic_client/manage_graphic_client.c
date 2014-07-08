@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Mon Jul  7 19:11:04 2014 Remi Hillairet
+** Last update Tue Jul  8 10:12:46 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
@@ -58,6 +58,7 @@ void		add_new_graphic_client(t_server *server, int fd_socket)
 
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
+  printf("ADD CLIENT GRAPHIC\n");
   if (command != NULL && !strcmp("GRAPHIC\n", command))
     {
       printf("add new client graphic\n");
