@@ -33,7 +33,13 @@ int			strcmp_function_task(char *command_elem,
 
   if ((first_word = strtok((char *)command, " ")) == NULL)
     return (1);
-  return (strcmp(command_elem, first_word));
+  if (strcmp(command_elem, first_word) == 0)
+    return (0);
+  if ((first_word = strtok((char *)first_word, "\n")) == NULL)
+    return (1);
+  if (strcmp(command_elem, first_word) == 0)
+    return (0);
+  return (1);
 }
 
 t_task			*init_new_task(t_server*server, int index,

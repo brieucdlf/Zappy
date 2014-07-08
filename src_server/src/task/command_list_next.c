@@ -87,5 +87,5 @@ void			pose_task_function(t_server *server,
   --client->items[index_item];
   list_push(&server->map.map[client->direction.position_y]
 	    [client->direction.position_x], (void *)item, free_item);
-  return create_new_write_task(client, "OK\n");
+  create_new_write_task(client, "OK\n");
 }

@@ -28,11 +28,10 @@ void		        test_list()
   list = NULL;
 
   list_push(&list, (void *)"rock1", NULL);
-  list_push(&list, (void *)"salut2", NULL);
-  list_push(&list, (void *)"salut3", NULL);
-  list_push(&list, (void *)"salut4", NULL);
 
   list_pop(&list);
+  map_list(list, display_the_list, NULL);
+  printf("\n\n");
   list_remove_with_data(&list, (void *)"salut4", match_fction);
 
   list_push(&list, (void *)"salut2", NULL);
@@ -40,12 +39,18 @@ void		        test_list()
   map_list(list, display_the_list, NULL);
   map_list_with_match(list, find_elem, match_fction, (void *)"salut3");
 
+  list_push(&list, (void *)"salut2", NULL);
+  list_push(&list, (void *)"salut2", NULL);
+  list_pop(&list);
+  list_push(&list, (void *)"salut2", NULL);
+  list_pop(&list);
+  list_pop(&list);
+  list_pop(&list);
+  list_pop(&list);
+  list_pop(&list);
+  list_pop(&list);
+  list_pop(&list);  list_pop(&list);
+
+
   list_delete(list);
-}
-
-
-int		main()
-{
-  test_list();
-  return (0);
 }
