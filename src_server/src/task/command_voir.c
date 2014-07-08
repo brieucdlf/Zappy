@@ -33,23 +33,23 @@ void			loop_items_on_case(t_list *current_item,
 					   void *marker_space)
 {
   t_item		*item;
-  const char		*name_item[7] = {" linemate", " deraumere", " sibur",
-					 " mendiane", " phiras", " thystame",
-					 " food"};
+  const char		*name_item[7] = {" food", " linemate", " deraumere",
+					 " sibur", " mendiane", " phiras",
+					 " thystame"};
   static int		pass = 0;
 
   if ((item = current_item->data) == NULL ||
-      item->type - 1 < 0 || item->type - 1 >= 7)
+      item->type < 0 || item->type >= 7)
     return ;
   if (*(int *)marker_space == 1 && pass == 0)
     {
-      make_request(NULL, (char *)&name_item[item->type - 1][1]);
+      make_request(NULL, (char *)&name_item[item->type][1]);
       pass = 1;
     }
   else if (*(int *)marker_space > 1)
     {
       pass = 0;
-      make_request(NULL, (char *)name_item[item->type - 1]);
+      make_request(NULL, (char *)name_item[item->type]);
     }
 }
 
