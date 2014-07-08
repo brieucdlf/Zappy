@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:55:43 2014 Jeremy Peltier
-// Last update Tue Jul  8 10:10:15 2014 Jeremy Peltier
+// Last update Tue Jul  8 10:11:57 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -19,8 +19,8 @@ int	main(int ac, char **av)
       Socket	socket(av[1], ::atoi(av[2]));
       ClientGraphic client(1000, 1000);
       TaskManager	manager;
-      int		mapWidth = 0;
-      int		mapHeight = 0;
+      // int		mapWidth = 0;
+      // int		mapHeight = 0;
 
       while (client.isOpen() && socket.isConnected())
 	{
