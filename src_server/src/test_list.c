@@ -29,10 +29,12 @@ void		        test_list()
 
   list_push(&list, (void *)"rock1", NULL);
 
-  list_pop(&list);
   map_list(list, display_the_list, NULL);
   printf("\n\n");
-  list_remove_with_data(&list, (void *)"salut4", match_fction);
+  list_remove_with_data(&list, (void *)"rock1", match_fction);
+
+  map_list(list, display_the_list, NULL);
+  printf("\n\n");
 
   list_push(&list, (void *)"salut2", NULL);
 
