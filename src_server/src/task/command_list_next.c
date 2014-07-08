@@ -12,14 +12,6 @@ int			match_item_prendre_task(void *data1, void *data2)
   return (1);
 }
 
-void			display_item_list(t_list *item, void *arg)
-{
-  (void)arg;
-  if (item == NULL)
-    return ;
-  printf("Liste des items : [%d]\n", ((t_item *)item->data)->type);
-}
-
 void		        prend_task_function(t_server *server,
 					    t_client *client,
 					    char *arg)
@@ -52,7 +44,7 @@ void		        prend_task_function(t_server *server,
 	}
       current_item = current_item->next;
     }
-  return create_new_write_task(client, "KO\n");
+  create_new_write_task(client, "KO\n");
 }
 
 void			pose_task_function(t_server *server,

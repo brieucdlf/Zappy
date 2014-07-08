@@ -26,6 +26,7 @@ static void		first_elem_remove_list(t_list **head_list, void *node)
   free(tmp_elem);
 }
 
+
 void		        list_remove_with_data(t_list **head_list, void *node,
 					      match_function match_fct)
 {
@@ -54,9 +55,11 @@ void		        list_remove_with_data(t_list **head_list, void *node,
     }
 }
 
-/***********************************************/
-/* Delete the first element of the list        */
-/***********************************************/
+/*
+** ################################################
+** # Delete the first element of the list
+** ################################################
+*/
 void			list_pop(t_list **list)
 {
   void			*ptmp;
@@ -78,9 +81,11 @@ void			list_pop(t_list **list)
   free(ptmp);
 }
 
-/***********************************************/
-/* Delete all the list                         */
-/***********************************************/
+/*
+** ################################################
+** # Delete all the list
+** ################################################
+*/
 void			list_delete(t_list *list)
 {
   t_list		*current_elem;

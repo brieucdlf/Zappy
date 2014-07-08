@@ -20,6 +20,6 @@ void			check_connect_client(t_server *server)
       add_new_client(server, fd_socket_client, 0);
       if (fd_socket_client > server->fd_socket)
 	server->fd_max = fd_socket_client;
-      printf("\033[32mConnection client [%d]\033[0m\n", fd_socket_client);
+      printf("[\033[32m+\033[0m]Connection client [%d]\n", fd_socket_client);
     }
 }

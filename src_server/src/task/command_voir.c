@@ -15,7 +15,6 @@ void			make_request(t_client *client,
     }
   if (client != NULL && command != NULL)
     {
-      printf("command request : %s\n", command);
       create_new_write_task(client, command);
       free(command);
       command = NULL;
@@ -144,13 +143,9 @@ void			voir_task_function(t_server *server,
 
   (void)arg;
   make_request(NULL, NULL);
-  printf("voir function\n");
-  printf("client : %d %d => level : %d\n", client->direction.position_x,
-	 client->direction.position_y, client->level);
   direction_position[0] = 0;
   direction_position[1] = 0;
   direction_see(client, &direction_position[0], &direction_position[1]);
-  printf("direction debug = %d %d\n", direction_position[0], direction_position[1]);
   make_request(NULL, "{");
   for (index_level_client = 1; index_level_client <= client->level;
        index_level_client++)
