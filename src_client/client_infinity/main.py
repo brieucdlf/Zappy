@@ -6,7 +6,7 @@ from time import sleep
 import random
 import signal
 
-command = ["voir\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "prend food\n", "prend mendiane\n", "prend phiras\n", "prend thystame\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n"]
+command = ["voir\n", "pose\n", "prend\n", "prend\n", "pose", "        ", "", "\n", "NONE\n", "broadcast\n", "qsdqsdqsdq", "prend\n\n\n\n\n\n\n",  "pose coucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocu\n", "prend coucouccoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocuoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocu\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "prend food\n", "prend mendiane\n","prend phiras\n", "prend thystame\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n", "broadcast eycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycou\n"]
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -43,7 +43,7 @@ def set_server(so, infos):
         try:
             task = random.choice(command)
             so.send_request(task)
-            so.read_request()
+            print(so.read_request())
         except:
             print("Error pipe")
             exit(0)

@@ -31,8 +31,12 @@ int			strcmp_function_task(char *command_elem,
 {
   char			*first_word;
 
+  printf("TRY : {%s} {%s}\n", command_elem, command);
   if ((first_word = strtok((char *)command, " ")) == NULL)
-    return (1);
+    {
+      printf("NO SPACE\n");
+      return (1);
+    }
   if (strcmp(command_elem, first_word) == 0)
     return (0);
   if ((first_word = strtok((char *)first_word, "\n")) == NULL)
@@ -69,12 +73,13 @@ t_task			*add_function_task(t_server *server, const char *command)
 					    "expulse\n", "broadcast",
 					    "incantation\n", "fork\n"};
   unsigned int		index;
-  char			buff[64];
+  char			buff[2048];
 
   for (index = 0; index < 11; index++)
     {
-      memset(buff, 0, 64);
-      memcpy(buff, command, strlen(command));
+      memset(buff, 0, 2048);
+      strncpy(buff, command, 2048);
+      printf("check : [%s] [%s]\n", command, buff);
       if (strcmp_function_task(tab_command[index], buff) == 0)
 	return (init_new_task(server, index, command));
     }

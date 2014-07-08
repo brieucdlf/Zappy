@@ -9,8 +9,8 @@ void			make_request(t_client *client,
   if (client == NULL && add_command == NULL)
     {
       index = 0;
-      if ((command = malloc(10240)) != NULL)
-	memset(command, 0, 10240);
+      if ((command = malloc(5120)) != NULL)
+	memset(command, 0, 5120);
       return ;
     }
   if (client != NULL && command != NULL)
@@ -23,9 +23,11 @@ void			make_request(t_client *client,
     }
   if (add_command != NULL && command != NULL)
     {
+      if (index + strlen(command) >= 5120)
+	return ;
       strncpy(&command[index], add_command,
-	      (strlen(add_command) % (10240 - index)));
-      index += strlen(add_command) % 10240;
+	      (strlen(add_command) % (5120 - index)));
+      index += strlen(add_command) % 5120;
     }
 }
 
@@ -70,7 +72,7 @@ void			check_player_at_position(t_server *server,
 	  if ((command = malloc(strlen(server->
 				       param_server.
 				       teams_names[((t_client *)current_item->
-						    data)->id_team] + 2))) ==
+						    data)->id_team]) + 2)) ==
 	      NULL)
 	    return ;
 	  sprintf(command, " %s", server->
