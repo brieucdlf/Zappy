@@ -34,8 +34,7 @@ def check_food():
                     print "food found"
                     print "The position of food is " + str(key)
                     player["target_pos"] = key  #Je set la position ou le joueur doit se diriger
-                    if len(read.player["path"]) == 0:
-                        make_path(player["target_pos"])
+                    make_path(player["target_pos"])
                     return
                 i = i + 1
             i = 0
@@ -47,7 +46,8 @@ def send_ok(so):
         check_voir(so)
         player["flag_voir"] = 0
     else:
-        check_food()
+        if player["flag_nourriture"] == 0:
+            check_food()
         make_deplacement(so)
     print "SEND COMMAND OK"
 
@@ -75,7 +75,7 @@ def read_ok(so):
     elif request[0] == "voir\n":
         print "voir\n"
         test = so.read_request()
-        tmp  = test[1:-1].split(",")
+        tmp  = test[1:-1].split(", ")
         for item in tmp:
             player["what_i_see"][i] = tmp[i].split(" ")
             i = i + 1
