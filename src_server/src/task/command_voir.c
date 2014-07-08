@@ -63,7 +63,8 @@ void			check_player_at_position(t_server *server,
     return ;
   while (current_item != NULL)
     {
-      if (((t_client *)current_item->data)->direction.position_x == position_x &&
+      if (((t_client *)current_item->data)->is_ready == 1 &&
+	  ((t_client *)current_item->data)->direction.position_x == position_x &&
 	  ((t_client *)current_item->data)->direction.position_y == position_y)
 	{
 	  if ((command = malloc(strlen(server->
