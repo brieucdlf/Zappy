@@ -52,9 +52,8 @@ int			create_new_task_client(t_client *client,
 		     client->id_client,
 		     client->buffer.buffer_read);
 	      deconnection_client(server, client);
-	      return (0);
 	    }
-	  return (1);
+	  return (0);
 	}
       client->is_ready = 1;
       init_position_client(client, server);

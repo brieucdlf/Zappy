@@ -9,6 +9,8 @@ void		init_server(t_server *server)
   server->graphic_client = NULL;
 }
 
+void		test_list();
+
 int		main(int ac, char **av)
 {
   t_server      server;

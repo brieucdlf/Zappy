@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Tue Jul  8 10:12:46 2014 Remi Hillairet
+** Last update Tue Jul  8 11:21:13 2014 Remi Hillairet
 */
 
 #include "graphic_client.h"
@@ -24,7 +24,6 @@ void	init_graphic_client(t_server *server)
   memset(command, 0, 100);
   sprintf(command, "sgt %d\n", server->param_server.execution_time);
   create_new_write_task(server->graphic_client, command);
-  create_map_task(server, command);
   while (server->param_server.teams_names[i] != NULL)
     {
       memset(command, 0, 100);
@@ -32,6 +31,7 @@ void	init_graphic_client(t_server *server)
       create_new_write_task(server->graphic_client, command);
       i++;
     }
+  create_map_task(server, command);
   free(command);
 }
 
@@ -58,13 +58,17 @@ void		add_new_graphic_client(t_server *server, int fd_socket)
 
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
-  printf("ADD CLIENT GRAPHIC\n");
   if (command != NULL && !strcmp("GRAPHIC\n", command))
     {
-      printf("add new client graphic\n");
+      if (server->graphic_client != NULL)
+	{
+	  printf("There is already a graphic client\n");
+	  return (0);
+	}
+      printf("Add new client graphic\n");
       add_new_graphic_client(server, client->fd_socket);
-      list_remove_with_data(&server->clients, client, match_fd_socket_client);
       init_graphic_client(server);
+      list_remove_with_data(&server->clients, client, match_fd_socket_client);
       return (1);
     }
   return (0);

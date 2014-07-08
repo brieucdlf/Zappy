@@ -25,19 +25,16 @@ void			check_line(t_server *server, t_client *client,
        index_position++)
     {
       printf("Current position voir : %d %d\n",
-	     client->direction.position_x + direction_position[0] + index_position,
+	     client->direction.position_x + direction_position[0] - (current_level / 2 + 1) + index_position,
 	     client->direction.position_y + direction_position[1]);
-      if (client->direction.position_y + direction_position[1] >= 0 &&
-	  client->direction.position_y + direction_position[1] <
-	  server->map.height && client->direction.position_x +
-	  direction_position[0] >= 0 && client->direction.position_x +
-	  direction_position[0] < server->map.width)
-	{
-	  map_list(server->map.map[client->direction.position_y +
-				   direction_position[1]]
-		   [client->direction.position_x + direction_position[0]],
-		   loop_items_on_case, NULL);
-	}
+
+      if (client->direction.position_x + direction_position[0] - (current_level / 2 + 1) + index_position >= 0 &&
+	  client->direction.position_x + direction_position[0] - (current_level / 2 + 1) + index_position < server->map.width &&
+	  client->direction.position_y + direction_position[1] >= 0 &&
+	  client->direction.position_y + direction_position[1] < server->map.height)
+	map_list(server->map.map[client->direction.position_y + direction_position[1]]
+		 [client->direction.position_x + direction_position[0] - (current_level / 2 + 1) + index_position], loop_items_on_case, NULL);
+
     }
 }
 

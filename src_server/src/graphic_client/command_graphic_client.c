@@ -52,5 +52,6 @@ void	deconnection_graphic_client(t_server *server)
   close(server->graphic_client->fd_socket);
   server->fd_max = server->fd_socket;
   map_list(server->clients, update_max_fd_socket, (void *)server);
+  free_client(server->graphic_client);
   server->graphic_client = NULL;
 }
