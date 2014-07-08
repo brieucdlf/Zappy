@@ -36,7 +36,7 @@ void			server_loop(t_server *server)
 	}
       if (g_server_run == 0)
 	{
-	  printf("Timeout ! Connection not established\n");
+	  printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
 	  return ;
 	}
       usleep(100);

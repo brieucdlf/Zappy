@@ -11,7 +11,7 @@ int			get_id_team(t_server *server, const char *team)
     {
       if (strcmp(server->param_server.teams_names[index], team) == 0)
 	{
-	  printf("[+]\033[42mTeam player :\033[0m%s\n",
+	  printf("[\033[32m+\033[0m]This player is on the team : %s\n",
 		 server->param_server.teams_names[index]);
 	  return (index);
 	}
