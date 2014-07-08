@@ -55,7 +55,9 @@ void			loop_items_on_case(t_list *current_item,
 }
 
 void			check_player_at_position(t_server *server,
-						 int position_x, int position_y)
+						 t_client *client,
+						 int position_x,
+						 int position_y)
 {
   t_list		*current_item;
   char			*command;
@@ -65,6 +67,7 @@ void			check_player_at_position(t_server *server,
   while (current_item != NULL)
     {
       if (((t_client *)current_item->data)->is_ready == 1 &&
+	  ((t_client *)current_item->data)->id_client != client->id_client &&
 	  ((t_client *)current_item->data)->direction.position_x == position_x &&
 	  ((t_client *)current_item->data)->direction.position_y == position_y)
 	{
@@ -110,7 +113,7 @@ void			check_line(t_server *server, t_client *client,
 		   [client->direction.position_x + direction_position[0] -
 		    (current_level / 2 + 1) + index_position],
 		   loop_items_on_case, (void *)&marker);
-	  check_player_at_position(server, client->direction.position_x +
+	  check_player_at_position(server, client, client->direction.position_x +
 				   direction_position[0] -
 				   (current_level / 2 + 1) + index_position,
 				   client->direction.position_y +
@@ -129,7 +132,7 @@ void			check_first_line(t_server *server, t_client *client)
   map_list(server->map.map[client->direction.position_y]
 	   [client->direction.position_x],
 	   loop_items_on_case, (void *)&marker);
-  check_player_at_position(server, client->direction.position_x,
+  check_player_at_position(server, client, client->direction.position_x,
 			   client->direction.position_y);
   make_request(NULL, ",");
 }
