@@ -89,7 +89,9 @@ void			check_line(t_server *server, t_client *client,
 				   int current_level, int *direction_position)
 {
   int			index_position;
+  int			marker;
 
+  marker = 1;
   direction_position[0] *= current_level + 1;
   direction_position[1] *= current_level;
   for (index_position = 0; index_position < current_level * 2 + 1;
@@ -107,7 +109,7 @@ void			check_line(t_server *server, t_client *client,
 				   direction_position[1]]
 		   [client->direction.position_x + direction_position[0] -
 		    (current_level / 2 + 1) + index_position],
-		   loop_items_on_case, NULL);
+		   loop_items_on_case, (void *)&marker);
 	  check_player_at_position(server, client->direction.position_x +
 				   direction_position[0] -
 				   (current_level / 2 + 1) + index_position,
