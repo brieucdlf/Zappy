@@ -22,6 +22,7 @@ void		        prend_task_function(t_server *server,
 					 "sibur\n", "mendiane\n", "phiras\n",
 					 "thystame\n"};
 
+  printf("ARG PRENDRE = %s\n", (char *)arg);
   current_item = server->map.map[client->direction.position_y]
     [client->direction.position_x];
   while (arg != NULL && current_item !=  NULL)
