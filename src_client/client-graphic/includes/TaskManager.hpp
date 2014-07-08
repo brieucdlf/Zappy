@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 13:39:08 2014 Jeremy Peltier
-// Last update Mon Jul  7 15:52:47 2014 Remi Hillairet
+// Last update Tue Jul  8 09:43:11 2014 Jeremy Peltier
 //
 
 #ifndef		TASK_MANAGER_HPP_
@@ -24,9 +24,11 @@ public:
 
 public:
   void		add(Task);
-  std::string	getTask();
-  void		updateBuffer(const std::string);
-  void		showAll();
+  std::string	send();
+  std::string	get();
+  void		parseReceiveCommand(const std::string);
+  void		showAllSent();
+  void		showAllReceive();
 
 private:
   Socket		socket;

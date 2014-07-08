@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:22:01 2014 Jeremy Peltier
-// Last update Mon Jul  7 15:52:31 2014 Remi Hillairet
+// Last update Tue Jul  8 09:48:11 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_HPP_
@@ -30,6 +30,7 @@
 # include	<fstream>
 # include	<string>
 # include	<sstream>
+# include	<algorithm>
 
 class		Socket
 {
@@ -46,7 +47,7 @@ public:
   void			setHost(std::string &);
   void			setPort(int);
   const std::string	readSocket();
-  void			writeOnSocket(std::string &);
+  void			writeOnSocket(std::string);
 
 private:
   std::string		host;
@@ -57,6 +58,7 @@ private:
   struct sockaddr_in	sinServer;
   bool			connected;
   std::string		read;
+  std::string		write;
 };
 
 #endif		/* CLIENT_HPP_ */

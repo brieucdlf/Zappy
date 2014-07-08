@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Mon Jul  7 15:54:58 2014 Remi Hillairet
+// Last update Tue Jul  8 09:47:45 2014 Jeremy Peltier
 //
 
 #include	"Socket.hpp"
@@ -15,6 +15,7 @@ Socket::Socket()
   this->host = "";
   this->port = 0;
   this->read = "";
+  this->write = "";
 }
 
 Socket::Socket(const std::string &host, int port)
@@ -22,6 +23,7 @@ Socket::Socket(const std::string &host, int port)
   this->host = host;
   this->port = port;
   this->read = "";
+  this->write = "";
   connectSocket();
 }
 
@@ -88,6 +90,10 @@ bool	Socket::isConnected()
 	      ::write(this->fd, "GRAPHIC\n", 8);
 	      firstInit = false;
 	    }
+	  else
+	    {
+	      ::write(this->fd, this->write.c_str(), this->write.size());
+	    }
 	}
     }
   if (returnSelect == EBADF)
@@ -114,7 +120,7 @@ const std::string	Socket::readSocket()
   return readCopy;
 }
 
-void	Socket::writeOnSocket(std::string &string)
+void	Socket::writeOnSocket(std::string string)
 {
-  this->read = string;
+  this->write = string;
 }
