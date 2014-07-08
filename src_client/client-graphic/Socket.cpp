@@ -1,13 +1,3 @@
-//
-// Socket.cpp for ClientGraphic in /home/peltie_j/Desktop/Epitech/Tek2/unix/Zappy/src_client/client-graphic
-//
-// Made by Jeremy Peltier
-// Login   <peltie_j@epitech.net>
-//
-// Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Tue Jul  8 09:47:45 2014 Jeremy Peltier
-//
-
 #include	"Socket.hpp"
 
 Socket::Socket()
@@ -68,7 +58,7 @@ bool	Socket::isConnected()
   FD_SET(this->fd, &(this->readFd));
   FD_SET(this->fd, &(this->writeFd));
 
-  if ((returnSelect = select(this->fd + 1, &(this->readFd), &(this->writeFd), NULL, NULL)) > 0)
+  if ((returnSelect = select(this->fd + 1, &(this->readFd), &(this->writeFd), NULL, NULL)) >= 0)
     {
       if (FD_ISSET(this->fd, &(this->readFd)))
 	{

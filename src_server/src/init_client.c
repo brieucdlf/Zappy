@@ -8,6 +8,7 @@ void			free_client(void *arg)
   list_delete(client->tasks);
   list_delete(client->write_tasks);
   free(client);
+  client = NULL;
 }
 
 void			init_position_default_client(t_client *client)
