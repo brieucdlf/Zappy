@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:50:32 2014 Jeremy Peltier
-// Last update Thu Jul  3 17:13:51 2014 Jeremy Peltier
+// Last update Tue Jul  8 10:03:24 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_GRAPHIC_HPP_
@@ -30,6 +30,7 @@ public:
   void	generateItems();
   void	generateMap(int, int);
   void	draw(int, int);
+  void	loading();
 
 public:
   void	addFloor(int, int);

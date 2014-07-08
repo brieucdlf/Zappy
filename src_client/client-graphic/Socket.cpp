@@ -1,13 +1,3 @@
-//
-// Socket.cpp for ClientGraphic in /home/peltie_j/Desktop/Epitech/Tek2/unix/Zappy/src_client/client-graphic
-//
-// Made by Jeremy Peltier
-// Login   <peltie_j@epitech.net>
-//
-// Started on  Wed Jul  2 16:23:46 2014 Jeremy Peltier
-// Last update Mon Jul  7 18:42:14 2014 Remi Hillairet
-//
-
 #include	"Socket.hpp"
 
 Socket::Socket()
@@ -15,6 +5,7 @@ Socket::Socket()
   this->host = "";
   this->port = 0;
   this->read = "";
+  this->write = "";
 }
 
 Socket::Socket(const std::string &host, int port)
@@ -22,6 +13,7 @@ Socket::Socket(const std::string &host, int port)
   this->host = host;
   this->port = port;
   this->read = "";
+  this->write = "";
   connectSocket();
 }
 
@@ -88,6 +80,10 @@ bool	Socket::isConnected()
 	      ::write(this->fd, "GRAPHIC\n", 8);
 	      firstInit = false;
 	    }
+	  else
+	    {
+	      ::write(this->fd, this->write.c_str(), this->write.size());
+	    }
 	}
     }
   if (returnSelect == EBADF)
@@ -114,7 +110,7 @@ const std::string	Socket::readSocket()
   return readCopy;
 }
 
-void	Socket::writeOnSocket(std::string &string)
+void	Socket::writeOnSocket(std::string string)
 {
-  this->read = string;
+  this->write = string;
 }
