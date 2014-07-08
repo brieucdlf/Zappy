@@ -32,6 +32,8 @@ void		        list_remove_with_data(t_list **head_list, void *node,
   t_list		*current_elem;
   t_list		*tmp_elem;
 
+  if (head_list == NULL || *head_list == NULL)
+    return ;
   current_elem = *head_list;
   if (match_fct((*head_list)->data, node) == 0)
     {
@@ -59,7 +61,7 @@ void			list_pop(t_list **list)
 {
   void			*ptmp;
 
-  if (*list == NULL)
+  if (list == NULL || *list == NULL)
     return ;
   if ((*list)->next == NULL)
     {

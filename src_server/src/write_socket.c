@@ -7,13 +7,10 @@ int			write_task_socket(t_write_task *head_task,
   int			ret;
 
   ret = 0;
-  printf("\033[31m[+]try to write = \033[0m%s\n",
-	 &head_task->buffer[head_task->index]);
   if ((ret = write(current_client->fd_socket,
 		   &head_task->buffer[head_task->index],
 		   strlen(&head_task->buffer[head_task->index]))) <= 0)
     {
-      printf("Error write\n");
       if (server->graphic_client != NULL
 	  && server->graphic_client->fd_socket == current_client->fd_socket)
 	deconnection_graphic_client(server, current_client);
@@ -21,7 +18,9 @@ int			write_task_socket(t_write_task *head_task,
 	deconnection_client(server, current_client);
       return (0);
     }
-  printf("[+] Write task success %d\n", ret);
+  printf("\033[1;32m[+][%d] Write task = \033[0m%s",
+	 current_client->id_client,
+	 &head_task->buffer[head_task->index]);
   head_task->index += ret;
   if (head_task->index >= (int)strlen(head_task->buffer))
     list_pop(&current_client->write_tasks);

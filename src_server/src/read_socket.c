@@ -34,8 +34,8 @@ int			create_new_task_client(t_client *client,
     {
       if ((task = new_task(server, client->buffer.buffer_read)) != NULL)
 	{
-	  printf("[+] ADD Task client[%d] : \033[%dm%s\033[0m\n", client->id_client, 30 + client->fd_socket,
-		 client->buffer.buffer_read);
+	  printf("\033[1;42m[+] ADD Task client[%d]\033[0m : %s\n",
+		 client->id_client, client->buffer.buffer_read);
 	  list_push(&client->tasks, task, free_task);
 	  init_timer_client(client);
 	}
@@ -104,7 +104,6 @@ int			map_check_read_client(t_list *current_client, void *arg)
       memset(buff, 0, 2048);
       if ((read(client->fd_socket, buff, 2047)) <= 0)
 	{
-	  printf("Error read\n");
 	  deconnection_client(server, client);
 	  return (0);
 	}
