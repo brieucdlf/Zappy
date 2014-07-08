@@ -57,6 +57,7 @@ void			check_player_at_position(t_server *server,
 						 int position_x, int position_y)
 {
   t_list		*current_item;
+  char			*command;
 
   if ((current_item = server->clients) == NULL)
     return ;
@@ -64,9 +65,19 @@ void			check_player_at_position(t_server *server,
     {
       if (((t_client *)current_item->data)->direction.position_x == position_x &&
 	  ((t_client *)current_item->data)->direction.position_y == position_y)
-	make_request(NULL, server->
-		     param_server.teams_names[((t_client *)current_item->
-					       data)->id_team]);
+	{
+	  if ((command = malloc(strlen(server->
+				       param_server.
+				       teams_names[((t_client *)current_item->
+						    data)->id_team] + 2))) ==
+	      NULL)
+	    return ;
+	  sprintf(command, " %s", server->
+		  param_server.teams_names[((t_client *)current_item->
+					    data)->id_team]);
+	  make_request(NULL, command);
+	  free(command);
+	}
       current_item = current_item->next;
     }
 }
