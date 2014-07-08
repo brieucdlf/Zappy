@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 14:01:20 2014 Jeremy Peltier
-// Last update Mon Jul  7 19:24:26 2014 Jeremy Peltier
+// Last update Tue Jul  8 09:42:58 2014 Jeremy Peltier
 //
 
 #include	"TaskManager.hpp"
@@ -22,7 +22,7 @@ TaskManager::~TaskManager()
   this->receiveTask.clear();
 }
 
-void	TaskManager::updateBuffer(std::string buffer)
+void	TaskManager::parseReceiveCommand(std::string buffer)
 {
   if (!buffer.empty())
     {
@@ -43,10 +43,21 @@ void	TaskManager::updateBuffer(std::string buffer)
 
 void	TaskManager::add(Task task)
 {
-  task = task;
+  this->sentTask.push_back(task);
 }
 
-std::string	TaskManager::getTask()
+std::string	TaskManager::send()
+{
+  if (sentTask.size() > 0)
+    {
+      std::string tmp = ((Task)sentTask.front()).getCommand();
+      sentTask.erase(sentTask.begin());
+      return (tmp);
+    }
+  return ("");
+}
+
+std::string	TaskManager::get()
 {
   if (receiveTask.size() > 0)
     {
@@ -54,10 +65,18 @@ std::string	TaskManager::getTask()
       receiveTask.erase(receiveTask.begin());
       return (tmp);
     }
-  return "";
+  return ("");
 }
 
-void	TaskManager::showAll()
+void	TaskManager::showAllSent()
+{
+  for (unsigned int i = 0; i < sentTask.size(); ++i)
+    {
+      std::cout << ((Task)sentTask[i]).getCommand() << std::endl;
+    }
+}
+
+void	TaskManager::showAllReceive()
 {
   for (unsigned int i = 0; i < receiveTask.size(); ++i)
     {

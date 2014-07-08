@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Fri Jul  4 11:22:47 2014 Jeremy Peltier
+// Last update Tue Jul  8 10:09:55 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -109,5 +109,19 @@ void	ClientGraphic::draw(int width, int height)
   this->window.clear();
   generateMap(width, height);
   generateItems();
+  this->window.display();
+}
+
+void	ClientGraphic::loading()
+{
+  this->window.clear();
+
+  sf::Text text;
+  text.setString("Loading...");
+  text.setCharacterSize(30);
+  text.setColor(sf::Color::Red);
+  text.setStyle(sf::Text::Bold);
+  this->window.draw(text);
+
   this->window.display();
 }
