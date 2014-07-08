@@ -19,7 +19,7 @@ def set_server(so, infos):
     so.send_request("team4\n")
     num_client = int(so.read_request())
     if num_client >= 0:
-        infos["num_client"] = num_client
+       infos["num_client"] = num_client
     else:
         return
     print "num client in dict : " + str(infos["num_client"])

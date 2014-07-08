@@ -38,10 +38,15 @@ def make_path(pos): #enregistre chaque mouvement pour chaque position
 
 def make_deplacement(so): #Fonction qui deplace l'ia j'usqu'a sa cible
     if len(read.player["path"]) > 0:
-        print read.player["path"]
         so.send_request(read.player["path"][0])
         print read.player["path"][0]
         read.player["path"].remove(read.player["path"][0])
     else:
+        print "PLUS DE MOUVEMENTS DANS LISTE"
+        if read.player["flag_nourriture"] == 1:
+            so.send_request("prend nourriture\n")
+            print "PREND NOURRITURE"
+            read.request.append("prend nourriture\n")
+            read.player["flag_nourriture"] == 0
         print "Deplacement termines"
         read.player["flag_voir"] = 1
