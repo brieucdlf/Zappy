@@ -15,16 +15,14 @@ int                     g_server_run = 1;
 void			server_loop(t_server *server)
 {
   struct timeval	tv;
-  int			rv;
 
   while (g_server_run == 1)
     {
       init_fd_socket(server);
       tv.tv_sec = TIMEOUT_SEC;
       tv.tv_usec = TIMEOUT_USEC;
-      rv = select(server->fd_max + 1, &server->readfd,
-		  &server->writefd, NULL, &tv);
-      if (rv >= 0)
+      if (select(server->fd_max + 1, &server->readfd,
+		 &server->writefd, NULL, &tv) >= 0)
 	{
 	  map_list_with_stop(server->clients,
 			     map_check_read_client, (void *)server);
@@ -39,6 +37,5 @@ void			server_loop(t_server *server)
 	  printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
 	  return ;
 	}
-      usleep(100);
     }
 }
