@@ -5,13 +5,14 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 15:56:42 2014 Remi Hillairet
-** Last update Mon Jul  7 18:24:19 2014 Remi Hillairet
+** Last update Tue Jul  8 14:50:38 2014 Remi Hillairet
 */
 
 #ifndef GRAPHIC_CLIENT_H
 # define GRAPHIC_CLIENT_H
 
-#include "server.h"
+typedef struct s_server	t_server;
+typedef struct s_client	t_client;
 
 /*
 ** ################################################

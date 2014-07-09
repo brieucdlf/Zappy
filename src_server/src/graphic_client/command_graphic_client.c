@@ -1,4 +1,4 @@
-#include "graphic_client.h"
+#include "server.h"
 
 void		content_at_pos(t_server *server, int x, int y, char *command)
 {

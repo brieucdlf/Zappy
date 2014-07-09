@@ -19,6 +19,7 @@
 # include "user.h"
 # include "list.h"
 # include "action.h"
+# include "graphic_client.h"
 
 # define WELCOME_MESSAGE	"BIENVENUE\n"
 
@@ -110,6 +111,9 @@ typedef struct		s_server
 int			map_check_read_client(t_list *current_client, void *arg);
 int			map_check_write_client(t_list *current_client,
 					       void *arg);
+int			write_task_socket(t_write_task *head_task,
+					  t_client *current_client,
+					  t_server *server);
 void			deconnection_client(t_server *server,
 					    t_client *current_client);
 int			match_fd_socket_client(void *client1, void *client2);
@@ -152,6 +156,7 @@ void			check_timer(t_server *server);
 */
 void			free_double_array(char **tab);
 void			free_server(t_server *server);
+void			free_client(void *arg);
 
 /*
 ** ################################################

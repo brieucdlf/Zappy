@@ -5,10 +5,10 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Tue Jul  8 11:21:13 2014 Remi Hillairet
+** Last update Tue Jul  8 14:52:55 2014 Remi Hillairet
 */
 
-#include "graphic_client.h"
+#include "server.h"
 
 void	init_graphic_client(t_server *server)
 {

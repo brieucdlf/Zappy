@@ -13,7 +13,7 @@ int			write_task_socket(t_write_task *head_task,
     {
       if (server->graphic_client != NULL
 	  && server->graphic_client->fd_socket == current_client->fd_socket)
-	deconnection_graphic_client(server, current_client);
+	deconnection_graphic_client(server);
       else
 	deconnection_client(server, current_client);
       return (0);
@@ -45,7 +45,6 @@ int			map_check_write_client(t_list *current_client,
 {
   t_server		*server;
   t_client		*client;
-  t_write_task		*head_task;
 
   if ((client = (t_client *)current_client->data) == NULL ||
       (server = (t_server *)arg) == NULL)

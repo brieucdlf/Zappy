@@ -103,11 +103,11 @@ void	Socket::setPort(int port)
 
 const std::string	Socket::readSocket()
 {
-  std::string readCopy;
+  std::string saveRead;
 
-  readCopy = this->read;
-  read.clear();
-  return readCopy;
+  saveRead = this->read;
+  this->read.clear();
+  return saveRead;
 }
 
 void	Socket::writeOnSocket(std::string string)

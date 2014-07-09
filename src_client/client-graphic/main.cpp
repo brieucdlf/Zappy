@@ -5,12 +5,13 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:55:43 2014 Jeremy Peltier
-// Last update Tue Jul  8 10:11:57 2014 Jeremy Peltier
+// Last update Wed Jul  9 12:04:58 2014 Remi Hillairet
 //
 
 #include	"Socket.hpp"
 #include	"ClientGraphic.hpp"
 #include	"TaskManager.hpp"
+#include	"ExecCommand.hpp"
 
 int	main(int ac, char **av)
 {
@@ -19,6 +20,7 @@ int	main(int ac, char **av)
       Socket	socket(av[1], ::atoi(av[2]));
       ClientGraphic client(1000, 1000);
       TaskManager	manager;
+      ExecCommand	command;
       // int		mapWidth = 0;
       // int		mapHeight = 0;
 
@@ -27,9 +29,7 @@ int	main(int ac, char **av)
 	  client.getKey();
 	  client.draw(100, 100);
 	  manager.parseReceiveCommand(socket.readSocket());
-	  std::string task = manager.get();
-	  if (!task.empty())
-	    std::cout << task << std::endl;
+	  command.runTask(manager.getTask());
 	  // if (mapWidth != 0 && mapHeight != 0)
 	  //   client.draw(mapWidth, mapHeight);
 	  // else

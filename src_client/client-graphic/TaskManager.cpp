@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Fri Jul  4 14:01:20 2014 Jeremy Peltier
-// Last update Tue Jul  8 09:42:58 2014 Jeremy Peltier
+// Last update Wed Jul  9 11:48:28 2014 Remi Hillairet
 //
 
 #include	"TaskManager.hpp"
@@ -26,11 +26,12 @@ void	TaskManager::parseReceiveCommand(std::string buffer)
 {
   if (!buffer.empty())
     {
-      std::string tmp = buffer;
+      static std::string tmp;
       std::string delimiter = "\n";
       size_t pos = 0;
       std::string command;
 
+      tmp += buffer;
       while ((pos = tmp.find(delimiter)) != std::string::npos)
 	{
 	  command = tmp.substr(0, pos);
@@ -57,7 +58,7 @@ std::string	TaskManager::send()
   return ("");
 }
 
-std::string	TaskManager::get()
+std::string	TaskManager::getTask()
 {
   if (receiveTask.size() > 0)
     {
