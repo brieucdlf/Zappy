@@ -158,6 +158,8 @@ void			voir_task_function(t_server *server,
   int			index_level_client;
 
   (void)arg;
+  printf("client position voir : %d %d\n", client->direction.position_x,
+	 client->direction.position_y);
   make_request(NULL, NULL);
   direction_position[0] = 0;
   direction_position[1] = 0;

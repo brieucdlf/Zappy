@@ -6,7 +6,7 @@ static void		init_default_param(t_param *param_server)
   param_server->world_width = DEFAULT_WIDTH;
   param_server->world_height = DEFAULT_HEIGHT;
   param_server->teams_names = NULL;
-  param_server->nb_client_start = CLIENT_START;
+  param_server->nb_client_team = CLIENT_TEAM;
   param_server->execution_time = EXECUTION_TIME;
 }
 
@@ -40,7 +40,7 @@ static void		fill_param(char caracter,
   else if (caracter == 'y' && optarg != NULL)
     param_server->world_height = atoi(optarg);
   else if (caracter == 'c' && optarg != NULL)
-    param_server->nb_client_start = atoi(optarg);
+    param_server->nb_client_team = atoi(optarg);
   else if (caracter == 't' && optarg != NULL)
     param_server->execution_time = atoi(optarg);
   else
@@ -62,4 +62,6 @@ void			set_param(int argc, char **argv, t_param *param_server)
     param_server->world_width = DEFAULT_HEIGHT;
   if (param_server->execution_time <= 0)
     param_server-> execution_time = EXECUTION_TIME;
+  if (param_server->nb_client_team <= 0)
+    param_server->nb_client_team = CLIENT_TEAM;
 }

@@ -30,7 +30,7 @@
 # define MIN_HEIGHT		10
 # define MAX_WIDTH		100
 # define MAX_HEIGHT	        100
-# define CLIENT_START		10
+# define CLIENT_TEAM		10
 # define EXECUTION_TIME		1
 # define TIMEOUT_SEC		0
 # define TIMEOUT_USEC		1
@@ -58,8 +58,9 @@ typedef	struct 		s_param
   int			port;
   int			world_width;
   int			world_height;
-  int			nb_client_start;
+  int			nb_client_team;
   int			execution_time;
+  int			*number_client;
 }			t_param;
 
 typedef struct		s_item
