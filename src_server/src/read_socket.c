@@ -41,6 +41,7 @@ int			create_new_task_client(t_client *client,
 	}
       else
 	create_new_write_task(client, "KO\n");
+      return (1);
     }
   else
     {
@@ -54,8 +55,9 @@ int			create_new_task_client(t_client *client,
 		     client->id_client,
 		     client->buffer.buffer_read);
 	      deconnection_client(server, client);
+	      return (0);
 	    }
-	  return (0);
+	  return (1);
 	}
       client->is_ready = 1;
       init_position_client(client, server);

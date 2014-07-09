@@ -42,12 +42,12 @@ void			loop_items_on_case(t_list *current_item,
   if ((item = current_item->data) == NULL ||
       item->type < 0 || item->type >= 7)
     return ;
-  if (*(int *)marker_space == 1 && pass == 0)
+  if (*(int *)marker_space == 0 && pass == 0)
     {
       make_request(NULL, (char *)&name_item[item->type][1]);
       pass = 1;
     }
-  else if (*(int *)marker_space > 1)
+  else if (*(int *)marker_space > 0)
     {
       pass = 0;
       make_request(NULL, (char *)name_item[item->type]);
@@ -55,7 +55,9 @@ void			loop_items_on_case(t_list *current_item,
 }
 
 void			check_player_at_position(t_server *server,
-						 int position_x, int position_y)
+						 t_client *client,
+						 int position_x,
+						 int position_y)
 {
   t_list		*current_item;
   char			*command;
@@ -65,6 +67,7 @@ void			check_player_at_position(t_server *server,
   while (current_item != NULL)
     {
       if (((t_client *)current_item->data)->is_ready == 1 &&
+	  ((t_client *)current_item->data)->id_client != client->id_client &&
 	  ((t_client *)current_item->data)->direction.position_x == position_x &&
 	  ((t_client *)current_item->data)->direction.position_y == position_y)
 	{
@@ -89,14 +92,14 @@ void			check_line(t_server *server, t_client *client,
 				   int current_level, int *direction_position)
 {
   int			index_position;
-  int			marker_position;
+  int			marker;
 
+  marker = 1;
   direction_position[0] *= current_level + 1;
   direction_position[1] *= current_level;
   for (index_position = 0; index_position < current_level * 2 + 1;
        index_position++)
     {
-      marker_position = index_position + current_level;
       if (client->direction.position_x + direction_position[0] -
 	  (current_level / 2 + 1) + index_position >= 0 &&
 	  client->direction.position_x + direction_position[0] -
@@ -109,8 +112,8 @@ void			check_line(t_server *server, t_client *client,
 				   direction_position[1]]
 		   [client->direction.position_x + direction_position[0] -
 		    (current_level / 2 + 1) + index_position],
-		   loop_items_on_case, (void *)&marker_position);
-	  check_player_at_position(server, client->direction.position_x +
+		   loop_items_on_case, (void *)&marker);
+	  check_player_at_position(server, client, client->direction.position_x +
 				   direction_position[0] -
 				   (current_level / 2 + 1) + index_position,
 				   client->direction.position_y +
@@ -119,6 +122,19 @@ void			check_line(t_server *server, t_client *client,
       if (index_position + 1 < current_level * 2 + 1)
 	make_request(NULL, ",");
     }
+}
+
+void			check_first_line(t_server *server, t_client *client)
+{
+  int			marker;
+
+  marker = 0;
+  map_list(server->map.map[client->direction.position_y]
+	   [client->direction.position_x],
+	   loop_items_on_case, (void *)&marker);
+  check_player_at_position(server, client, client->direction.position_x,
+			   client->direction.position_y);
+  make_request(NULL, ",");
 }
 
 void			direction_see(t_client *client, int *direction_x,
@@ -147,6 +163,7 @@ void			voir_task_function(t_server *server,
   direction_position[1] = 0;
   direction_see(client, &direction_position[0], &direction_position[1]);
   make_request(NULL, "{");
+  check_first_line(server, client);
   for (index_level_client = 1; index_level_client <= client->level;
        index_level_client++)
     check_line(server, client, index_level_client, direction_position);
