@@ -25,24 +25,28 @@ void			init_position_client(t_client *current_client,
   current_client->direction.orientation = MAP_DIRECTION_ORIENTATION_NORTH;
 }
 
-int			create_new_task_client(t_client *client,
-					       t_server *server)
+int			create_task_ready_client(t_server *server,
+						 t_client *client)
 {
   t_task		*task;
 
-  if (client->is_ready == 1)
+  if ((task = new_task(server, client->buffer.buffer_read)) != NULL)
     {
-      if ((task = new_task(server, client->buffer.buffer_read)) != NULL)
-	{
-	  printf("[\033[32m+\033[0m]ADD Task client[%d] : %s\n",
-		 client->id_client, client->buffer.buffer_read);
-	  list_push(&client->tasks, task, free_task);
-	  init_timer_client(client);
-	}
-      else
-	create_new_write_task(client, "KO\n");
-      return (1);
+      printf("[\033[32m+\033[0m]ADD Task client[%d] : %s\n",
+	     client->id_client, client->buffer.buffer_read);
+      list_push(&client->tasks, task, free_task);
+      init_timer_client(client);
     }
+  else
+    create_new_write_task(client, "KO\n");
+  return (1);
+}
+
+int			create_new_task_client(t_client *client,
+					       t_server *server)
+{
+  if (client->is_ready == 1)
+    return (create_task_ready_client(server, client));
   else
     {
       if (((client->id_team = get_id_team(server,
