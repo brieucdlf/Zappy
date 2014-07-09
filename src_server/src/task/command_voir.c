@@ -34,7 +34,8 @@ void			loop_items_on_case(t_list *current_item,
 					   void *marker_space)
 {
   t_item		*item;
-  const char		*name_item[7] = {" nourriture", " linemate", " deraumere",
+  const char		*name_item[7] = {" nourriture", " linemate",
+					 " deraumere",
 					 " sibur", " mendiane", " phiras",
 					 " thystame"};
   static int		pass = 0;
@@ -60,26 +61,23 @@ void			check_player_at_position(t_server *server,
 						 int position_y)
 {
   t_list		*current_item;
+  t_client		*current_client;
   char			*command;
 
   if ((current_item = server->clients) == NULL)
     return ;
   while (current_item != NULL)
     {
-      if (((t_client *)current_item->data)->is_ready == 1 &&
-	  ((t_client *)current_item->data)->id_client != client->id_client &&
-	  ((t_client *)current_item->data)->direction.position_x == position_x &&
-	  ((t_client *)current_item->data)->direction.position_y == position_y)
+      if ((current_client = (t_client *)current_item->data) != NULL &&
+	  current_client->is_ready == 1 && current_client->id_client !=
+	  client->id_client && current_client->direction.position_x ==
+	  position_x && current_client->direction.position_y == position_y)
 	{
-	  if ((command = malloc(strlen(server->
-				       param_server.
-				       teams_names[((t_client *)current_item->
-						    data)->id_team]) + 2)) ==
-	      NULL)
+	  if ((command = malloc(strlen(server->param_server.teams_names
+				       [current_client->id_team]) + 2)) == NULL)
 	    return ;
 	  sprintf(command, " %s", server->
-		  param_server.teams_names[((t_client *)current_item->
-					    data)->id_team]);
+		  param_server.teams_names[current_client->id_team]);
 	  make_request(NULL, command);
 	  free(command);
 	}
@@ -87,14 +85,22 @@ void			check_player_at_position(t_server *server,
     }
 }
 
+void			check_content_case(t_server *server, t_client *client,
+					   int position_x, int position_y)
+{
+  int			marker;
+
+  marker = 1;
+  map_list(server->map.map[position_y][position_x],
+	   loop_items_on_case, (void *)&marker);
+  check_player_at_position(server, client, position_x, position_y);
+}
 
 void			check_line(t_server *server, t_client *client,
 				   int current_level, int *direction_position)
 {
   int			index_position;
-  int			marker;
 
-  marker = 1;
   direction_position[0] *= current_level + 1;
   direction_position[1] *= current_level;
   for (index_position = 0; index_position < current_level * 2 + 1;
@@ -107,18 +113,11 @@ void			check_line(t_server *server, t_client *client,
 	  client->direction.position_y + direction_position[1] >= 0 &&
 	  client->direction.position_y + direction_position[1] <
 	  server->map.height)
-	{
-	  map_list(server->map.map[client->direction.position_y +
-				   direction_position[1]]
-		   [client->direction.position_x + direction_position[0] -
-		    (current_level / 2 + 1) + index_position],
-		   loop_items_on_case, (void *)&marker);
-	  check_player_at_position(server, client, client->direction.position_x +
-				   direction_position[0] -
-				   (current_level / 2 + 1) + index_position,
-				   client->direction.position_y +
-				   direction_position[1]);
-	}
+	check_content_case(server, client, client->direction.position_x +
+			   direction_position[0] -
+			   (current_level / 2 + 1) + index_position,
+			   client->direction.position_y +
+			   direction_position[1]);
       if (index_position + 1 < current_level * 2 + 1)
 	make_request(NULL, ",");
     }

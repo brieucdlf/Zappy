@@ -1,38 +1,47 @@
 #include "server.h"
 
+void			find_best_start_minus(char **map, int *start_position,
+					      t_client *client, int *start_value)
+{
+  if (client->direction.position_x - 1 >= 0 &&  map[client->direction.position_y]
+      [client->direction.position_x - 1] < *start_value)
+    {
+      *start_position = MAP_DIRECTION_ORIENTATION_WEST;
+      *start_value = map[client->direction.position_y]
+	[client->direction.position_x - 1];
+    }
+  if (client->direction.position_y - 1 >= 0 &&
+      map[client->direction.position_y - 1][client->direction.position_x] <
+      *start_value)
+    {
+      *start_position = MAP_DIRECTION_ORIENTATION_NORTH;
+      *start_value = map[client->direction.position_y - 1]
+	[client->direction.position_x];
+    }
+}
+
 void			find_best_start(char **map, int *start_position,
 					t_client *client, t_server *server)
 {
   int			start_value;
 
   start_value = 0x7FFFFFFF;
-  if (client->direction.position_x - 1 >= 0 &&
-      map[client->direction.position_y][client->direction.position_x - 1] <
-      start_value)
-    {
-      *start_position = MAP_DIRECTION_ORIENTATION_WEST;
-      start_value = map[client->direction.position_y][client->direction.position_x - 1];
-    }
+  find_best_start_minus(map, start_position, client, &start_value);
   if (client->direction.position_x + 1 < server->map.width &&
       map[client->direction.position_y][client->direction.position_x + 1] <
       start_value)
     {
       *start_position = MAP_DIRECTION_ORIENTATION_EAST;
-      start_value = map[client->direction.position_y][client->direction.position_x + 1];
-    }
-  if (client->direction.position_y - 1 >= 0 &&
-      map[client->direction.position_y - 1][client->direction.position_x] <
-      start_value)
-    {
-      *start_position = MAP_DIRECTION_ORIENTATION_NORTH;
-      start_value = map[client->direction.position_y - 1][client->direction.position_x];
+      start_value = map[client->direction.position_y]
+	[client->direction.position_x + 1];
     }
   if (client->direction.position_y + 1 < server->map.height &&
       map[client->direction.position_y + 1][client->direction.position_x] <
       start_value)
     {
       *start_position = MAP_DIRECTION_ORIENTATION_SOUTH;
-      start_value = map[client->direction.position_y + 1][client->direction.position_x];
+      start_value = map[client->direction.position_y + 1]
+	[client->direction.position_x];
     }
 }
 
@@ -58,32 +67,29 @@ void			find_best_path(t_client *current_client, char **map,
 int			check_path(char **map, int *position,
 				   int number_path, t_server *server)
 {
-  int			find;
-
-  find = 0;
   if (position[1] - 1 >= 0 && map[position[1] - 1][position[0]] == 0)
     {
       map[position[1] - 1][position[0]] = number_path + 1;
-      find = 1;
+      position[2] = 1;
     }
   if (position[1] + 1 < server->map.height &&
       map[position[1] + 1][position[0]] == 0)
     {
       map[position[1] + 1][position[0]] = number_path + 1;
-      find = 1;
+      position[2] = 1;
     }
   if (position[0] - 1 >= 0 && map[position[1]][position[0] - 1] == 0)
     {
       map[position[1]][position[0] - 1] = number_path + 1;
-      find = 1;
+      position[2] = 1;
     }
   if (position[0] + 1 < server->map.width &&
       map[position[1]][position[0] + 1] == 0)
     {
       map[position[1]][position[0] + 1] = number_path + 1;
-      find = 1;
+      position[2] = 1;
     }
-  return (find);
+  return (position[2]);
 }
 
 int			path_finder(char **map, int number_path,
@@ -91,7 +97,7 @@ int			path_finder(char **map, int number_path,
 {
   int			index_position_y;
   int			index_position_x;
-  int			position[2];
+  int			position[3];
   int			find_path;
 
   find_path = 0;
@@ -103,6 +109,7 @@ int			path_finder(char **map, int number_path,
 	{
 	  position[0] = index_position_x;
 	  position[1] = index_position_y;
+	  position[2] = 0;
 	  if (map[index_position_y][index_position_x] == number_path &&
 	      check_path(map, position, number_path, server) != 0)
 	    find_path = 1;
