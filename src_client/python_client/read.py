@@ -2,6 +2,7 @@ import sys
 import os
 import select 
 import socket
+from moving import *
 from socket_server import SocketServer
 from argument import parse_argument
 from time import sleep
@@ -11,8 +12,10 @@ player = {
     "inventaire" : [],
     "lvl" : 1,
     "flag_voir" : 1,
+    "flag_nourriture" : 0,
     "what_i_see" : {},
-    "target_pos" : 0
+    "target_pos" : 0,
+    "path" : []
 }
 
 def check_voir(so):
@@ -21,30 +24,31 @@ def check_voir(so):
     player["flag_voir"] = 0
     print "WRITE VOIR OK"
     
-def check_food(so):
+def check_food():
     i = 0
     if len(player["what_i_see"]) != 0:
         for key in player["what_i_see"]:
             for item in player["what_i_see"][key]:
                 if player["what_i_see"][key][i] == "nourriture":
+                    player["flag_nourriture"] = 1;
                     print "food found"
-                    print player["what_i_see"][key].index(player["what_i_see"][key][i]) #J'affiche la position de la nourriture
-                    player["target_pos"] = player["what_i_see"][key].index(player["what_i_see"][key][i]) #Je set la position ou le joueur doit se diriger
+                    print "The position of food is " + str(key)
+                    player["target_pos"] = key  #Je set la position ou le joueur doit se diriger
+                    make_path(player["target_pos"])
                     return
                 i = i + 1
             i = 0
         print "check food"
     return
 
-# def find_rock():
-#     print "find rock"
-
 def send_ok(so):
     if player["flag_voir"] == 1:
         check_voir(so)
         player["flag_voir"] = 0
     else:
-        check_food(so)
+        if player["flag_nourriture"] == 0:
+            check_food()
+        make_deplacement(so)
     print "SEND COMMAND OK"
 
 def read_ok(so):
@@ -67,12 +71,11 @@ def read_ok(so):
         if so.read_request() == "ok\n":
             print "gauche\n"
             request.remove(request[0])
-        else:
-            return
+        else:            return
     elif request[0] == "voir\n":
         print "voir\n"
-        test = "{thystame nourriture,nourriture,thystame}"
-        tmp  = test[1:-1].split(",")
+        test = so.read_request()
+        tmp  = test[1:-1].split(", ")
         for item in tmp:
             player["what_i_see"][i] = tmp[i].split(" ")
             i = i + 1
@@ -80,13 +83,13 @@ def read_ok(so):
         request.remove(request[0])
     elif request[0] == "inventaire\n":  #je rempli l'inventaire en local
         print "inventaire"
-        test = "deraumere,nourriture,nourriture,nourriture" #chaine de test
+        test = so.read_request()
         player["inventaire"] = test.split(",")
         print player["inventaire"]
         request.remove(request[0])
-    elif request[0] == "prend objet\n":
+    elif request[0] == "prend nourriture\n":
         if so.read_request() == "ok\n":
-            print "prend objet\n"
+            print "prend nourriture\n"
             request.remove(request[0])
         else:
             return
@@ -118,4 +121,4 @@ def begin_select(so):
         for i in inputready:
             if i == so.fd_socket:
                 read_ok(so)
-        sleep(5)
+        sleep(3)

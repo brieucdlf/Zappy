@@ -69,12 +69,12 @@ t_task			*add_function_task(t_server *server, const char *command)
 					    "expulse\n", "broadcast",
 					    "incantation\n", "fork\n"};
   unsigned int		index;
-  char			buff[64];
+  char			buff[2048];
 
   for (index = 0; index < 11; index++)
     {
-      memset(buff, 0, 64);
-      memcpy(buff, command, strlen(command));
+      memset(buff, 0, 2048);
+      strncpy(buff, command, 2048);
       if (strcmp_function_task(tab_command[index], buff) == 0)
 	return (init_new_task(server, index, command));
     }

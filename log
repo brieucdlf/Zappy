@@ -1,268 +1,37 @@
-==6276== Memcheck, a memory error detector
-==6276== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==6276== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
-==6276== Command: ./server
-==6276== Parent PID: 29951
-==6276== 
-==6276== Invalid read of size 4
-==6276==    at 0x8048CCA: map_list_with_stop (map_list.c:30)
-==6276==    by 0x8049946: server_loop (run_server.c:31)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276==  Address 0x52d1428 is 8 bytes inside a block of size 12 free'd
-==6276==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048E4F: list_remove_with_data (remove_list.c:48)
-==6276==    by 0x804A216: deconnection_client (deconnection_client.c:29)
-==6276==    by 0x804A336: write_task_socket (write_socket.c:21)
-==6276==    by 0x804A410: loop_write_task (write_socket.c:37)
-==6276==    by 0x804A450: map_check_write_client (write_socket.c:54)
-==6276==    by 0x8048CC0: map_list_with_stop (map_list.c:28)
-==6276==    by 0x8049946: server_loop (run_server.c:31)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 
-==6276== HEAP SUMMARY:
-==6276==     in use at exit: 130,339,459 bytes in 43,141 blocks
-==6276==   total heap usage: 98,182 allocs, 55,041 frees, 188,114,221 bytes allocated
-==6276== 
-==6276== 10,244 bytes in 1 blocks are possibly lost in loss record 19 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AAD7: avance_task_function (command_list.c:24)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 10,244 bytes in 1 blocks are possibly lost in loss record 20 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AB07: droite_task_function (command_list.c:34)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 10,244 bytes in 1 blocks are definitely lost in loss record 21 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x8049D23: query_first_connection (read_socket.c:16)
-==6276==    by 0x8049EBA: create_new_task_client (read_socket.c:61)
-==6276==    by 0x8049F13: interpret_buffer_read_client (read_socket.c:78)
-==6276==    by 0x804A125: map_check_read_client (read_socket.c:113)
-==6276==    by 0x8048CC0: map_list_with_stop (map_list.c:28)
-==6276==    by 0x804992A: server_loop (run_server.c:29)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 10,244 bytes in 1 blocks are definitely lost in loss record 22 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AB07: droite_task_function (command_list.c:34)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 20,488 bytes in 2 blocks are definitely lost in loss record 25 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AAD7: avance_task_function (command_list.c:24)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 20,488 bytes in 2 blocks are definitely lost in loss record 26 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804BCB8: broadcast_task_function (command_broadcast.c:105)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 20,488 bytes in 2 blocks are definitely lost in loss record 27 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AB51: gauche_task_function (command_list.c:46)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 24,000 bytes in 2,000 blocks are definitely lost in loss record 30 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B339: create_map (create_map.c:22)
-==6276==    by 0x80496E4: init_map (init_map.c:89)
-==6276==    by 0x8048B3A: main (main.c:19)
-==6276== 
-==6276== 40,976 bytes in 4 blocks are definitely lost in loss record 31 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804ADC5: prend_task_function (command_list_next.c:55)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 40,976 bytes in 4 blocks are definitely lost in loss record 32 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AD97: prend_task_function (command_list_next.c:50)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 40,976 bytes in 4 blocks are definitely lost in loss record 33 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804B62D: voir_task_function (command_voir.c:72)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 51,220 bytes in 5 blocks are possibly lost in loss record 35 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804BF88: find_best_path (find_path.c:54)
-==6276==    by 0x804BC0C: send_broadcast_player (command_broadcast.c:86)
-==6276==    by 0x804BCA5: broadcast_task_function (command_broadcast.c:104)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 61,464 bytes in 6 blocks are definitely lost in loss record 36 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804AF18: pose_task_function (command_list_next.c:90)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 655,616 bytes in 64 blocks are definitely lost in loss record 39 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x804B220: create_new_write_task (create_write_task.c:16)
-==6276==    by 0x804BF88: find_best_path (find_path.c:54)
-==6276==    by 0x804BC0C: send_broadcast_player (command_broadcast.c:86)
-==6276==    by 0x804BCA5: broadcast_task_function (command_broadcast.c:104)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 1,394,816 (12 direct, 1,394,804 indirect) bytes in 1 blocks are definitely lost in loss record 42 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804BCB8: broadcast_task_function (command_broadcast.c:105)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 1,528,144 (24 direct, 1,528,120 indirect) bytes in 2 blocks are definitely lost in loss record 44 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804B62D: voir_task_function (command_voir.c:72)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 2,071,712 (12 direct, 2,071,700 indirect) bytes in 1 blocks are definitely lost in loss record 46 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804AAD7: avance_task_function (command_list.c:24)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 4,215,216 (24 direct, 4,215,192 indirect) bytes in 2 blocks are definitely lost in loss record 48 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804AB51: gauche_task_function (command_list.c:46)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 11,394,416 (84 direct, 11,394,332 indirect) bytes in 7 blocks are definitely lost in loss record 52 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804AD97: prend_task_function (command_list_next.c:50)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 14,881,456 (96 direct, 14,881,360 indirect) bytes in 8 blocks are definitely lost in loss record 53 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804AF18: pose_task_function (command_list_next.c:90)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 22,778,576 (144 direct, 22,778,432 indirect) bytes in 12 blocks are definitely lost in loss record 54 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804ADC5: prend_task_function (command_list_next.c:55)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== 70,828,020 (684 direct, 70,827,336 indirect) bytes in 57 blocks are definitely lost in loss record 55 of 56
-==6276==    at 0x402A17C: malloc (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
-==6276==    by 0x8048C05: list_push (list.c:18)
-==6276==    by 0x804B291: create_new_write_task (create_write_task.c:21)
-==6276==    by 0x804BF88: find_best_path (find_path.c:54)
-==6276==    by 0x804BC0C: send_broadcast_player (command_broadcast.c:86)
-==6276==    by 0x804BCA5: broadcast_task_function (command_broadcast.c:104)
-==6276==    by 0x804B16E: check_timer_client (timer.c:28)
-==6276==    by 0x8048C81: map_list (map_list.c:13)
-==6276==    by 0x804B1CC: check_timer (timer.c:42)
-==6276==    by 0x8049967: server_loop (run_server.c:35)
-==6276==    by 0x8048B81: main (main.c:25)
-==6276== 
-==6276== LEAK SUMMARY:
-==6276==    definitely lost: 947,040 bytes in 2,180 blocks
-==6276==    indirectly lost: 129,091,276 bytes in 25,091 blocks
-==6276==      possibly lost: 71,708 bytes in 7 blocks
-==6276==    still reachable: 229,435 bytes in 15,863 blocks
-==6276==         suppressed: 0 bytes in 0 blocks
-==6276== Reachable blocks (those to which a pointer was found) are not shown.
-==6276== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==6276== 
-==6276== For counts of detected and suppressed errors, rerun with: -v
-==6276== ERROR SUMMARY: 110 errors from 23 contexts (suppressed: 0 from 0)
+==26556== Memcheck, a memory error detector
+==26556== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==26556== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==26556== Command: ./server
+==26556== Parent PID: 17344
+==26556== 
+==26556== Invalid read of size 4
+==26556==    at 0x8048CFA: map_list_with_stop (map_list.c:30)
+==26556==    by 0x8049820: server_loop (run_server.c:31)
+==26556==    by 0x8048BB1: main (main.c:27)
+==26556==  Address 0x43164f0 is 8 bytes inside a block of size 12 free'd
+==26556==    at 0x402B3D8: free (in /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so)
+==26556==    by 0x8048DF3: first_elem_remove_list (remove_list.c:26)
+==26556==    by 0x8048E43: list_remove_with_data (remove_list.c:41)
+==26556==    by 0x804A10B: deconnection_client (deconnection_client.c:29)
+==26556==    by 0x804A201: write_task_socket (write_socket.c:18)
+==26556==    by 0x804A2F0: loop_write_task (write_socket.c:36)
+==26556==    by 0x804A330: map_check_write_client (write_socket.c:53)
+==26556==    by 0x8048CF0: map_list_with_stop (map_list.c:28)
+==26556==    by 0x8049820: server_loop (run_server.c:31)
+==26556==    by 0x8048BB1: main (main.c:27)
+==26556== 
+==26556== 
+==26556== HEAP SUMMARY:
+==26556==     in use at exit: 244,503 bytes in 17,225 blocks
+==26556==   total heap usage: 51,064 allocs, 33,839 frees, 24,690,683 bytes allocated
+==26556== 
+==26556== LEAK SUMMARY:
+==26556==    definitely lost: 24,000 bytes in 2,000 blocks
+==26556==    indirectly lost: 0 bytes in 0 blocks
+==26556==      possibly lost: 0 bytes in 0 blocks
+==26556==    still reachable: 220,503 bytes in 15,225 blocks
+==26556==         suppressed: 0 bytes in 0 blocks
+==26556== Rerun with --leak-check=full to see details of leaked memory
+==26556== 
+==26556== For counts of detected and suppressed errors, rerun with: -v
+==26556== ERROR SUMMARY: 8 errors from 1 contexts (suppressed: 0 from 0)

@@ -34,11 +34,14 @@ int			create_new_task_client(t_client *client,
     {
       if ((task = new_task(server, client->buffer.buffer_read)) != NULL)
 	{
-	  printf("[+]\033[1;42mADD Task client[%d]\033[0m : %s\n",
+	  printf("[\033[32m+\033[0m]ADD Task client[%d] : %s\n",
 		 client->id_client, client->buffer.buffer_read);
 	  list_push(&client->tasks, task, free_task);
 	  init_timer_client(client);
 	}
+      else
+	create_new_write_task(client, "KO\n");
+      return (1);
     }
   else
     {
@@ -48,12 +51,13 @@ int			create_new_task_client(t_client *client,
 	  if (!check_is_graphic_client(server, client,
 				       client->buffer.buffer_read))
 	    {
-	      printf("\033[31m[-]Wrong team name[%d] :\033[0m%s\n",
+	      printf("[\033[31m-\033[0m]Wrong team name[%d] : %s\n",
 		     client->id_client,
 		     client->buffer.buffer_read);
 	      deconnection_client(server, client);
+	      return (0);
 	    }
-	  return (0);
+	  return (1);
 	}
       client->is_ready = 1;
       init_position_client(client, server);

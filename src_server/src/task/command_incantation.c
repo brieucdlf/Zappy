@@ -64,5 +64,4 @@ void		        incantation_task_function(t_server *server,
       check_ressoures_incantation(client) == 0)
     client->level += 1;
   send_task_answer(client);
-  printf("incantation\n");
 }

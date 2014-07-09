@@ -34,7 +34,7 @@ typedef struct		s_task
 
 typedef struct		s_write_task
 {
-  char			buffer[10240];
+  char			buffer[5120];
   int			index;
 }			t_write_task;
 

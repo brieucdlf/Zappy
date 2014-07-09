@@ -18,7 +18,7 @@ int			write_task_socket(t_write_task *head_task,
 	deconnection_client(server, current_client);
       return (0);
     }
-  printf("\033[1;32m[+][%d] Write task = \033[0m%s",
+  printf("[\033[32m+\033[0m] [%d] Write task = %s",
 	 current_client->id_client,
 	 &head_task->buffer[head_task->index]);
   head_task->index += ret;

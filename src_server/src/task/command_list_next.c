@@ -1,4 +1,3 @@
-
 #include "task.h"
 #include "server.h"
 #include "user.h"
@@ -12,14 +11,6 @@ int			match_item_prendre_task(void *data1, void *data2)
   return (1);
 }
 
-void			display_item_list(t_list *item, void *arg)
-{
-  (void)arg;
-  if (item == NULL)
-    return ;
-  printf("Liste des items : [%d]\n", ((t_item *)item->data)->type);
-}
-
 void		        prend_task_function(t_server *server,
 					    t_client *client,
 					    char *arg)
@@ -30,6 +21,7 @@ void		        prend_task_function(t_server *server,
 					 "sibur\n", "mendiane\n", "phiras\n",
 					 "thystame\n"};
 
+  printf("ARG PRENDRE = %s\n", (char *)arg);
   current_item = server->map.map[client->direction.position_y]
     [client->direction.position_x];
   while (arg != NULL && current_item !=  NULL)
@@ -52,7 +44,7 @@ void		        prend_task_function(t_server *server,
 	}
       current_item = current_item->next;
     }
-  return create_new_write_task(client, "KO\n");
+  create_new_write_task(client, "KO\n");
 }
 
 void			pose_task_function(t_server *server,

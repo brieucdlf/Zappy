@@ -1,13 +1,3 @@
-##
-## Makefile for zappy in /Users/remihillairet/Epitech/Github/Zappy/client/client-graphic
-##
-## Made by remi hillairet
-## Login   <remihillairet@epitech.net>
-##
-## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Wed Jul  9 12:16:24 2014 Remi Hillairet
-##
-
 CC		=	g++ -g
 
 RM		=	rm -fv
@@ -24,7 +14,8 @@ SRCS		=	main.cpp \
 			Socket.cpp \
 			Task.cpp \
 			TaskManager.cpp \
-			ExecCommand.cpp
+			ExecCommand.cpp \
+			Map.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

@@ -100,11 +100,13 @@ void			broadcast_task_function(t_server *server,
 
   if (arg == NULL || (current_client = server->clients) == NULL ||
       (map = copy_map(server->map.width, server->map.height)) == NULL)
-    return ;
+    {
+      create_new_write_task(client, "KO\n");
+      return ;
+    }
   fill_copy_map_path(client, server, map);
   loop_path_finder(map, server);
   send_broadcast_player(server, client, map, arg);
   create_new_write_task(client, "OK\n");
   free_double_array_delimiter(map, server->map.height);
-  printf("broadcast message\n");
 }

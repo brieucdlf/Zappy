@@ -46,7 +46,7 @@ std::vector<std::string> ExecCommand::splitTask(std::string task)
   return param;
 }
 
-void	ExecCommand::runTask(std::string task, )
+void	ExecCommand::runTask(std::string task)
 {
   std::vector<std::string> param;
 
@@ -76,119 +76,119 @@ void	ExecCommand::runTask(std::string task, )
 ** COMMANDS
 */
 
-void	ExecCommand::runMsz(std::vector<std::string> param)
-{
+// void	ExecCommand::runMsz(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runBct(std::vector<std::string> param)
-{
+// void	ExecCommand::runBct(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runTna(std::vector<std::string> param)
-{
+// void	ExecCommand::runTna(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPnw(std::vector<std::string> param)
-{
+// void	ExecCommand::runPnw(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPpo(std::vector<std::string> param)
-{
+// void	ExecCommand::runPpo(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPlv(std::vector<std::string> param)
-{
+// void	ExecCommand::runPlv(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPin(std::vector<std::string> param)
-{
+// void	ExecCommand::runPin(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPex(std::vector<std::string> param)
-{
+// void	ExecCommand::runPex(std::vector<std::string> param)
+// {
 
-}
-void	ExecCommand::runPbc(std::vector<std::string> param)
-{
+// }
+// void	ExecCommand::runPbc(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPic(std::vector<std::string> param)
-{
+// void	ExecCommand::runPic(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPie(std::vector<std::string> param)
-{
+// void	ExecCommand::runPie(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPfk(std::vector<std::string> param)
-{
+// void	ExecCommand::runPfk(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPdr(std::vector<std::string> param)
-{
+// void	ExecCommand::runPdr(std::vector<std::string> param)
+// {
 
-}
-void	ExecCommand::runPgt(std::vector<std::string> param)
-{
+// }
+// void	ExecCommand::runPgt(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runPdi(std::vector<std::string> param)
-{
+// void	ExecCommand::runPdi(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runEnw(std::vector<std::string> param)
-{
+// void	ExecCommand::runEnw(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runEht(std::vector<std::string> param)
-{
+// void	ExecCommand::runEht(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runEbo(std::vector<std::string> param)
-{
+// void	ExecCommand::runEbo(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runEdi(std::vector<std::string> param)
-{
+// void	ExecCommand::runEdi(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runSgt(std::vector<std::string> param)
-{
+// void	ExecCommand::runSgt(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runSeg(std::vector<std::string> param)
-{
+// void	ExecCommand::runSeg(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runSmg(std::vector<std::string> param)
-{
+// void	ExecCommand::runSmg(std::vector<std::string> param)
+// {
 
-}
-void	ExecCommand::runSuc(std::vector<std::string> param)
-{
+// }
+// void	ExecCommand::runSuc(std::vector<std::string> param)
+// {
 
-}
+// }
 
-void	ExecCommand::runSbp(std::vector<std::string> param)
-{
+// void	ExecCommand::runSbp(std::vector<std::string> param)
+// {
 
-}
+// }
