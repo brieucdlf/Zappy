@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Tue Jul  8 10:09:55 2014 Jeremy Peltier
+// Last update Tue Jul  8 15:31:03 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -116,12 +116,34 @@ void	ClientGraphic::loading()
 {
   this->window.clear();
 
+  sf::Color	color(230, 126, 34);
+  sf::Color	color2(211, 84, 0);
+
+  sf::Font	font;
+  font.loadFromFile("src_client/client-graphic/resources/fonts/game_power.ttf");
+
   sf::Text text;
+  text.setFont(font);
   text.setString("Loading...");
-  text.setCharacterSize(30);
-  text.setColor(sf::Color::Red);
+  text.setCharacterSize(100);
+  text.setPosition(this->window.getSize().x / 4, this->window.getSize().y / 2 - 100);
+  text.setColor(color);
   text.setStyle(sf::Text::Bold);
   this->window.draw(text);
+
+  sf::RectangleShape	background;
+  background.setFillColor(sf::Color::Transparent);
+  background.setOutlineColor(color);
+  background.setOutlineThickness(1);
+  background.setPosition(this->window.getSize().x / 2 - 152, this->window.getSize().y / 2 + 50);
+  background.setSize(sf::Vector2f(304, 29));
+  this->window.draw(background);
+
+  sf::RectangleShape	front;
+  front.setFillColor(color2);
+  front.setPosition(this->window.getSize().x / 2 - 150, this->window.getSize().y / 2 + 52);
+  front.setSize(sf::Vector2f(300, 25));
+  this->window.draw(front);
 
   this->window.display();
 }

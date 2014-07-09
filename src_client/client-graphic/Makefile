@@ -5,7 +5,7 @@
 ## Login   <remihillairet@epitech.net>
 ##
 ## Started on  Tue May  13 10:45:47 2014 remi hillairet
-## Last update Mon Jul  7 11:29:58 2014 Remi Hillairet
+## Last update Wed Jul  9 12:03:20 2014 Jeremy Peltier
 ##
 
 CC		=	g++ -g
@@ -23,7 +23,8 @@ SRCS		=	main.cpp \
 			TextureManager.cpp \
 			Socket.cpp \
 			Task.cpp \
-			TaskManager.cpp
+			TaskManager.cpp \
+			Map.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
