@@ -12,13 +12,34 @@
 
 int                     g_server_run = 1;
 
+void			signalHandler(int signal)
+{
+  if(signal == SIGINT)
+    {
+      static unsigned short nbSignal = 0;
+      nbSignal++;
+      if (nbSignal == 1)
+	printf("[\033[32m+\033[0m] Handle again to down the server\n");
+      if(nbSignal == 2)
+	{
+	  printf("[\033[31m-\033[0m] Server down\n");
+	  g_server_run = 0;
+	}
+    }
+}
+
 void			server_loop(t_server *server)
 {
   struct timeval	tv;
+  struct sigaction	action, oldAction;
   int			rv;
 
   while (g_server_run == 1)
     {
+      action.sa_handler = signalHandler;
+      sigemptyset(&action.sa_mask);
+      action.sa_flags = SA_RESTART;
+      sigaction(SIGINT, &action, &oldAction);
       init_fd_socket(server);
       tv.tv_sec = TIMEOUT_SEC;
       tv.tv_usec = TIMEOUT_USEC;
@@ -42,3 +63,4 @@ void			server_loop(t_server *server)
       usleep(100);
     }
 }
+
