@@ -2,6 +2,7 @@
 # define	MAP_HPP_
 
 # include	<vector>
+# include	<map>
 
 typedef enum
   {
@@ -35,14 +36,14 @@ public:
   int		getTimeUnit() const;
   void		setPercentageLoaded(int);
   int		getPercentageLoaded() const;
-  std::vector<std::vector<Inventory> >	&getMap();
+  std::map<int, std::map<int, Inventory> >	&getMap();
 
 private:
   int	width;
   int	height;
   int	percentageLoaded;
   int	timeUnit;
-  std::vector<std::vector<Inventory> >	map;
+  std::map<int, std::map<int, Inventory> > map;
 };
 
  #endif		/* !MAP_HPP_ */
