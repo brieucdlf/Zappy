@@ -54,6 +54,9 @@ void	ExecCommand::runTask(std::string task, ClientData & data)
   if (task.empty())
     return ;
   param = splitTask(task);
+  std::cout << "Task : " << task << std::endl;
+  if (_functions[param[0]] == NULL)
+    return ;
   ptr = _functions[param[0]];
   (this->*ptr)(param, data);
 }
