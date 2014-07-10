@@ -1,13 +1,3 @@
-//
-// Map.hpp for ClientGraphic in /home/peltie_j/Desktop/Epitech/Tek2/unix/Zappy/src_client/client-graphic/includes
-//
-// Made by Jeremy Peltier
-// Login   <peltie_j@epitech.net>
-//
-// Started on  Wed Jul  9 10:47:14 2014 Jeremy Peltier
-// Last update Thu Jul 10 10:17:11 2014 Jeremy Peltier
-//
-
 #ifndef		MAP_HPP_
 # define	MAP_HPP_
 
@@ -54,4 +44,4 @@ private:
   std::vector<std::vector<Inventory> >	map;
 };
 
-#endif		/* !MAP_HPP_ */
+ #endif		/* !MAP_HPP_ */
