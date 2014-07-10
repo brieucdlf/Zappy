@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	  manager.parseReceiveCommand(socket.readSocket());
 	  command.runTask(manager.getTask(), data);
 	  if (data.getMap().getWidth() != 0 && data.getMap().getHeight() != 0)
-	    client.draw(data.getMap().getWidth(), data.getMap().getHeight());
+	    client.draw(data.getMap());
 	  else
 	    client.loading();
 	  /*

@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  9 10:49:21 2014 Jeremy Peltier
-// Last update Wed Jul  9 18:35:10 2014 Remi Hillairet
+// Last update Thu Jul 10 10:28:19 2014 Jeremy Peltier
 //
 
 #include	"Map.hpp"
@@ -65,4 +65,9 @@ int	Map::getTimeUnit() const
 void	Map::setPercentageLoaded(int percentage)
 {
   percentageLoaded = percentage;
+}
+
+std::vector<std::vector<Inventory> >	&Map::getMap()
+{
+  return this->map;
 }

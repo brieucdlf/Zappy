@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Tue Jul  8 15:31:03 2014 Jeremy Peltier
+// Last update Thu Jul 10 10:34:54 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -67,16 +67,65 @@ void	ClientGraphic::addFloor(int x, int y)
   this->window.draw(floor);
 }
 
-void	ClientGraphic::addStone(int x, int y)
+void	ClientGraphic::addLinemate(int x, int y)
 {
-  std::string	pathTexture = "resources/images/stone.tga";
+  std::string	pathTexture = "src_client/client-graphic/resources/images/linemate.tga";
 
-  IsometricSprite	stone(textures.getTexture(pathTexture));
-  stone.setIsometricPosition(sf::Vector2f(x, y));
+  IsometricSprite	linemate(textures.getTexture(pathTexture));
+  linemate.setIsometricPosition(sf::Vector2f(x, y));
 
-  this->window.draw(stone);
+  this->window.draw(linemate);
 }
 
+void	ClientGraphic::addDeraumere(int x, int y)
+{
+  std::string	pathTexture = "src_client/client-graphic/resources/images/deraumere.tga";
+
+  IsometricSprite	deraumere(textures.getTexture(pathTexture));
+  deraumere.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(deraumere);
+}
+
+void	ClientGraphic::addSibur(int x, int y)
+{
+  std::string	pathTexture = "src_client/client-graphic/resources/images/sibur.tga";
+
+  IsometricSprite	sibur(textures.getTexture(pathTexture));
+  sibur.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(sibur);
+}
+
+void	ClientGraphic::addMendiane(int x, int y)
+{
+  std::string	pathTexture = "src_client/client-graphic/resources/images/mendiane.tga";
+
+  IsometricSprite	mendiane(textures.getTexture(pathTexture));
+  mendiane.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(mendiane);
+}
+
+void	ClientGraphic::addPhiras(int x, int y)
+{
+  std::string	pathTexture = "src_client/client-graphic/resources/images/phiras.tga";
+
+  IsometricSprite	phiras(textures.getTexture(pathTexture));
+  phiras.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(phiras);
+}
+
+void	ClientGraphic::addThystane(int x, int y)
+{
+  std::string	pathTexture = "src_client/client-graphic/resources/images/thystane.tga";
+
+  IsometricSprite	thystane(textures.getTexture(pathTexture));
+  thystane.setIsometricPosition(sf::Vector2f(x, y));
+
+  this->window.draw(thystane);
+}
 void	ClientGraphic::addFood(int x, int y)
 {
   std::string	pathTexture = "resources/images/food.tga";
@@ -93,22 +142,42 @@ void	ClientGraphic::addCharacter(int x, int y)
   y = y;
 }
 
-void	ClientGraphic::generateItems()
+void	ClientGraphic::generateItems(Map &data)
 {
+  for (int y = 0; y < data.getHeight(); ++y)
+    {
+      for (int x = 0; x < data.getWidth(); ++x)
+	{
+	  if (data.getMap()[y][x][FOOD] > 0)
+	    addFood(x, y);
+	  if (data.getMap()[y][x][LINEMATE] > 0)
+	    addLinemate(x, y);
+	  if (data.getMap()[y][x][DERAUMERE] > 0)
+	    addDeraumere(x, y);
+	  if (data.getMap()[y][x][SIBUR] > 0)
+	    addSibur(x, y);
+	  if (data.getMap()[y][x][MENDIANE] > 0)
+	    addMendiane(x, y);
+	  if (data.getMap()[y][x][PHIRAS])
+	    addPhiras(x, y);
+	  if (data.getMap()[y][x][THYSTAME])
+	    addThystane(x, y);
+	}
+    }
 }
 
-void	ClientGraphic::generateMap(int width, int height)
+void	ClientGraphic::generateGround(int width, int height)
 {
   for (int i = 0; i < width; ++i)
     for (int j = 0; j < height; ++j)
       addFloor(i, j);
 }
 
-void	ClientGraphic::draw(int width, int height)
+void	ClientGraphic::draw(Map &map)
 {
   this->window.clear();
-  generateMap(width, height);
-  generateItems();
+  generateGround(map.getWidth(), map.getHeight());
+  generateItems(map);
   this->window.display();
 }
 
