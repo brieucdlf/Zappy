@@ -20,10 +20,10 @@ int	main(int ac, char **av)
 	  client.getKey();
 	  manager.parseReceiveCommand(socket.readSocket());
 	  command.runTask(manager.getTask(), data);
-	  if (data.getMap().getWidth() != 0 && data.getMap().getHeight() != 0)
+	  if (data.getMap().getPercentageLoaded() >= 100)
 	    client.draw(data.getMap());
 	  else
-	    client.loading();
+	    client.loading(data.getMap().getPercentageLoaded());
 	  /*
 	  ** This is to send a task to the server.
 	  ** Normally it's work but I can't test with our actually server. 08/07/2014

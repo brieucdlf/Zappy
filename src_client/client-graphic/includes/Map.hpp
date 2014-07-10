@@ -34,6 +34,7 @@ public:
   void		setTimeUnit(int);
   int		getTimeUnit() const;
   void		setPercentageLoaded(int);
+  int		getPercentageLoaded() const;
   std::vector<std::vector<Inventory> >	&getMap();
 
 private:

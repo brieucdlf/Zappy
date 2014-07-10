@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Thu Jul 10 10:34:54 2014 Jeremy Peltier
+// Last update Thu Jul 10 10:48:25 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -181,7 +181,7 @@ void	ClientGraphic::draw(Map &map)
   this->window.display();
 }
 
-void	ClientGraphic::loading()
+void	ClientGraphic::loading(int percent)
 {
   this->window.clear();
 
@@ -210,8 +210,8 @@ void	ClientGraphic::loading()
 
   sf::RectangleShape	front;
   front.setFillColor(color2);
-  front.setPosition(this->window.getSize().x / 2 - 150, this->window.getSize().y / 2 + 52);
-  front.setSize(sf::Vector2f(300, 25));
+  front.setPosition(this->window.getSize().x / 2 - (percent / 2), this->window.getSize().y / 2 + 52);
+  front.setSize(sf::Vector2f(percent, 25));
   this->window.draw(front);
 
   this->window.display();
