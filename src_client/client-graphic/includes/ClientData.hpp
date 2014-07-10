@@ -18,9 +18,9 @@ public:
   void addPlayer(int nbPlayer, Character & player);
 
 public:
-  std::vector<std::string> getTeams() const;
-  Character getPlayer(int nbPlayer);
-  Map  getMap() const;
+  const std::vector<std::string> & getTeams() const;
+  Character & getPlayer(int nbPlayer);
+  Map & getMap();
 
 private:
   std::vector<std::string> teamNames;

@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  9 10:47:14 2014 Jeremy Peltier
-// Last update Wed Jul  9 18:35:07 2014 Remi Hillairet
+// Last update Thu Jul 10 10:16:13 2014 Remi Hillairet
 //
 
 #ifndef		MAP_HPP_
@@ -53,4 +53,4 @@ private:
   std::vector<std::vector<Inventory> >	map;
 };
 
-#endif		/* !MAP_HPP_ */
+ #endif		/* !MAP_HPP_ */

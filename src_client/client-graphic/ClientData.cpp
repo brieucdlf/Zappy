@@ -16,17 +16,17 @@ void ClientData::addPlayer(int nbPlayer, Character & player)
   //players[nbPlayer] = player;
 }
 
-std::vector<std::string> ClientData::getTeams() const
+const std::vector<std::string> & ClientData::getTeams() const
 {
   return teamNames;
 }
 
-Map ClientData::getMap() const
+Map & ClientData::getMap()
 {
   return map;
 }
 
-Character ClientData::getPlayer(int nbPlayer)
+Character & ClientData::getPlayer(int nbPlayer)
 {
   return players[nbPlayer];
 }
