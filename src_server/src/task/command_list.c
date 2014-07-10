@@ -57,8 +57,8 @@ void			inventaire_task_function(t_server *server,
   if ((inventaire = malloc(1024)) == NULL)
     return ;
   memset(inventaire, 0, 1024);
-  sprintf(inventaire, "nourriture %d, linemate %d, deraumere %d, sibur %d,\
- mendiane %d, phiras %d, thystane %d\n", client->items[0], client->items[1],
+  sprintf(inventaire, "{nourriture %d, linemate %d, deraumere %d, sibur %d,\
+ mendiane %d, phiras %d, thystane %d}\n", client->items[0], client->items[1],
 	  client->items[2], client->items[3], client->items[4],
 	  client->items[5], client->items[6]);
   create_new_write_task(client, inventaire);
