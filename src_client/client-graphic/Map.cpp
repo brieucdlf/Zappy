@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  9 10:49:21 2014 Jeremy Peltier
-// Last update Thu Jul 10 11:00:17 2014 Jeremy Peltier
+// Last update Thu Jul 10 11:23:53 2014 Jeremy Peltier
 //
 
 #include	"Map.hpp"
@@ -15,6 +15,7 @@ Map::Map()
   width = 0;
   height = 0;
   timeUnit = 0;
+  percentageLoaded = 0;
 }
 
 Map::~Map()

@@ -98,9 +98,14 @@ void		ExecCommand::runBct(std::vector<std::string> & param, ClientData & data)
   std::istringstream(param[8]) >> invent[PHIRAS];
   std::istringstream(param[9]) >> invent[THYSTAME];
   data.getMap().add(invent, x, y);
-  if (nbBlock < (data.getMap().getWidth() * data.getMap().getHeight()))
-    data.getMap().setPercentageLoaded((nbBlock * 100) / (data.getMap().getWidth() * data.getMap().getHeight()));
   nbBlock++;
+  if (data.getMap().getPercentageLoaded() >= 99)
+    {
+      data.getMap().setPercentageLoaded(100);
+      return ;
+    }
+  if (nbBlock <= (data.getMap().getWidth() * data.getMap().getHeight()) && data.getMap().getPercentageLoaded() < 100)
+    data.getMap().setPercentageLoaded((nbBlock * 100) / (data.getMap().getWidth() * data.getMap().getHeight()));
 }
 
 void	ExecCommand::runTna(std::vector<std::string> & param, ClientData & data)
