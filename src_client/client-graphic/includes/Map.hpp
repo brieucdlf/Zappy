@@ -15,7 +15,7 @@ typedef enum
     THYSTAME
   }		Item;
 
-typedef	std::vector<int>	Inventory;
+typedef	std::map<Item, int>	Inventory;
 
 class		Map
 {
