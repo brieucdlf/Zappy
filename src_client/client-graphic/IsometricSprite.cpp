@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 15:22:10 2014 Jeremy Peltier
-// Last update Wed Jul  2 18:28:04 2014 Jeremy Peltier
+// Last update Thu Jul 10 11:56:01 2014 Jeremy Peltier
 //
 
 #include	<iostream>
