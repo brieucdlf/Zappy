@@ -5,7 +5,7 @@
 ** Login   <delafo_b@epitech.net>
 **
 ** Started on  Thu May 15 13:21:25 2014 Brieuc
-** Last update Fri Jul  4 12:40:41 2014 Remi Hillairet
+** Last update Thu Jul 10 18:54:56 2014 Remi Hillairet
 */
 
 #include "server.h"
@@ -45,11 +45,11 @@ void			server_loop(t_server *server)
       if (select(server->fd_max + 1, &server->readfd,
 		 &server->writefd, NULL, &tv) >= 0)
 	{
+	  manage_graphic_client(server);
 	  map_list_with_stop(server->clients,
 			     map_check_read_client, (void *)server);
 	  map_list_with_stop(server->clients,
 	  		     map_check_write_client, (void *)server);
-	  manage_graphic_client(server);
 	  check_connect_client(server);
 	  check_timer(server);
 	}
