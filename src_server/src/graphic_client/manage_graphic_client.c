@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Wed Jul  9 16:45:31 2014 Jeremy Peltier
+** Last update Thu Jul 10 12:38:28 2014 Remi Hillairet
 */
 
 #include "server.h"
@@ -52,8 +52,8 @@ void		add_new_graphic_client(t_server *server, int fd_socket)
   new_client->buffer.index_read_buffer = 0;
   memset(new_client->items, 0, sizeof(int) * 6);
   server->graphic_client = new_client;
-  FD_SET(server->graphic_client->fd_socket, &(server->readfd));
-  FD_SET(server->graphic_client->fd_socket, &(server->writefd));
+  FD_SET(server->graphic_client->fd_socket, &server->readfd);
+  FD_SET(server->graphic_client->fd_socket, &server->writefd);
 }
 
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
@@ -79,5 +79,6 @@ int	manage_graphic_client(t_server *server)
   if (server->graphic_client == NULL)
     return (0);
   check_graphic_client_write(server, server->graphic_client);
+  check_graphic_client_read(server, server->graphic_client);
   return (1);
 }

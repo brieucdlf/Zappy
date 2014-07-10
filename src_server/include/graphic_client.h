@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 15:56:42 2014 Remi Hillairet
-** Last update Tue Jul  8 14:50:38 2014 Remi Hillairet
+** Last update Thu Jul 10 11:53:09 2014 Remi Hillairet
 */
 
 #ifndef GRAPHIC_CLIENT_H
@@ -41,7 +41,7 @@ void	deconnection_graphic_client(t_server *server);
 ** ################################################
 */
 
-int	check_graphic_client_read(t_server *server);
+int	check_graphic_client_read(t_server *server, t_client *client);
 int	check_graphic_client_write(t_server *server, t_client *client);
 
 #endif /* !GRAPHIC_CLIENT_H */
