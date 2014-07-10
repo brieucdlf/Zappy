@@ -15,7 +15,9 @@ SRCS		=	main.cpp \
 			Task.cpp \
 			TaskManager.cpp \
 			ExecCommand.cpp \
-			Map.cpp
+			Map.cpp \
+			ClientData.cpp \
+			Character.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  9 10:49:21 2014 Jeremy Peltier
-// Last update Wed Jul  9 14:33:45 2014 Remi Hillairet
+// Last update Wed Jul  9 18:35:10 2014 Remi Hillairet
 //
 
 #include	"Map.hpp"
@@ -60,4 +60,9 @@ void	Map::setTimeUnit(int timeUnit)
 int	Map::getTimeUnit() const
 {
   return this->timeUnit;
+}
+
+void	Map::setPercentageLoaded(int percentage)
+{
+  percentageLoaded = percentage;
 }

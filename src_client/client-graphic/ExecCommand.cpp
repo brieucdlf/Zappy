@@ -2,30 +2,30 @@
 
 ExecCommand::ExecCommand()
 {
-  commands.push_back("msz");
-  commands.push_back("bct");
-  commands.push_back("tna");
-  commands.push_back("pnw");
-  commands.push_back("ppo");
-  commands.push_back("plv");
-  commands.push_back("pin");
-  commands.push_back("pex");
-  commands.push_back("pbc");
-  commands.push_back("pic");
-  commands.push_back("pie");
-  commands.push_back("pfk");
-  commands.push_back("pdr");
-  commands.push_back("pgt");
-  commands.push_back("pdi");
-  commands.push_back("enw");
-  commands.push_back("eht");
-  commands.push_back("ebo");
-  commands.push_back("edi");
-  commands.push_back("sgt");
-  commands.push_back("seg");
-  commands.push_back("smg");
-  commands.push_back("suc");
-  commands.push_back("sbp");
+  _functions["msz"] = &ExecCommand::runMsz;
+  _functions["bct"] = &ExecCommand::runBct;
+  _functions["tna"] = &ExecCommand::runTna;
+  // _functions["pnw"] = &ExecCommand::runPnw;
+  // _functions["ppo"] = &ExecCommand::runPpo;
+  // _functions["plv"] = &ExecCommand::runPlv;
+  // _functions["pin"] = &ExecCommand::runPin;
+  // _functions["pex"] = &ExecCommand::runPex;
+  // _functions["pbc"] = &ExecCommand::runPbc;
+  // _functions["pic"] = &ExecCommand::runPic;
+  // _functions["pie"] = &ExecCommand::runPie;
+  // _functions["pfk"] = &ExecCommand::runPfk;
+  // _functions["pdr"] = &ExecCommand::runPdr;
+  // _functions["pgt"] = &ExecCommand::runPgt;
+  // _functions["pdi"] = &ExecCommand::runPdi;
+  // _functions["enw"] = &ExecCommand::runEnw;
+  // _functions["eht"] = &ExecCommand::runEht;
+  // _functions["ebo"] = &ExecCommand::runEbo;
+  // _functions["edi"] = &ExecCommand::runEdi;
+  // _functions["sgt"] = &ExecCommand::runSgt;
+  // _functions["seg"] = &ExecCommand::runSeg;
+  // _functions["smg"] = &ExecCommand::runSmg;
+  // _functions["suc"] = &ExecCommand::runSuc;
+  // _functions["sbp"] = &ExecCommand::runSbp;
 }
 
 ExecCommand::~ExecCommand(){}
@@ -46,50 +46,66 @@ std::vector<std::string> ExecCommand::splitTask(std::string task)
   return param;
 }
 
-void	ExecCommand::runTask(std::string task)
+void	ExecCommand::runTask(std::string task, ClientData & data)
 {
   std::vector<std::string> param;
+  void (ExecCommand::*ptr)(std::vector<std::string> & param, ClientData & data);
 
   if (task.empty())
-    {
-      std::cout << "Task is empty" << std::endl;
-      return ;
-    }
+    return ;
   param = splitTask(task);
-  for (std::vector<std::string>::iterator it = commands.begin() ; it != commands.end()
-	 ; ++it)
-    {
-      if (param[0] == *it)
-	{
-	  std::cout << "Run Task : " << param[0] << " with params : ";
-	  for (std::vector<std::string>::iterator it2 = param.begin()
-		 ; it2 != param.end() ; ++it2)
-	    {
-	      std::cout << *it2 << " ";
-	    }
-	  std::cout << std::endl;
-	}
-    }
+  ptr = _functions[param[0]];
+  (this->*ptr)(param, data);
 }
 
 /*
 ** COMMANDS
 */
 
-// void	ExecCommand::runMsz(std::vector<std::string> param)
-// {
+void	ExecCommand::runMsz(std::vector<std::string> & param, ClientData & data)
+{
+  int	width;
+  int	height;
 
-// }
+  if (param.size() != 3)
+    return ;
+  std::istringstream(param[1]) >> width;
+  std::istringstream(param[2]) >> height;
+  data.getMap().setWidth(width);
+  data.getMap().setHeight(height);
+}
 
-// void	ExecCommand::runBct(std::vector<std::string> param)
-// {
+void		ExecCommand::runBct(std::vector<std::string> & param, ClientData & data)
+{
+  static int	nbBlock = 0;
+  int		x;
+  int		y;
+  Inventory	invent;
 
-// }
+  if (param.size() != 10 || data.getMap().getWidth() == 0
+      || data.getMap().getHeight() == 0)
+    return ;
+  std::istringstream(param[1]) >> x;
+  std::istringstream(param[2]) >> y;
+  std::istringstream(param[3]) >> invent[FOOD];
+  std::istringstream(param[4]) >> invent[LINEMATE];
+  std::istringstream(param[5]) >> invent[DERAUMERE];
+  std::istringstream(param[6]) >> invent[SIBUR];
+  std::istringstream(param[7]) >> invent[MENDIANE];
+  std::istringstream(param[8]) >> invent[PHIRAS];
+  std::istringstream(param[9]) >> invent[THYSTAME];
+  data.getMap().add(invent, x, y);
+  if (nbBlock < (data.getMap().getWidth() * data.getMap().getHeight()))
+    data.getMap().setPercentageLoaded((nbBlock * 100) / (data.getMap().getWidth() * data.getMap().getHeight()));
+  nbBlock++;
+}
 
-// void	ExecCommand::runTna(std::vector<std::string> param)
-// {
-
-// }
+void	ExecCommand::runTna(std::vector<std::string> & param, ClientData & data)
+{
+  if (param.size() != 2)
+    return ;
+  data.addTeam(param[1]);
+}
 
 // void	ExecCommand::runPnw(std::vector<std::string> param)
 // {

@@ -3,24 +3,25 @@
 #include	"TaskManager.hpp"
 #include	"ExecCommand.hpp"
 #include	"Map.hpp"
+#include	"ClientData.hpp"
 
 int	main(int ac, char **av)
 {
   if (ac == 3)
     {
-      Socket	socket(av[1], ::atoi(av[2]));
-      ClientGraphic client(1000, 1000);
+      Socket		socket(av[1], ::atoi(av[2]));
+      ClientGraphic	client(1000, 1000);
       TaskManager	manager;
       ExecCommand	command;
-      Map		map;
+      ClientData	data;
 
       while (client.isOpen() && socket.isConnected())
 	{
 	  client.getKey();
 	  manager.parseReceiveCommand(socket.readSocket());
-	  command.runTask(manager.getTask());
-	  if (map.getWidth() != 0 && map.getHeight() != 0)
-	    client.draw(map.getWidth(), map.getHeight());
+	  command.runTask(manager.getTask(), data);
+	  if (data.getMap().getWidth() != 0 && data.getMap().getHeight() != 0)
+	    client.draw(data.getMap().getWidth(), data.getMap().getHeight());
 	  else
 	    client.loading();
 	  /*

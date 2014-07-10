@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Wed Jul  9 10:47:14 2014 Jeremy Peltier
-// Last update Wed Jul  9 14:32:26 2014 Remi Hillairet
+// Last update Wed Jul  9 18:35:07 2014 Remi Hillairet
 //
 
 #ifndef		MAP_HPP_
@@ -13,16 +13,16 @@
 
 # include	<vector>
 
-// enum
-//   {
-//     FOOD = 0,
-//     LINEMATE,
-//     DERAUMERE,
-//     SIBUR,
-//     MENDIANE,
-//     PHIRAS,
-//     THYSTAME
-//   }		item;
+typedef enum
+  {
+    FOOD = 0,
+    LINEMATE,
+    DERAUMERE,
+    SIBUR,
+    MENDIANE,
+    PHIRAS,
+    THYSTAME
+  }		Item;
 
 typedef	std::vector<int>	Inventory;
 
@@ -43,10 +43,12 @@ public:
   int	getHeight() const;
   void	setTimeUnit(int);
   int	getTimeUnit() const;
+  void	setPercentageLoaded(int);
 
 private:
   int	width;
   int	height;
+  int	percentageLoaded;
   int	timeUnit;
   std::vector<std::vector<Inventory> >	map;
 };

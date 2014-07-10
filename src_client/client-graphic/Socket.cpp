@@ -67,7 +67,10 @@ bool	Socket::isConnected()
 
 	  retRead = ::read(this->fd, buff, 2047);
 	  if (retRead <= 0)
-	    this->connected = true;
+	    {
+	      this->connected = false;
+	      return this->connected;
+	    }
 	  buff[retRead] = '\0';
 	  this->read += buff;
 	}
