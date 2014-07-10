@@ -37,4 +37,9 @@ void			free_server(t_server *server)
   if (server->fd_socket != 0)
     close(server->fd_socket);
   map_list(server->clients, close_client_socket, NULL);
+  if (server->graphic_client != NULL)
+    {
+      close(server->graphic_client->fd_socket);
+      free_client(server->graphic_client);
+    }
 }
