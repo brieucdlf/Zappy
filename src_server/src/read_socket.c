@@ -76,12 +76,14 @@ int			interpret_buffer_read_client(t_server *server,
 {
   int			index;
 
+  printf("BUFFER = %s\n", buff);
   for (index = 0; index < 2048 &&
        client->buffer.index_read_buffer < 2048 && buff[index] != '\0'; index++)
     {
       client->buffer.buffer_read[client->buffer.index_read_buffer] = buff[index];
       if (buff[index] == '\n')
 	{
+	  
 	  if (create_new_task_client(client, server) == 0)
 	    return (0);
 	  memset(client->buffer.buffer_read, 0, 2048);
