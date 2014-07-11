@@ -57,6 +57,7 @@ void	ExecCommand::runTask(std::string task, ClientData & data)
   if (_functions[param[0]] == NULL)
     return ;
   ptr = _functions[param[0]];
+  std::cout << "Task : " << task << std::endl;
   (this->*ptr)(param, data);
 }
 

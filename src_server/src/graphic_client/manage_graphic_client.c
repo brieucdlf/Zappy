@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Thu Jul 10 18:56:24 2014 Remi Hillairet
+** Last update Fri Jul 11 12:23:31 2014 Remi Hillairet
 */
 
 #include "server.h"
@@ -32,6 +32,7 @@ void	init_graphic_client(t_server *server)
       i++;
     }
   create_map_task(server, command);
+  map_list(server->clients, connect_client_to_graphic, (void*)server);
   free(command);
 }
 
