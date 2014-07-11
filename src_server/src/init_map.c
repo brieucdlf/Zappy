@@ -47,7 +47,7 @@ int			init_map(t_server *server)
   server->map.height = server->param_server.world_height;
   if (create_map(server) != 0)
     return (1);
-  nb_item = ((server->map.width * server->map.height) * 300) / 100;
+  nb_item = ((server->map.width * server->map.height) * 50) / 100;
   server->map.items = NULL;
   while (nb_item >= 0)
     {
