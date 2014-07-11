@@ -11,9 +11,7 @@ void ClientData::addTeam(std::string & teamName)
 
 void ClientData::addPlayer(int nbPlayer, Character & player)
 {
-  (void)nbPlayer;
-  (void)player;
-  //players[nbPlayer] = player;
+  players[nbPlayer] = player;
 }
 
 const std::vector<std::string> & ClientData::getTeams() const
@@ -29,4 +27,9 @@ Map & ClientData::getMap()
 Character & ClientData::getPlayer(int nbPlayer)
 {
   return players[nbPlayer];
+}
+
+const std::map<int, Character> & ClientData::getAllPlayers() const
+{
+  return players;
 }

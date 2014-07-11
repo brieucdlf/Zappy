@@ -8,6 +8,7 @@
 
 #include "Map.hpp"
 #include "ClientData.hpp"
+#include "Character.hpp"
 
 class ExecCommand
 {
@@ -21,6 +22,8 @@ public:
   void runMsz(std::vector<std::string> & param, ClientData & data);
   void runBct(std::vector<std::string> & param, ClientData & data);
   void runTna(std::vector<std::string> & param, ClientData & data);
+  void runPnw(std::vector<std::string> & param, ClientData & data);
+  void runPpo(std::vector<std::string> & param, ClientData & data);
 
 private:
   std::map<std::string, void (ExecCommand::*)(std::vector<std::string> & param, ClientData & data)> _functions;

@@ -5,7 +5,7 @@
 ## Login   <delafo_b@epitech.net>
 ##
 ## Started on  Mon Jun  2 11:23:49 2014 Brieuc de La Fouchardiere
-## Last update Fri Jul  4 12:10:02 2014 Remi Hillairet
+## Last update Fri Jul 11 11:42:40 2014 Remi Hillairet
 ##
 
 CLIENT_FILES	=	src_client/client-ia/
@@ -18,6 +18,15 @@ all:
 	$(MAKE) -C $(CLIENT_FILES)
 	$(MAKE) -C $(SERVER_FILES)
 	$(MAKE) -C $(CLIENT_GRAPHIC)
+
+server:
+	$(MAKE) -C $(SERVER_FILES)
+
+graphic:
+	$(MAKE) -C $(CLIENT_GRAPHIC)
+
+ia:
+	$(MAKE) -C $(CLIENT_FILES)
 
 clean:
 	$(MAKE) -C $(CLIENT_FILES) clean

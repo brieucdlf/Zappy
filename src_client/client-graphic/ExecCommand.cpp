@@ -5,8 +5,8 @@ ExecCommand::ExecCommand()
   _functions["msz"] = &ExecCommand::runMsz;
   _functions["bct"] = &ExecCommand::runBct;
   _functions["tna"] = &ExecCommand::runTna;
-  // _functions["pnw"] = &ExecCommand::runPnw;
-  // _functions["ppo"] = &ExecCommand::runPpo;
+  _functions["pnw"] = &ExecCommand::runPnw;
+  _functions["ppo"] = &ExecCommand::runPpo;
   // _functions["plv"] = &ExecCommand::runPlv;
   // _functions["pin"] = &ExecCommand::runPin;
   // _functions["pex"] = &ExecCommand::runPex;
@@ -114,15 +114,42 @@ void	ExecCommand::runTna(std::vector<std::string> & param, ClientData & data)
   data.addTeam(param[1]);
 }
 
-// void	ExecCommand::runPnw(std::vector<std::string> param)
-// {
+void		ExecCommand::runPnw(std::vector<std::string> & param, ClientData & data)
+{
+  int		nbClient;
+  int		x;
+  int		y;
+  int		orientation;
+  int		level;
 
-// }
+  if (param.size() != 7)
+    return ;
+  std::istringstream(param[1]) >> nbClient;
+  std::istringstream(param[2]) >> x;
+  std::istringstream(param[3]) >> y;
+  std::istringstream(param[4]) >> orientation;
+  std::istringstream(param[5]) >> level;
+  Character newCharacter(x, y, static_cast<Orientation>(orientation), level, param[6]);
+  data.addPlayer(nbClient, newCharacter);
+}
 
-// void	ExecCommand::runPpo(std::vector<std::string> param)
-// {
+void		ExecCommand::runPpo(std::vector<std::string> & param, ClientData & data)
+{
+  Character	player;
+  int		nbClient;
+  int		x;
+  int		y;
+  int		orientation;
 
-// }
+  if (param.size() != 5)
+    return ;
+  player = data.getPlayer(nbClient);
+  std::istringstream(param[1]) >> nbClient;
+  std::istringstream(param[2]) >> x;
+  std::istringstream(param[3]) >> y;
+  std::istringstream(param[4]) >> orientation;
+  player.setPosition(x, y, static_cast<Orientation>(orientation));
+}
 
 // void	ExecCommand::runPlv(std::vector<std::string> param)
 // {

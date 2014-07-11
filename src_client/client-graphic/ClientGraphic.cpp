@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Fri Jul 11 10:46:12 2014 Jeremy Peltier
+// Last update Fri Jul 11 12:00:42 2014 Remi Hillairet
 //
 
 #include "ClientGraphic.hpp"
@@ -220,18 +220,20 @@ void	ClientGraphic::generateGround(int width, int height)
       addFloor(i, j);
 }
 
-void	ClientGraphic::generateCharacters(std::map<int, Character> character)
+void	ClientGraphic::generateCharacters(const std::map<int, Character>  & players)
 {
-  for (unsigned int i = 0; i < character.size(); ++i)
-    addCharacter(character[i].getPosX(), character[i].getPosY());
+  for (std::map<int, Character>::const_iterator it = players.begin() ; it != players.end() ; ++it)
+    {
+      addCharacter(it->second.getPosX(), it->second.getPosY());
+    }
 }
 
-void	ClientGraphic::draw(Map &map)
+void	ClientGraphic::draw(Map &map, const std::map<int, Character> & players)
 {
   this->window.clear();
   generateGround(map.getWidth(), map.getHeight());
   generateItems(map);
-  //  generateCharacters(void);
+  generateCharacters(players);
   this->window.display();
 }
 
