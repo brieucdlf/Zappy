@@ -1,5 +1,26 @@
 #include "server.h"
 
+void		connect_client_to_graphic(t_list *elem, void *arg)
+{
+  char		*command;
+  t_client	*client;
+  t_server	*server;
+
+  client = (t_client*)elem;
+  server = (t_server*)arg;
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+    sprintf(command, "pnw %d %d %d %d %d %s\n", client->id_client,
+	  client->direction.position_x,
+	  client->direction.position_y,
+	  client->direction.orientation,
+	  client->level,
+	  server->param_server.teams_names[client->id_client]);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
 void		content_at_pos(t_server *server, int x, int y, char *command)
 {
   t_list	*current_item;
