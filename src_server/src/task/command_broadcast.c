@@ -16,28 +16,6 @@ char			**copy_map(int width, int height)
   return (map);
 }
 
-void			display_map_broadcast(char **map, int width, int height)
-{
-  int			index_position_y;
-  int			index_position_x;
-
-  for (index_position_y = 0; index_position_y < height; index_position_y++)
-    {
-      for (index_position_x = 0; index_position_x < width; index_position_x++)
-	{
-	  if (map[index_position_y][index_position_x] > 0)
-	    printf("[\033[3%dm%2d\033[0m]", map[index_position_y]
-		   [index_position_x],
-		   map[index_position_y][index_position_x]);
-	  else if (map[index_position_y][index_position_x] == -2)
-	    printf("\033[41m[ #]\033[0m");
-	  else
-	    printf("[ ]");
-	}
-      printf("\n");
-    }
-}
-
 void			loop_path_finder(char **map, t_server *server)
 {
   int			number_path;
@@ -45,7 +23,6 @@ void			loop_path_finder(char **map, t_server *server)
   number_path = 1;
   while (path_finder(map, number_path, server) != 0)
     number_path += 1;
-  //display_map_broadcast(map, server->map.width, server->map.height);
 }
 
 void		        fill_copy_map_path(t_client *sender,
