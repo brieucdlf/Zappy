@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Thu Jul 10 12:20:51 2014 Jeremy Peltier
+// Last update Fri Jul 11 10:46:12 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -46,11 +46,11 @@ void	ClientGraphic::getKey()
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	this->y += 10;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Add))
-	this->zoom -= 1;
+	this->zoom -= 0.5;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
-	this->zoom += 1;
-      if (this->zoom < 1)
-	this->zoom = 1;
+	this->zoom += 0.5;
+      if (this->zoom <= 0.5)
+	this->zoom = 0.5;
       view.move(this->x, this->y);
       view.zoom(this->zoom);
       this->window.setView(view);
@@ -177,8 +177,16 @@ void	ClientGraphic::addThystane(int x, int y)
 
 void	ClientGraphic::addCharacter(int x, int y)
 {
-  x = x;
-  y = y;
+  sf::RectangleShape	character(sf::Vector2f(10, 10));
+  character.setFillColor(sf::Color(127, 140, 141));
+
+  sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
+  character.setPosition(screenPosition);
+
+  sf::FloatRect	rec = character.getLocalBounds();
+  character.setScale(character.getScale().x * 20 / rec.width, character.getScale().y * 10 / rec.height);
+
+  this->window.draw(character);
 }
 
 void	ClientGraphic::generateItems(Map &data)
@@ -188,19 +196,19 @@ void	ClientGraphic::generateItems(Map &data)
       for (int x = 0; x < data.getWidth(); ++x)
 	{
 	  if (data.getMap()[y][x][FOOD] > 0)
-	    addFood(x, y);
+	    addFood(x, y + 1);
 	  if (data.getMap()[y][x][LINEMATE] > 0)
-	    addLinemate(x, y);
+	    addLinemate(x, y + 1);
 	  if (data.getMap()[y][x][DERAUMERE] > 0)
-	    addDeraumere(x, y);
+	    addDeraumere(x, y + 1);
 	  if (data.getMap()[y][x][SIBUR] > 0)
-	    addSibur(x, y);
+	    addSibur(x, y + 1);
 	  if (data.getMap()[y][x][MENDIANE] > 0)
-	    addMendiane(x, y);
+	    addMendiane(x, y + 1);
 	  if (data.getMap()[y][x][PHIRAS])
-	    addPhiras(x, y);
+	    addPhiras(x, y + 1);
 	  if (data.getMap()[y][x][THYSTAME])
-	    addThystane(x, y);
+	    addThystane(x, y + 1);
 	}
     }
 }
@@ -212,17 +220,30 @@ void	ClientGraphic::generateGround(int width, int height)
       addFloor(i, j);
 }
 
+void	ClientGraphic::generateCharacters(std::map<int, Character> character)
+{
+  for (unsigned int i = 0; i < character.size(); ++i)
+    addCharacter(character[i].getPosX(), character[i].getPosY());
+}
+
 void	ClientGraphic::draw(Map &map)
 {
   this->window.clear();
   generateGround(map.getWidth(), map.getHeight());
   generateItems(map);
+  //  generateCharacters(void);
   this->window.display();
 }
 
 void	ClientGraphic::loading(int percent)
 {
   this->window.clear();
+
+  this->zoom = 1;
+
+  sf::View	view = this->window.getDefaultView();
+  view.zoom(this->zoom);
+  this->window.setView(view);
 
   int		percentDraw = percent * 3;
 

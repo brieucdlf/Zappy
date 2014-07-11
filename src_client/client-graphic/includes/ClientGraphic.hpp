@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:50:32 2014 Jeremy Peltier
-// Last update Thu Jul 10 10:54:30 2014 Jeremy Peltier
+// Last update Fri Jul 11 09:55:35 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_GRAPHIC_HPP_
@@ -18,6 +18,7 @@
 # include	<iostream>
 # include	"TextureManager.hpp"
 # include	"Map.hpp"
+# include	"Character.hpp"
 
 class		ClientGraphic
 {
@@ -30,6 +31,7 @@ public:
   void	getKey();
   void	generateItems(Map &);
   void	generateGround(int, int);
+  void	generateCharacters(std::map<int, Character>);
   void	draw(Map &);
   void	loading(int);
 
