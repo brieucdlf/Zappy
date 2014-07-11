@@ -215,5 +215,11 @@ void			check_timer_clients(t_server *server);
 void			free_double_array_delimiter(char **tab,
 						    unsigned int height);
 
+void			query_first_connection(t_server *server,
+					       t_client *current_client);
+void			init_position_client(t_client *current_client,
+					     t_server *server);
+void			free_task(void *task);
+void			function_pointer(t_task *task, unsigned int index);
 
 #endif /* !SERVER_H_ */
