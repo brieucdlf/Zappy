@@ -20,9 +20,22 @@ void			query_first_connection(t_server *server,
 void			init_position_client(t_client *current_client,
 					     t_server *server)
 {
+  char			*command;
+
   current_client->direction.position_x = rand() % server->map.width;
   current_client->direction.position_y = rand() % server->map.height;
   current_client->direction.orientation = MAP_DIRECTION_ORIENTATION_NORTH;
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  sprintf(command, "pnw %d %d %d %d %d %s\n", current_client->id_client,
+	  current_client->direction.position_x,
+	  current_client->direction.position_y,
+	  current_client->direction.orientation,
+	  current_client->level,
+	  server->param_server.teams_names[current_client->id_team]);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
 }
 
 int			create_task_ready_client(t_server *server,
@@ -61,7 +74,7 @@ int			create_new_task_client(t_client *client,
 	      deconnection_client(server, client);
 	      return (0);
 	    }
-	  return (1);
+	  return (0);
 	}
       client->is_ready = 1;
       init_position_client(client, server);
@@ -76,12 +89,16 @@ int			interpret_buffer_read_client(t_server *server,
 {
   int			index;
 
+  printf("BUFFER = %s\n", buff);
+  if (client == NULL)
+    return (0);
   for (index = 0; index < 2048 &&
        client->buffer.index_read_buffer < 2048 && buff[index] != '\0'; index++)
     {
       client->buffer.buffer_read[client->buffer.index_read_buffer] = buff[index];
       if (buff[index] == '\n')
 	{
+	  
 	  if (create_new_task_client(client, server) == 0)
 	    return (0);
 	  memset(client->buffer.buffer_read, 0, 2048);

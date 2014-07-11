@@ -22,14 +22,14 @@ public:
   virtual ~Character();
 
 public:
-  void setPlayerPosition(int x, int y, Orientation orient);
-  void setPlayerLevel(int level);
-  void setPlayerInventary(Inventory inventary);
+  void setPosition(int x, int y, Orientation orient);
+  void setLevel(int level);
+  void setInventary(Inventory inventary);
 
 public:
   int getPosX() const;
   int getPosY() const;
-  Orientation getPlayerOrientation() const;
+  Orientation getOrientation() const;
   int getLevel() const;
   Inventory getInventary() const;
   const std::string & getTeam() const;

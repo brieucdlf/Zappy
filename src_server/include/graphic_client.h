@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 15:56:42 2014 Remi Hillairet
-** Last update Thu Jul 10 11:53:09 2014 Remi Hillairet
+** Last update Fri Jul 11 12:23:30 2014 Remi Hillairet
 */
 
 #ifndef GRAPHIC_CLIENT_H
@@ -31,6 +31,7 @@ int	manage_graphic_client(t_server *server);
 ** ################################################
 */
 
+void	connect_client_to_graphic(t_list *elem, void *arg);
 void	content_at_pos(t_server *server, int x, int y, char *command);
 void	create_map_task(t_server *server, char *command);
 void	deconnection_graphic_client(t_server *server);

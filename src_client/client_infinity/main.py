@@ -6,7 +6,7 @@ from time import sleep
 import random
 import signal
 
-command = ["voir\n", "pose\n", "prend\n", "prend\n", "pose", "        ", "", "\n", "NONE\n", "broadcast\n", "qsdqsdqsdq", "prend\n\n\n\n\n\n\n",  "pose coucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocu\n", "prend coucouccoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocuoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocucoucoucoucoucoucocu\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "prend food\n", "prend mendiane\n","prend phiras\n", "prend thystame\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n", "broadcast eycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycoueycou\n"]
+command = ["voir\n", "broadcast salut\n", "prend sibur\n",  "pose sibur\n", "broadcast dfsfdksfsldkfjdsklfjdsklfksd\n", "avance\n", "gauche\n", "droite\n", "voir\n", "prend nourriture\n", "prend sibur\n", "pose sibur\n", "pose mendiane\n", "pose thystame\n", "prend linemate\n", "prend deraumere\n", "pose linemate\n", "pose deraumere\n"]
 
 def connect_socket(argument):
     so = SocketServer(argument["ip"], argument["port"])
@@ -23,11 +23,7 @@ def set_server(so, infos):
     #     print "TOTO"
     print so.read_request() 
     so.send_request("team4\n")
-    num_client = int(so.read_request())
-    if num_client >= 0:
-        infos["num_client"] = num_client
-    else:
-        return
+    so.read_request()
     print "num client in dict : " + str(infos["num_client"])
     coord = so.read_request().split(" ")
     if len(coord) != 2:

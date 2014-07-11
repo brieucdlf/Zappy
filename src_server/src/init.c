@@ -59,7 +59,7 @@ void			set_param(int argc, char **argv, t_param *param_server)
     param_server->world_width = DEFAULT_WIDTH;
   if ((param_server->world_height > MAX_HEIGHT) ||
       (param_server->world_height < MIN_HEIGHT))
-    param_server->world_width = DEFAULT_HEIGHT;
+    param_server->world_height = DEFAULT_HEIGHT;
   if (param_server->execution_time <= 0)
     param_server-> execution_time = EXECUTION_TIME;
   if (param_server->nb_client_team <= 0)
