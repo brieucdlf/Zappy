@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 17:17:49 2014 Remi Hillairet
-** Last update Fri Jul 11 12:23:31 2014 Remi Hillairet
+** Last update Fri Jul 11 12:28:51 2014 Remi Hillairet
 */
 
 #include "server.h"
@@ -68,8 +68,8 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 	}
       printf("Add new client graphic\n");
       add_new_graphic_client(server, client->fd_socket);
-      init_graphic_client(server);
       list_remove_with_data(&server->clients, client, match_fd_socket_client);
+      init_graphic_client(server);
       return (1);
     }
   return (0);
