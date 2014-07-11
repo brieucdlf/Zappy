@@ -29,14 +29,14 @@
 # define DEFAULT_HEIGHT		100
 # define MIN_WIDTH		10
 # define MIN_HEIGHT		10
-# define MAX_WIDTH		100
-# define MAX_HEIGHT	        100
+# define MAX_WIDTH		1000
+# define MAX_HEIGHT	        1000
 # define CLIENT_TEAM		10
 # define EXECUTION_TIME		1
 # define TIMEOUT_SEC		0
 # define TIMEOUT_USEC		1
 
-# define TIMEOUT_CLIENT		10
+# define TIMEOUT_CLIENT		25
 # define SLEEP_CLIENT		10
 
 # define FOOD_ADD		126
