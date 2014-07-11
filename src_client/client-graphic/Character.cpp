@@ -22,26 +22,26 @@ Character::Character(const Character & character)
 {
   posX = character.getPosX();
   posY = character.getPosY();
-  playerOrientation = character.getPlayerOrientation();
+  playerOrientation = character.getOrientation();
   playerLevel = character.getLevel();
   playerTeam = character.getTeam();
 }
 
 Character::~Character(){}
 
-void Character::setPlayerPosition(int x, int y, Orientation orient)
+void Character::setPosition(int x, int y, Orientation orient)
 {
   posX = x;
   posY = y;
   playerOrientation = orient;
 }
 
-void Character::setPlayerLevel(int level)
+void Character::setLevel(int level)
 {
   playerLevel = level;
 }
 
-void Character::setPlayerInventary(Inventory inventary)
+void Character::setInventary(Inventory inventary)
 {
   playerInventary = inventary;
 }
@@ -56,7 +56,7 @@ int Character::getPosY() const
   return posY;
 }
 
-Orientation Character::getPlayerOrientation() const
+Orientation Character::getOrientation() const
 {
   return playerOrientation;
 }

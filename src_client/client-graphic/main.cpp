@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 	  manager.parseReceiveCommand(socket.readSocket());
 	  command.runTask(manager.getTask(), data);
 	  if (data.getMap().getPercentageLoaded() >= 100)
-	    client.draw(data.getMap());
+	    client.draw(data.getMap(), data.getAllPlayers());
 	  else
 	    client.loading(data.getMap().getPercentageLoaded());
 	  /*

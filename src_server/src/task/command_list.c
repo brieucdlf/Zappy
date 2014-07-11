@@ -1,5 +1,19 @@
 #include "server.h"
 
+void			position_change(t_server *server, t_client *client)
+{
+  char			*command;
+
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  sprintf(command, "ppo %d %d %d %d\n", client->id_client,
+	  client->direction.position_x, client->direction.position_y,
+	  client->direction.orientation);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
 void			avance_task_function(t_server *server,
 					     t_client *client,
 					     char *arg)
@@ -22,6 +36,7 @@ void			avance_task_function(t_server *server,
   if (client->direction.position_y < 0)
     client->direction.position_y = server->map.height - 1;
   create_new_write_task(client, "OK\n");
+  position_change(server, client);
 }
 
 void			droite_task_function(t_server *server,
@@ -32,6 +47,7 @@ void			droite_task_function(t_server *server,
   (void)arg;
   client->direction.orientation += 1 % 4;
   create_new_write_task(client, "OK\n");
+  position_change(server, client);
 }
 
 void			gauche_task_function(t_server *server,
@@ -44,6 +60,7 @@ void			gauche_task_function(t_server *server,
   if (client->direction.orientation < 0)
     client->direction.orientation = 3;
   create_new_write_task(client, "OK\n");
+  position_change(server, client);
 }
 
 void			inventaire_task_function(t_server *server,
