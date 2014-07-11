@@ -33,7 +33,7 @@ void			init_position_client(t_client *current_client,
 	  current_client->direction.position_y,
 	  current_client->direction.orientation,
 	  current_client->level,
-	  server->param_server.teams_names[current_client->id_client]);
+	  server->param_server.teams_names[current_client->id_team]);
   create_new_write_task(server->graphic_client, command);
   free(command);
 }
@@ -74,7 +74,7 @@ int			create_new_task_client(t_client *client,
 	      deconnection_client(server, client);
 	      return (0);
 	    }
-	  return (1);
+	  return (0);
 	}
       client->is_ready = 1;
       init_position_client(client, server);
@@ -90,6 +90,8 @@ int			interpret_buffer_read_client(t_server *server,
   int			index;
 
   printf("BUFFER = %s\n", buff);
+  if (client == NULL)
+    return (0);
   for (index = 0; index < 2048 &&
        client->buffer.index_read_buffer < 2048 && buff[index] != '\0'; index++)
     {
