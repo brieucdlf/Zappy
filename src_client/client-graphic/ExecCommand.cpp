@@ -57,7 +57,6 @@ void	ExecCommand::runTask(std::string task, ClientData & data)
   if (_functions[param[0]] == NULL)
     return ;
   ptr = _functions[param[0]];
-  std::cout << "Task : " << task << std::endl;
   (this->*ptr)(param, data);
 }
 
@@ -136,7 +135,6 @@ void		ExecCommand::runPnw(std::vector<std::string> & param, ClientData & data)
 
 void		ExecCommand::runPpo(std::vector<std::string> & param, ClientData & data)
 {
-  Character	player;
   int		nbClient;
   int		x;
   int		y;
@@ -144,11 +142,11 @@ void		ExecCommand::runPpo(std::vector<std::string> & param, ClientData & data)
 
   if (param.size() != 5)
     return ;
-  player = data.getPlayer(nbClient);
   std::istringstream(param[1]) >> nbClient;
   std::istringstream(param[2]) >> x;
   std::istringstream(param[3]) >> y;
   std::istringstream(param[4]) >> orientation;
+  Character&	player= data.getPlayer(nbClient);
   player.setPosition(x, y, static_cast<Orientation>(orientation));
 }
 
