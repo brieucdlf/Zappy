@@ -66,7 +66,7 @@ int Character::getLevel() const
   return playerLevel;
 }
 
-Inventory Character::getInventary() const
+Inventory & Character::getInventary()
 {
   return playerInventary;
 }

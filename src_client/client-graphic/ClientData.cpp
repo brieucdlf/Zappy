@@ -29,7 +29,7 @@ Character & ClientData::getPlayer(int nbPlayer)
   return players[nbPlayer];
 }
 
-const std::map<int, Character> & ClientData::getAllPlayers() const
+std::map<int, Character> & ClientData::getAllPlayers()
 {
   return players;
 }

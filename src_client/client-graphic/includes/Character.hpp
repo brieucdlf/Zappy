@@ -31,7 +31,7 @@ public:
   int getPosY() const;
   Orientation getOrientation() const;
   int getLevel() const;
-  Inventory getInventary() const;
+  Inventory & getInventary();
   const std::string & getTeam() const;
 
 private:

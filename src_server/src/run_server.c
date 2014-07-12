@@ -23,14 +23,13 @@ void			signalHandler(int signal)
       if(nbSignal == 2)
 	{
 	  printf("[\033[31m-\033[0m] Server down\n");
-	  g_server_run = 0;
+	  g_server_run = 2;
 	}
     }
 }
 
 void			server_loop(t_server *server)
 {
-  struct timeval	tv;
   struct sigaction	action, oldAction;
 
   while (g_server_run == 1)
@@ -40,10 +39,8 @@ void			server_loop(t_server *server)
       action.sa_flags = SA_RESTART;
       sigaction(SIGINT, &action, &oldAction);
       init_fd_socket(server);
-      tv.tv_sec = TIMEOUT_SEC;
-      tv.tv_usec = TIMEOUT_USEC;
       if (select(server->fd_max + 1, &server->readfd,
-		 &server->writefd, NULL, &tv) >= 0)
+		 &server->writefd, NULL, NULL) >= 0)
 	{
 	  manage_graphic_client(server);
 	  map_list_with_stop(server->clients,
@@ -54,9 +51,6 @@ void			server_loop(t_server *server)
 	  check_timer(server);
 	}
       if (g_server_run == 0)
-	{
-	  printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
-	  return ;
-	}
+	printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
     }
 }

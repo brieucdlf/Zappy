@@ -20,7 +20,7 @@ public:
 public:
   const std::vector<std::string> & getTeams() const;
   Character & getPlayer(int nbPlayer);
-  const std::map<int, Character> & getAllPlayers() const;
+  std::map<int, Character> & getAllPlayers();
   Map & getMap();
 
 private:

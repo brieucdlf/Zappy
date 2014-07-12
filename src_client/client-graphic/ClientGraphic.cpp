@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Sat Jul 12 19:26:01 2014 Jeremy Peltier
+// Last update Sat Jul 12 19:27:51 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -249,7 +249,7 @@ void	ClientGraphic::generateGround(int width, int height)
       addFloor(i, j);
 }
 
-void	ClientGraphic::generateCharacters(const std::map<int, Character>  & players)
+void	ClientGraphic::generateCharacters(std::map<int, Character>  & players)
 {
   for (std::map<int, Character>::const_iterator it = players.begin() ; it != players.end() ; ++it)
     {
@@ -257,7 +257,7 @@ void	ClientGraphic::generateCharacters(const std::map<int, Character>  & players
     }
 }
 
-void	ClientGraphic::draw(Map &map, const std::map<int, Character> & players)
+void	ClientGraphic::draw(Map &map, std::map<int, Character> & players)
 {
   this->window.clear();
 
