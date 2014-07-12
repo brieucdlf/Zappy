@@ -12,10 +12,17 @@ class SocketServer:
         self.__port = port
 
     def send_request(self, msg):
-        os.write(self.__socket_server.fileno(), msg)
-
+        try:
+            os.write(self.__socket_server.fileno(), msg)
+        except:
+            print "Deconnection client"
+            exit(0)
     def read_request(self):
-        return os.read(self.__socket_server.fileno(), 10000)
+        try:
+            return os.read(self.__socket_server.fileno(), 10000)
+        except:
+            print "Deconnection client"
+            exit(0)
     def connect_server(self):
         try:
             self.__socket_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
