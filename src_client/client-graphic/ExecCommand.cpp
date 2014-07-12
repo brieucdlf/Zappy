@@ -7,7 +7,7 @@ ExecCommand::ExecCommand()
   _functions["tna"] = &ExecCommand::runTna;
   _functions["pnw"] = &ExecCommand::runPnw;
   _functions["ppo"] = &ExecCommand::runPpo;
-  // _functions["plv"] = &ExecCommand::runPlv;
+  _functions["plv"] = &ExecCommand::runPlv;
   // _functions["pin"] = &ExecCommand::runPin;
   // _functions["pex"] = &ExecCommand::runPex;
   // _functions["pbc"] = &ExecCommand::runPbc;
@@ -112,6 +112,7 @@ void	ExecCommand::runTna(std::vector<std::string> & param, ClientData & data)
   if (param.size() != 2)
     return ;
   data.addTeam(param[1]);
+  std::cout << "Add team " << param[1] << std::endl;
 }
 
 void		ExecCommand::runPnw(std::vector<std::string> & param, ClientData & data)
@@ -131,6 +132,7 @@ void		ExecCommand::runPnw(std::vector<std::string> & param, ClientData & data)
   std::istringstream(param[5]) >> level;
   Character newCharacter(x, y, static_cast<Orientation>(orientation), level, param[6]);
   data.addPlayer(nbClient, newCharacter);
+  std::cout << "Add player " << nbClient << std::endl;
 }
 
 void		ExecCommand::runPpo(std::vector<std::string> & param, ClientData & data)
@@ -146,14 +148,24 @@ void		ExecCommand::runPpo(std::vector<std::string> & param, ClientData & data)
   std::istringstream(param[2]) >> x;
   std::istringstream(param[3]) >> y;
   std::istringstream(param[4]) >> orientation;
-  Character&	player= data.getPlayer(nbClient);
+  Character&	player = data.getPlayer(nbClient);
   player.setPosition(x, y, static_cast<Orientation>(orientation));
+  std::cout << "Player " << nbClient << " move (" << x << "," << y << ")" << std::endl;
 }
 
-// void	ExecCommand::runPlv(std::vector<std::string> param)
-// {
+void		ExecCommand::runPlv(std::vector<std::string> & param, ClientData & data)
+{
+  int		nbClient;
+  int		level;
 
-// }
+  if (param.size() != 3)
+    return ;
+  std::istringstream(param[1]) >> nbClient;
+  std::istringstream(param[2]) >> level;
+  Character&	player = data.getPlayer(nbClient);
+  player.setLevel(level);
+  std::cout << "Player " << nbClient << " increase to level " << level << std::endl;
+}
 
 // void	ExecCommand::runPin(std::vector<std::string> param)
 // {

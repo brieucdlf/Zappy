@@ -38,7 +38,7 @@ int			check_requirement_number_client(t_list *clients,
   return (1);
 }
 
-void			send_task_answer(t_client *client)
+void			send_task_answer(t_server *server, t_client *client)
 {
   char			*command;
 
@@ -47,6 +47,12 @@ void			send_task_answer(t_client *client)
   memset(command, 0, 100);
   snprintf(command, 100, "niveau actuel : %d\n", client->level);
   create_new_write_task(client, command);
+  if (server->graphic_client != NULL)
+    {
+      memset(command, 0, 100);
+      snprintf(command, 100, "plv %d %d\n", client->id_client, client->level);
+      create_new_write_task(server->graphic_client, command);
+    }
   free(command);
 }
 
@@ -57,11 +63,11 @@ void		        incantation_task_function(t_server *server,
   (void)arg;
   if (client->level >= 8)
     {
-      send_task_answer(client);
+      send_task_answer(server, client);
       return ;
     }
   if (check_requirement_number_client(server->clients, client) == 0 &&
       check_ressoures_incantation(client) == 0)
     client->level += 1;
-  send_task_answer(client);
+  send_task_answer(server, client);
 }
