@@ -25,6 +25,7 @@ int	check_graphic_client_read(t_server *server, t_client *client)
 int		check_graphic_client_write(t_server *server, t_client *client)
 {
   t_write_task	*head_task;
+  int		ret;
 
   if (client == NULL)
     return (1);
@@ -33,8 +34,10 @@ int		check_graphic_client_write(t_server *server, t_client *client)
     return (1);
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
-      return (write_task_socket(head_task, client, server));
+      if ((ret = write_task_socket(head_task, client, server)) == 0)
+	return (ret);
+      if (ret == 2)
+	server->index_task_graphic -= 1;
     }
-  printf("Can't write on graphic client\n");
   return (1);
 }

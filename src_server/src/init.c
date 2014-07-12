@@ -62,6 +62,6 @@ void			set_param(int argc, char **argv, t_param *param_server)
     param_server->world_height = DEFAULT_HEIGHT;
   if (param_server->execution_time <= 0)
     param_server-> execution_time = EXECUTION_TIME;
-  if (param_server->nb_client_team <= 0)
+  if (param_server->nb_client_team <= 0 || param_server->nb_client_team < 1000)
     param_server->nb_client_team = CLIENT_TEAM;
 }

@@ -4,7 +4,8 @@ void			position_change(t_server *server, t_client *client)
 {
   char			*command;
 
-  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+  if (server->graphic_client == NULL || server->index_task_graphic > 0 ||
+      (command = malloc(100)) == NULL)
     return ;
   memset(command, 0, 100);
   sprintf(command, "ppo %d %d %d %d\n", client->id_client,

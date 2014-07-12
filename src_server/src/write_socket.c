@@ -18,10 +18,13 @@ int			write_task_socket(t_write_task *head_task,
 	deconnection_client(server, current_client);
       return (0);
     }
-  printf("[\033[32m+\033[0m] [%d] Write task", current_client->id_client);
+  printf("[\033[32m+\033[0m] [%d] Write task\n", current_client->id_client);
   head_task->index += ret;
   if (head_task->index >= (int)strlen(head_task->buffer))
-    list_pop(&current_client->write_tasks);
+    {
+      list_pop(&current_client->write_tasks);
+      return (2);
+    }
   return (1);
 }
 

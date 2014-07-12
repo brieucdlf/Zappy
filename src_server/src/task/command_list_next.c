@@ -19,7 +19,8 @@ void			send_pose_graphic_client(t_server *server,
   char			*command;
 
   create_new_write_task(client, "OK\n");
-  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+  if (server->graphic_client == NULL || server->index_task_graphic > 0 ||
+      (command = malloc(100)) == NULL)
     return ;
   memset(command, 0, 100);
   snprintf(command, 100, "pdr %d %d\n", client->id_client, index_item);

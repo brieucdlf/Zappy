@@ -57,6 +57,12 @@ void		add_new_graphic_client(t_server *server, int fd_socket)
   FD_SET(server->graphic_client->fd_socket, &server->writefd);
 }
 
+void	map_number_task_init(t_list *current_item, void *server)
+{
+  (void)current_item;
+  ((t_server *)server)->index_task_graphic += 1;
+}
+
 int	check_is_graphic_client(t_server *server, t_client *client, char *command)
 {
   if (command != NULL && !strcmp("GRAPHIC", command))
@@ -70,6 +76,9 @@ int	check_is_graphic_client(t_server *server, t_client *client, char *command)
       add_new_graphic_client(server, client->fd_socket);
       list_remove_with_data(&server->clients, client, match_fd_socket_client);
       init_graphic_client(server);
+      server->index_task_graphic = 0;
+      map_list(server->graphic_client->write_tasks,
+	       map_number_task_init, (void *)server);
       return (1);
     }
   return (0);
