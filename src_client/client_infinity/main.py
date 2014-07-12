@@ -22,7 +22,7 @@ def set_server(so, infos):
     # if so.read_request() != "Bienvenue\n":
     #     print "TOTO"
     print so.read_request() 
-    so.send_request("team4\n")
+    so.send_request("team3\n")
     so.read_request()
     print "num client in dict : " + str(infos["num_client"])
     coord = so.read_request().split(" ")

@@ -25,12 +25,12 @@
 
 # define ARGUMENT_PARSE		"p:x:y:n:c:t:"
 # define DEFAULT_PORT		65510
-# define DEFAULT_WIDTH		20
-# define DEFAULT_HEIGHT		100
+# define DEFAULT_WIDTH		51
+# define DEFAULT_HEIGHT		51
 # define MIN_WIDTH		10
 # define MIN_HEIGHT		10
-# define MAX_WIDTH		1000
-# define MAX_HEIGHT	        1000
+# define MAX_WIDTH		100
+# define MAX_HEIGHT	        100
 # define CLIENT_TEAM		10
 # define EXECUTION_TIME		1
 # define TIMEOUT_SEC		0
