@@ -2,6 +2,7 @@ import sys
 import os
 import select 
 import socket
+import signal
 from moving import *
 from socket_server import SocketServer
 from argument import parse_argument
@@ -80,7 +81,7 @@ def get_inventaire(data):
     for key in item_name:
         player["inventaire"][key] = item_nb[case_of_nb]
         case_of_nb = case_of_nb + 1
-    print player["inventaire"]
+    return player["inventaire"]
 
 def test_incantation(so):
     if player["lvl"] == 1:
@@ -126,56 +127,58 @@ def test_incantation(so):
 def find_excedent(so):
     tab = []
     if player["lvl"] == 1:
-        if 'linemate' in player["inventaire"] and player["inventaire"]["linemate"] > 1:
+        if "linemate" in player["inventaire"] and int(player["inventaire"]["linemate"]) > 1:
+            print player["inventaire"]["linemate"]
+            print "OK je rentre dans le mauvais if"
             tab.append("linemate")
-        if "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] > 0:
+        if "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) > 0:
             tab.append("deraumere")
-        if "sibur" in player["inventaire"] and player["inventaire"]["sibur"] > 0:
+        if "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) > 0:
             tab.append("sibur")
-        if "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] > 0:
+        if "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) > 0:
             tab.append("mendiane")
-        if "phiras" in player["inventaire"] and player["inventaire"]["phiras"] > 0:
+        if "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) > 0:
             tab.append("phiras")
-        if "thystane" in player["inventaire"] and player["inventaire"]["thystane"] > 0:
+        if "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) > 0:
             tab.append("thystane")
     elif player["lvl"] == 2:
-        if "linemate" in player["inventaire"] and player["inventaire"]["linemate"] > 1:
+        if "linemate" in player["inventaire"] and int(player["inventaire"]["linemate"]) > 1:
             tab.append("linemate")
-        if "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] > 1:
+        if "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) > 1:
             tab.append("deraumere")
-        if "sibur" in player["inventaire"] and player["inventaire"]["sibur"] > 1:
+        if "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) > 1:
             tab.append("sibur")
-        if "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] > 0:
+        if "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) > 0:
             tab.append("mendiane")
-        if "phiras" in player["inventaire"] and player["inventaire"]["phiras"] > 0:
+        if "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) > 0:
             tab.append("phiras")
-        if "thystane" in player["inventaire"] and player["inventaire"]["thystane"] > 0:
+        if "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) > 0:
             tab.append("thystane")
     elif player["lvl"] == 3:
-        if "linemate" in player["inventaire"] and player["inventaire"]["linemate"] > 2:
+        if "linemate" in player["inventaire"] and int(player["inventaire"]["linemate"]) > 2:
             tab.append("linemate")
-        if "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] > 0:
+        if "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) > 0:
             tab.append("deraumere")
-        if "sibur" in player["inventaire"] and player["inventaire"]["sibur"] > 1:
+        if "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) > 1:
             tab.append("sibur")
-        if "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] > 0:
+        if "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) > 0:
             tab.append("mendiane")
-        if "phiras" in player["inventaire"] and player["inventaire"]["phiras"] > 2:
+        if "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) > 2:
             tab.append("phiras")
-        if "thystane" in player["inventaire"] and player["inventaire"]["thystane"] > 0:
+        if "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) > 0:
             tab.append("thystane")
     elif player["lvl"] == 4:
-        if "linemate" in player["inventaire"] and player["inventaire"]["linemate"] > 1:
+        if "linemate" in player["inventaire"] and int(player["inventaire"]["linemate"]) > 1:
             tab.append("linemate")
-        if "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] > 1:
+        if "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) > 1:
             tab.append("deraumere")
-        if "sibur" in player["inventaire"] and player["inventaire"]["sibur"] > 2:
+        if "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) > 2:
             tab.append("sibur")
-        if "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] > 0:
+        if "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) > 0:
             tab.append("mendiane")
-        if "phiras" in player["inventaire"] and player["inventaire"]["phiras"] > 1:
+        if "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) > 1:
             tab.append("phiras")
-        if "thystane" in player["inventaire"] and player["inventaire"]["thystane"] > 0:
+        if "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) > 0:
             tab.append("thystane")
     drop_rocks(so)
     return tab
@@ -185,36 +188,36 @@ def what_i_need(so):
     if player["lvl"] == 1:
         if find_player(so) < 1:
             tab = "player"
-        if player["inventaire"]["linemate"] < 1:
+        if int(player["inventaire"]["linemate"]) < 1:
             tab = "linemate"
     elif player["lvl"] == 2:
         if find_player(so) < 2:
             tab = "player"
-        if player["inventaire"]["linemate"] < 1:
+        if int(player["inventaire"]["linemate"]) < 1:
             tab = "linemate"
-        if player["inventaire"]["deraumere"] < 1:
+        if int(player["inventaire"]["deraumere"]) < 1:
             tab = "deraumere"
-        if player["inventaire"]["sibur"] < 1:
+        if int(player["inventaire"]["sibur"]) < 1:
             tab = "sibur"
     elif player["lvl"] == 3:
         if find_player(so) < 2:
             tab = "player"
-        if player["inventaire"]["linemate"] < 2:
+        if int(player["inventaire"]["linemate"]) < 2:
             tab = "linemate"
-        if player["inventaire"]["sibur"] < 1:
+        if int(player["inventaire"]["sibur"]) < 1:
             tab = "sibur"
-        if player["inventaire"]["phiras"] < 2:
+        if int(player["inventaire"]["phiras"]) < 2:
             tab = "phiras"
     elif player["lvl"] == 4:
         if find_player(so) < 4:
             tab = "player"
-        if player["inventaire"]["linemate"] < 1:
+        if int(player["inventaire"]["linemate"]) < 1:
             tab = "linemate"
-        if player["inventaire"]["deraumere"] < 1:
+        if int(player["inventaire"]["deraumere"]) < 1:
             tab = "deraumere"
-        if player["inventaire"]["sibur"] < 1:
+        if int(player["inventaire"]["sibur"]) < 1:
             tab = "sibur"
-        if player["inventaire"]["mendiane"] < 3:
+        if int(player["inventaire"]["mendiane"]) < 3:
             tab = "mendiane"
     else:
         print "Error with lvl"
@@ -238,7 +241,6 @@ def moving(data, tab):
         for key2 in player["what_i_see"][key]:
             if key2 == tab:
                 if key == 0:
-                    print "je suis sur la bonne case " + str(key) + " " + tab
                     return "prend " + tab + "\n"
                 elif key == 2 or key == 6 or key == 12 or key == 20 or key == 30:
                     return "avance\n"
@@ -248,9 +250,15 @@ def moving(data, tab):
                 return "gauche\n"
     return "avance\n"
 
+def signal_handler(signal, frame):
+    sys.exit(0)
+
 def main_loop(so):
     while 1:
         print "My level is " + str(player["lvl"])
+        #so.send_request("broadcast " + str(player["lvl"]) + "\n")
+        signal.signal(signal.SIGINT, signal_handler)
+        global player
         if player["inventaire"] == {}:
             command = "inventaire\n"
         elif test_incantation(so):
@@ -264,16 +272,16 @@ def main_loop(so):
             command = what_i_need(so)
             global request
             request = command
-            print request
         so.send_request(command)
         data = so.read_request()
         if command == "inventaire\n":
-            get_inventaire(data)
+            if data[0] == '{' :
+                player["inventaire"] = get_inventaire(data)
         if command == "incantation\n":
             if "niveau actuel : " in data:
                 player["lvl"] = player["lvl"] + 1
         if command == "voir\n":
-            what_i_see(data)
-        if "prend " in command and data == "ok\n":
+            moving(data)
+        if "prend " in command:
+            print "je prend"
             player["inventaire"] = {};
-        sleep(1)

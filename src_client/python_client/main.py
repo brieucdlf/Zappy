@@ -15,7 +15,12 @@ def connect_socket(argument):
 def set_server(so, infos, team_name):
     print so.read_request() 
     so.send_request(team_name + "\n")
-    num_client = int(so.read_request())
+    
+    try:
+        num_client = int(so.read_request())
+    except:
+        print "Wrong name team"
+        exit(0)
     if num_client >= 0:
        infos["num_client"] = num_client
     else:
