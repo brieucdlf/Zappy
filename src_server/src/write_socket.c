@@ -25,17 +25,18 @@ int			write_task_socket(t_write_task *head_task,
   return (1);
 }
 
-void			loop_write_task(t_client *client, t_server *server)
+int			loop_write_task(t_client *client, t_server *server)
 {
   if (FD_ISSET(client->fd_socket, &(server->writefd)))
     {
       if (client->write_tasks != NULL && client->write_tasks->data != NULL)
 	{
-	  write_task_socket(((t_write_task *)client->write_tasks->data),
-			    client, server);
-	  return ;
+	  if (write_task_socket(((t_write_task *)client->write_tasks->data),
+				client, server) == 0)
+	  return (0);
 	}
     }
+  return (1);
 }
 
 int			map_check_write_client(t_list *current_client,
@@ -47,7 +48,8 @@ int			map_check_write_client(t_list *current_client,
   if ((client = (t_client *)current_client->data) == NULL ||
       (server = (t_server *)arg) == NULL)
     return (1);
-  loop_write_task(client, server);
+  if (loop_write_task(client, server) == 0)
+    return (0);
   usleep(5000);
   return (1);
 }
