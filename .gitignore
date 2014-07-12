@@ -25,6 +25,7 @@
 *.hex
 client
 server
+graphic_client
 
 # Useless files
 *~
