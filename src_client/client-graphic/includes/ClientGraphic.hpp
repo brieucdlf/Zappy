@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:50:32 2014 Jeremy Peltier
-// Last update Sat Jul 12 10:07:18 2014 Jeremy Peltier
+// Last update Sat Jul 12 19:09:41 2014 Jeremy Peltier
 //
 
 #ifndef		CLIENT_GRAPHIC_HPP_
@@ -49,12 +49,15 @@ public:
 
 private:
   sf::RenderWindow	window;
+  sf::View		mapView;
+  sf::View		menuView;
   sf::RenderTexture	map;
   sf::Event		event;
   int			x;
   int			y;
   float			zoom;
   TextureManager	textures;
+  bool			showMenu;
 };
 
 #endif		/* !CLIENT_GRAPHIC_HPP */

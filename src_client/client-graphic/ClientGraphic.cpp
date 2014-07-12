@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Sat Jul 12 14:28:50 2014 Jeremy Peltier
+// Last update Sat Jul 12 19:26:01 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -16,10 +16,15 @@ ClientGraphic::ClientGraphic(int width, int height)
 {
   this->window.create(sf::VideoMode(width, height, 32), "Client Graphic");
   this->window.clear();
-  this->window.display();
+  this->window.setKeyRepeatEnabled(false);
   this->x = 0;
   this->y = 0;
   this->zoom = 1;
+  this->showMenu = false;
+
+  this->menuView.setSize(width, height);
+
+  this->window.display();
 }
 
 ClientGraphic::~ClientGraphic() {}
@@ -36,7 +41,6 @@ void	ClientGraphic::getKey()
       if (this->event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	this->window.close();
 
-      sf::View view = this->window.getDefaultView();
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	this->x -= 10;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -49,11 +53,21 @@ void	ClientGraphic::getKey()
 	this->zoom -= 0.5;
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract))
 	this->zoom += 0.5;
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+	  this->showMenu = false;
+	}
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+	this->showMenu = true;
       if (this->zoom <= 0.5)
 	this->zoom = 0.5;
-      view.move(this->x, this->y);
-      view.zoom(this->zoom);
-      this->window.setView(view);
+      if (!this->showMenu)
+	{
+	  this->mapView = this->window.getDefaultView();
+	  this->mapView.setCenter((this->window.getSize().x / 3) - this->x, (this->window.getSize().y / 4) - this->y);
+	  this->mapView.zoom(this->zoom);
+	  this->window.setView(this->mapView);
+	}
     }
 }
 
@@ -157,6 +171,7 @@ void	ClientGraphic::addCharacter(int x, int y)
   std::string	pathTexture = "src_client/client-graphic/resources/images/perso1.png";
 
   IsometricSprite	character(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  character.setPosition(sf::Vector2f(300 + (x - 1.5) * -60 + (y - 1.5) * 60, (x - 1.5) * 30 + (y - 1.5) * 30));
 
   character.setScale(0.5, 0.5);
 
@@ -165,25 +180,42 @@ void	ClientGraphic::addCharacter(int x, int y)
 
 void	ClientGraphic::generateMenu()
 {
-  sf::RectangleShape	background;
-  background.setSize(sf::Vector2f(150, 150));
-  background.setPosition(sf::Vector2f(0, 0));
-  background.setFillColor(sf::Color(35, 35, 35, 0.5));
-
-  this->window.draw(background);
+  this->menuView = this->window.getView();
+  this->menuView.reset(sf::FloatRect(0, 0, this->window.getSize().x, this->window.getSize().y));
+  this->window.setView(this->menuView);
 
   sf::Font	font;
-  font.loadFromFile("src_client/client-graphic/resources/fonts/game_power.ttf");
+  font.loadFromFile("src_client/client-graphic/resources/fonts/cl.ttf");
 
   sf::Text text;
   text.setFont(font);
-  text.setString("+ / - to zoom level");
-  text.setCharacterSize(14);
-  text.setPosition(10, 10);
+  text.setString("Use [+] and [-] to zoom level");
+  text.setCharacterSize(20);
+  text.setPosition(this->window.getSize().x / 3, this->window.getSize().y / 2 - 150);
   text.setColor(sf::Color::White);
 
   this->window.draw(text);
 
+  text.setString("Use arrow keyboard to move the map");
+  text.setPosition(this->window.getSize().x / 3, this->window.getSize().y / 2 - 100);
+
+  this->window.draw(text);
+
+
+  text.setString("Click with the mouse on a case to show the inventory case");
+  text.setPosition(this->window.getSize().x / 3, this->window.getSize().y / 2 - 50);
+
+  this->window.draw(text);
+
+  text.setString("Use [ESC] to quit the window");
+  text.setPosition(this->window.getSize().x / 3, this->window.getSize().y / 2);
+
+  this->window.draw(text);
+
+  text.setString("Use [Q] to quit this view and return to the map");
+  text.setPosition(this->window.getSize().x / 3, this->window.getSize().y / 2 + 100);
+
+  this->window.draw(text);
 }
 
 void	ClientGraphic::generateItems(Map &data)
@@ -228,10 +260,17 @@ void	ClientGraphic::generateCharacters(const std::map<int, Character>  & players
 void	ClientGraphic::draw(Map &map, const std::map<int, Character> & players)
 {
   this->window.clear();
-  generateMenu();
-  generateGround(map.getWidth(), map.getHeight());
-  generateItems(map);
-  generateCharacters(players);
+
+  if (this->showMenu)
+    generateMenu();
+  else
+    {
+      this->window.setView(this->mapView);
+      generateGround(map.getWidth(), map.getHeight());
+      generateItems(map);
+      generateCharacters(players);
+    }
+
   this->window.display();
 }
 
