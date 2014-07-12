@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 20:02:37 2014 Jeremy Peltier
-// Last update Thu Jul  3 15:40:24 2014 Jeremy Peltier
+// Last update Sat Jul 12 12:19:27 2014 Jeremy Peltier
 //
 
 #include	"TextureManager.hpp"
@@ -26,6 +26,7 @@ sf::Texture	&TextureManager::getTexture(std::string &name)
     {
       sf::Texture texture;
       texture.loadFromFile(name);
+      texture.setRepeated(true);
       this->textures.insert(std::pair<std::string, sf::Texture>(name, texture));
       it = this->textures.find(name);
     }

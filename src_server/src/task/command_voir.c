@@ -34,7 +34,7 @@ void			loop_items_on_case(t_list *current_item,
 					   void *marker_space)
 {
   t_item		*item;
-  const char		*name_item[7] = {" nourriture", " linemate",
+  const char		*name_item[7] = {" food", " linemate",
 					 " deraumere",
 					 " sibur", " mendiane", " phiras",
 					 " thystame"};

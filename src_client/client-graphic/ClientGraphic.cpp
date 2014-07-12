@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:49:02 2014 Jeremy Peltier
-// Last update Fri Jul 11 17:59:39 2014 Jeremy Peltier
+// Last update Sat Jul 12 14:28:50 2014 Jeremy Peltier
 //
 
 #include "ClientGraphic.hpp"
@@ -59,24 +59,26 @@ void	ClientGraphic::getKey()
 
 void	ClientGraphic::addFloor(int x, int y)
 {
-  std::string	pathTexture = "src_client/client-graphic/resources/images/grass.png";
+  std::string	pathTexture = "src_client/client-graphic/resources/images/ground-1.png";
 
-  IsometricSprite	floor(textures.getTexture(pathTexture));
-  floor.setIsometricPosition(sf::Vector2f(x, y));
+  if (x % 2 == 0 || y % 2 == 0)
+    pathTexture = "src_client/client-graphic/resources/images/ground-2.png";
+
+  IsometricSprite	floor(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  floor.setIsometricScale();
+  floor.setIsometricSize();
 
   this->window.draw(floor);
 }
 
 void	ClientGraphic::addFood(int x, int y)
 {
-  sf::CircleShape	food(10);
-  food.setFillColor(sf::Color(243, 156, 18));
+  std::string	pathTexture = "src_client/client-graphic/resources/images/food.png";
 
-  sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  food.setPosition(screenPosition);
+  IsometricSprite	food(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  food.setPosition(sf::Vector2f(300 + (x - 0.25) * -60 + (y + 0.75) * 60, (x - 0.25) * 30 + (y + 0.75) * 30));
 
-  sf::FloatRect rec = food.getLocalBounds();
-  food.setScale(food.getScale().x * 20 / rec.width, food.getScale().y * 10 / rec.height);
+  food.setScale(1, 1);
 
   this->window.draw(food);
 }
@@ -85,17 +87,10 @@ void	ClientGraphic::addLinemate(int x, int y)
 {
   std::string	pathTexture = "src_client/client-graphic/resources/images/pierre1.png";
 
-  IsometricSprite	linemate(textures.getTexture(pathTexture));
-  linemate.setIsometricPosition(sf::Vector2f(x, y));
+  IsometricSprite	linemate(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  linemate.setPosition(sf::Vector2f(300 + (x - 0.5) * -60 + (y + 0.25) * 60, (x - 0.5) * 30 + (y + 0.25) * 30));
 
-  // sf::CircleShape	linemate(10);
-  // linemate.setFillColor(sf::Color(231, 76, 60));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // linemate.setPosition(screenPosition);
-
-  // sf::FloatRect rec = linemate.getLocalBounds();
-  // linemate.setScale(linemate.getScale().x * 20 / rec.width, linemate.getScale().y * 10 / rec.height);
+  linemate.setScale(0.5, 0.5);
 
   this->window.draw(linemate);
 }
@@ -104,17 +99,9 @@ void	ClientGraphic::addDeraumere(int x, int y)
 {
   std::string	pathTexture = "src_client/client-graphic/resources/images/pierre2.png";
 
-  IsometricSprite	deraumere(textures.getTexture(pathTexture));
-  deraumere.setIsometricPosition(sf::Vector2f(x, y));
-
-  // sf::CircleShape	deraumere(10);
-  // deraumere.setFillColor(sf::Color(52, 73, 94));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // deraumere.setPosition(screenPosition);
-
-  // sf::FloatRect rec = deraumere.getLocalBounds();
-  // deraumere.setScale(deraumere.getScale().x * 20 / rec.width, deraumere.getScale().y * 10 / rec.height);
+  IsometricSprite	deraumere(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  deraumere.setPosition(sf::Vector2f(300 + (x - 0.5) * -60 + (y + 0.5) * 60, (x - 0.5) * 30 + (y + 0.5) * 30));
+  deraumere.setScale(0.5, 0.5);
 
   this->window.draw(deraumere);
 }
@@ -125,15 +112,8 @@ void	ClientGraphic::addSibur(int x, int y)
 
   IsometricSprite	sibur(textures.getTexture(pathTexture));
   sibur.setIsometricPosition(sf::Vector2f(x, y));
-
-  // sf::CircleShape	sibur(10);
-  // sibur.setFillColor(sf::Color(39, 174, 96));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // sibur.setPosition(screenPosition);
-
-  // sf::FloatRect rec = sibur.getLocalBounds();
-  // sibur.setScale(sibur.getScale().x * 20 / rec.width, sibur.getScale().y * 10 / rec.height);
+  sibur.setPosition(sf::Vector2f(300 + (x - 0.25) * -60 + (y + 0.25) * 60, (x - 0.25) * 30 + (y + 0.25) * 30));
+  sibur.setScale(0.5, 0.5);
 
   this->window.draw(sibur);
 }
@@ -142,17 +122,9 @@ void	ClientGraphic::addMendiane(int x, int y)
 {
   std::string	pathTexture = "src_client/client-graphic/resources/images/pierre4.png";
 
-  IsometricSprite	mendiane(textures.getTexture(pathTexture));
-  mendiane.setIsometricPosition(sf::Vector2f(x, y));
-
-  // sf::CircleShape	mendiane(10);
-  // mendiane.setFillColor(sf::Color(41, 128, 185));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // mendiane.setPosition(screenPosition);
-
-  // sf::FloatRect rec = mendiane.getLocalBounds();
-  // mendiane.setScale(mendiane.getScale().x * 20 / rec.width, mendiane.getScale().y * 10 / rec.height);
+  IsometricSprite	mendiane(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  mendiane.setPosition(sf::Vector2f(300 + (x - 0.25) * -60 + (y + 0.5) * 60, (x - 0.25) * 30 + (y + 0.5) * 30));
+  mendiane.setScale(0.5, 0.5);
 
   this->window.draw(mendiane);
 }
@@ -161,17 +133,9 @@ void	ClientGraphic::addPhiras(int x, int y)
 {
   std::string	pathTexture = "src_client/client-graphic/resources/images/pierre5.png";
 
-  IsometricSprite	phiras(textures.getTexture(pathTexture));
-  phiras.setIsometricPosition(sf::Vector2f(x, y));
-
-  // sf::CircleShape	phiras(10);
-  // phiras.setFillColor(sf::Color(155, 89, 182));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // phiras.setPosition(screenPosition);
-
-  // sf::FloatRect rec = phiras.getLocalBounds();
-  // phiras.setScale(phiras.getScale().x * 20 / rec.width, phiras.getScale().y * 10 / rec.height);
+  IsometricSprite	phiras(textures.getTexture(pathTexture), sf::Vector2f(x, y));
+  phiras.setPosition(sf::Vector2f(300 + x * -60 + (y + 0.25) * 60, x * 30 + (y + 0.25) * 30));
+  phiras.setScale(0.5, 0.5);
 
   this->window.draw(phiras);
 }
@@ -182,15 +146,8 @@ void	ClientGraphic::addThystane(int x, int y)
 
   IsometricSprite	thystame(textures.getTexture(pathTexture));
   thystame.setIsometricPosition(sf::Vector2f(x, y));
-
-  // sf::CircleShape	thystane(10);
-  // thystane.setFillColor(sf::Color(192, 57, 43));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // thystane.setPosition(screenPosition);
-
-  // sf::FloatRect rec = thystane.getLocalBounds();
-  // thystane.setScale(thystane.getScale().x * 20 / rec.width, thystane.getScale().y * 10 / rec.height);
+  thystame.setPosition(sf::Vector2f(300 + x * -60 + (y + 0.5) * 60, x * 30 + (y + 0.5) * 30));
+  thystame.setScale(0.5, 0.5);
 
   this->window.draw(thystame);
 }
@@ -199,19 +156,34 @@ void	ClientGraphic::addCharacter(int x, int y)
 {
   std::string	pathTexture = "src_client/client-graphic/resources/images/perso1.png";
 
-  IsometricSprite	character(textures.getTexture(pathTexture));
-  character.setIsometricPosition(sf::Vector2f(x, y));
+  IsometricSprite	character(textures.getTexture(pathTexture), sf::Vector2f(x, y));
 
-  // sf::RectangleShape	character(sf::Vector2f(10, 10));
-  // character.setFillColor(sf::Color(127, 140, 141));
-
-  // sf::Vector2f	screenPosition = sf::Vector2f(300 + x * -30 + y * 30, x * 15 + y * 15);
-  // character.setPosition(screenPosition);
-
-  // sf::FloatRect	rec = character.getLocalBounds();
-  // character.setScale(character.getScale().x * 20 / rec.width, character.getScale().y * 10 / rec.height);
+  character.setScale(0.5, 0.5);
 
   this->window.draw(character);
+}
+
+void	ClientGraphic::generateMenu()
+{
+  sf::RectangleShape	background;
+  background.setSize(sf::Vector2f(150, 150));
+  background.setPosition(sf::Vector2f(0, 0));
+  background.setFillColor(sf::Color(35, 35, 35, 0.5));
+
+  this->window.draw(background);
+
+  sf::Font	font;
+  font.loadFromFile("src_client/client-graphic/resources/fonts/game_power.ttf");
+
+  sf::Text text;
+  text.setFont(font);
+  text.setString("+ / - to zoom level");
+  text.setCharacterSize(14);
+  text.setPosition(10, 10);
+  text.setColor(sf::Color::White);
+
+  this->window.draw(text);
+
 }
 
 void	ClientGraphic::generateItems(Map &data)
@@ -220,20 +192,20 @@ void	ClientGraphic::generateItems(Map &data)
     {
       for (int x = 0; x < data.getWidth(); ++x)
 	{
-	  if (data.getMap()[y][x][FOOD] > 0)
-	    addFood(x, y + 1);
 	  if (data.getMap()[y][x][LINEMATE] > 0)
-	    addLinemate(x, y + 1);
+	    addLinemate(x, y);
 	  if (data.getMap()[y][x][DERAUMERE] > 0)
-	    addDeraumere(x, y + 1);
+	    addDeraumere(x, y);
 	  if (data.getMap()[y][x][SIBUR] > 0)
-	    addSibur(x, y + 1);
+	    addSibur(x, y);
 	  if (data.getMap()[y][x][MENDIANE] > 0)
-	    addMendiane(x, y + 1);
+	    addMendiane(x, y);
 	  if (data.getMap()[y][x][PHIRAS])
-	    addPhiras(x, y + 1);
+	    addPhiras(x, y);
 	  if (data.getMap()[y][x][THYSTAME])
-	    addThystane(x, y + 1);
+	    addThystane(x, y);
+	  if (data.getMap()[y][x][FOOD] > 0)
+	    addFood(x, y);
 	}
     }
 }
@@ -256,6 +228,7 @@ void	ClientGraphic::generateCharacters(const std::map<int, Character>  & players
 void	ClientGraphic::draw(Map &map, const std::map<int, Character> & players)
 {
   this->window.clear();
+  generateMenu();
   generateGround(map.getWidth(), map.getHeight());
   generateItems(map);
   generateCharacters(players);
