@@ -102,4 +102,5 @@ void			list_delete(t_list *list)
       current_elem = current_elem->next;
       free(ptmp);
     }
+  list = NULL;
 }

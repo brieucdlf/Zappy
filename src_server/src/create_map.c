@@ -17,12 +17,7 @@ int			create_map(t_server *server)
 	return (1);
       for (index_position_x = 0; index_position_x < server->map.width;
 	   index_position_x++)
-	{
-	  if ((server->map.map[index_position_y][index_position_x] =
-	       malloc(sizeof(t_list))) == NULL)
-	    return (1);
-	  server->map.map[index_position_y][index_position_x] = NULL;
-	}
+	server->map.map[index_position_y][index_position_x] = NULL;
       server->map.map[index_position_y][index_position_x] = NULL;
     }
   server->map.map[index_position_y] = NULL;
