@@ -23,7 +23,7 @@ void			signalHandler(int signal)
       if(nbSignal == 2)
 	{
 	  printf("[\033[31m-\033[0m] Server down\n");
-	  g_server_run = 0;
+	  g_server_run = 2;
 	}
     }
 }
@@ -51,9 +51,6 @@ void			server_loop(t_server *server)
 	  check_timer(server);
 	}
       if (g_server_run == 0)
-	{
-	  printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
-	  return ;
-	}
+	printf("[\033[31m-\033[0m] Timeout ! Connection not established\n");
     }
 }
