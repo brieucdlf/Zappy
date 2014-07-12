@@ -1,6 +1,18 @@
 #include "server.h"
 
-void		        request_expulse(t_client *client, int type)
+void			expluse_graphic_client(t_server *server, t_client *client)
+{
+  char			*command;
+
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  snprintf(command, 100, "pex %d\n", client->id_client);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
+void		        request_expulse(t_server *server, t_client *client, int type)
 {
   static int		current_stat = 0;
 
@@ -17,7 +29,10 @@ void		        request_expulse(t_client *client, int type)
   else if (client != NULL)
     {
       if (current_stat == 1)
-	create_new_write_task(client, "OK\n");
+	{
+	  create_new_write_task(client, "OK\n");
+	  expluse_graphic_client(server, client);
+	}
       else
 	create_new_write_task(client, "KO\n");
     }
@@ -40,7 +55,7 @@ void			map_expulse_player(t_list *current_client, void *player)
       sprintf(command, "direction :%d\n",
 	      ((t_client *)player)->direction.orientation);
       create_new_write_task(((t_client *)current_client->data), command);
-      request_expulse(NULL, 1);
+      request_expulse(NULL, NULL, 1);
     }
   free(command);
 }
@@ -50,7 +65,7 @@ void		        expulse_task_function(t_server *server,
 					      char *arg)
 {
   (void)arg;
-  request_expulse(NULL, 0);
+  request_expulse(server, NULL, 0);
   map_list(server->clients, map_expulse_player, (void *)client);
-  request_expulse(client, 2);
+  request_expulse(server, client, 2);
 }

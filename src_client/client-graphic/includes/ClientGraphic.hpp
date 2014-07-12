@@ -5,7 +5,7 @@
 // Login   <peltie_j@epitech.net>
 //
 // Started on  Tue Jul  1 09:50:32 2014 Jeremy Peltier
-// Last update Sat Jul 12 10:07:18 2014 Jeremy Peltier
+// Last update Sat Jul 12 18:28:28 2014 Remi Hillairet
 //
 
 #ifndef		CLIENT_GRAPHIC_HPP_
@@ -32,8 +32,8 @@ public:
   void	generateMenu();
   void	generateItems(Map &);
   void	generateGround(int, int);
-  void	generateCharacters(const std::map<int, Character> &);
-  void	draw(Map &, const std::map<int, Character> &);
+  void	generateCharacters(std::map<int, Character> &);
+  void	draw(Map &, std::map<int, Character> &);
   void	loading(int);
 
 public:

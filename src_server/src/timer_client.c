@@ -9,6 +9,19 @@ void				init_timer_client(t_client *client)
   client->timeout.tv_usec = current_time.tv_usec;
 }
 
+void				send_dead_to_graphic_client(t_server *server,
+							    t_client *client)
+{
+  char			*command;
+
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  snprintf(command, 100, "pdi %d\n", client->id_client);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
 int				check_timeout_client(t_list *current_item,
 						     void *arg)
 {
@@ -30,6 +43,7 @@ int				check_timeout_client(t_list *current_item,
     {
       printf("[\033[31m-\033[0m] Client dead, no food [%d]\n",
 	     current_client->id_client);
+      send_dead_to_graphic_client((t_server *)arg, current_client);
       deconnection_client((t_server *)arg, current_client);
       return (0);
     }

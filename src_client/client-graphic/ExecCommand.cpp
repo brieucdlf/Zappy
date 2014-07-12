@@ -9,13 +9,13 @@ ExecCommand::ExecCommand()
   _functions["ppo"] = &ExecCommand::runPpo;
   _functions["plv"] = &ExecCommand::runPlv;
   // _functions["pin"] = &ExecCommand::runPin;
-  // _functions["pex"] = &ExecCommand::runPex;
+  _functions["pex"] = &ExecCommand::runPex;
   // _functions["pbc"] = &ExecCommand::runPbc;
   // _functions["pic"] = &ExecCommand::runPic;
   // _functions["pie"] = &ExecCommand::runPie;
   // _functions["pfk"] = &ExecCommand::runPfk;
-  // _functions["pdr"] = &ExecCommand::runPdr;
-  // _functions["pgt"] = &ExecCommand::runPgt;
+  _functions["pdr"] = &ExecCommand::runPdr;
+  _functions["pgt"] = &ExecCommand::runPgt;
   // _functions["pdi"] = &ExecCommand::runPdi;
   // _functions["enw"] = &ExecCommand::runEnw;
   // _functions["eht"] = &ExecCommand::runEht;
@@ -172,10 +172,17 @@ void		ExecCommand::runPlv(std::vector<std::string> & param, ClientData & data)
 
 // }
 
-// void	ExecCommand::runPex(std::vector<std::string> param)
-// {
+void	ExecCommand::runPex(std::vector<std::string> & param, ClientData & data)
+{
+  int	nbClient;
 
-// }
+  if (param.size() != 2)
+    return ;
+  (void)data;
+  std::istringstream(param[1]) >> nbClient;
+  std::cout << "Player " << nbClient << " expulse" << std::endl;
+}
+
 // void	ExecCommand::runPbc(std::vector<std::string> param)
 // {
 
@@ -196,19 +203,56 @@ void		ExecCommand::runPlv(std::vector<std::string> & param, ClientData & data)
 
 // }
 
-// void	ExecCommand::runPdr(std::vector<std::string> param)
-// {
+void	ExecCommand::runPdr(std::vector<std::string> & param, ClientData & data)
+{
+  int	x;
+  int	y;
+  int	nbClient;
+  int	resource;
 
-// }
-// void	ExecCommand::runPgt(std::vector<std::string> param)
-// {
+  if (param.size() != 3)
+    return ;
+  std::istringstream(param[1]) >> nbClient;
+  std::istringstream(param[2]) >> resource;
 
-// }
+  Character& player = data.getPlayer(nbClient);
+  x = player.getPosX();
+  y = player.getPosY();
+  player.getInventary()[static_cast<Item>(resource)] -= 1;
+  data.getMap().getMap()[y][x][static_cast<Item>(resource)] += 1;
+  std::cout << "Player " << nbClient << " drop " << static_cast<Item>(resource) << std::endl;
+}
 
-// void	ExecCommand::runPdi(std::vector<std::string> param)
-// {
+void	ExecCommand::runPgt(std::vector<std::string> & param, ClientData & data)
+{
+  int	x;
+  int	y;
+  int	nbClient;
+  int	resource;
 
-// }
+  if (param.size() != 3)
+    return ;
+  std::istringstream(param[1]) >> nbClient;
+  std::istringstream(param[2]) >> resource;
+
+  Character& player = data.getPlayer(nbClient);
+  x = player.getPosX();
+  y = player.getPosY();
+  player.getInventary()[static_cast<Item>(resource)] += 1;
+  data.getMap().getMap()[y][x][static_cast<Item>(resource)] -= 1;
+  std::cout << "Player " << nbClient << " take " << static_cast<Item>(resource) << std::endl;
+}
+
+void	ExecCommand::runPdi(std::vector<std::string> & param, ClientData & data)
+{
+  int	nbClient;
+
+  if (param.size() != 2)
+    return ;
+  std::istringstream(param[1]) >> nbClient;
+  data.getAllPlayers().erase(nbClient);
+  std::cout << "Player " << nbClient << " died" << std::endl;
+}
 
 // void	ExecCommand::runEnw(std::vector<std::string> param)
 // {

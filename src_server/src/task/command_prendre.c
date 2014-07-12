@@ -18,6 +18,21 @@ int		        s_object(char *arg, int index)
   return (strcmp(arg, name_item[index % 7]));
 }
 
+void			send_prend_graphic_client(t_server *server,
+						  t_client *client,
+						  int item_type)
+{
+  char			*command;
+
+  create_new_write_task(client, "OK\n");
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  snprintf(command, 100, "pgt %d %d\n", client->id_client, item_type);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
 void		        prend_task_function(t_server *server,
 					    t_client *client,
 					    char *arg)

@@ -12,6 +12,21 @@ int			s_object_pose(char *arg, int index)
   return (strcmp(arg, name_item[index % 7]));
 }
 
+void			send_pose_graphic_client(t_server *server,
+						 t_client *client,
+						 int index_item)
+{
+  char			*command;
+
+  create_new_write_task(client, "OK\n");
+  if (server->graphic_client == NULL || (command = malloc(100)) == NULL)
+    return ;
+  memset(command, 0, 100);
+  snprintf(command, 100, "pdr %d %d\n", client->id_client, index_item);
+  create_new_write_task(server->graphic_client, command);
+  free(command);
+}
+
 void			pose_task_function(t_server *server,
 					   t_client *client,
 					   char *arg)
@@ -40,5 +55,5 @@ void			pose_task_function(t_server *server,
   --client->items[index_item];
   list_push(&server->map.map[client->direction.position_y]
 	    [client->direction.position_x], (void *)item, free_item);
-  create_new_write_task(client, "OK\n");
+  send_pose_graphic_client(server, client, index_item);
 }
