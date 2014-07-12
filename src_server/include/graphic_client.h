@@ -5,7 +5,7 @@
 ** Login   <hillai_a@epitech.net>
 **
 ** Started on  Tue Jul  1 15:56:42 2014 Remi Hillairet
-** Last update Fri Jul 11 12:23:30 2014 Remi Hillairet
+** Last update Sat Jul 12 13:16:52 2014 Remi Hillairet
 */
 
 #ifndef GRAPHIC_CLIENT_H

@@ -47,10 +47,10 @@ void		content_at_pos(t_server *server, int x, int y, char *command)
 	  nb_item[4], nb_item[5], nb_item[6]);
 }
 
-void	create_map_task(t_server *server, char *command)
+void		create_map_task(t_server *server, char *command)
 {
-  int	x;
-  int	y;
+  int		x;
+  int		y;
 
   y = 0;
   while (y < server->map.height)

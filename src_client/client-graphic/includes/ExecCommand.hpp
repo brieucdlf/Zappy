@@ -24,6 +24,7 @@ public:
   void runTna(std::vector<std::string> & param, ClientData & data);
   void runPnw(std::vector<std::string> & param, ClientData & data);
   void runPpo(std::vector<std::string> & param, ClientData & data);
+  void runPlv(std::vector<std::string> & param, ClientData & data);
 
 private:
   std::map<std::string, void (ExecCommand::*)(std::vector<std::string> & param, ClientData & data)> _functions;
