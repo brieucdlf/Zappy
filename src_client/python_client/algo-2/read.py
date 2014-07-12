@@ -276,3 +276,4 @@ def main_loop(so):
             what_i_see(data)
         if "prend " in command and data == "ok\n":
             player["inventaire"] = {};
+        sleep(1)
