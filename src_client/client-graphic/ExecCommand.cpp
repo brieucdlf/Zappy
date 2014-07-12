@@ -16,7 +16,7 @@ ExecCommand::ExecCommand()
   // _functions["pfk"] = &ExecCommand::runPfk;
   _functions["pdr"] = &ExecCommand::runPdr;
   _functions["pgt"] = &ExecCommand::runPgt;
-  // _functions["pdi"] = &ExecCommand::runPdi;
+  _functions["pdi"] = &ExecCommand::runPdi;
   // _functions["enw"] = &ExecCommand::runEnw;
   // _functions["eht"] = &ExecCommand::runEht;
   // _functions["ebo"] = &ExecCommand::runEbo;

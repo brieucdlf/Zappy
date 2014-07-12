@@ -56,7 +56,7 @@ void		        prend_task_function(t_server *server,
 	  list_remove_with_data(&server->map.map[client->direction.position_y]
 				[client->direction.position_x], (void *)item,
 				match_item_prendre_task);
-	  create_new_write_task(client, "OK\n");
+	  send_prend_graphic_client(server, client, item->type);
 	  return ;
 	}
       current_item = current_item->next;
