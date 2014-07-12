@@ -56,7 +56,7 @@ def find_player(so):
         i = i + 1
     for key in player["what_i_see"][0]:
         if key == "nourriture":
-            so.send_request("prend nourriture\n")
+            so.send_request("prend food\n")
             print "nourriture"
         if key != "linemate" and key != "deraumere" and key != "sibur" and key != "mendiane" \
         and key != "phiras" and key != "thystame" and key != "nourriture" and key != "":
@@ -228,16 +228,17 @@ def moving(data, tab):
     data = data.replace('}', '')
     data = data.replace('\n', '')
     data = data.split(", ")
+    print tab
     for item in data:
         player["what_i_see"][i] = data[i].split(" ")
         i = i + 1
-    print request
     if request == "droite\n" or request == "gauche\n":
         return "avance\n"
     for key in player["what_i_see"]:
         for key2 in player["what_i_see"][key]:
             if key2 == tab:
                 if key == 0:
+                    print "je suis sur la bonne case " + str(key) + " " + tab
                     return "prend " + tab + "\n"
                 elif key == 2 or key == 6 or key == 12 or key == 20 or key == 30:
                     return "avance\n"
@@ -249,6 +250,7 @@ def moving(data, tab):
 
 def main_loop(so):
     while 1:
+        print "My level is " + str(player["lvl"])
         if player["inventaire"] == {}:
             command = "inventaire\n"
         elif test_incantation(so):
