@@ -48,7 +48,7 @@ void			loop_items_on_case(t_list *current_item,
       make_request(NULL, (char *)&name_item[item->type][1]);
       pass = 1;
     }
-  else if (*(int *)marker_space > 0)
+  else if (*(int *)marker_space > 0 || pass == 1)
     {
       pass = 0;
       make_request(NULL, (char *)name_item[item->type]);
