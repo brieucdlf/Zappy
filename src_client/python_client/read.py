@@ -22,7 +22,6 @@ def drop_rocks(so):
     i = 0
     so.send_request("voir\n")
     data = so.read_request()
-    data = so.read_request()
     if "OK\n" in data or "KO\n" in data:
         data = data[3:]
     data = data.replace('{', '')
@@ -45,7 +44,6 @@ def drop_rocks(so):
                                 print "pose " + to_drop[name_item]
                                 so.send_request("pose " + to_drop[name_item]  + "\n")
                                 data = so.read_request()
-                                print player["inventaire"].values()
                         name_item += 1
                     return True
                 else:
