@@ -35,6 +35,7 @@ def drop_rocks(so):
     for key in player["what_i_see"]:
         for key2 in player["what_i_see"][key]:
             if key2 == "joueur":
+                print "OK pour joueur"
                 if key == 0:
                     to_drop = player["inventaire"].keys()
                     name_item = 0
@@ -236,6 +237,7 @@ def what_i_need(so):
         print "Error with lvl"
     so.send_request("voir\n")
     data = so.read_request()
+    print data
     return moving(data, tab)
 
 def moving(data, tab):
@@ -296,11 +298,14 @@ def main_loop(so):
             global request
             request = command
         so.send_request(command)
+        sleep(0.2)
         data = so.read_request()
         if command == "inventaire\n":
             if data[0] == '{' :
                 player["inventaire"] = get_inventaire(data)
         if command == "incantation\n":
+            print "truc qui me fait chier"
+            print data
             if "niveau actuel : " in data:
                 player["lvl"] = player["lvl"] + 1
         if command == "voir\n":
