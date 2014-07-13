@@ -1,3 +1,4 @@
+import random
 import sys
 import os
 import select 
@@ -21,23 +22,31 @@ def drop_rocks(so):
     i = 0
     so.send_request("voir\n")
     data = so.read_request()
+    data = so.read_request()
+    if "OK\n" in data or "KO\n" in data:
+        data = data[3:]
     data = data.replace('{', '')
     data = data.replace('}', '')
     data = data.replace('\n', '')
-    data = data.split(", ")
+    data = data.split(",")
     for item in data:
         player["what_i_see"][i] = data[i].split(" ")
         i = i + 1
+    player["what_i_see"][0].append("joueur")
     for key in player["what_i_see"]:
         for key2 in player["what_i_see"][key]:
             if key2 == "joueur":
                 if key == 0:
                     to_drop = player["inventaire"].keys()
-                    for item in player["inventaire"]:
-                        if to_drop != "food":
-                            for item2 in to_drop:
-                                so.send_request("pose " + item2 + "\n")
+                    name_item = 0
+                    for item in player["inventaire"].values():
+                        if int(item) > 0:
+                            for i in range(0, int(item)):
+                                print "pose " + to_drop[name_item]
+                                so.send_request("pose " + to_drop[name_item]  + "\n")
                                 data = so.read_request()
+                                print player["inventaire"].values()
+                        name_item += 1
                     return True
                 else:
                     return False
@@ -48,19 +57,21 @@ def find_player(so):
     compt = 0
     so.send_request("voir\n")
     data = so.read_request()
+    if "OK\n" in data or "KO\n" in data:
+        data = data[3:]
     data = data.replace('{', '')
     data = data.replace('}', '')
     data = data.replace('\n', '')
-    data = data.split(", ")
+    data = data.split(",")
     for item in data:
         player["what_i_see"][i] = data[i].split(" ")
         i = i + 1
+    player["what_i_see"][0].append("joueur")
     for key in player["what_i_see"][0]:
         if key == "food":
             so.send_request("prend food\n")
-            print "food"
-        if key != "linemate" and key != "deraumere" and key != "sibur" and key != "mendiane" \
-        and key != "phiras" and key != "thystame" and key != "nourriture" and key != "":
+            print "food ramassee"
+        if key == "joueur":
             compt = compt + 1
     return compt
 
@@ -85,39 +96,42 @@ def get_inventaire(data):
 
 def test_incantation(so):
     if player["lvl"] == 1:
-        if 'linemate' in player["inventaire"] and player["inventaire"]["linemate"] == 1 \
-        and "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] == 0 \
-        and "sibur" in player["inventaire"] and player["inventaire"]["sibur"] == 0 \
-        and "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] == 0 \
-        and "phiras" in player["inventaire"] and player["inventaire"]["phiras"] == 0 \
-        and "thystane" in player["inventaire"] and player["inventaire"]["thystane"] == 0:
+        if 'linemate' in player["inventaire"] and int(player["inventaire"]["linemate"]) == 1 \
+        and "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) == 0 \
+        and "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) == 0 \
+        and "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) == 0 \
+        and "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) == 0 \
+        and "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) == 0:
             if find_player(so) == 1:
+                print "J'AI toutes les pierres et un joueur sur ma case"
                 return drop_rocks(so)
     elif player["lvl"] == 2:
-        if 'linemate' in player["inventaire"] and player["inventaire"]["linemate"] == 1 \
-        and "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] == 1 \
-        and "sibur" in player["inventaire"] and player["inventaire"]["sibur"] == 1 \
-        and "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] == 0 \
-        and "phiras" in player["inventaire"] and player["inventaire"]["phiras"] == 0 \
-        and "thystane" in player["inventaire"] and player["inventaire"]["thystane"] == 0:
+        if 'linemate' in player["inventaire"] and int(player["inventaire"]["linemate"]) == 1 \
+        and "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) == 1 \
+        and "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) == 1 \
+        and "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) == 0 \
+        and "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) == 0 \
+        and "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) == 0:
             if find_player(so) == 2:
                 return drop_rocks(so)
+            else:
+                so.send_request("broadcast " + str(player["lvl"]) + "\n")
     elif player["lvl"] == 3:
-        if 'linemate' in player["inventaire"] and player["inventaire"]["linemate"] == 2 \
-        and "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] == 0 \
-        and "sibur" in player["inventaire"] and player["inventaire"]["sibur"] == 1 \
-        and "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] == 0 \
-        and "phiras" in player["inventaire"] and player["inventaire"]["phiras"] == 2 \
-        and "thystane" in player["inventaire"] and player["inventaire"]["thystane"] == 0:
+        if 'linemate' in player["inventaire"] and int(player["inventaire"]["linemate"]) == 2 \
+        and "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) == 0 \
+        and "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) == 1 \
+        and "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) == 0 \
+        and "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) == 2 \
+        and "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) == 0:
             if find_player(so) == 2:
                 return drop_rocks(so)
     elif player["lvl"] == 4:
-        if 'linemate' in player["inventaire"] and player["inventaire"]["linemate"] == 1 \
-        and "deraumere" in player["inventaire"] and player["inventaire"]["deraumere"] == 1 \
-        and "sibur" in player["inventaire"] and player["inventaire"]["sibur"] == 2 \
-        and "mendiane" in player["inventaire"] and player["inventaire"]["mendiane"] == 0 \
-        and "phiras" in player["inventaire"] and player["inventaire"]["phiras"] == 1 \
-        and "thystane" in player["inventaire"] and player["inventaire"]["thystane"] == 0:
+        if 'linemate' in player["inventaire"] and int(player["inventaire"]["linemate"]) == 1 \
+        and "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) == 1 \
+        and "sibur" in player["inventaire"] and int(player["inventaire"]["sibur"]) == 2 \
+        and "mendiane" in player["inventaire"] and int(player["inventaire"]["mendiane"]) == 0 \
+        and "phiras" in player["inventaire"] and int(player["inventaire"]["phiras"]) == 1 \
+        and "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) == 0:
             if find_player(so) == 4:
                 return drop_rocks(so)
     else:
@@ -128,8 +142,6 @@ def find_excedent(so):
     tab = []
     if player["lvl"] == 1:
         if "linemate" in player["inventaire"] and int(player["inventaire"]["linemate"]) > 1:
-            print player["inventaire"]["linemate"]
-            print "OK je rentre dans le mauvais if"
             tab.append("linemate")
         if "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) > 0:
             tab.append("deraumere")
@@ -180,7 +192,6 @@ def find_excedent(so):
             tab.append("phiras")
         if "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) > 0:
             tab.append("thystane")
-    drop_rocks(so)
     return tab
 
 def what_i_need(so):
@@ -226,29 +237,40 @@ def what_i_need(so):
     return moving(data, tab)
 
 def moving(data, tab):
+    print tab
+    if "OK\n" in data or "KO\n" in data:
+        data = data[3:]
     i = 0
     data = data.replace('{', '')
     data = data.replace('}', '')
     data = data.replace('\n', '')
-    data = data.split(", ")
-    print tab
+    data = data.split(",")
     for item in data:
         player["what_i_see"][i] = data[i].split(" ")
         i = i + 1
+    print player["what_i_see"]
     if request == "droite\n" or request == "gauche\n":
         return "avance\n"
     for key in player["what_i_see"]:
         for key2 in player["what_i_see"][key]:
             if key2 == tab:
                 if key == 0:
+                    print "prend " + tab + "\n"
                     return "prend " + tab + "\n"
                 elif key == 2 or key == 6 or key == 12 or key == 20 or key == 30:
                     return "avance\n"
+
                 elif key == 3 or (key > 6 and key < 9) or (key > 12 and key < 16) or (key > 20 and key < 25) \
                 or (key > 30 and key < 36):
                     return "droite\n"
                 return "gauche\n"
-    return "avance\n"
+    rand_move = random.randint(0, 2)
+    if rand_move == 0:
+        return "avance\n"
+    elif rand_move == 1:
+        return "gauche\n"
+    elif rand_move == 2:
+        return "droite\n"
 
 def signal_handler(signal, frame):
     sys.exit(0)
@@ -256,9 +278,7 @@ def signal_handler(signal, frame):
 def main_loop(so):
     while 1:
         print "My level is " + str(player["lvl"])
-        #so.send_request("broadcast " + str(player["lvl"]) + "\n")
         signal.signal(signal.SIGINT, signal_handler)
-        global player
         if player["inventaire"] == {}:
             command = "inventaire\n"
         elif test_incantation(so):
@@ -270,6 +290,7 @@ def main_loop(so):
                 data = so.read_request()
                 player["inventaire"][key] = int(player["inventaire"][key]) - 1
             command = what_i_need(so)
+            print command
             global request
             request = command
         so.send_request(command)
@@ -283,5 +304,5 @@ def main_loop(so):
         if command == "voir\n":
             moving(data)
         if "prend " in command:
-            print "je prend"
             player["inventaire"] = {};
+        sleep(0.2)
