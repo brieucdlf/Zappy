@@ -86,9 +86,15 @@ def get_inventaire(data):
     item_name = []
     item_nb = []
     for i in range(0, len(data)):
-        item_name.append(data[i].split(' ')[0])
+        try:
+            item_name.append(data[i].split(' ')[0])
+        except:
+            return None
     for j in range(0, len(data)):
-        item_nb.append(data[j].split(' ')[1])
+        try:
+            item_nb.append(data[j].split(' ')[1])
+        except:
+            return None
     for key in item_name:
         player["inventaire"][key] = item_nb[case_of_nb]
         case_of_nb = case_of_nb + 1
@@ -114,8 +120,6 @@ def test_incantation(so):
         and "thystane" in player["inventaire"] and int(player["inventaire"]["thystane"]) == 0:
             if find_player(so) == 2:
                 return drop_rocks(so)
-            else:
-                so.send_request("broadcast " + str(player["lvl"]) + "\n")
     elif player["lvl"] == 3:
         if 'linemate' in player["inventaire"] and int(player["inventaire"]["linemate"]) == 2 \
         and "deraumere" in player["inventaire"] and int(player["inventaire"]["deraumere"]) == 0 \
